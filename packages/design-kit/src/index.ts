@@ -1,1 +1,1 @@
-export * from './lib/design-kit.js';
+export * from './teapot/teapot';

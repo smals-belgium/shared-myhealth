@@ -2,7 +2,14 @@
   "name": "@myhealth/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "start": "nx run design-kit-storybook:serve",
+    "build": "nx run design-kit:build:production",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "lint": "nx run-many -t lint --all",
+    "test": "nx run-many -t test --all"
+  },
   "private": true,
   "devDependencies": {
     "@eslint/js": "^9.8.0",
@@ -36,5 +43,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "lit": "^3.3.2"
+  }
 }
