@@ -1,0 +1,12 @@
+@layer mh-theme {
+  :where(:root) {
+    --mh-color-neutral-border-louder: #0d0d0d;
+    --mh-color-neutral-border-loud: #696969;
+    --mh-color-neutral-border: #808080;
+    --mh-color-neutral-border-quiet: #9c9c9c;
+    --mh-color-neutral-border-quieter: #d1d1d1;
+
+    --mh-border-width-s: 1px;
+    --mh-space-m: 1rem;
+  }
+}

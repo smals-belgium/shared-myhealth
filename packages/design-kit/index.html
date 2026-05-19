@@ -6,7 +6,9 @@
 
     <title>MyHealth sandbox</title>
 
-    <script type="module" src="./dist/index.js"></script>
+    <script type="module" src="./src/index.ts"></script>
+
+    <link rel="stylesheet" href="./src/my-health.css" />
 
     <style>
       .red {
@@ -16,7 +18,19 @@
   </head>
 
   <body>
-    <div><mh-teapot /></div>
-    <div class="red"><mh-teapot /></div>
+    <article>
+      <h2>Teapot</h2>
+      <mh-teapot></mh-teapot>
+      <mh-teapot class="red">red</mh-teapot>
+    </article>
+
+    <article>
+      <h2>Divider</h2>
+      <mh-divider loudness="louder"></mh-divider>
+      <mh-divider loudness="loud"></mh-divider>
+      <mh-divider></mh-divider>
+      <mh-divider loudness="quiet"></mh-divider>
+      <mh-divider loudness="quieter"></mh-divider>
+    </article>
   </body>
 </html>

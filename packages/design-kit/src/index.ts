@@ -1,1 +1,2 @@
-export * from './teapot/teapot';
+export * from './divider';
+export * from './teapot';

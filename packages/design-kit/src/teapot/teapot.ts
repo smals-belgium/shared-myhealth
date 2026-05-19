@@ -1,19 +1,19 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-import styles from './teapot.styles';
+import styles from './teapot.css?inline';
 
 /**
  * @summary Is a teapot.
- * @documentation https://gith.com/docs/components/divider
+ * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/teapot
  * @status stable
  * @since 1.0
  *
  * @cssproperty --color - The color of the teapot.
  */
 @customElement('mh-teapot')
-export default class Teapot extends LitElement {
-  static override styles = styles;
+export class Teapot extends LitElement {
+  static override readonly styles = unsafeCSS(styles);
 
   override connectedCallback() {
     super.connectedCallback();
@@ -21,12 +21,6 @@ export default class Teapot extends LitElement {
   }
 
   override render() {
-    return html`<h1>I'm a teapot !</h1>`;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'mh-teapot': Teapot;
+    return html`<h1>I'm a <slot></slot> teapot !</h1>`;
   }
 }
