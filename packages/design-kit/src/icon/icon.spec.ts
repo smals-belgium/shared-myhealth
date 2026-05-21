@@ -2,7 +2,7 @@ import { elementUpdated, fixture, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 
 import { LoadEvent } from '../core/event/load.event.js';
-import { assertAccessibility } from '../core/testing/index.js';
+import { assertAccessibility, textContent } from '../core/testing/index.js';
 
 import './icon';
 import type { Icon } from './icon.js';
@@ -65,7 +65,7 @@ describe('icon', () => {
     it(`renders '#' when anything goes wrong`, async () => {
       const el = await fixture<Icon>(html`<mh-icon></mh-icon>`);
       expect(el.shadowRoot?.querySelector('svg')).toBeNull();
-      expect(el.shadowRoot?.textContent).toBe('#');
+      expect(textContent(el)).toBe('#');
     });
   });
 

@@ -1,5 +1,17 @@
 @layer mh-theme {
   :where(:root) {
+    --mh-color-brand-fill-louder: #164583;
+    --mh-color-brand-fill-loud: #1d5caf;
+    --mh-color-brand-fill: #2473db;
+    --mh-color-brand-fill-quiet: #caddf6;
+    --mh-color-brand-fill-quieter: #f2f7fd;
+
+    --mh-color-neutral-fill-louder: #0d0d0d;
+    --mh-color-neutral-fill-loud: #696969;
+    --mh-color-neutral-fill: #808080;
+    --mh-color-neutral-fill-quiet: #ebebeb;
+    --mh-color-neutral-fill-quieter: #f5f5f5;
+
     --mh-color-neutral-border-louder: #0d0d0d;
     --mh-color-neutral-border-loud: #696969;
     --mh-color-neutral-border: #808080;

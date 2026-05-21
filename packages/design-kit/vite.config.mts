@@ -43,6 +43,7 @@ export default defineConfig(() => ({
     name: '@myhealth/design-kit',
     watch: false,
     globals: true,
+    css: true,
     environment: 'jsdom',
     include: ['{src,tests}/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
