@@ -1,0 +1,56 @@
+:host {
+  --spacing: var(--mh-space-m);
+
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: var(--mh-panel-border-radius);
+}
+
+[part='header'],
+[part='footer'] {
+  display: flex;
+  gap: calc(var(--spacing) / 2);
+  padding: calc(var(--spacing) / 2) var(--spacing);
+}
+
+[name='header'],
+[name='header-actions'],
+[part='footer'] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  gap: calc(var(--spacing) / 2);
+}
+
+[part='header'] {
+  flex-direction: column;
+}
+
+[name='header'] {
+  justify-content: space-between;
+
+  &::slotted(h1),
+  &::slotted(h2),
+  &::slotted(h3),
+  &::slotted(h4) {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}
+
+/* align checkboxes and radios to the left, everything else is right aligned */
+[name='header-actions'] {
+  &::slotted(input),
+  &::slotted(mh-checkbox),
+  &::slotted(mh-radio) {
+    margin-right: auto;
+  }
+}
+
+[part='body'] {
+  display: block;
+  padding: 0 var(--spacing);
+}

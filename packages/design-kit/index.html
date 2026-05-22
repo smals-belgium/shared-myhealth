@@ -197,5 +197,34 @@
         >Click me</mh-a
       >
     </article>
+
+    <article>
+      <h2>Card</h2>
+      <mh-card>
+        <h2 slot="header">Title</h2>
+        <span slot="header">badge tbd</span>
+        <input type="checkbox" checked slot="header-actions" />
+        <span slot="header-actions">tag tbd</span>
+        <mh-icon name="menu" slot="header-actions"></mh-icon>
+        card content
+        <mh-button appearance="link" slot="footer">
+          Details
+          <mh-icon name="chevron_right" slot="end"></mh-icon>
+        </mh-button>
+      </mh-card>
+      <br style="margin: 1rem" />
+      <mh-card appearance="outlined">
+        <h2 slot="header">Title</h2>
+        <span slot="header">badge tbd</span>
+        <input type="checkbox" checked slot="header-actions" />
+        <span slot="header-actions">tag tbd</span>
+        <mh-icon name="menu" slot="header-actions"></mh-icon>
+        card content
+        <mh-button appearance="link" slot="footer">
+          Details
+          <mh-icon name="chevron_right" slot="end"></mh-icon>
+        </mh-button>
+      </mh-card>
+    </article>
   </body>
 </html>
