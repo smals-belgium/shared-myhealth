@@ -3,6 +3,7 @@
 ## library
 
 - add custom element manifests
+- add @required annotation for runtime property checking
 
 ## icon
 

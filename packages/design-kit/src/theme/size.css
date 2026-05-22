@@ -1,0 +1,12 @@
+@layer mh-size {
+  :where(:root) {
+    --mh-form-control-height-s: 2.375rem;
+    --mh-form-control-height-m: calc(3rem - 0.125rem);
+
+    --mh-border-width-s: 0.0625rem;
+    --mh-border-width-m: 0.125rem;
+    --mh-border-width-l: 0.1875rem;
+
+    --mh-space-m: 1rem;
+  }
+}
