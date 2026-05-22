@@ -2,7 +2,7 @@ import { expect } from '@open-wc/testing';
 
 export const assertAccessibility = (el: Element) => {
   document.body.appendChild(el);
-  expect(el).to.be.accessible();
+  return expect(el).to.be.accessible();
 };
 
 export const textContent = (el: Element) =>
@@ -16,3 +16,6 @@ export const textContent = (el: Element) =>
 
 export const adoptedStylesheet = (el: Element) =>
   el.shadowRoot?.querySelector('style')?.textContent ?? '';
+
+export const part = (name: string, el: Element) =>
+  el.shadowRoot?.querySelector(`[part="${name}"]`) ?? null;

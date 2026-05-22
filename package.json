@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run design-kit-storybook:serve",
+    "start": "nx run design-kit:serve",
     "build": "nx run design-kit:build:production",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
