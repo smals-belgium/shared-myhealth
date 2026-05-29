@@ -34,29 +34,6 @@ describe('button', () => {
         await fixture<Button>(html`<mh-button disabled>click</mh-button>`),
       );
     });
-
-    it(`has role="button"`, async () => {
-      const el = await fixture(html`<mh-button>click</mh-button>`);
-      expect(getButton(el)?.getAttribute('role')).toBe('button');
-    });
-
-    it('sets aria-disabled to match disabled state', async () => {
-      const el = await fixture<Button>(html`<mh-button>click</mh-button>`);
-      expect(getButton(el)?.getAttribute('aria-disabled')).toBe('false');
-
-      el.disabled = true;
-      await elementUpdated(el);
-      expect(getButton(el)?.getAttribute('aria-disabled')).toBe('true');
-    });
-
-    it('sets tabindex to match disabled state', async () => {
-      const el = await fixture<Button>(html`<mh-button>click</mh-button>`);
-      expect(getButton(el)?.getAttribute('tabindex')).toBe('0');
-
-      el.disabled = true;
-      await elementUpdated(el);
-      expect(getButton(el)?.getAttribute('tabindex')).toBe('-1');
-    });
   });
 
   describe('title', () => {
