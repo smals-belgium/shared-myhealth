@@ -1,0 +1,264 @@
+---
+layout: layout.njk
+pagination:
+  data: components.components
+  size: 1
+  alias: component
+permalink: "components/{{ component.slug }}/index.html"
+---
+
+<div class="page-header">
+  <h1>{{ component.name }}</h1>
+  {% if component.summary %}
+    <p class="page-subtitle">{{ component.summary }}</p>
+  {% endif %}
+  <p>Source:
+    <code>{{ component.sourceDir }}</code>
+  </p>
+</div>
+
+{# ── Accessible live region for control changes ── #}
+<div id="a11y-status" role="status" aria-live="polite" class="sr-only"></div>
+
+{% if component.elements.length %}
+  {% for element in component.elements %}
+    {% set previewId = 'preview-' + component.slug + '-' + loop.index %}
+    <section class="element-section" aria-labelledby="{{ previewId }}-title">
+      <h2 id="{{ previewId }}-title">
+        <code>&lt;{{ element.tag }}&gt;</code>
+      </h2>
+
+      {% if element.description %}
+        <p class="element-description">{{ element.description }}</p>
+      {% endif %}
+
+      {# ── Canvas ── #}
+      <div class="canvas" aria-label="{{ element.tag }} live preview">
+        <div class="canvas-inner">
+          {% if element.tag === 'vitals-button' %}
+            <vitals-button id="{{ previewId }}">Button</vitals-button>
+          {% elseif element.tag === 'vitals-a' %}
+            <vitals-a id="{{ previewId }}" href="#">Anchor</vitals-a>
+          {% elseif element.tag === 'vitals-card' %}
+            <vitals-card id="{{ previewId }}">
+              <span slot="header-title">Card Title</span>
+              Card content goes here.
+              <span slot="footer-start">Footer</span>
+            </vitals-card>
+          {% elseif element.tag === 'vitals-icon' %}
+            <vitals-icon id="{{ previewId }}" name="search"></vitals-icon>
+          {% elseif element.tag === 'vitals-icon-button' %}
+            <vitals-icon-button id="{{ previewId }}" name="search" title="Search"></vitals-icon-button>
+          {% elseif element.tag === 'vitals-spinner' %}
+            <vitals-spinner id="{{ previewId }}"></vitals-spinner>
+          {% elseif element.tag === 'vitals-divider' %}
+            <div style="width: 100%">
+              <vitals-divider id="{{ previewId }}"></vitals-divider>
+            </div>
+          {% else %}
+            <{{ element.tag }} id="{{ previewId }}">{{ element.tag | replace('vitals-', '') }}</{{ element.tag }}>
+          {% endif %}
+        </div>
+      </div>
+
+      {# ── Code snippet ── #}
+      <div class="snippet-panel">
+        <div class="snippet-header">
+          <span>Code</span>
+        </div>
+        <pre class="snippet-pre"><code class="snippet-code"></code></pre>
+      </div>
+
+      {# ── Controls panel ── #}
+      <div class="controls-panel">
+        <div class="controls-header">
+          <span>Controls</span>
+        </div>
+        {% if element.properties.length %}
+          <form aria-label="{{ element.tag }} property controls">
+            <table class="controls-table">
+              <thead>
+                <tr>
+                  <th scope="col">Property</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Default</th>
+                  <th scope="col">Control</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for prop in element.properties %}
+                  <tr>
+                    <td>
+                      <code>{{ prop.name }}</code>
+                      {% if prop.description %}
+                        <p class="prop-description">{{ prop.description }}</p>
+                      {% endif %}
+                    </td>
+                    <td>
+                      <code class="type-label">{{ prop.parsedType or prop.type }}</code>
+                    </td>
+                    <td>
+                      <code class="default-label">{{ prop.defaultValue or '—' }}</code>
+                    </td>
+                    <td>
+                      {% if prop.kind === 'boolean' %}
+                        <input
+                          type="checkbox"
+                          class="property-input"
+                          aria-label="Toggle {{ prop.name }}"
+                          data-target="{{ previewId }}"
+                          data-property="{{ prop.name }}"
+                          data-kind="boolean"
+                          data-default-value="{{ prop.defaultValue }}"
+                          {% if prop.defaultValue === 'true' %} checked {% endif %}
+                        />
+                      {% elseif prop.kind === 'select' and prop.options.length %}
+                        <select
+                          class="property-input"
+                          aria-label="Set {{ prop.name }}"
+                          data-target="{{ previewId }}"
+                          data-property="{{ prop.name }}"
+                          data-kind="select"
+                          data-default-value="{{ prop.defaultValue }}"
+                        >
+                          <option value="">(unset)</option>
+                          {% for option in prop.options %}
+                            <option value="{{ option }}" {% if prop.defaultValue === option %} selected {% endif %}>
+                              {{ option }}
+                            </option>
+                          {% endfor %}
+                        </select>
+                      {% elseif prop.kind === 'number' %}
+                        <input
+                          type="number"
+                          class="property-input"
+                          aria-label="Set {{ prop.name }}"
+                          data-target="{{ previewId }}"
+                          data-property="{{ prop.name }}"
+                          data-kind="number"
+                          data-default-value="{{ prop.defaultValue }}"
+                          value="{{ prop.defaultValue }}"
+                        />
+                      {% else %}
+                        <input
+                          type="text"
+                          class="property-input"
+                          aria-label="Set {{ prop.name }}"
+                          data-target="{{ previewId }}"
+                          data-property="{{ prop.name }}"
+                          data-kind="text"
+                          data-default-value="{{ prop.defaultValue }}"
+                          value="{{ prop.defaultValue }}"
+                        />
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </form>
+        {% else %}
+          <p class="controls-empty">This element has no configurable properties.</p>
+        {% endif %}
+      </div>
+
+      {# ── API Reference: Slots ── #}
+      {% if element.slots.length %}
+        <div class="api-section">
+          <h3>Slots</h3>
+          <table class="api-table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for slot in element.slots %}
+                <tr>
+                  <td><code>{{ slot.name or '(default)' }}</code></td>
+                  <td>{{ slot.description or '—' }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+
+      {# ── API Reference: Events ── #}
+      {% if element.events.length %}
+        <div class="api-section">
+          <h3>Events</h3>
+          <table class="api-table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for event in element.events %}
+                <tr>
+                  <td><code>{{ event.name }}</code></td>
+                  <td>{{ event.description or '—' }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+
+      {# ── API Reference: CSS Parts ── #}
+      {% if element.cssParts.length %}
+        <div class="api-section">
+          <h3>CSS Parts</h3>
+          <table class="api-table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for part in element.cssParts %}
+                <tr>
+                  <td><code>{{ part.name }}</code></td>
+                  <td>{{ part.description or '—' }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+
+      {# ── API Reference: CSS Custom Properties ── #}
+      {% if element.cssProperties.length %}
+        <div class="api-section">
+          <h3>CSS Custom Properties</h3>
+          <table class="api-table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Default</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for prop in element.cssProperties %}
+                <tr>
+                  <td><code>{{ prop.name }}</code></td>
+                  <td><code class="default-label">{{ prop.default or '—' }}</code></td>
+                  <td>{{ prop.description or '—' }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endif %}
+
+    </section>
+  {% endfor %}
+{% else %}
+  <p>No custom elements found in
+    <code>{{ component.sourceDir }}</code>.</p>
+{% endif %}

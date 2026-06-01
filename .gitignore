@@ -5,6 +5,9 @@ dist
 tmp
 out-tsc
 
+# generated manifests
+custom-elements.json
+
 # dependencies
 node_modules
 

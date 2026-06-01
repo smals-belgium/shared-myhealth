@@ -1,0 +1,12 @@
+{
+  "name": "@myhealth/playground",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "name": "playground"
+  },
+  "dependencies": {
+    "@myhealth-belgium/vitals": "0.0.1",
+    "@vitals/tokens": "0.0.1"
+  }
+}
