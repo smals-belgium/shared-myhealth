@@ -1,0 +1,37 @@
+/* ── Token page ───────────────────────────────────────────────────── */
+
+.token-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.625rem;
+}
+
+.token-card {
+  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-radius: 8px;
+  padding: 0.625rem;
+  background: var(--vitals-color-neutral-type-quieter);
+}
+
+.token-swatch {
+  height: 48px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 0.5rem;
+}
+
+.token-card p {
+  margin: 0;
+}
+
+.token-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: var(--vitals-color-neutral-type-louder);
+}
+
+.token-value {
+  font-size: 0.75rem;
+  color: var(--vitals-color-neutral-type-loud);
+}

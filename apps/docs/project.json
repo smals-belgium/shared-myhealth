@@ -1,0 +1,51 @@
+{
+  "name": "docs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/docs/src",
+  "projectType": "application",
+  "targets": {
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run clean",
+        "cwd": "apps/docs"
+      }
+    },
+    "build": {
+      "dependsOn": [
+        {
+          "projects": ["@myhealth-belgium/vitals"],
+          "target": "build"
+        },
+        {
+          "projects": ["@myhealth-belgium/vitals"],
+          "target": "generate-manifest"
+        }
+      ],
+      "executor": "nx:run-commands",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "command": "npm run build",
+        "cwd": "apps/docs"
+      }
+    },
+    "serve": {
+      "dependsOn": [
+        {
+          "projects": ["@myhealth-belgium/vitals"],
+          "target": "build"
+        },
+        {
+          "projects": ["@myhealth-belgium/vitals"],
+          "target": "generate-manifest"
+        }
+      ],
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run serve",
+        "cwd": "apps/docs"
+      }
+    }
+  },
+  "tags": ["apps", "docs"]
+}

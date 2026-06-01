@@ -1,0 +1,79 @@
+/* ── Reset & base ─────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  background: var(--vitals-color-neutral-fill-quieter);
+  color: var(--vitals-color-neutral-type-louder);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0;
+  line-height: 1.3;
+}
+
+p {
+  margin-top: 0;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--vitals-color-brand-fill);
+}
+
+code {
+  background: var(--vitals-color-neutral-fill-quiet);
+  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-radius: 3px;
+  padding: 0.1rem 0.35rem;
+  font-size: 0.85em;
+}
+
+/* ── Accessibility ────────────────────────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Skip link ────────────────────────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.5rem 1rem;
+  background: var(--vitals-color-brand-fill);
+  color: var(--vitals-color-neutral-type-quieter);
+  border-radius: 0 0 6px 6px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}

@@ -1,0 +1,75 @@
+/* ── App shell ────────────────────────────────────────────────────── */
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: 100dvh;
+}
+
+/* ── Main panel ───────────────────────────────────────────────────── */
+
+.main-panel {
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.content {
+  padding: 2rem 2.5rem 3rem;
+  max-width: 960px;
+  outline: none;
+}
+
+/* ── Page header ──────────────────────────────────────────────────── */
+
+.page-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+}
+
+.page-header h1 {
+  text-transform: capitalize;
+  margin-bottom: 0.25rem;
+  font-size: 1.625rem;
+}
+
+.page-subtitle {
+  font-size: 0.9375rem;
+  color: var(--vitals-color-neutral-type-loud);
+  margin: 0 0 0.75rem;
+}
+
+/* ── Utility ──────────────────────────────────────────────────────── */
+
+.sample {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  color: var(--vitals-color-neutral-type-louder);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .content {
+    padding: 1.25rem 1rem 2rem;
+  }
+}

@@ -1,0 +1,265 @@
+/* ── Element sections (component page) ───────────────────────────── */
+
+.element-section {
+  margin-bottom: 3rem;
+}
+
+.element-section > h2 {
+  font-size: 1rem;
+  margin: 0 0 0.625rem;
+  color: var(--vitals-color-neutral-type-loud);
+}
+
+.element-description {
+  font-size: 0.9375rem;
+  color: var(--vitals-color-neutral-type-loud);
+  margin: 0 0 0.75rem;
+}
+
+.prop-description {
+  font-size: 0.75rem;
+  color: var(--vitals-color-neutral-type);
+  margin: 0.2rem 0 0;
+}
+
+/* ── Canvas (live preview) ────────────────────────────────────────── */
+
+.canvas {
+  background: var(--vitals-color-neutral-type-quieter);
+  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle checkerboard to indicate transparent canvas */
+.canvas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      45deg,
+      var(--vitals-color-neutral-fill-quieter) 25%,
+      transparent 25%
+    ),
+    linear-gradient(
+      -45deg,
+      var(--vitals-color-neutral-fill-quieter) 25%,
+      transparent 25%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 75%,
+      var(--vitals-color-neutral-fill-quieter) 75%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 75%,
+      var(--vitals-color-neutral-fill-quieter) 75%
+    );
+  background-size: 20px 20px;
+  background-position:
+    0 0,
+    0 10px,
+    10px -10px,
+    -10px 0;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.canvas-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 3rem 2rem;
+  width: 100%;
+}
+
+/* ── Code snippet panel ───────────────────────────────────────────── */
+
+.snippet-panel {
+  background: var(--vitals-color-neutral-type-louder);
+  border-left: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-right: 1px solid var(--vitals-color-neutral-border-quieter);
+}
+
+.snippet-header {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  background: var(--vitals-color-neutral-type-loud);
+  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+}
+
+.snippet-header span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vitals-color-neutral-fill-quieter);
+}
+
+.snippet-pre {
+  margin: 0;
+  padding: 0.875rem 1rem;
+  overflow-x: auto;
+}
+
+.snippet-code {
+  font-size: 0.8125rem;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  color: var(--vitals-color-neutral-fill-quieter);
+  background: transparent;
+  border: none;
+  padding: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* ── Controls panel ───────────────────────────────────────────────── */
+
+.controls-panel {
+  background: var(--vitals-color-neutral-type-quieter);
+  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-radius: 0 0 8px 8px;
+}
+
+.controls-header {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 1rem;
+  background: var(--vitals-color-neutral-fill-quieter);
+  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+}
+
+.controls-header span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vitals-color-neutral-type);
+}
+
+.controls-empty {
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: var(--vitals-color-neutral-type);
+  margin: 0;
+}
+
+.controls-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.controls-table th {
+  text-align: left;
+  padding: 0.5rem 1rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vitals-color-neutral-type);
+  background: var(--vitals-color-neutral-fill-quieter);
+  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+}
+
+.controls-table td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  vertical-align: middle;
+}
+
+.controls-table tr:last-child td {
+  border-bottom: none;
+}
+
+.controls-table tbody tr:hover td {
+  background: var(--vitals-color-brand-fill-quieter);
+}
+
+.type-label {
+  color: var(--vitals-color-brand-fill);
+  font-size: 0.8125rem;
+}
+
+.default-label {
+  color: var(--vitals-color-neutral-type);
+  font-size: 0.8125rem;
+}
+
+.controls-table input[type='text'],
+.controls-table input[type='number'],
+.controls-table select {
+  width: 100%;
+  border: 1px solid var(--vitals-color-neutral-border-quiet);
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.875rem;
+  background: var(--vitals-color-neutral-type-quieter);
+  color: var(--vitals-color-neutral-type-louder);
+}
+
+.controls-table input:focus-visible,
+.controls-table select:focus-visible {
+  outline: 2px solid var(--vitals-color-brand-fill);
+  outline-offset: 2px;
+  border-color: var(--vitals-color-brand-fill);
+}
+
+/* ── API Reference tables ─────────────────────────────────────────── */
+
+.api-section {
+  margin-top: 1.5rem;
+}
+
+.api-section h3 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vitals-color-neutral-type);
+  margin: 0 0 0.5rem;
+}
+
+.api-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.api-table th {
+  text-align: left;
+  padding: 0.5rem 1rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vitals-color-neutral-type);
+  background: var(--vitals-color-neutral-fill-quieter);
+  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+}
+
+.api-table td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--vitals-color-neutral-border-quieter);
+  vertical-align: top;
+}
+
+.api-table tr:last-child td {
+  border-bottom: none;
+}

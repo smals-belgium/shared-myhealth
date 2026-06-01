@@ -1,0 +1,41 @@
+---
+layout: layout.njk
+title: Color Tokens
+---
+
+<div class="page-header">
+  <h1>Color Tokens</h1>
+  <p class="page-subtitle">
+    Tokens generated from
+    <code>packages/vitals/tokens/src/theme/color</code>.
+  </p>
+  <p>Generated at: {{ colorTokens.generatedAt }}</p>
+</div>
+{% if colorTokens.groups.length %}
+  <div class="stack">
+    {% for group in colorTokens.groups %}
+      <section aria-labelledby="token-group-{{ group.name }}">
+        <h2 id="token-group-{{ group.name }}">{{ group.name }}</h2>
+        <p>Source:
+          <code>{{ group.fileName }}</code>
+        </p>
+        <div class="token-grid">
+          {% for token in group.tokens %}
+            <article class="token-card">
+              <div class="token-swatch" style="background: var({{ token.name }});"></div>
+              <p class="token-name">
+                <code>{{ token.name }}</code>
+              </p>
+              <p class="token-value">
+                <code>{{ token.value }}</code>
+              </p>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No color token files were found under
+    <code>packages/vitals/tokens/src/theme/color</code>.</p>
+{% endif %}

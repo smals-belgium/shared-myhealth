@@ -1,0 +1,11 @@
+/* =====================================================================
+   Vitals Docs — Modular stylesheet
+   Uses CSS custom properties from packages/vitals/tokens/src/vitals.css
+   ===================================================================== */
+
+@import 'base.css';
+@import 'layout.css';
+@import 'sidebar.css';
+@import 'canvas.css';
+@import 'component-list.css';
+@import 'tokens.css';

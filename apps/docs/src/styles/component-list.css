@@ -1,0 +1,41 @@
+/* ── Home page component listing ──────────────────────────────────── */
+
+.component-list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.component-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--vitals-color-neutral-type-quieter);
+  border: 1px solid var(--vitals-color-neutral-border-quieter);
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.component-entry:hover {
+  border-color: var(--vitals-color-brand-fill);
+  box-shadow: 0 0 0 1px var(--vitals-color-brand-fill);
+}
+
+.component-entry-name {
+  font-weight: 600;
+  color: var(--vitals-color-brand-fill);
+}
+
+.component-entry-tags {
+  font-size: 0.8rem;
+  color: var(--vitals-color-neutral-type);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .component-entry {
+    transition:
+      border-color var(--vitals-transition-fast) var(--vitals-transition-easing),
+      box-shadow var(--vitals-transition-fast) var(--vitals-transition-easing);
+  }
+}

@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run design-kit:serve",
-    "build": "nx run design-kit:build:production",
+    "start": "nx run playground:serve",
+    "build": "nx run @myhealth-belgium/vitals:build:production",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "nx run-many -t lint --all",
@@ -12,6 +12,8 @@
   },
   "private": true,
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.5",
+    "@custom-elements-manifest/analyzer": "^0.11.0",
     "@eslint/js": "^9.8.0",
     "@nx/eslint": "22.7.0",
     "@nx/eslint-plugin": "22.7.0",
@@ -26,6 +28,7 @@
     "@types/node": "20.19.9",
     "@vitest/coverage-v8": "~4.1.0",
     "@vitest/ui": "~4.1.0",
+    "@wc-toolkit/type-parser": "^1.2.1",
     "ajv": "^8.0.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
@@ -34,6 +37,7 @@
     "jsonc-eslint-parser": "^2.1.0",
     "nx": "22.7.0",
     "prettier": "^3.8.1",
+    "swc-loader": "0.1.15",
     "tslib": "^2.3.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0",
@@ -42,7 +46,9 @@
     "vitest": "~4.1.0"
   },
   "workspaces": [
-    "packages/*"
+    "packages/vitals/*",
+    "apps/docs",
+    "apps/playground"
   ],
   "dependencies": {
     "lit": "^3.3.2"
