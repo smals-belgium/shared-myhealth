@@ -8,7 +8,8 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "nx run-many -t lint --all",
-    "test": "nx run-many -t test --all"
+    "test": "nx run-many -t test --all",
+    "prepare": "husky"
   },
   "private": true,
   "devDependencies": {
@@ -29,6 +30,7 @@
     "ajv": "^8.0.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
+    "husky": "^9.1.7",
     "jiti": "2.4.2",
     "jsdom": "^27.1.0",
     "jsonc-eslint-parser": "^2.1.0",
