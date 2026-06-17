@@ -8,8 +8,8 @@ export const assertAccessibility = (el: Element) => {
 export const textContent = (el: Element) =>
   el.shadowRoot
     ? Array.from(el.shadowRoot.childNodes)
-        .filter((n) => n.nodeType === Node.TEXT_NODE)
-        .map((n) => n.textContent)
+        .filter(n => n.nodeType === Node.TEXT_NODE)
+        .map(n => n.textContent)
         .join('')
         .trim()
     : '';

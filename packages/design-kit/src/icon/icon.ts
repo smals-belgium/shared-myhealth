@@ -91,22 +91,22 @@ export class Icon extends LitElement {
 
   #loadCustomSvg(src: string) {
     fetch(src)
-      .then((res) => {
+      .then(res => {
         if (!res.ok)
           throw new Error(
             `Failed to fetch custom SVG. Status: ${res.statusText}`,
           );
         return res;
       })
-      .then((res) => res.text())
-      .then((content) => {
+      .then(res => res.text())
+      .then(content => {
         if (!content.startsWith('<svg'))
           throw new Error(`Loaded content is not valid SVG.`);
         return content;
       })
-      .then((svg) => (this.svg = svg))
+      .then(svg => (this.svg = svg))
       .then(() => this.dispatchEvent(new LoadEvent()))
-      .catch((e) => this.dispatchEvent(new ErrorEvent(e)));
+      .catch(e => this.dispatchEvent(new ErrorEvent(e)));
   }
 
   #handleLabelChange() {

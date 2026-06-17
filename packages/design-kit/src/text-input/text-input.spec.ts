@@ -31,7 +31,11 @@ describe('text-input', () => {
     it('is accessible when disabled', async () => {
       await assertAccessibility(
         await fixture(
-          html`<mh-text-input name="b" disabled>Label</mh-text-input>`,
+          html`<mh-text-input
+            name="b"
+            disabled
+            >Label</mh-text-input
+          >`,
         ),
       );
     });
@@ -39,7 +43,11 @@ describe('text-input', () => {
     it('is accessible when required', async () => {
       await assertAccessibility(
         await fixture(
-          html`<mh-text-input name="c" required>Label</mh-text-input>`,
+          html`<mh-text-input
+            name="c"
+            required
+            >Label</mh-text-input
+          >`,
         ),
       );
     });
@@ -56,7 +64,11 @@ describe('text-input', () => {
 
     it('reflects title to the input element', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="e" title="my title">Label</mh-text-input>`,
+        html`<mh-text-input
+          name="e"
+          title="my title"
+          >Label</mh-text-input
+        >`,
       );
       expect(el.title).toBe('my title');
       expect(getInput(el)?.getAttribute('title')).toBe('my title');
@@ -73,10 +85,12 @@ describe('text-input', () => {
     });
 
     (['email', 'password', 'search', 'tel', 'text', 'url'] as const).forEach(
-      (type) => {
+      type => {
         it(`accepts type "${type}"`, async () => {
           const el = await fixture<TextInput>(
-            html`<mh-text-input name="type-${type}" type="${type}"
+            html`<mh-text-input
+              name="type-${type}"
+              type="${type}"
               >Label</mh-text-input
             >`,
           );
@@ -98,7 +112,11 @@ describe('text-input', () => {
 
     it('reflects size "s" to the host attribute', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="h" size="s">Label</mh-text-input>`,
+        html`<mh-text-input
+          name="h"
+          size="s"
+          >Label</mh-text-input
+        >`,
       );
       expect(el.size).toBe('s');
       expect(el.getAttribute('size')).toBe('s');
@@ -118,7 +136,11 @@ describe('text-input', () => {
   describe('value', () => {
     it('reflects value to the host attribute', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="i" value="hello">Label</mh-text-input>`,
+        html`<mh-text-input
+          name="i"
+          value="hello"
+          >Label</mh-text-input
+        >`,
       );
       expect(el.value).toBe('hello');
       expect(el.getAttribute('value')).toBe('hello');
@@ -126,14 +148,22 @@ describe('text-input', () => {
 
     it('reflects value to the input element', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="j" value="hello">Label</mh-text-input>`,
+        html`<mh-text-input
+          name="j"
+          value="hello"
+          >Label</mh-text-input
+        >`,
       );
       expect(getInput(el)?.value).toBe('hello');
     });
 
     it('sets form value when the value property changes', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="k" value="initial">Label</mh-text-input>`,
+        html`<mh-text-input
+          name="k"
+          value="initial"
+          >Label</mh-text-input
+        >`,
       );
       setFormValueSpy.mockClear();
       el.value = 'updated';
@@ -153,7 +183,9 @@ describe('text-input', () => {
 
     it('reflects placeholder to the input element', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="m" placeholder="Enter text…"
+        html`<mh-text-input
+          name="m"
+          placeholder="Enter text…"
           >Label</mh-text-input
         >`,
       );
@@ -173,7 +205,11 @@ describe('text-input', () => {
 
     it('reflects disabled as a boolean attribute on the host', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="o" disabled>Label</mh-text-input>`,
+        html`<mh-text-input
+          name="o"
+          disabled
+          >Label</mh-text-input
+        >`,
       );
       expect(el.disabled).toBe(true);
       expect(el.getAttribute('disabled')).toBe('');
@@ -181,7 +217,11 @@ describe('text-input', () => {
 
     it('reflects disabled to the input element', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="p" disabled>Label</mh-text-input>`,
+        html`<mh-text-input
+          name="p"
+          disabled
+          >Label</mh-text-input
+        >`,
       );
       expect(getInput(el)?.disabled).toBe(true);
     });
@@ -199,7 +239,11 @@ describe('text-input', () => {
 
     it('reflects required as a boolean attribute on the host', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="r" required>Label</mh-text-input>`,
+        html`<mh-text-input
+          name="r"
+          required
+          >Label</mh-text-input
+        >`,
       );
       expect(el.required).toBe(true);
       expect(el.getAttribute('required')).toBe('');
@@ -207,7 +251,11 @@ describe('text-input', () => {
 
     it('reflects required to the input element', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="s" required>Label</mh-text-input>`,
+        html`<mh-text-input
+          name="s"
+          required
+          >Label</mh-text-input
+        >`,
       );
       expect(getInput(el)?.required).toBe(true);
     });
@@ -223,7 +271,11 @@ describe('text-input', () => {
 
     it('reflects pattern to the input element', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="u" pattern="[A-Z]+">Label</mh-text-input>`,
+        html`<mh-text-input
+          name="u"
+          pattern="[A-Z]+"
+          >Label</mh-text-input
+        >`,
       );
       expect(getInput(el)?.getAttribute('pattern')).toBe('[A-Z]+');
     });
@@ -239,7 +291,11 @@ describe('text-input', () => {
 
     it('reflects minlength to the input element', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="w" minlength="3">Label</mh-text-input>`,
+        html`<mh-text-input
+          name="w"
+          minlength="3"
+          >Label</mh-text-input
+        >`,
       );
       expect(getInput(el)?.minLength).toBe(3);
     });
@@ -255,7 +311,11 @@ describe('text-input', () => {
 
     it('reflects maxlength to the input element', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="y" maxlength="10">Label</mh-text-input>`,
+        html`<mh-text-input
+          name="y"
+          maxlength="10"
+          >Label</mh-text-input
+        >`,
       );
       expect(getInput(el)?.maxLength).toBe(10);
     });
@@ -272,7 +332,9 @@ describe('text-input', () => {
 
     it('reflects help to the host attribute', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="aa" help="Enter your full name"
+        html`<mh-text-input
+          name="aa"
+          help="Enter your full name"
           >Label</mh-text-input
         >`,
       );
@@ -282,7 +344,9 @@ describe('text-input', () => {
 
     it('renders help text in the help part', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="ab" help="Enter your full name"
+        html`<mh-text-input
+          name="ab"
+          help="Enter your full name"
           >Label</mh-text-input
         >`,
       );
@@ -303,7 +367,9 @@ describe('text-input', () => {
 
     it('reflects hint to the host attribute', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="ad" hint="Format: name@example.com"
+        html`<mh-text-input
+          name="ad"
+          hint="Format: name@example.com"
           >Label</mh-text-input
         >`,
       );
@@ -313,7 +379,9 @@ describe('text-input', () => {
 
     it('renders hint text in the hint part', async () => {
       const el = await fixture<TextInput>(
-        html`<mh-text-input name="ae" hint="Format: name@example.com"
+        html`<mh-text-input
+          name="ae"
+          hint="Format: name@example.com"
           >Label</mh-text-input
         >`,
       );
@@ -372,7 +440,11 @@ describe('text-input', () => {
     describe('form reset', () => {
       it('restores value to the initial value after user changes it', async () => {
         const el = await fixture<TextInput>(
-          html`<mh-text-input name="ai" value="original">Label</mh-text-input>`,
+          html`<mh-text-input
+            name="ai"
+            value="original"
+            >Label</mh-text-input
+          >`,
         );
         el.value = 'modified';
         await el.updateComplete;
@@ -398,7 +470,11 @@ describe('text-input', () => {
 
       it('restores form value to the initial value on reset', async () => {
         const el = await fixture<TextInput>(
-          html`<mh-text-input name="ak" value="original">Label</mh-text-input>`,
+          html`<mh-text-input
+            name="ak"
+            value="original"
+            >Label</mh-text-input
+          >`,
         );
         el.value = 'modified';
         await el.updateComplete;

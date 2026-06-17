@@ -25,7 +25,11 @@ describe('checkbox', () => {
     it('passes accessibility tests', async () => {
       await assertAccessibility(
         await fixture(
-          html`<mh-checkbox name="a" value="1">Option</mh-checkbox>`,
+          html`<mh-checkbox
+            name="a"
+            value="1"
+            >Option</mh-checkbox
+          >`,
         ),
       );
     });
@@ -33,7 +37,12 @@ describe('checkbox', () => {
     it('is accessible when checked', async () => {
       await assertAccessibility(
         await fixture(
-          html`<mh-checkbox name="b" value="1" checked>Option</mh-checkbox>`,
+          html`<mh-checkbox
+            name="b"
+            value="1"
+            checked
+            >Option</mh-checkbox
+          >`,
         ),
       );
     });
@@ -41,7 +50,12 @@ describe('checkbox', () => {
     it('is accessible when disabled', async () => {
       await assertAccessibility(
         await fixture(
-          html`<mh-checkbox name="c" value="1" disabled>Option</mh-checkbox>`,
+          html`<mh-checkbox
+            name="c"
+            value="1"
+            disabled
+            >Option</mh-checkbox
+          >`,
         ),
       );
     });
@@ -50,7 +64,11 @@ describe('checkbox', () => {
   describe('title', () => {
     it('has default empty title', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="d" value="1">Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="d"
+          value="1"
+          >Option</mh-checkbox
+        >`,
       );
       expect(el.title).toBe('');
       expect(getInput(el)?.getAttribute('title')).toBe('');
@@ -58,7 +76,10 @@ describe('checkbox', () => {
 
     it('reflects title to the input element', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="e" value="1" title="my title"
+        html`<mh-checkbox
+          name="e"
+          value="1"
+          title="my title"
           >Option</mh-checkbox
         >`,
       );
@@ -70,7 +91,11 @@ describe('checkbox', () => {
   describe('name', () => {
     it('reflects name to the host attribute', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="myfield" value="1">Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="myfield"
+          value="1"
+          >Option</mh-checkbox
+        >`,
       );
       expect(el.name).toBe('myfield');
       expect(el.getAttribute('name')).toBe('myfield');
@@ -80,7 +105,11 @@ describe('checkbox', () => {
   describe('value', () => {
     it('reflects value to the host attribute', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="f" value="42">Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="f"
+          value="42"
+          >Option</mh-checkbox
+        >`,
       );
       expect(el.value).toBe('42');
       expect(el.getAttribute('value')).toBe('42');
@@ -90,7 +119,11 @@ describe('checkbox', () => {
   describe('checked', () => {
     it('is not checked by default', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="g" value="1">Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="g"
+          value="1"
+          >Option</mh-checkbox
+        >`,
       );
       expect(el.checked).toBe(false);
       expect(el.getAttribute('checked')).toBeNull();
@@ -99,7 +132,12 @@ describe('checkbox', () => {
 
     it('reflects checked as a boolean attribute on the host', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="h" value="1" checked>Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="h"
+          value="1"
+          checked
+          >Option</mh-checkbox
+        >`,
       );
       expect(el.checked).toBe(true);
       expect(el.getAttribute('checked')).toBe('');
@@ -107,21 +145,35 @@ describe('checkbox', () => {
 
     it('reflects checked to the input element', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="i" value="1" checked>Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="i"
+          value="1"
+          checked
+          >Option</mh-checkbox
+        >`,
       );
       expect(getInput(el)?.checked).toBe(true);
     });
 
     it('sets aria-checked to "true" when checked', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="j" value="1" checked>Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="j"
+          value="1"
+          checked
+          >Option</mh-checkbox
+        >`,
       );
       expect(getInput(el)?.getAttribute('aria-checked')).toBe('true');
     });
 
     it('sets aria-checked to "false" when not checked', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="k" value="1">Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="k"
+          value="1"
+          >Option</mh-checkbox
+        >`,
       );
       expect(getInput(el)?.getAttribute('aria-checked')).toBe('false');
     });
@@ -130,7 +182,11 @@ describe('checkbox', () => {
   describe('indeterminate', () => {
     it('is not indeterminate by default', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="l" value="1">Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="l"
+          value="1"
+          >Option</mh-checkbox
+        >`,
       );
       expect(el.indeterminate).toBe(false);
       expect(getInput(el)?.indeterminate).toBe(false);
@@ -138,7 +194,10 @@ describe('checkbox', () => {
 
     it('sets indeterminate on the input element', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="m" value="1" indeterminate
+        html`<mh-checkbox
+          name="m"
+          value="1"
+          indeterminate
           >Option</mh-checkbox
         >`,
       );
@@ -150,7 +209,11 @@ describe('checkbox', () => {
   describe('disabled', () => {
     it('is not disabled by default', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="n" value="1">Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="n"
+          value="1"
+          >Option</mh-checkbox
+        >`,
       );
       expect(el.disabled).toBe(false);
       expect(getInput(el)?.disabled).toBe(false);
@@ -158,7 +221,12 @@ describe('checkbox', () => {
 
     it('reflects disabled to the input element', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="o" value="1" disabled>Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="o"
+          value="1"
+          disabled
+          >Option</mh-checkbox
+        >`,
       );
       expect(getInput(el)?.disabled).toBe(true);
     });
@@ -167,14 +235,22 @@ describe('checkbox', () => {
   describe('form association', () => {
     it('has role "checkbox" via internals', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="p" value="1">Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="p"
+          value="1"
+          >Option</mh-checkbox
+        >`,
       );
       expect(el.internals.role).toBe('checkbox');
     });
 
     it('sets form value when checked', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="q" value="yes">Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="q"
+          value="yes"
+          >Option</mh-checkbox
+        >`,
       );
       setFormValueSpy.mockClear();
       getInput(el)?.click();
@@ -185,7 +261,12 @@ describe('checkbox', () => {
 
     it('clears form value when unchecked', async () => {
       const el = await fixture<Checkbox>(
-        html`<mh-checkbox name="r" value="yes" checked>Option</mh-checkbox>`,
+        html`<mh-checkbox
+          name="r"
+          value="yes"
+          checked
+          >Option</mh-checkbox
+        >`,
       );
       setFormValueSpy.mockClear();
       getInput(el)?.click();
@@ -197,7 +278,11 @@ describe('checkbox', () => {
     describe('form reset', () => {
       it('restores an unchecked checkbox to unchecked after user checks it', async () => {
         const el = await fixture<Checkbox>(
-          html`<mh-checkbox name="s" value="yes">Option</mh-checkbox>`,
+          html`<mh-checkbox
+            name="s"
+            value="yes"
+            >Option</mh-checkbox
+          >`,
         );
         getInput(el)?.click();
         await el.updateComplete;
@@ -211,7 +296,12 @@ describe('checkbox', () => {
 
       it('restores a checked checkbox to checked after user unchecks it', async () => {
         const el = await fixture<Checkbox>(
-          html`<mh-checkbox name="t" value="yes" checked>Option</mh-checkbox>`,
+          html`<mh-checkbox
+            name="t"
+            value="yes"
+            checked
+            >Option</mh-checkbox
+          >`,
         );
         getInput(el)?.click();
         await el.updateComplete;
@@ -225,7 +315,10 @@ describe('checkbox', () => {
 
       it('restores indeterminate state to its initial value on reset', async () => {
         const el = await fixture<Checkbox>(
-          html`<mh-checkbox name="u" value="yes" indeterminate
+          html`<mh-checkbox
+            name="u"
+            value="yes"
+            indeterminate
             >Option</mh-checkbox
           >`,
         );
@@ -239,7 +332,12 @@ describe('checkbox', () => {
 
       it('restores form value to checked value on reset', async () => {
         const el = await fixture<Checkbox>(
-          html`<mh-checkbox name="v" value="yes" checked>Option</mh-checkbox>`,
+          html`<mh-checkbox
+            name="v"
+            value="yes"
+            checked
+            >Option</mh-checkbox
+          >`,
         );
         getInput(el)?.click();
         await el.updateComplete;
@@ -252,7 +350,11 @@ describe('checkbox', () => {
 
       it('clears form value on reset for unchecked default', async () => {
         const el = await fixture<Checkbox>(
-          html`<mh-checkbox name="w" value="yes">Option</mh-checkbox>`,
+          html`<mh-checkbox
+            name="w"
+            value="yes"
+            >Option</mh-checkbox
+          >`,
         );
         getInput(el)?.click();
         await el.updateComplete;

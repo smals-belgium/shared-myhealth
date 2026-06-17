@@ -31,9 +31,9 @@ export default function () {
 
   const groups = fs
     .readdirSync(colorDir)
-    .filter((fileName) => fileName.endsWith('.css'))
+    .filter(fileName => fileName.endsWith('.css'))
     .sort()
-    .map((fileName) => {
+    .map(fileName => {
       const source = fs.readFileSync(path.join(colorDir, fileName), 'utf8');
       return {
         name: fileName.replace('.css', ''),
