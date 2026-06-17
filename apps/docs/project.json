@@ -42,8 +42,21 @@
       ],
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm run serve",
-        "cwd": "apps/docs"
+        "parallel": true,
+        "commands": [
+          {
+            "command": "cd packages/design-kit && npx vite build --watch",
+            "prefix": "[design-kit:build]"
+          },
+          {
+            "command": "cd packages/design-kit && npx cem analyze --watch",
+            "prefix": "[design-kit:manifest]"
+          },
+          {
+            "command": "cd apps/docs && npm run serve",
+            "prefix": "[docs]"
+          }
+        ]
       }
     }
   },
