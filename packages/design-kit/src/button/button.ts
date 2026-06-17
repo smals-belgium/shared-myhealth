@@ -64,9 +64,15 @@ export class Button extends ButtonBase {
         title=${this.title}
         @click=${this.#onClick}
       >
-        <slot name="start" part="start"></slot>
+        <slot
+          name="start"
+          part="start"
+        ></slot>
         <slot part="main"></slot>
-        <slot name="end" part="end"></slot>
+        <slot
+          name="end"
+          part="end"
+        ></slot>
         ${this.loading ? html`<mh-spinner part="spinner"></mh-spinner>` : ''}
       </button>
     `;

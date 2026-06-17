@@ -42,7 +42,10 @@ export class Card extends LitElement {
   appearance: CardAppearance = 'raised';
 
   override render() {
-    return html`<header part="header" role="presentation">
+    return html`<header
+        part="header"
+        role="presentation"
+      >
         <slot name="header-extras">
           <slot name="header-extras-start"></slot>
           <slot name="header-extras-end"></slot>
@@ -56,7 +59,10 @@ export class Card extends LitElement {
 
       <slot part="body"></slot>
 
-      <footer part="footer" role="presentation">
+      <footer
+        part="footer"
+        role="presentation"
+      >
         <slot name="footer">
           <slot name="footer-start"></slot>
           <slot name="footer-end"></slot>

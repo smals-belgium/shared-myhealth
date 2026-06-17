@@ -19,7 +19,7 @@ describe('button', () => {
       );
     });
 
-    variants.forEach((variant) => {
+    variants.forEach(variant => {
       it(`is accessible when variant is "${variant}"`, async () => {
         await assertAccessibility(
           await fixture<Button>(

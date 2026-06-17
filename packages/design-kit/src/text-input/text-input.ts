@@ -149,9 +149,9 @@ export class TextInput extends LitElement {
     // propagate disabled state to all slotted elements that can be disabled
     if (changed.has('disabled'))
       Array.from(this.renderRoot.querySelectorAll<HTMLSlotElement>('slot'))
-        .flatMap((slot) => slot.assignedElements({ flatten: true }))
-        .filter((el) => 'disabled' in el)
-        .forEach((el) => (el.disabled = this.disabled));
+        .flatMap(slot => slot.assignedElements({ flatten: true }))
+        .filter(el => 'disabled' in el)
+        .forEach(el => (el.disabled = this.disabled));
   }
 
   #onChange() {
@@ -163,10 +163,18 @@ export class TextInput extends LitElement {
       <label part="base">
         <slot part="label"></slot>
 
-        <div id="help" part="help">${this.help}</div>
+        <div
+          id="help"
+          part="help"
+        >
+          ${this.help}
+        </div>
 
         <div part="input-container">
-          <slot name="start" part="start"></slot>
+          <slot
+            name="start"
+            part="start"
+          ></slot>
 
           <input
             id="input"
@@ -192,11 +200,19 @@ export class TextInput extends LitElement {
             @change=${this.#onChange}
           />
 
-          <slot name="end" part="end"></slot>
+          <slot
+            name="end"
+            part="end"
+          ></slot>
         </div>
       </label>
 
-      <div id="hint" part="hint">${this.hint}</div>
+      <div
+        id="hint"
+        part="hint"
+      >
+        ${this.hint}
+      </div>
     `;
   }
 }

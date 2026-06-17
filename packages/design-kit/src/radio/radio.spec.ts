@@ -27,14 +27,25 @@ describe('radio', () => {
   describe('accessibility', () => {
     it('passes accessibility tests', async () => {
       await assertAccessibility(
-        await fixture(html`<mh-radio name="a" value="1">Option 1</mh-radio>`),
+        await fixture(
+          html`<mh-radio
+            name="a"
+            value="1"
+            >Option 1</mh-radio
+          >`,
+        ),
       );
     });
 
     it('is accessible when checked', async () => {
       await assertAccessibility(
         await fixture(
-          html`<mh-radio name="b" value="1" checked>Option 1</mh-radio>`,
+          html`<mh-radio
+            name="b"
+            value="1"
+            checked
+            >Option 1</mh-radio
+          >`,
         ),
       );
     });
@@ -42,7 +53,12 @@ describe('radio', () => {
     it('is accessible when disabled', async () => {
       await assertAccessibility(
         await fixture(
-          html`<mh-radio name="c" value="1" disabled>Option 1</mh-radio>`,
+          html`<mh-radio
+            name="c"
+            value="1"
+            disabled
+            >Option 1</mh-radio
+          >`,
         ),
       );
     });
@@ -51,7 +67,11 @@ describe('radio', () => {
   describe('title', () => {
     it('has default empty title', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="d" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="d"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       expect(el.title).toBe('');
       expect(getInput(el)?.getAttribute('title')).toBe('');
@@ -59,7 +79,12 @@ describe('radio', () => {
 
     it('reflects title to the input element', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="e" value="1" title="my title">Option</mh-radio>`,
+        html`<mh-radio
+          name="e"
+          value="1"
+          title="my title"
+          >Option</mh-radio
+        >`,
       );
       expect(el.title).toBe('my title');
       expect(getInput(el)?.getAttribute('title')).toBe('my title');
@@ -69,7 +94,11 @@ describe('radio', () => {
   describe('name', () => {
     it('reflects name to the host attribute', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="mygroup" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="mygroup"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       expect(el.name).toBe('mygroup');
       expect(el.getAttribute('name')).toBe('mygroup');
@@ -77,7 +106,11 @@ describe('radio', () => {
 
     it('reflects name to the input element', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="mygroup" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="mygroup"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       expect(getInput(el)?.getAttribute('name')).toBe('mygroup');
     });
@@ -86,7 +119,11 @@ describe('radio', () => {
   describe('value', () => {
     it('reflects value to the host attribute', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="f" value="42">Option</mh-radio>`,
+        html`<mh-radio
+          name="f"
+          value="42"
+          >Option</mh-radio
+        >`,
       );
       expect(el.value).toBe('42');
       expect(el.getAttribute('value')).toBe('42');
@@ -94,7 +131,11 @@ describe('radio', () => {
 
     it('reflects value to the input element', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="g" value="42">Option</mh-radio>`,
+        html`<mh-radio
+          name="g"
+          value="42"
+          >Option</mh-radio
+        >`,
       );
       expect(getInput(el)?.getAttribute('value')).toBe('42');
     });
@@ -103,7 +144,11 @@ describe('radio', () => {
   describe('checked', () => {
     it('is not checked by default', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="h" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="h"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       expect(el.checked).toBe(false);
       expect(el.getAttribute('checked')).toBeNull();
@@ -112,7 +157,12 @@ describe('radio', () => {
 
     it('reflects checked as a boolean attribute on the host', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="i" value="1" checked>Option</mh-radio>`,
+        html`<mh-radio
+          name="i"
+          value="1"
+          checked
+          >Option</mh-radio
+        >`,
       );
       expect(el.checked).toBe(true);
       expect(el.getAttribute('checked')).toBe('');
@@ -120,21 +170,35 @@ describe('radio', () => {
 
     it('reflects checked to the input element', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="j" value="1" checked>Option</mh-radio>`,
+        html`<mh-radio
+          name="j"
+          value="1"
+          checked
+          >Option</mh-radio
+        >`,
       );
       expect(getInput(el)?.checked).toBe(true);
     });
 
     it('sets aria-checked to "true" when checked', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="k" value="1" checked>Option</mh-radio>`,
+        html`<mh-radio
+          name="k"
+          value="1"
+          checked
+          >Option</mh-radio
+        >`,
       );
       expect(getInput(el)?.getAttribute('aria-checked')).toBe('true');
     });
 
     it('sets aria-checked to "false" when not checked', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="l" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="l"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       expect(getInput(el)?.getAttribute('aria-checked')).toBe('false');
     });
@@ -143,7 +207,11 @@ describe('radio', () => {
   describe('disabled', () => {
     it('is not disabled by default', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="m" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="m"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       expect(el.disabled).toBe(false);
       expect(el.getAttribute('disabled')).toBeNull();
@@ -152,7 +220,12 @@ describe('radio', () => {
 
     it('reflects disabled as a boolean attribute on the host', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="n" value="1" disabled>Option</mh-radio>`,
+        html`<mh-radio
+          name="n"
+          value="1"
+          disabled
+          >Option</mh-radio
+        >`,
       );
       expect(el.disabled).toBe(true);
       expect(el.getAttribute('disabled')).toBe('');
@@ -160,7 +233,12 @@ describe('radio', () => {
 
     it('reflects disabled to the input element', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="o" value="1" disabled>Option</mh-radio>`,
+        html`<mh-radio
+          name="o"
+          value="1"
+          disabled
+          >Option</mh-radio
+        >`,
       );
       expect(getInput(el)?.disabled).toBe(true);
     });
@@ -169,7 +247,11 @@ describe('radio', () => {
   describe('required', () => {
     it('is not required by default', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="p" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="p"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       expect(el.required).toBe(false);
       expect(el.getAttribute('required')).toBeNull();
@@ -178,7 +260,12 @@ describe('radio', () => {
 
     it('reflects required as a boolean attribute on the host', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="q" value="1" required>Option</mh-radio>`,
+        html`<mh-radio
+          name="q"
+          value="1"
+          required
+          >Option</mh-radio
+        >`,
       );
       expect(el.required).toBe(true);
       expect(el.getAttribute('required')).toBe('');
@@ -186,7 +273,12 @@ describe('radio', () => {
 
     it('reflects required to the input element', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="r" value="1" required>Option</mh-radio>`,
+        html`<mh-radio
+          name="r"
+          value="1"
+          required
+          >Option</mh-radio
+        >`,
       );
       expect(getInput(el)?.required).toBe(true);
     });
@@ -195,7 +287,11 @@ describe('radio', () => {
   describe('events', () => {
     it('emits focus and blur when focused and blurred', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="s" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="s"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       const focusHandler = vi.fn();
       const blurHandler = vi.fn();
@@ -211,7 +307,11 @@ describe('radio', () => {
 
     it('triggers a click on the internal input when click() is called', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="t" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="t"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       const clickHandler = vi.fn();
 
@@ -226,9 +326,22 @@ describe('radio', () => {
     it('unchecks other radios in the same group when one is checked', async () => {
       const group = await fixture<HTMLDivElement>(html`
         <div>
-          <mh-radio name="group-u" value="a" checked>A</mh-radio>
-          <mh-radio name="group-u" value="b">B</mh-radio>
-          <mh-radio name="group-u" value="c">C</mh-radio>
+          <mh-radio
+            name="group-u"
+            value="a"
+            checked
+            >A</mh-radio
+          >
+          <mh-radio
+            name="group-u"
+            value="b"
+            >B</mh-radio
+          >
+          <mh-radio
+            name="group-u"
+            value="c"
+            >C</mh-radio
+          >
         </div>
       `);
 
@@ -243,8 +356,18 @@ describe('radio', () => {
     it('does not affect radios in a different group', async () => {
       const container = await fixture<HTMLDivElement>(html`
         <div>
-          <mh-radio name="group-v1" value="x" checked>X</mh-radio>
-          <mh-radio name="group-v2" value="y" checked>Y</mh-radio>
+          <mh-radio
+            name="group-v1"
+            value="x"
+            checked
+            >X</mh-radio
+          >
+          <mh-radio
+            name="group-v2"
+            value="y"
+            checked
+            >Y</mh-radio
+          >
         </div>
       `);
 
@@ -260,14 +383,22 @@ describe('radio', () => {
   describe('form association', () => {
     it('has role "radio" via internals', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="w" value="1">Option</mh-radio>`,
+        html`<mh-radio
+          name="w"
+          value="1"
+          >Option</mh-radio
+        >`,
       );
       expect(el.internals.role).toBe('radio');
     });
 
     it('sets form value when checked', async () => {
       const el = await fixture<Radio>(
-        html`<mh-radio name="group-x" value="selected">Option</mh-radio>`,
+        html`<mh-radio
+          name="group-x"
+          value="selected"
+          >Option</mh-radio
+        >`,
       );
       setFormValueSpy.mockClear();
       getInput(el)?.click();
@@ -279,8 +410,17 @@ describe('radio', () => {
     it('clears form value of deselected radio when another is selected', async () => {
       const container = await fixture<HTMLDivElement>(html`
         <div>
-          <mh-radio name="group-y" value="a" checked>A</mh-radio>
-          <mh-radio name="group-y" value="b">B</mh-radio>
+          <mh-radio
+            name="group-y"
+            value="a"
+            checked
+            >A</mh-radio
+          >
+          <mh-radio
+            name="group-y"
+            value="b"
+            >B</mh-radio
+          >
         </div>
       `);
 

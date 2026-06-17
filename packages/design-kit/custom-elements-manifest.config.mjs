@@ -10,7 +10,7 @@ export default {
     const program = getTsProgram(ts, globs, 'tsconfig.lib.json');
     return program
       .getSourceFiles()
-      .filter((sf) => globs.find((glob) => sf.fileName.includes(glob)));
+      .filter(sf => globs.find(glob => sf.fileName.includes(glob)));
   },
 
   plugins: [typeParserPlugin()],

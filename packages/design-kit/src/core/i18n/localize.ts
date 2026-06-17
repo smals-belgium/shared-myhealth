@@ -52,7 +52,7 @@ update();
 export function update() {
   if (isClient) invalidateDocumentLanguage();
 
-  [...connectedElements.keys()].map((el) => {
+  [...connectedElements.keys()].map(el => {
     if (typeof (el as Partial<LitElement>).requestUpdate === 'function') {
       (el as LitElement).requestUpdate();
     }
