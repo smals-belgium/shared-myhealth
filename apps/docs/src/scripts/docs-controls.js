@@ -84,13 +84,13 @@ function announceChange(prop, value) {
 }
 
 // Bind all controls
-document.addEventListener('change', (e) => {
+document.addEventListener('change', e => {
   if (e.target.classList?.contains('property-input')) {
     applyProperty(e.target);
   }
 });
 
-document.addEventListener('input', (e) => {
+document.addEventListener('input', e => {
   if (
     e.target.classList?.contains('property-input') &&
     (e.target.dataset.kind === 'text' || e.target.dataset.kind === 'number')
@@ -100,7 +100,7 @@ document.addEventListener('input', (e) => {
 });
 
 // Build initial snippets for all previews on page load
-document.querySelectorAll('.element-section').forEach((section) => {
+document.querySelectorAll('.element-section').forEach(section => {
   const target =
     section.querySelector('.canvas-inner > [id^="preview-"]') ||
     (() => {

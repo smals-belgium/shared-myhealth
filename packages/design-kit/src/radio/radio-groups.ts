@@ -41,7 +41,7 @@ export const radioGroups = {
    * will remain there together with the new one.
    */
   updateValue(selectedEl: Radio) {
-    this.groups.get(selectedEl.name)?.forEach((radio) => {
+    this.groups.get(selectedEl.name)?.forEach(radio => {
       const isSelected = radio === selectedEl;
       const { el, value } = radio;
 

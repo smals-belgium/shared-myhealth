@@ -17,7 +17,7 @@ describe('a', () => {
       await assertAccessibility(await fixture(html`<mh-a>click</mh-a>`));
     });
 
-    variants.forEach((variant) => {
+    variants.forEach(variant => {
       it(`is accessible when variant is "${variant}"`, async () => {
         await assertAccessibility(
           await fixture<Anchor>(html`<mh-a variant="${variant}">click</mh-a>`),

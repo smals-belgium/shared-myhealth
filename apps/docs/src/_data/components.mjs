@@ -72,8 +72,8 @@ function buildElement(decl) {
     className: decl.name,
     description: decl.description ?? '',
     properties,
-    slots: (decl.slots ?? []).filter((s) => s.name !== undefined),
-    events: (decl.events ?? []).filter((e) => e.description),
+    slots: (decl.slots ?? []).filter(s => s.name !== undefined),
+    events: (decl.events ?? []).filter(e => e.description),
     cssParts: decl.cssParts ?? [],
     cssProperties: decl.cssProperties ?? [],
   };

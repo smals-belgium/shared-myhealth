@@ -75,7 +75,10 @@ export class IconButton extends LitElement {
         title=${this.title}
         aria-label=${this.label ?? this.title}
       >
-        <mh-icon part="icon" name=${this.name}></mh-icon>
+        <mh-icon
+          part="icon"
+          name=${this.name}
+        ></mh-icon>
       </button>
     `;
   }

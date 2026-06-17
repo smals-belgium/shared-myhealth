@@ -24,7 +24,10 @@ describe('icon', () => {
 
     it(`sets role and aria-label when a label is provided`, async () => {
       const el = await fixture(
-        html`<mh-icon label="Search" name="search"></mh-icon>`,
+        html`<mh-icon
+          label="Search"
+          name="search"
+        ></mh-icon>`,
       );
       expect(el.getAttribute('role')).toBe('img');
       expect(el.getAttribute('aria-label')).toBe('Search');
@@ -88,7 +91,10 @@ describe('icon', () => {
   describe('rotating', () => {
     it(`rotates the icon when 'rotate' is defined`, async () => {
       const el = await fixture<Icon>(
-        html`<mh-icon name="search" rotate="90"></mh-icon>`,
+        html`<mh-icon
+          name="search"
+          rotate="90"
+        ></mh-icon>`,
       );
 
       await elementUpdated(el);

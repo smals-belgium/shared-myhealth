@@ -21,12 +21,15 @@ describe('icon-button', () => {
     it('passes accessibility tests', async () => {
       await assertAccessibility(
         await fixture(
-          html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+          html`<mh-icon-button
+            title="Close"
+            name="x"
+          ></mh-icon-button>`,
         ),
       );
     });
 
-    appearances.forEach((appearance) => {
+    appearances.forEach(appearance => {
       it(`is accessible when appearance is "${appearance}"`, async () => {
         await assertAccessibility(
           await fixture(
@@ -40,7 +43,7 @@ describe('icon-button', () => {
       });
     });
 
-    loudnesses.forEach((loudness) => {
+    loudnesses.forEach(loudness => {
       it(`is accessible when loudness is "${loudness}"`, async () => {
         await assertAccessibility(
           await fixture(
@@ -79,7 +82,10 @@ describe('icon-button', () => {
 
     it('falls back to title for aria-label when label is not provided', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+        ></mh-icon-button>`,
       );
       expect(getButton(el)?.getAttribute('aria-label')).toBe('Close');
     });
@@ -88,7 +94,10 @@ describe('icon-button', () => {
   describe('title', () => {
     it('has default empty title', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button name="x" label="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          name="x"
+          label="x"
+        ></mh-icon-button>`,
       );
       expect(el.title).toBe('');
       expect(getButton(el)?.getAttribute('title')).toBe('');
@@ -96,7 +105,10 @@ describe('icon-button', () => {
 
     it('reflects title as a button attribute', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+        ></mh-icon-button>`,
       );
       expect(el.title).toBe('Close');
       expect(getButton(el)?.getAttribute('title')).toBe('Close');
@@ -122,7 +134,10 @@ describe('icon-button', () => {
 
     it('reflects name to an attribute', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+        ></mh-icon-button>`,
       );
       expect(el.name).toBe('x');
       expect(el.getAttribute('name')).toBe('x');
@@ -130,7 +145,10 @@ describe('icon-button', () => {
 
     it('passes name to the inner mh-icon', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+        ></mh-icon-button>`,
       );
       expect(part('icon', el)?.getAttribute('name')).toBe('x');
     });
@@ -139,7 +157,10 @@ describe('icon-button', () => {
   describe('appearance', () => {
     it('has default appearance "round"', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+        ></mh-icon-button>`,
       );
       expect(el.appearance).toBe('round');
       expect(el.getAttribute('appearance')).toBe('round');
@@ -161,7 +182,10 @@ describe('icon-button', () => {
   describe('loudness', () => {
     it('has default loudness "normal"', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+        ></mh-icon-button>`,
       );
       expect(el.loudness).toBe('normal');
       expect(el.getAttribute('loudness')).toBe('normal');
@@ -183,7 +207,10 @@ describe('icon-button', () => {
   describe('disabled', () => {
     it('is not disabled by default', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+        ></mh-icon-button>`,
       );
       expect(el.disabled).toBe(false);
       expect(el.getAttribute('disabled')).toBeNull();
@@ -191,7 +218,11 @@ describe('icon-button', () => {
 
     it('reflects disabled as a boolean attribute', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x" disabled></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+          disabled
+        ></mh-icon-button>`,
       );
       expect(el.disabled).toBe(true);
       expect(el.getAttribute('disabled')).toBe('');
@@ -199,7 +230,11 @@ describe('icon-button', () => {
 
     it(`doesn't emit a click event when disabled`, async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x" disabled></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+          disabled
+        ></mh-icon-button>`,
       );
       const clickHandler = vi.fn();
 
@@ -222,7 +257,10 @@ describe('icon-button', () => {
   describe('events', () => {
     it('emits focus and blur when focused and blurred', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+        ></mh-icon-button>`,
       );
       const focusHandler = vi.fn();
       const blurHandler = vi.fn();
@@ -238,7 +276,10 @@ describe('icon-button', () => {
 
     it('emits a click event when calling click()', async () => {
       const el = await fixture<IconButton>(
-        html`<mh-icon-button title="Close" name="x"></mh-icon-button>`,
+        html`<mh-icon-button
+          title="Close"
+          name="x"
+        ></mh-icon-button>`,
       );
       const clickHandler = vi.fn();
 

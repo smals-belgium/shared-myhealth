@@ -65,9 +65,15 @@ export class Anchor extends ButtonBase {
         tabindex=${this.disabled ? '-1' : '0'}
         @click=${this.#handleClick}
       >
-        <slot name="start" part="start"></slot>
+        <slot
+          name="start"
+          part="start"
+        ></slot>
         <slot part="main"></slot>
-        <slot name="end" part="end"></slot>
+        <slot
+          name="end"
+          part="end"
+        ></slot>
       </a>
     `;
   }

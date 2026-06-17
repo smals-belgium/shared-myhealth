@@ -27,6 +27,20 @@ export default function (config) {
   config.addPassthroughCopy('src/styles');
   config.addPassthroughCopy('src/scripts');
 
+  // Rebuild the docs when the design-kit build output or its custom elements
+  // manifest changes, so a running `serve` reflects design-kit edits.
+  config.addWatchTarget(componentsDist);
+  config.addWatchTarget(
+    path.join(
+      import.meta.dirname,
+      '..',
+      '..',
+      'packages',
+      'design-kit',
+      'custom-elements.json',
+    ),
+  );
+
   return {
     dir: {
       input: 'src',
