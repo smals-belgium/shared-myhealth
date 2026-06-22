@@ -44,13 +44,6 @@ export default [
     },
   },
   {
-    files: ['**/index.ts'],
-    rules: {
-      // the public barrel re-exports every component and grows with each one
-      'import/max-dependencies': 'off',
-    },
-  },
-  {
     ignores: ['**/out-tsc'],
   },
 ];

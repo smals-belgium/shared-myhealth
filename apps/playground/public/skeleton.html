@@ -25,7 +25,7 @@
     ></script>
 
     <style>
-      .skeleton-effects mh-skeleton:not(:first-child) {
+      .skeleton-animations mh-skeleton:not(:first-child) {
         margin-top: 1rem;
       }
 
@@ -35,13 +35,13 @@
       }
       .skeleton-avatars mh-skeleton {
         width: 3rem;
-        --mh-skeleton-height: 3rem;
+        --mh-skeleton__height: 3rem;
       }
       .skeleton-avatars mh-skeleton.square {
-        --mh-skeleton-border-radius: 0;
+        --mh-skeleton__border-radius: 0;
       }
       .skeleton-avatars mh-skeleton.circle {
-        --mh-skeleton-border-radius: 50%;
+        --mh-skeleton__border-radius: 50%;
       }
     </style>
   </head>
@@ -49,18 +49,18 @@
   <body>
     <h2>Skeleton</h2>
 
-    <h3>Effects</h3>
-    <div class="skeleton-effects">
-      <mh-skeleton effect="none"></mh-skeleton>
-      <mh-skeleton effect="sheen"></mh-skeleton>
-      <mh-skeleton effect="pulse"></mh-skeleton>
+    <h3>Animations</h3>
+    <div class="skeleton-animations">
+      <mh-skeleton animation="none"></mh-skeleton>
+      <mh-skeleton animation="sheen"></mh-skeleton>
+      <mh-skeleton animation="pulse"></mh-skeleton>
     </div>
 
     <h3>Paragraphs</h3>
     <!-- A single element renders five rows and announces "Loading" once. -->
     <mh-skeleton
       lang="en"
-      effect="sheen"
+      animation="sheen"
       count="5"
     ></mh-skeleton>
 
@@ -68,11 +68,11 @@
     <div class="skeleton-avatars">
       <mh-skeleton
         class="square"
-        effect="sheen"
+        animation="sheen"
       ></mh-skeleton>
       <mh-skeleton
         class="circle"
-        effect="sheen"
+        animation="sheen"
       ></mh-skeleton>
     </div>
   </body>

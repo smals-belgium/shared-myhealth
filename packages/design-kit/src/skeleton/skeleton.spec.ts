@@ -4,7 +4,7 @@ import { afterEach, vi } from 'vitest';
 
 import { adoptedStylesheet, assertAccessibility } from '../core/testing';
 
-import { SKELETON_MAX_COUNT } from './skeleton';
+import { DEFAULT_SKELETON_COUNT, SKELETON_MAX_COUNT } from './skeleton';
 
 describe('skeleton', () => {
   afterEach(() => {
@@ -53,14 +53,14 @@ describe('skeleton', () => {
   });
 
   describe('count', () => {
-    it('should render a single row by default', async () => {
+    it('should render the default number of rows by default', async () => {
       const el = await fixture<HTMLElement & { count: number }>(
         html`<mh-skeleton></mh-skeleton>`,
       );
-      expect(el.count).toBe(1);
+      expect(el.count).toBe(DEFAULT_SKELETON_COUNT);
       expect(
         el.shadowRoot?.querySelectorAll('[part~="indicator"]').length,
-      ).toBe(1);
+      ).toBe(DEFAULT_SKELETON_COUNT);
     });
 
     it('should render one row per count', async () => {
@@ -76,9 +76,6 @@ describe('skeleton', () => {
     });
 
     it('should clamp the rendered rows to the maximum', async () => {
-      vi.spyOn(console, 'warn').mockImplementation(() => {
-        return;
-      });
       const el = await fixture(
         html`<mh-skeleton count=${SKELETON_MAX_COUNT + 10}></mh-skeleton>`,
       );
@@ -87,42 +84,47 @@ describe('skeleton', () => {
       ).toBe(SKELETON_MAX_COUNT);
     });
 
-    it('should warn when count exceeds the maximum', async () => {
-      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {
-        return;
-      });
+    it('should dispatch mh-error when count exceeds the maximum', async () => {
+      let errorMessage = '';
+      const listener = (event: Event) => {
+        errorMessage = (event as { message: string }).message;
+      };
+      document.addEventListener('mh-error', listener);
       await fixture(
         html`<mh-skeleton count=${SKELETON_MAX_COUNT + 1}></mh-skeleton>`,
       );
-      expect(warn).toHaveBeenCalledOnce();
-      expect(warn.mock.calls[0][0]).toContain(String(SKELETON_MAX_COUNT));
+      document.removeEventListener('mh-error', listener);
+      expect(errorMessage).toContain(String(SKELETON_MAX_COUNT));
     });
 
-    it('should not warn when count is within the maximum', async () => {
-      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {
-        return;
-      });
+    it('should not dispatch mh-error when count is within the maximum', async () => {
+      let errorDispatched = false;
+      const listener = () => {
+        errorDispatched = true;
+      };
+      document.addEventListener('mh-error', listener);
       await fixture(
         html`<mh-skeleton count=${SKELETON_MAX_COUNT}></mh-skeleton>`,
       );
-      expect(warn).not.toHaveBeenCalled();
+      document.removeEventListener('mh-error', listener);
+      expect(errorDispatched).toBe(false);
     });
   });
 
-  describe('effect', () => {
+  describe('animation', () => {
     it('should default to "none"', async () => {
-      const el = await fixture<HTMLElement & { effect: string }>(
+      const el = await fixture<HTMLElement & { animation: string }>(
         html`<mh-skeleton></mh-skeleton>`,
       );
-      expect(el.effect).toBe('none');
-      expect(el.getAttribute('effect')).toBe('none');
+      expect(el.animation).toBe('none');
+      expect(el.getAttribute('animation')).toBe('none');
     });
 
-    it('should reflect the effect attribute', async () => {
-      const el = await fixture<HTMLElement & { effect: string }>(
-        html`<mh-skeleton effect="sheen"></mh-skeleton>`,
+    it('should reflect the animation attribute', async () => {
+      const el = await fixture<HTMLElement & { animation: string }>(
+        html`<mh-skeleton animation="sheen"></mh-skeleton>`,
       );
-      expect(el.getAttribute('effect')).toBe('sheen');
+      expect(el.getAttribute('animation')).toBe('sheen');
     });
   });
 
