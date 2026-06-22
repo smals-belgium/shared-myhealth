@@ -42,7 +42,7 @@ export class Skeleton extends LitElement {
   protected readonly localize = new LocalizeController(this);
 
   /** Determines which animation the skeleton will use. */
-  @property({ reflect: true }) animation: SkeletonAnimation = 'none';
+  @property({ reflect: true }) animation: SkeletonAnimation = 'sheen';
 
   /** The number of skeleton rows to render. Clamped to a maximum of {@link SKELETON_MAX_COUNT} and defaulted to {@link DEFAULT_SKELETON_COUNT}. */
   @property({ type: Number, reflect: true }) count = DEFAULT_SKELETON_COUNT;

@@ -2,6 +2,7 @@ import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 import { afterEach, vi } from 'vitest';
 
+import { ErrorEvent as MhErrorEvent } from '../core/event';
 import { adoptedStylesheet, assertAccessibility } from '../core/testing';
 
 import { DEFAULT_SKELETON_COUNT, SKELETON_MAX_COUNT } from './skeleton';
@@ -87,7 +88,7 @@ describe('skeleton', () => {
     it('should dispatch mh-error when count exceeds the maximum', async () => {
       let errorMessage = '';
       const listener = (event: Event) => {
-        errorMessage = (event as { message: string }).message;
+        errorMessage = (event as MhErrorEvent).message ?? '';
       };
       document.addEventListener('mh-error', listener);
       await fixture(
@@ -112,12 +113,12 @@ describe('skeleton', () => {
   });
 
   describe('animation', () => {
-    it('should default to "none"', async () => {
+    it('should default to "sheen"', async () => {
       const el = await fixture<HTMLElement & { animation: string }>(
         html`<mh-skeleton></mh-skeleton>`,
       );
-      expect(el.animation).toBe('none');
-      expect(el.getAttribute('animation')).toBe('none');
+      expect(el.animation).toBe('sheen');
+      expect(el.getAttribute('animation')).toBe('sheen');
     });
 
     it('should reflect the animation attribute', async () => {
