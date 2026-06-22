@@ -1,6 +1,6 @@
 :host {
-  --mh-skeleton__color: var(--mh-color-primary-fill-quiet);
-  --mh-skeleton__sheen-color: var(--mh-color-primary-fill-quieter);
+  --mh-skeleton__color: var(--mh-color-brand-fill-quiet);
+  --mh-skeleton__sheen-color: var(--mh-color-brand-fill-quieter);
   --mh-skeleton__border-radius: var(--mh-border-radius);
   --mh-skeleton__height: 1rem;
   --mh-skeleton__gap: var(--mh-space-s);
