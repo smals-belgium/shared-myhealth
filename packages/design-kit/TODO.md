@@ -17,6 +17,10 @@
 - group identifier should be form reference + group name (not just name); see
   https://github.com/smals-belgium/myhealth/pull/8/changes/7e091fb7c96d11fbb0c5734622b3eca084195df6#r3342719879
 
+## Dialog
+
+- define clear dialog width standards for dialog (confirm with ux)
+
 ## Components roadmap
 
 ### Phase 1 — Shared MAGS/Portal Components
