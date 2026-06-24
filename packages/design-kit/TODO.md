@@ -17,10 +17,6 @@
 - group identifier should be form reference + group name (not just name); see
   https://github.com/smals-belgium/myhealth/pull/8/changes/7e091fb7c96d11fbb0c5734622b3eca084195df6#r3342719879
 
-## Dialog
-
-- define clear dialog width standards for dialog (confirm with ux)
-
 ## Components roadmap
 
 ### Phase 1 — Shared MAGS/Portal Components
@@ -40,7 +36,7 @@ Core primitives required in both shared MAGS contexts and Portal feature flows.
 - [ ] [@angular/material/snack-bar](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54932-380)
 - [x] [@angular/material/card](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53126-1280)
 - [x] [@angular/material/divider](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=52837-541)
-- [x] [Skeleton](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54711-816)
+- [ ] [Skeleton](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54711-816)
 - [ ] [Alert](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=53395-807)
 
 ### Phase 2 — Additional Portal Components

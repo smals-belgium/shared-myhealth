@@ -15,9 +15,7 @@ export const textContent = (el: Element) =>
     : '';
 
 export const adoptedStylesheet = (el: Element) =>
-  Array.from(el.shadowRoot?.querySelectorAll('style') ?? [])
-    .map(styleEl => styleEl.textContent)
-    .join('\n');
+  el.shadowRoot?.querySelector('style')?.textContent ?? '';
 
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters -- handing down to wrapped function
 export const part = <T extends Element = HTMLElement>(

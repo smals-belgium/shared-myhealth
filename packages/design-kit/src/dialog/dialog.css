@@ -15,8 +15,8 @@
 }
 
 [part='dialog'] {
-  width: stretch;
-  max-width: min(90vw, 40rem);
+  width: max-content;
+  max-width: min(90vw, 32rem);
   max-height: min(85vh, 40rem);
   padding: 0;
   border: none;
@@ -25,7 +25,6 @@
   box-shadow: var(--mh-dialog__box-shadow);
   color: inherit;
   overflow: hidden;
-  container-type: inline-size;
 }
 
 /* A native dialog is hidden by the user agent until it is open; only lay it out once it is. */
@@ -79,11 +78,12 @@
   align-items: center;
   justify-content: flex-end;
   gap: calc(var(--mh-dialog__spacing) / 2);
-  padding: var(--mh-dialog__spacing) var(--mh-dialog__spacing);
+  padding: 0 var(--mh-dialog__spacing) var(--mh-dialog__spacing)
+    var(--mh-dialog__spacing);
 }
 
-/* On mobile, stack the actions and let them fill the dialog width. */
-@container (max-width: 480px) {
+/* On small screens (--mh-media-breakpoint-s: 960px), stack the actions and let them fill the dialog width. */
+@media (max-width: 960px) {
   [part='actions'] {
     flex-direction: column;
     align-items: stretch;
