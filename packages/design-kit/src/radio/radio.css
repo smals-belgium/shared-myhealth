@@ -6,11 +6,7 @@ label {
   display: inline-flex;
   flex-direction: row;
   align-items: center;
-  width: stretch;
-
-  &:has(input:user-invalid) {
-    color: var(--mh-color-danger-type);
-  }
+  width: inherit;
 }
 
 input {
@@ -28,7 +24,6 @@ input {
   align-items: center;
   justify-content: center;
   margin: 0;
-  flex-shrink: 0;
   width: var(--touch-target-size);
   height: var(--touch-target-size);
   border: none;
@@ -84,17 +79,21 @@ input {
     transform: scale(1);
   }
 
-  &:user-invalid::after {
+  &[aria-invalid='true']::after,
+  &:invalid::after {
     border-color: var(--mh-color-danger-border);
   }
 
-  &:user-invalid:hover::after,
-  &:user-invalid:focus-visible::after {
+  &[aria-invalid='true']:hover::after,
+  &[aria-invalid='true']:focus-visible::after,
+  &:invalid:hover::after,
+  &:invalid:focus-visible::after {
     box-shadow: 0 0 0 var(--state-layer-spread)
       var(--mh-color-danger-border-quieter);
   }
 
-  &:checked:user-invalid::before {
+  &:checked[aria-invalid='true']::before,
+  &:checked:invalid::before {
     background-color: var(--mh-color-danger-fill);
   }
 

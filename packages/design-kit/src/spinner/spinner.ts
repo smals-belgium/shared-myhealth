@@ -24,7 +24,7 @@ import styles from './spinner.css?inline';
 export class Spinner extends LitElement {
   static override readonly styles = unsafeCSS(styles);
 
-  protected readonly localize = new LocalizeController(this);
+  private readonly localize = new LocalizeController(this);
 
   protected override render() {
     return html`

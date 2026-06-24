@@ -4,7 +4,7 @@ label {
 }
 
 [part='base'] {
-  width: stretch;
+  width: inherit;
 }
 
 [part='label'] {
@@ -45,11 +45,11 @@ label {
     box-shadow: 0 0 0 1px var(--mh-text-input__color-border-input__focus);
   }
 
-  &:has(input:user-invalid) {
+  &:has(input:invalid) {
     border-color: var(--mh-text-input__color-border-input__invalid);
   }
 
-  &:has(input:user-invalid):has(input:focus) {
+  &:has(input:invalid):has(input:focus) {
     box-shadow: 0 0 0 1px var(--mh-text-input__color-border-input__invalid);
   }
 
@@ -59,7 +59,7 @@ label {
       border-color: var(--mh-text-input__color-border-input__invalid);
     }
 
-    &:has(input:user-invalid):hover {
+    &:has(input:invalid):hover {
       border-color: var(--mh-text-input__color-border-input__invalid-hover);
     }
   }
