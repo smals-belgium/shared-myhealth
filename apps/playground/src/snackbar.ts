@@ -8,11 +8,11 @@ document
     snackbar('basicSnackbar')?.open('Message archived'),
   );
 
-document.querySelector('#openAssertive')?.addEventListener('click', () =>
-  snackbar('assertiveSnackbar')?.open('Connection lost', {
-    politeness: 'assertive',
-  }),
-);
+document
+  .querySelector('#openAssertive')
+  ?.addEventListener('click', () =>
+    snackbar('assertiveSnackbar')?.open('Connection lost'),
+  );
 
 const result = document.querySelector('#basicResult');
 snackbar('basicSnackbar')?.addEventListener('mh-snackbar-dismissed', event => {
