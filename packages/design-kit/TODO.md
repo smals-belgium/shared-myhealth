@@ -17,6 +17,10 @@
 - group identifier should be form reference + group name (not just name); see
   https://github.com/smals-belgium/myhealth/pull/8/changes/7e091fb7c96d11fbb0c5734622b3eca084195df6#r3342719879
 
+## A11y CDK
+
+- Look into building a custom variant on Angular's [Accessibility CDK](https://material.angular.dev/cdk/a11y/overview), more specifically for the [Focus trap](https://material.angular.dev/cdk/a11y/overview#focustrap) which we could implement in the dialog and other components.
+
 ## Dialog
 
 - define clear dialog width standards for dialog (confirm with ux)

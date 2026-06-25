@@ -8,14 +8,6 @@ import { SnackbarDismissedEvent } from './snackbar-dismissed.event';
 import type { SnackbarDismissReason } from './snackbar-dismissed.event';
 import styles from './snackbar.css?inline';
 
-/** Configuration for a snackbar opened via {@link Snackbar.open}. */
-export interface SnackbarConfig {
-  /** Auto-dismiss the snackbar after this many milliseconds. Defaults to `3000`. Set to `0` to keep it open until dismissed. */
-  duration?: number;
-  /** The `aria-live` politeness used to announce the message. Defaults to `polite`. */
-  politeness?: 'polite' | 'assertive';
-}
-
 /** The default auto-dismiss duration, in milliseconds. */
 export const DEFAULT_SNACKBAR_DURATION = 3000;
 
@@ -57,8 +49,10 @@ export class Snackbar extends LitElement {
   /** The `aria-live` politeness used to announce the message. */
   @property({ reflect: true }) politeness: 'polite' | 'assertive' = 'polite';
 
+  /** Auto-dismiss the snackbar after this many milliseconds. Set to `0` to keep it open until dismissed. */
+  @property({ type: Number }) duration = DEFAULT_SNACKBAR_DURATION;
+
   #timer?: ReturnType<typeof setTimeout>;
-  #duration = DEFAULT_SNACKBAR_DURATION;
 
   /** Whether the snackbar is currently open. */
   get isOpen() {
@@ -69,12 +63,10 @@ export class Snackbar extends LitElement {
    * Opens the snackbar with the given message. Any snackbar that is already open is dismissed first, so that only one
    * snackbar is visible at a time.
    */
-  open(message: string, config: SnackbarConfig = {}) {
+  open(message: string) {
     Snackbar.current?.dismiss();
 
     this.message = message;
-    this.politeness = config.politeness ?? 'polite';
-    this.#duration = config.duration ?? DEFAULT_SNACKBAR_DURATION;
     this.toggleAttribute('open', true);
     Snackbar.current = this;
 
@@ -102,8 +94,8 @@ export class Snackbar extends LitElement {
   /** (Re)starts the auto-dismiss timer for the configured duration. A duration of `0` keeps the snackbar open. */
   #startTimer() {
     this.#clearTimer();
-    if (this.#duration > 0)
-      this.#timer = setTimeout(() => this.dismiss('timeout'), this.#duration);
+    if (this.duration > 0)
+      this.#timer = setTimeout(() => this.dismiss('timeout'), this.duration);
   }
 
   /** Stops the auto-dismiss timer, optionally replacing it with `next`. */

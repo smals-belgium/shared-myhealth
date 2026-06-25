@@ -60,9 +60,11 @@ describe('snackbar', () => {
     it('announces the message with the configured politeness', async () => {
       vi.useFakeTimers();
       try {
-        const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+        const el = await fixture<Snackbar>(
+          html`<mh-snackbar politeness="assertive"></mh-snackbar>`,
+        );
 
-        el.open('Urgent', { politeness: 'assertive' });
+        el.open('Urgent');
         vi.advanceTimersByTime(100);
 
         const { region } = liveAnnouncer;
@@ -92,9 +94,11 @@ describe('snackbar', () => {
     it('stays open when the duration is 0', async () => {
       vi.useFakeTimers();
       try {
-        const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+        const el = await fixture<Snackbar>(
+          html`<mh-snackbar duration="0"></mh-snackbar>`,
+        );
 
-        el.open('Saved', { duration: 0 });
+        el.open('Saved');
         vi.advanceTimersByTime(10000);
 
         expect(el.isOpen).toBe(true);
@@ -108,7 +112,7 @@ describe('snackbar', () => {
       try {
         const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
 
-        el.open('Saved', { duration: 3000 });
+        el.open('Saved');
         vi.advanceTimersByTime(2000);
 
         const surface = part('snackbar', el);
@@ -227,13 +231,15 @@ describe('snackbar', () => {
     it('emits mh-snackbar-dismissed with the timeout reason', async () => {
       vi.useFakeTimers();
       try {
-        const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+        const el = await fixture<Snackbar>(
+          html`<mh-snackbar duration="1000"></mh-snackbar>`,
+        );
 
         const dismissed = oneEvent(
           el,
           'mh-snackbar-dismissed',
         ) as Promise<SnackbarDismissedEvent>;
-        el.open('Saved', { duration: 1000 });
+        el.open('Saved');
         vi.advanceTimersByTime(1000);
         const event = await dismissed;
 
