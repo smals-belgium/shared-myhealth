@@ -1,0 +1,45 @@
+{
+  "name": "vitals-ng",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/vitals-ng/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["type:dk"],
+  "implicitDependencies": ["@myhealth/design-kit"],
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": ["dist/{projectRoot}"],
+      "currentVersionResolver": "git-tag",
+      "fallbackCurrentVersionResolver": "disk"
+    }
+  },
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "dependsOn": ["^bundle"],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "packages/vitals-ng/ng-package.json",
+        "tsConfig": "packages/vitals-ng/tsconfig.lib.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/vitals-ng/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "production"
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "command": "echo Vitest disabled for Angular 19 version !"
+    }
+  }
+}
