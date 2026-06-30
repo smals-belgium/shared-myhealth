@@ -12,7 +12,7 @@ const showResult = (dialogId: string, resultId: string) => {
 
   dialog(dialogId)?.addEventListener('mh-after-closed', event => {
     if (target)
-      target.textContent = `closed with: "${event.result ?? 'dismissed'}"`;
+      target.textContent = `closed with: "${String(event.result ?? 'dismissed')}"`;
   });
 };
 

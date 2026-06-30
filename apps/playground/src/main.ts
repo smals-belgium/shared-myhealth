@@ -1,4 +1,6 @@
-import('@myhealth/design-kit');
+import('@myhealth/design-kit').catch(() =>
+  console.error('Failed to load design-kit'),
+);
 
 document.addEventListener('mh-error', event => {
   const { message, error } = event as Event & {

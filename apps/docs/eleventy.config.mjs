@@ -9,22 +9,8 @@ export default function (config) {
     'design-kit',
     'dist',
   );
-  const designKitSrc = path.join(
-    import.meta.dirname,
-    '..',
-    '..',
-    'packages',
-    'design-kit',
-    'src',
-  );
 
-  config.addPassthroughCopy({
-    [componentsDist]: 'assets/design-kit',
-    [path.join(designKitSrc, 'my-health.css')]:
-      'assets/design-kit/my-health.css',
-    [path.join(designKitSrc, 'theme')]: 'assets/design-kit/theme',
-    [path.join(designKitSrc, 'assets')]: 'assets/design-kit/assets',
-  });
+  config.addPassthroughCopy({ [componentsDist]: 'assets/design-kit' });
   config.addPassthroughCopy('src/styles');
   config.addPassthroughCopy('src/scripts');
 

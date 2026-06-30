@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "composite": true,
+    "composite": false,
     "declarationMap": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "importHelpers": true,
     "isolatedModules": true,
     "lib": ["es2022", "dom", "dom.iterable"],
@@ -19,7 +19,8 @@
     "target": "es2022",
     "customConditions": ["@myhealth/source"],
     "paths": {
-      "@myhealth/design-kit": ["packages/design-kit/src/index.ts"]
+      "@myhealth/design-kit": ["packages/design-kit/src/index.ts"],
+      "@myhealth/vitals-ng": ["./packages/vitals-ng/src/index.ts"]
     }
   }
 }

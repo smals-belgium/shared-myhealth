@@ -16,7 +16,7 @@
       "dependsOn": [
         {
           "projects": ["@myhealth/design-kit"],
-          "target": "build"
+          "target": "bundle"
         },
         {
           "projects": ["@myhealth/design-kit"],
@@ -34,7 +34,7 @@
       "dependsOn": [
         {
           "projects": ["@myhealth/design-kit"],
-          "target": "build"
+          "target": "bundle"
         },
         {
           "projects": ["@myhealth/design-kit"],
