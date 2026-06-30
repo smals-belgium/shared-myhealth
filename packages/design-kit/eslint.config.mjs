@@ -1,11 +1,9 @@
 import lit from 'eslint-plugin-lit';
 
 import baseConfig from '../../eslint.config.mjs';
-import { typedConfig } from '../../tools/eslint-rules/typed.mjs';
 
 export default [
   ...baseConfig,
-  ...typedConfig('design-kit'),
   lit.configs['flat/all'],
   {
     files: ['**/*.json'],
@@ -13,11 +11,7 @@ export default [
       '@nx/dependency-checks': [
         'error',
         {
-          ignoredFiles: [
-            '{projectRoot}/eslint.config.{js,cjs,mjs,ts,cts,mts}',
-            '{projectRoot}/vite.config.{js,ts,mjs,mts}',
-            '{projectRoot}/custom-elements-manifest.config.{js,cjs,mjs,ts,cts,mts}',
-          ],
+          ignoredFiles: ['{projectRoot}/*.config.{js,cjs,mjs,ts,cts,mts}'],
         },
       ],
     },

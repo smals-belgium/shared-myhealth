@@ -5,7 +5,7 @@ import { configs } from 'typescript-eslint';
 /**
  * All rules that require the type checker in order to work
  */
-export const typedConfig = project => [
+export const typedConfig = [
   {
     files: ['**/*.ts'],
     ignores: [
@@ -18,7 +18,6 @@ export const typedConfig = project => [
     languageOptions: {
       parserOptions: {
         projectService: true,
-        tsconfigRootDir: join(process.cwd(), 'packages', project),
       },
     },
     rules: {
