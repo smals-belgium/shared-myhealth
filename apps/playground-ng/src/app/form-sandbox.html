@@ -9,7 +9,43 @@ Angular version: {{ version }}
 </mh-a>
 
 <form #form="ngForm">
-  <fieldset>TBD</fieldset>
+  <fieldset>
+    <legend>checkbox</legend>
+
+    <mh-checkbox
+      #cb="ngModel"
+      name="cb"
+      ngModel
+      required
+      >check</mh-checkbox
+    >
+  </fieldset>
+
+  Checkbox value {{ cb.value }}<br />
+  Checkbox valid {{ cb.valid }}<br />
+
+  <fieldset>
+    <legend>radio</legend>
+
+    <mh-radio
+      name="gender"
+      value="m"
+      ngModel
+      required
+      >male</mh-radio
+    >
+    <mh-radio
+      name="gender"
+      value="f"
+      ngModel
+      required
+      >female</mh-radio
+    >
+  </fieldset>
+
+  Form value {{ form.value | json }}<br />
+  Form valid {{ form.valid }}<br />
+  Form errors {{ errors(form) | json }}
 
   <footer>
     <mh-button

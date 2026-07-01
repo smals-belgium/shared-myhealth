@@ -1,0 +1,26 @@
+import { Directive, forwardRef, input } from '@angular/core';
+import {
+  CheckboxControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
+
+@Directive({
+  selector: 'mh-checkbox',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => Checkbox),
+      multi: true,
+    },
+  ],
+  host: {
+    '[attr.title]': 'title()',
+    '[attr.indeterminate]': 'indeterminate() ? "" : null',
+    '(change)': 'onChange($any($event.target).checked)',
+    '(blur)': 'onTouched()',
+  },
+})
+export class Checkbox extends CheckboxControlValueAccessor {
+  readonly title = input('');
+  readonly indeterminate = input(false);
+}

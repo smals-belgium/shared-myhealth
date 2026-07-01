@@ -8,7 +8,6 @@ import type {
 
 @Directive({
   selector: 'mh-button',
-  standalone: true,
   host: {
     '[attr.title]': 'title()',
     '[attr.type]': 'type()',
