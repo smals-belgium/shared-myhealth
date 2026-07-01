@@ -67,6 +67,7 @@ export class Radio extends LitElement {
 
   override updated(changed: PropertyValueMap<this>) {
     if (changed.has('checked') && this.checked) radioGroups.updateValue(this);
+    this.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
   #onChange() {

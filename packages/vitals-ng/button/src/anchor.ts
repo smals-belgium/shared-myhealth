@@ -8,7 +8,6 @@ import type {
 
 @Directive({
   selector: 'mh-a',
-  standalone: true,
   host: {
     '[attr.href]': 'href()',
     '[attr.title]': 'title()',

@@ -5,7 +5,13 @@
     "@myhealth/design-kit": "*"
   },
   "peerDependencies": {
-    "@angular/core": "^21.0.0"
+    "@angular/core": "^21.0.0",
+    "@angular/forms": "^21.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@angular/forms": {
+      "optional": true
+    }
   },
   "sideEffects": false
 }
