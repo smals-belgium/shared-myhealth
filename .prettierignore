@@ -5,3 +5,8 @@
 /.nx/workspace-data
 .nx/self-healing
 .angular
+.agents
+.github
+.opencode
+.gemini
+.cursor
