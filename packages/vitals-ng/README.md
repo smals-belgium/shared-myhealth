@@ -2,6 +2,8 @@
 
 Angular wrapper components for the Lit Vitals web component library.
 
+[Look here if you want to contribute](./CONTRIBUTING.md)
+
 ## Usage
 
 ### Install dependency

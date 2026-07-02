@@ -27,6 +27,9 @@
       "@myhealth/vitals-ng/radio": ["./packages/vitals-ng/radio/src/index.ts"],
       "@myhealth/vitals-ng/checkbox": [
         "./packages/vitals-ng/checkbox/src/index.ts"
+      ],
+      "@myhealth/vitals-ng/text-input": [
+        "./packages/vitals-ng/text-input/src/index.ts"
       ]
     }
   }

@@ -43,6 +43,23 @@ Angular version: {{ version }}
     >
   </fieldset>
 
+  <fieldset>
+    <legend>text-input</legend>
+
+    <mh-text-input
+      name="textInput"
+      ngModel
+      required
+      minlength="2"
+      maxlength="10"
+      pattern="\d*"
+      help="Mininmum 2 chars, maximum 10, and must be digits"
+      hint="But only numbers are valid"
+    >
+      text
+    </mh-text-input>
+  </fieldset>
+
   Form value {{ form.value | json }}<br />
   Form valid {{ form.valid }}<br />
   Form errors {{ errors(form) | json }}
