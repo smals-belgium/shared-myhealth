@@ -7,6 +7,13 @@ import styles from './dialog.css?inline';
 
 export type DialogVariant = 'basic' | 'fullscreen';
 
+// To be removed when TypeScript is upgraded to a version that adds this type
+declare global {
+  interface HTMLDialogElement {
+    closedby: 'any' | 'closerequest' | 'none';
+  }
+}
+
 /**
  * @summary Dialogs are modal popups that focus the user's attention on a single task or piece of information. They trap
  *  focus, dim the page behind a backdrop, and must be dismissed before the user can interact with the rest of the page.
@@ -46,20 +53,18 @@ export class Dialog extends LitElement {
   /** The dialog's variant. `fullscreen` makes the dialog cover the entire screen. */
   @property({ reflect: true }) variant: DialogVariant = 'basic';
 
-  /** Whether closing the dialog via the backdrop or the Escape key is disabled. */
-  @property({ type: Boolean, reflect: true, attribute: 'disable-close' })
-  disableClose = false;
+  @property({ reflect: true }) closedby: HTMLDialogElement['closedby'] = 'any';
 
   #result?: string | boolean;
   #ownsScrollLock = false;
 
   /** Whether the dialog is currently open. */
-  get isOpen() {
+  get open() {
     return this.dialog.open;
   }
 
   /** Opens the dialog as a modal and emits `mh-after-opened`. */
-  open() {
+  showModal() {
     if (this.dialog.open) return;
 
     this.dialog.showModal();
@@ -86,8 +91,8 @@ export class Dialog extends LitElement {
   };
 
   /** Resets the pending close result back to its empty default. */
-  #resetResult(result?: string | boolean) {
-    this.#result = result;
+  #resetResult() {
+    this.#result = undefined;
   }
 
   override disconnectedCallback() {
@@ -124,9 +129,10 @@ export class Dialog extends LitElement {
     Dialog.documentOverflowBeforeLock = null;
   }
 
+  // Native `closedby` not supported by Safari yet, until then... custom implementation for escape key
   #onCancel = (event: Event) => {
-    // The native `cancel` event fires for the Escape key. Block it when closing is disabled.
-    if (this.disableClose) event.preventDefault();
+    // There's a Chrome bug here which we'll leave for now: https://issues.chromium.org/issues/41491338
+    if (this.closedby === 'none') event.preventDefault();
   };
 
   #onClick = (event: MouseEvent) => {
@@ -145,8 +151,8 @@ export class Dialog extends LitElement {
       return;
     }
 
-    // Light dismiss: a click on the backdrop registers on the dialog element itself.
-    if (!this.disableClose && event.target === this.dialog) this.close();
+    // Native `closedby` not supported by Safari yet, until then... custom implementation for backdrop click
+    if (this.closedby === 'any' && event.target === this.dialog) this.close();
   };
 
   override render() {

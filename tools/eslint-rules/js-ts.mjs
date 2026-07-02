@@ -13,6 +13,7 @@ const jsRules = {
   'no-magic-numbers': ['error', { ignore: [0, 1, 2, 10] }],
   'no-multi-assign': 'off',
   'no-ternary': 'off',
+  'no-undefined': 'off',
   'one-var': 'off',
   'sort-keys': 'off',
 };

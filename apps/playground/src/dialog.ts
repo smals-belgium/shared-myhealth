@@ -5,7 +5,7 @@ const dialog = (id: string) => document.querySelector<Dialog>(`#${id}`);
 const wireOpen = (triggerId: string, dialogId: string) =>
   document
     .querySelector(`#${triggerId}`)
-    ?.addEventListener('click', () => dialog(dialogId)?.open());
+    ?.addEventListener('click', () => dialog(dialogId)?.showModal());
 
 const showResult = (dialogId: string, resultId: string) => {
   const target = document.querySelector(`#${resultId}`);
