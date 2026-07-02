@@ -18,8 +18,8 @@ export default [
   ...nx.configs['flat/base'],
   ...nx.configs['flat/javascript'],
   ...nx.configs['flat/typescript'],
-  ...typedConfig,
   ...jsTsConfig,
   ...jsTsTestConfig,
+  ...typedConfig,
   ...importPluginConfig,
 ];

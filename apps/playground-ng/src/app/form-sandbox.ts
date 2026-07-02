@@ -6,6 +6,7 @@ import { version } from '@myhealth/vitals-ng';
 import { BUTTON } from '@myhealth/vitals-ng/button';
 import { CHECKBOX } from '@myhealth/vitals-ng/checkbox';
 import { RADIO } from '@myhealth/vitals-ng/radio';
+import { TEXT_INPUT } from '@myhealth/vitals-ng/text-input';
 
 const formErrors = (form: NgForm) =>
   Object.keys(form.controls).reduce(
@@ -20,7 +21,7 @@ const formErrors = (form: NgForm) =>
   );
 
 @Component({
-  imports: [FormsModule, JsonPipe, BUTTON, CHECKBOX, RADIO],
+  imports: [FormsModule, JsonPipe, BUTTON, CHECKBOX, RADIO, TEXT_INPUT],
   templateUrl: './form-sandbox.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

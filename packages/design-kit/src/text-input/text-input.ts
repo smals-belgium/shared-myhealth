@@ -2,6 +2,7 @@ import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
 import { customElement, property, query, queryAll } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
+import type { Size } from '../core';
 import size from '../form-control/form-control.size.css?inline';
 
 import iconButtonSlot from './text-input-icon-button.slot.css?inline';
@@ -17,6 +18,8 @@ export type TextInputType =
   | 'tel'
   | 'text'
   | 'url';
+
+export type TextInputSize = Extract<Size, 's' | 'm'>;
 
 /** Controls whether and how text input is automatically capitalized as it is entered by the user. */
 export type AutoCapitalize =
@@ -89,7 +92,7 @@ export class TextInput extends LitElement {
   @property() override title = '';
   @property() type: TextInputType = 'text';
 
-  @property({ reflect: true }) size: 'm' | 's' = 'm';
+  @property({ reflect: true }) size: TextInputSize = 'm';
 
   @property({ reflect: true }) name?: string;
   @property({ reflect: true }) value?: string | null;
@@ -156,8 +159,11 @@ export class TextInput extends LitElement {
         .forEach(el => (el.disabled = this.disabled));
   }
 
+  #onInput = () => (this.value = this.el?.value);
+
   #onChange() {
     if (this.el) this.internals.setFormValue(this.el.value);
+    this.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
   // eslint-disable-next-line max-lines-per-function
@@ -201,6 +207,7 @@ export class TextInput extends LitElement {
             .required=${this.required}
             .value=${ifDefined(this.value)}
             @change=${this.#onChange}
+            @input=${this.#onInput}
           />
 
           <slot
