@@ -45,7 +45,7 @@ describe('dialog', () => {
           </button>
         </mh-dialog>
       `);
-      el.open();
+      el.showModal();
 
       await assertAccessibility(el);
     });
@@ -91,26 +91,26 @@ describe('dialog', () => {
     it('is closed by default', async () => {
       const el = await fixture<Dialog>(html`<mh-dialog></mh-dialog>`);
 
-      expect(el.isOpen).toBe(false);
+      expect(el.open).toBe(false);
       expect(el.hasAttribute('open')).toBe(false);
     });
 
     it('opens as a modal and reflects the open attribute', async () => {
       const el = await fixture<Dialog>(html`<mh-dialog></mh-dialog>`);
 
-      el.open();
+      el.showModal();
 
-      expect(el.isOpen).toBe(true);
+      expect(el.open).toBe(true);
       expect(el.hasAttribute('open')).toBe(true);
     });
 
     it('closes and clears the open attribute', async () => {
       const el = await fixture<Dialog>(html`<mh-dialog></mh-dialog>`);
 
-      el.open();
+      el.showModal();
       el.close();
 
-      expect(el.isOpen).toBe(false);
+      expect(el.open).toBe(false);
       expect(el.hasAttribute('open')).toBe(false);
     });
 
@@ -119,7 +119,7 @@ describe('dialog', () => {
       const previousDocumentOverflow = document.documentElement.style.overflow;
 
       const el = await fixture<Dialog>(html`<mh-dialog></mh-dialog>`);
-      el.open();
+      el.showModal();
 
       expect(document.body.style.overflow).toBe('hidden');
       expect(document.documentElement.style.overflow).toBe('hidden');
@@ -136,8 +136,8 @@ describe('dialog', () => {
       const first = await fixture<Dialog>(html`<mh-dialog></mh-dialog>`);
       const second = await fixture<Dialog>(html`<mh-dialog></mh-dialog>`);
 
-      first.open();
-      second.open();
+      first.showModal();
+      second.showModal();
 
       expect(document.body.style.overflow).toBe('hidden');
       first.close();
@@ -153,7 +153,7 @@ describe('dialog', () => {
     it('emits mh-after-opened when opened', async () => {
       const el = await fixture<Dialog>(html`<mh-dialog></mh-dialog>`);
 
-      setTimeout(() => el.open());
+      setTimeout(() => el.showModal());
       const event = await oneEvent(el, 'mh-after-opened');
 
       expect(event).toBeInstanceOf(Event);
@@ -161,7 +161,7 @@ describe('dialog', () => {
 
     it('emits mh-after-closed with the result when closed', async () => {
       const el = await fixture<Dialog>(html`<mh-dialog></mh-dialog>`);
-      el.open();
+      el.showModal();
 
       setTimeout(() => el.close('confirmed'));
       const event = (await oneEvent(
@@ -185,7 +185,7 @@ describe('dialog', () => {
           </button>
         </mh-dialog>
       `);
-      el.open();
+      el.showModal();
 
       const button = el.querySelector('button');
       expect(button).not.toBeNull();
@@ -196,16 +196,16 @@ describe('dialog', () => {
       )) as DialogAfterClosedEvent;
 
       expect(event.result).toBe('ok');
-      expect(el.isOpen).toBe(false);
+      expect(el.open).toBe(false);
     });
   });
 
   describe('disable-close', () => {
     it('prevents the Escape key (cancel) from closing the dialog', async () => {
       const el = await fixture<Dialog>(
-        html`<mh-dialog disable-close></mh-dialog>`,
+        html`<mh-dialog closedby="none"></mh-dialog>`,
       );
-      el.open();
+      el.showModal();
 
       const dialog = part<HTMLDialogElement>('dialog', el);
       const cancel = new Event('cancel', { cancelable: true });
