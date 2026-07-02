@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx run playground:serve",
+    "start:ng": "nx run playground-ng:serve",
     "build": "nx run design-kit:build:production",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
