@@ -1,0 +1,53 @@
+/* Display chips: non-actionable, always black text and icon, light tinted background. */
+[part='base'] {
+  color: var(--mh-color-neutral-type-louder);
+}
+
+:host([variant='brand']) [part='base'] {
+  background-color: var(--mh-color-brand-fill-quiet);
+}
+
+:host([variant='success']) [part='base'] {
+  background-color: var(--mh-color-success-fill-quiet);
+}
+
+:host([variant='neutral']) [part='base'] {
+  background-color: var(--mh-color-neutral-fill-quiet);
+}
+
+:host([variant='warning']) [part='base'] {
+  background-color: var(--mh-color-warning-fill-quiet);
+}
+
+:host([variant='danger']) [part='base'] {
+  background-color: var(--mh-color-danger-fill-quiet);
+}
+
+:host([variant='tertiary']) [part='base'] {
+  background-color: var(--mh-color-tertiary-fill-quiet);
+}
+
+/* Leading icons are tinted per variant while the label stays black. */
+:host([variant='brand']) [part='start'] {
+  color: var(--mh-color-brand-type-loud);
+}
+
+:host([variant='success']) [part='start'] {
+  color: var(--mh-color-success-type-loud);
+}
+
+:host([variant='neutral']) [part='start'] {
+  color: var(--mh-color-neutral-type-louder);
+}
+
+:host([variant='warning']) [part='start'] {
+  color: var(--mh-color-warning-type-loud);
+}
+
+:host([variant='danger']) [part='start'] {
+  color: var(--mh-color-danger-type-loud);
+}
+
+:host([variant='tertiary']) [part='start'] {
+  color: var(--mh-color-tertiary-fill-louder);
+}

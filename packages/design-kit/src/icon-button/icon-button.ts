@@ -3,6 +3,7 @@ import { customElement, property, query } from 'lit/decorators.js';
 
 import { ErrorEvent } from '../core/event/error.event';
 import type { Loudness } from '../core/loudness';
+import touchTarget from '../core/touch-target.css?inline';
 
 import appearance from './icon-button.appearance.css?inline';
 import styles from './icon-button.css?inline';
@@ -29,9 +30,12 @@ export type IconButtonLoudness = Extract<Loudness, 'normal' | 'loud'>;
  */
 @customElement('mh-icon-button')
 export class IconButton extends LitElement {
-  static override readonly styles = [loudness, styles, appearance].map(
-    unsafeCSS,
-  );
+  static override readonly styles = [
+    loudness,
+    styles,
+    appearance,
+    touchTarget,
+  ].map(unsafeCSS);
 
   @query('[part="button"]') el!: HTMLElement;
 
@@ -70,6 +74,7 @@ export class IconButton extends LitElement {
     return html`
       <button
         part="button"
+        class="mh-touch-target"
         ?disabled=${this.disabled}
         title=${this.title}
         aria-label=${this.label ?? this.title}

@@ -14,5 +14,8 @@
     --mh-space-m: 1rem;
     --mh-space-l: 1.5rem;
     --mh-space-xl: 2rem;
+
+    /* The minimum interactive target size (WCAG 2.5.5 Target Size (Enhanced), AAA). */
+    --mh-target-size-min: 2.75rem;
   }
 }

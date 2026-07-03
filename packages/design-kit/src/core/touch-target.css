@@ -1,0 +1,19 @@
+/**
+ * Grows an interactive element's pointer/touch target to at least `--mh-target-size-min`
+ * without changing its visible size. Apply the `mh-touch-target` class to a focusable
+ * element (e.g. a `<button>`); the transparent `::after` overlay captures pointer events
+ * and forwards them to the element.
+ */
+.mh-touch-target {
+  position: relative;
+}
+
+.mh-touch-target::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--mh-target-size-min));
+  height: max(100%, var(--mh-target-size-min));
+  transform: translate(-50%, -50%);
+}
