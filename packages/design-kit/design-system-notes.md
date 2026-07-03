@@ -80,6 +80,10 @@
 - renamed alert to callout to be in line with other web component libraries
 - red notification icon in neutral callout looks weird; should be gray
 
+## chips
+
+- The chips component had 3 variants in the design system: `input`, `filter`, `status`. These names were unclear, you could not tell what these chips do without looking at them. Thus they have been renamed to `removable`, `selectable` and `display` for clarity.
+
 ## i18n formatting
 
 - define global rules on how to deal with dates and numbers in myhealth apps/components

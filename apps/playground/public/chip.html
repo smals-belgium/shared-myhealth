@@ -29,74 +29,60 @@
     <article>
       <h2>Chip</h2>
 
-      <h3>Status chips</h3>
-      <mh-chip variant="brand">Brand</mh-chip>
-      <mh-chip variant="success">Success</mh-chip>
-      <mh-chip variant="neutral">Neutral</mh-chip>
-      <mh-chip variant="warning">Warning</mh-chip>
-      <mh-chip variant="danger">Danger</mh-chip>
-      <mh-chip variant="tertiary">Tertiary</mh-chip>
+      <h3>Display chips</h3>
+      <mh-display-chip variant="brand">Brand</mh-display-chip>
+      <mh-display-chip variant="success">Success</mh-display-chip>
+      <mh-display-chip variant="neutral">Neutral</mh-display-chip>
+      <mh-display-chip variant="warning">Warning</mh-display-chip>
+      <mh-display-chip variant="danger">Danger</mh-display-chip>
+      <mh-display-chip variant="tertiary">Tertiary</mh-display-chip>
 
-      <h3>Status chips with icon</h3>
-      <mh-chip variant="success">
+      <h3>Display chips with icon</h3>
+      <mh-display-chip variant="success">
         <mh-icon
           name="check_circle"
           slot="start"
+          size="s"
         ></mh-icon>
         Completed
-      </mh-chip>
-      <mh-chip variant="warning">
+      </mh-display-chip>
+      <mh-display-chip variant="warning">
         <mh-icon
           name="warning"
           slot="start"
+          size="s"
         ></mh-icon>
         Pending
-      </mh-chip>
-      <mh-chip variant="danger">
+      </mh-display-chip>
+      <mh-display-chip variant="danger">
         <mh-icon
           name="emergency_home"
           slot="start"
+          size="s"
         ></mh-icon>
         Urgent
-      </mh-chip>
+      </mh-display-chip>
 
-      <h3>Filter chips</h3>
-      <mh-chip kind="filter">Unselected</mh-chip>
-      <mh-chip
-        kind="filter"
-        selected
-        >Selected</mh-chip
-      >
-      <mh-chip
-        kind="filter"
-        disabled
-        >Disabled</mh-chip
-      >
-      <mh-chip
-        kind="filter"
+      <h3>Selectable chips</h3>
+      <mh-selectable-chip>Unselected</mh-selectable-chip>
+      <mh-selectable-chip selected>Selected</mh-selectable-chip>
+      <mh-selectable-chip disabled>Disabled</mh-selectable-chip>
+      <mh-selectable-chip
         selected
         disabled
-        >Selected disabled</mh-chip
+        >Selected disabled</mh-selectable-chip
       >
 
-      <h3>Input chips</h3>
-      <mh-chip
-        kind="input"
-        value="amoxicillin"
-        >Amoxicillin</mh-chip
-      >
-      <mh-chip kind="input">
+      <h3>Removable chips</h3>
+      <mh-removable-chip value="amoxicillin">Amoxicillin</mh-removable-chip>
+      <mh-removable-chip>
         <mh-icon
           name="person"
           slot="start"
         ></mh-icon>
         Dr. Smith
-      </mh-chip>
-      <mh-chip
-        kind="input"
-        disabled
-        >Disabled</mh-chip
-      >
+      </mh-removable-chip>
+      <mh-removable-chip disabled>Disabled</mh-removable-chip>
 
       <script type="module">
         document.addEventListener('mh-chip-selection-change', event => {
