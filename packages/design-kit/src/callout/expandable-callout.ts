@@ -2,29 +2,29 @@ import { html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import { CalloutBase } from './base';
-import { CalloutExpandedChangedEvent } from './callout-expanded-changed.event';
+import { CalloutClosedEvent } from './callout-closed.event';
+import { CalloutToggledEvent } from './callout-toggled.event';
 import expandable from './expandable-callout.css?inline';
 
 /**
  * @summary Expandable callouts are inline banners that disclose their content on demand. Built on the native
  *  `<details>` element, they show a fixed icon for their variant, a title, and a chevron; activating the header
  *  expands or collapses the description and optional actions. The content region is announced to screen readers
- *  as a status message (polite) for info/success/notification variants, or as an alert (assertive) for
- *  error/warning variants.
+ *  as a status message (polite) for info/success/neutral/brand variants, or as an alert (assertive) for
+ *  danger/warning variants.
  * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/expandable-callout
  * @status stable
  * @since 1.0
  *
  * @dependency mh-icon
  *
- * @event mh-callout-after-opened - Emitted after the callout has opened.
- * @event mh-callout-after-closed - Emitted after the callout has closed. The `result` property carries the optional close value.
- * @event mh-callout-expanded-changed - Emitted when the callout is expanded or collapsed. The `expanded` property carries the new state.
+ * @event mh-callout-toggled - Emitted when the callout is expanded or collapsed. The `open` property carries the new state.
+ * @event mh-callout-closed - Emitted when a `callout-close` button is activated and the callout removes itself.
  *
  * @slot title - The callout's title, shown next to the icon. Activating it toggles the callout.
  * @slot description - The callout's descriptive content, shown below the title when expanded.
- * @slot actions - The callout's actions, typically buttons. Add the `callout-close` attribute to any element here to
- *  close the callout when it is activated; its value is forwarded as the close result.
+ * @slot actions - The callout's actions, typically buttons. Add the `callout-close` attribute to any element
+ *  here to dismiss and remove the callout when it is activated.
  *
  * @csspart icon - The variant icon at the start of the callout.
  * @csspart header - The `<summary>` toggle that wraps the icon, title, and chevron.
@@ -44,21 +44,45 @@ export class ExpandableCallout extends CalloutBase {
     unsafeCSS(expandable),
   ];
 
-  /** Whether the callout is expanded. */
-  @property({ type: Boolean, reflect: true }) expanded = false;
+  /** Whether the callout is expanded. Reflects as an attribute. */
+  @property({ type: Boolean, reflect: true }) open = false;
+
+  /** Expands or collapses the callout and emits `mh-callout-toggled`. Pass `force` to set an explicit state. */
+  toggle(force?: boolean) {
+    const next = force ?? !this.open;
+    if (next === this.open) return;
+
+    this.open = next;
+    this.dispatchEvent(new CalloutToggledEvent(this.open));
+  }
 
   #onToggle = (event: Event) => {
     const { open } = event.target as HTMLDetailsElement;
-    if (open === this.expanded) return;
+    // Guard against Lit-initiated renders re-setting the same state.
+    if (open === this.open) return;
 
-    this.expanded = open;
-    this.dispatchEvent(new CalloutExpandedChangedEvent(this.expanded));
+    this.open = open;
+    this.dispatchEvent(new CalloutToggledEvent(open));
+  };
+
+  #onCloseTrigger = (event: MouseEvent) => {
+    const trigger = event
+      .composedPath()
+      .find(
+        (target): target is HTMLElement =>
+          target instanceof HTMLElement && target.hasAttribute('callout-close'),
+      );
+
+    if (!trigger) return;
+
+    this.dispatchEvent(new CalloutClosedEvent());
+    this.remove();
   };
 
   override render() {
     return html`
       <details
-        ?open=${this.expanded}
+        ?open=${this.open}
         @toggle=${this.#onToggle}
       >
         <summary part="header">
@@ -83,7 +107,7 @@ export class ExpandableCallout extends CalloutBase {
           aria-live=${this.getContentRole() === 'alert'
             ? 'assertive'
             : 'polite'}
-          @click=${this.onCloseTrigger}
+          @click=${this.#onCloseTrigger}
         >
           <div part="content">
             <slot

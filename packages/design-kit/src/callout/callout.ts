@@ -4,12 +4,13 @@ import { customElement } from 'lit/decorators.js';
 import { LocalizeController } from '../core/i18n';
 
 import { CalloutBase } from './base';
+import { CalloutClosedEvent } from './callout-closed.event';
 
 /**
  * @summary Callouts are inline banners that communicate a contextual status or message. They show a fixed icon for
  *  their variant, a title, an optional description, optional actions, and a close button. The content region is
- *  announced to screen readers as a status message (polite) for info/success/notification variants, or as an alert
- *  (assertive) for error/warning variants.
+ *  announced to screen readers as a status message (polite) for info/success/neutral/brand variants, or as an alert
+ *  (assertive) for danger/warning variants.
  * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/callout
  * @status stable
  * @since 1.0
@@ -17,13 +18,11 @@ import { CalloutBase } from './base';
  * @dependency mh-icon
  * @dependency mh-icon-button
  *
- * @event mh-callout-after-opened - Emitted after the callout has opened.
- * @event mh-callout-after-closed - Emitted after the callout has closed. The `result` property carries the optional close value.
+ * @event mh-callout-closed - Emitted after the close button is activated and the callout removes itself.
  *
  * @slot title - The callout's title, shown next to the icon.
  * @slot description - The callout's descriptive content, shown below the title.
- * @slot actions - The callout's actions, typically buttons. Add the `callout-close` attribute to any element here to
- *  close the callout when it is activated; its value is forwarded as the close result.
+ * @slot actions - The callout's actions, typically buttons.
  *
  * @csspart icon - The variant icon at the start of the callout.
  * @csspart header - The top row that wraps the icon, title, and close button.
@@ -40,7 +39,10 @@ import { CalloutBase } from './base';
 export class Callout extends CalloutBase {
   private readonly localize = new LocalizeController(this);
 
-  #onCloseClick = () => this.close();
+  #onCloseClick = () => {
+    this.dispatchEvent(new CalloutClosedEvent());
+    this.remove();
+  };
 
   override render() {
     return html`
@@ -65,7 +67,6 @@ export class Callout extends CalloutBase {
         role=${this.getContentRole()}
         aria-labelledby="title"
         aria-live=${this.getContentRole() === 'alert' ? 'assertive' : 'polite'}
-        @click=${this.onCloseTrigger}
       >
         <div part="content">
           <slot

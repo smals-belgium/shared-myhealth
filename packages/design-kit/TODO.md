@@ -11,6 +11,7 @@
 - [ ] add more stock icons
 - [ ] sanitize or other strategy for XSS protection
 - [ ] unit test that ensures all svgs have `fill="currentColor"`
+- [ ] generate an `iconName` type from existing svg files in `/packages/design-kit/src/icon/svg/`
 
 ## Radio group
 

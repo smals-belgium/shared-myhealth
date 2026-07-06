@@ -3,8 +3,8 @@ import { html } from 'lit';
 
 import { assertAccessibility, part, slot } from '../core/testing';
 
-import type { CalloutAfterClosedEvent } from './callout-after-closed.event.js';
-import type { CalloutExpandedChangedEvent } from './callout-expanded-changed.event.js';
+import type { CalloutClosedEvent } from './callout-closed.event.js';
+import type { CalloutToggledEvent } from './callout-toggled.event.js';
 import './expandable-callout';
 import type { ExpandableCallout } from './expandable-callout.js';
 
@@ -12,12 +12,11 @@ describe('expandable-callout', () => {
   describe('accessibility', () => {
     it('passes accessibility tests', async () => {
       const el = await fixture<ExpandableCallout>(html`
-        <mh-expandable-callout expanded>
+        <mh-expandable-callout open>
           <span slot="title">Title</span>
           <span slot="description">Description</span>
         </mh-expandable-callout>
       `);
-      el.open();
 
       await assertAccessibility(el);
     });
@@ -26,7 +25,7 @@ describe('expandable-callout', () => {
   describe('slots', () => {
     it('renders the title, description and actions slots', async () => {
       const el = await fixture<ExpandableCallout>(html`
-        <mh-expandable-callout expanded>
+        <mh-expandable-callout open>
           <span slot="title">Title</span>
           <span slot="description">Description</span>
           <span slot="actions">Actions</span>
@@ -42,14 +41,39 @@ describe('expandable-callout', () => {
   describe('variant', () => {
     it('shows the icon mapped to the variant', async () => {
       const el = await fixture<ExpandableCallout>(
-        html`<mh-expandable-callout variant="error"></mh-expandable-callout>`,
+        html`<mh-expandable-callout variant="danger"></mh-expandable-callout>`,
       );
 
       expect(part('icon', el)?.getAttribute('name')).toBe('emergency_home');
     });
   });
 
-  describe('expand / collapse', () => {
+  describe('open / expand', () => {
+    it('is collapsed by default', async () => {
+      const el = await fixture<ExpandableCallout>(html`
+        <mh-expandable-callout>
+          <span slot="title">Title</span>
+        </mh-expandable-callout>
+      `);
+
+      expect(el.open).toBe(false);
+      expect(el.hasAttribute('open')).toBe(false);
+    });
+
+    it('starts expanded when the open attribute is set', async () => {
+      const el = await fixture<ExpandableCallout>(html`
+        <mh-expandable-callout open>
+          <span slot="title">Title</span>
+        </mh-expandable-callout>
+      `);
+
+      expect(el.open).toBe(true);
+
+      const details =
+        el.shadowRoot?.querySelector<HTMLDetailsElement>('details');
+      expect(details?.open).toBe(true);
+    });
+
     it('renders a chevron toggle and no close button', async () => {
       const el = await fixture<ExpandableCallout>(html`
         <mh-expandable-callout>
@@ -61,20 +85,7 @@ describe('expandable-callout', () => {
       expect(part('close', el)).toBeNull();
     });
 
-    it('uses a native details element', async () => {
-      const el = await fixture<ExpandableCallout>(html`
-        <mh-expandable-callout expanded>
-          <span slot="title">Title</span>
-        </mh-expandable-callout>
-      `);
-
-      const details =
-        el.shadowRoot?.querySelector<HTMLDetailsElement>('details');
-      expect(details).not.toBeNull();
-      expect(details?.open).toBe(true);
-    });
-
-    it('toggles expanded when the summary is activated and emits an event', async () => {
+    it('toggles open and emits mh-callout-toggled when the summary is activated', async () => {
       const el = await fixture<ExpandableCallout>(html`
         <mh-expandable-callout>
           <span slot="title">Title</span>
@@ -86,50 +97,92 @@ describe('expandable-callout', () => {
       );
       const event = (await oneEvent(
         el,
-        'mh-callout-expanded-changed',
-      )) as CalloutExpandedChangedEvent;
+        'mh-callout-toggled',
+      )) as CalloutToggledEvent;
 
-      expect(event.expanded).toBe(true);
-      expect(el.expanded).toBe(true);
+      expect(event.open).toBe(true);
+      expect(el.open).toBe(true);
+    });
+
+    it('toggles open and closed via the toggle() method', async () => {
+      const el = await fixture<ExpandableCallout>(html`
+        <mh-expandable-callout>
+          <span slot="title">Title</span>
+        </mh-expandable-callout>
+      `);
+
+      el.toggle();
+      expect(el.open).toBe(true);
+
+      el.toggle();
+      expect(el.open).toBe(false);
+    });
+
+    it('sets an explicit state when toggle() receives a force argument', async () => {
+      const el = await fixture<ExpandableCallout>(html`
+        <mh-expandable-callout open>
+          <span slot="title">Title</span>
+        </mh-expandable-callout>
+      `);
+
+      el.toggle(true);
+      expect(el.open).toBe(true);
+
+      el.toggle(false);
+      expect(el.open).toBe(false);
+    });
+
+    it('emits mh-callout-toggled via toggle()', async () => {
+      const el = await fixture<ExpandableCallout>(html`
+        <mh-expandable-callout>
+          <span slot="title">Title</span>
+        </mh-expandable-callout>
+      `);
+
+      setTimeout(() => el.toggle());
+      const event = (await oneEvent(
+        el,
+        'mh-callout-toggled',
+      )) as CalloutToggledEvent;
+
+      expect(event.open).toBe(true);
     });
   });
 
-  describe('callout-close attribute', () => {
-    it('closes with the attribute value when an action is activated', async () => {
+  describe('callout-close', () => {
+    it('removes itself and emits mh-callout-closed when a callout-close button is activated', async () => {
       const el = await fixture<ExpandableCallout>(html`
-        <mh-expandable-callout expanded>
+        <mh-expandable-callout open>
           <span slot="title">Title</span>
           <button
             slot="actions"
-            callout-close="ok"
+            callout-close
           >
-            OK
+            Dismiss
           </button>
         </mh-expandable-callout>
       `);
-      el.open();
 
       const button = el.querySelector('button');
       setTimeout(() => button?.click());
       const event = (await oneEvent(
         el,
-        'mh-callout-after-closed',
-      )) as CalloutAfterClosedEvent;
+        'mh-callout-closed',
+      )) as CalloutClosedEvent;
 
-      expect(event.result).toBe('ok');
-      expect(el.isOpen).toBe(false);
+      expect(event).toBeInstanceOf(Event);
+      expect(el.isConnected).toBe(false);
     });
   });
 
   describe('accessibility: ARIA roles and live regions', () => {
-    it('sets role="alert" and aria-live="assertive" for error variant', async () => {
+    it('sets role="alert" and aria-live="assertive" for danger variant', async () => {
       const el = await fixture<ExpandableCallout>(
         html`<mh-expandable-callout
-          variant="error"
-          expanded
+          variant="danger"
+          open
         ></mh-expandable-callout>`,
       );
-      el.open();
 
       const region = part('region', el);
       expect(region?.getAttribute('role')).toBe('alert');
@@ -140,37 +193,13 @@ describe('expandable-callout', () => {
       const el = await fixture<ExpandableCallout>(
         html`<mh-expandable-callout
           variant="info"
-          expanded
+          open
         ></mh-expandable-callout>`,
       );
-      el.open();
 
       const region = part('region', el);
       expect(region?.getAttribute('role')).toBe('status');
       expect(region?.getAttribute('aria-live')).toBe('polite');
-    });
-  });
-
-  describe('accessibility: focus restoration', () => {
-    it('restores focus to the triggering element on close', async () => {
-      const button = document.createElement('button');
-      button.textContent = 'Open callout';
-      document.body.appendChild(button);
-
-      const el = await fixture<ExpandableCallout>(
-        html`<mh-expandable-callout expanded></mh-expandable-callout>`,
-      );
-
-      button.focus();
-      expect(document.activeElement).toBe(button);
-
-      el.open();
-      el.close();
-
-      // Focus should return to the button
-      expect(document.activeElement).toBe(button);
-
-      document.body.removeChild(button);
     });
   });
 });
