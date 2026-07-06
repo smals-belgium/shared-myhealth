@@ -8,6 +8,7 @@ export * from './divider';
 export * from './icon';
 export * from './radio';
 export * from './skeleton';
+export * from './slide-toggle';
 export * from './snackbar';
 export * from './spinner';
 export * from './text-input';

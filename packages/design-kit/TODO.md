@@ -65,7 +65,7 @@ Portal-heavy components that are used in advanced flows or composed screens.
 - [ ] [@angular/material/table](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=52977-240)
 - [ ] [@angular/material/paginator](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=52834-2800)
 - [ ] @angular/material/sort
-- [ ] [@angular/material/slide-toggle](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=55049-2438)
+- [x] [@angular/material/slide-toggle](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=55049-2438)
 - [ ] [@angular/material/tooltip](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=57643-3531)
 - [ ] [Dropdown button](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=54443-118)
 - [ ] [Menu](https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Global-Design-System?node-id=56513-2127)
