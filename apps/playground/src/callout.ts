@@ -1,17 +1,27 @@
-import type { Callout } from '@myhealth/design-kit';
+import type {
+  CalloutToggledEvent,
+  ExpandableCallout,
+} from '@myhealth/design-kit';
 
-const callout = (id: string) => document.querySelector<Callout>(`#${id}`);
+const expandable = (id: string) =>
+  document.querySelector<ExpandableCallout>(`#${id}`);
 
-const wireOpen = (triggerId: string, calloutId: string) => {
+const wireToggle = (triggerId: string, calloutId: string) => {
   document
     .querySelector(`#${triggerId}`)
-    ?.addEventListener('click', () => callout(calloutId)?.open());
+    ?.addEventListener('click', () => expandable(calloutId)?.toggle());
 
-  callout(calloutId)?.addEventListener('mh-callout-after-closed', event => {
-    console.log(`"${calloutId}" closed with: "${event.result ?? 'dismissed'}"`);
-  });
+  expandable(calloutId)?.addEventListener(
+    'mh-callout-toggled',
+    (event: CalloutToggledEvent) => {
+      console.log(`"${calloutId}" toggled open: ${String(event.open)}`);
+    },
+  );
 };
 
-wireOpen('open-demo-color', 'demo-color');
-wireOpen('open-demo-white', 'demo-white');
-wireOpen('open-demo-expansion', 'demo-expansion');
+document.addEventListener('mh-callout-closed', event => {
+  const callout = event.target as HTMLElement;
+  console.log(`"${callout.id}" dismissed`);
+});
+
+wireToggle('toggle-demo-expansion', 'demo-expansion');

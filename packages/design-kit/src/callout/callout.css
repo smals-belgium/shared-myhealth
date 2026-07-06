@@ -3,11 +3,6 @@
   --mh-callout__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
   --mh-callout__icon-size: 1.75rem;
 
-  /* Hidden until opened. */
-  display: none;
-}
-
-:host([open]) {
   display: flex;
   flex-direction: column;
   box-shadow: var(--mh-callout__box-shadow);

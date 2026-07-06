@@ -45,7 +45,7 @@ summary[part='header']:focus-visible {
   color: var(--mh-callout__color);
 }
 
-:host([expanded]) [part='toggle'] {
+:host([open]) [part='toggle'] {
   transform: rotate(180deg);
 }
 

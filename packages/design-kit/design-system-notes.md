@@ -75,6 +75,11 @@
 - disabled state hardly distinguishable
 - only one invalid state; no hover, no focus
 
+## callout (alert)
+
+- renamed alert to callout to be in line with other web component libraries
+- red notification icon in neutral callout looks weird; should be gray
+
 ## i18n formatting
 
 - define global rules on how to deal with dates and numbers in myhealth apps/components

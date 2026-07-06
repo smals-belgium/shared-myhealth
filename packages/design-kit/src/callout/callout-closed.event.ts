@@ -1,6 +1,6 @@
-export class CalloutAfterOpenedEvent extends Event {
+export class CalloutClosedEvent extends Event {
   constructor() {
-    super('mh-callout-after-opened', {
+    super('mh-callout-closed', {
       bubbles: true,
       cancelable: false,
       composed: true,
@@ -10,6 +10,6 @@ export class CalloutAfterOpenedEvent extends Event {
 
 declare global {
   interface GlobalEventHandlersEventMap {
-    'mh-callout-after-opened': CalloutAfterOpenedEvent;
+    'mh-callout-closed': CalloutClosedEvent;
   }
 }

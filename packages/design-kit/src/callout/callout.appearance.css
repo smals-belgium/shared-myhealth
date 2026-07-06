@@ -7,14 +7,15 @@
   --mh-callout__variant-fill: var(--mh-color-brand-fill-quieter);
   --mh-callout__variant-type: var(--mh-color-brand-type-louder);
 
-  /* The applied colors, switched by `appearance`. Defaults to the `color` appearance. */
+  /* The applied colors, switched by `appearance`. Defaults to the `filled` appearance. */
   --mh-callout__background: var(--mh-callout__variant-fill);
   --mh-callout__color: var(--mh-callout__variant-type);
   --mh-callout__icon-color: var(--mh-callout__variant-type);
 }
 
 /* Map each variant onto an existing color family. */
-:host([variant='info']) {
+:host([variant='info']),
+:host([variant='brand']) {
   --mh-callout__variant-fill: var(--mh-color-brand-fill-quieter);
   --mh-callout__variant-type: var(--mh-color-brand-type-louder);
 }
@@ -29,19 +30,19 @@
   --mh-callout__variant-type: var(--mh-color-warning-type);
 }
 
-:host([variant='error']) {
+:host([variant='danger']) {
   --mh-callout__variant-fill: var(--mh-color-danger-fill-quieter);
   --mh-callout__variant-type: var(--mh-color-danger-type);
 }
 
-:host([variant='notification']) {
+:host([variant='neutral']) {
   --mh-callout__variant-fill: var(--mh-color-neutral-fill-quieter);
   --mh-callout__variant-type: var(--mh-color-neutral-type-louder);
   --mh-callout__icon-color: var(--mh-color-danger-type);
 }
 
-/* White appearance: a white surface with black text; only the icon keeps the variant color. */
-:host([appearance='white']) {
+/* Outlined appearance: a white surface with black text; only the icon keeps the variant color. */
+:host([appearance='outlined']) {
   --mh-callout__background: var(--mh-color-neutral-type-quieter);
   --mh-callout__color: var(--mh-color-neutral-type-louder);
 }
