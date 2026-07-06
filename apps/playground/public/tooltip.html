@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - tooltip</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+      h2 {
+        margin: 0 0 0.25rem;
+      }
+      h3 {
+        margin: 0 0 1rem;
+        font-size: 1rem;
+        color: #666;
+      }
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 3rem;
+      }
+      .grid-placements {
+        display: grid;
+        grid-template-areas:
+          '. top .'
+          'left . right'
+          '. bottom .';
+        gap: 1rem;
+        place-items: center;
+        width: fit-content;
+      }
+      .grid-logical-placements {
+        display: grid;
+        grid-template-columns: repeat(6, auto);
+        gap: 1rem;
+        place-items: center;
+        width: fit-content;
+      }
+      .top {
+        grid-area: top;
+      }
+      .left {
+        grid-area: left;
+      }
+      .right {
+        grid-area: right;
+      }
+      .bottom {
+        grid-area: bottom;
+      }
+      .row-1-column-2 {
+        grid-column: 2;
+        grid-row: 1;
+      }
+      .row-1-column-3 {
+        grid-column: 3;
+        grid-row: 1;
+      }
+      .row-1-column-4 {
+        grid-column: 4;
+        grid-row: 1;
+      }
+      .row-1-column-5 {
+        grid-column: 5;
+        grid-row: 1;
+      }
+      .flex-row {
+        display: flex;
+        gap: 1rem;
+      }
+      pre {
+        background: #f4f4f4;
+        border-radius: 0.25rem;
+        padding: 1rem;
+        font-size: 0.85rem;
+        margin: 0;
+      }
+    </style>
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+    <script
+      type="module"
+      src="/src/tooltip.ts"
+    ></script>
+  </head>
+
+  <body>
+    <h2>Tooltip</h2>
+
+    <section data-spec="placements">
+      <h3>Placements</h3>
+      <div class="grid-placements">
+        <!-- row 1 -->
+        <mh-tooltip
+          content="Placement: top"
+          placement="top"
+          class="top"
+        >
+          <mh-button>top</mh-button>
+        </mh-tooltip>
+        <!-- row 2 -->
+        <mh-tooltip
+          content="Placement: left"
+          placement="left"
+          class="left"
+        >
+          <mh-button>left</mh-button>
+        </mh-tooltip>
+        <mh-tooltip
+          content="Placement: right"
+          placement="right"
+          class="right"
+        >
+          <mh-button>right</mh-button>
+        </mh-tooltip>
+
+        <!-- row 3 -->
+        <mh-tooltip
+          content="Placement: bottom"
+          placement="bottom"
+          class="bottom"
+        >
+          <mh-button>bottom</mh-button>
+        </mh-tooltip>
+      </div>
+    </section>
+
+    <section data-spec="rtl">
+      <h3>Logical placements (start / end)</h3>
+      <div class="grid-logical-placements">
+        <mh-tooltip
+          content="Auto-flips with document direction"
+          placement="start"
+          class="row-1-column-2"
+        >
+          <mh-button>start</mh-button>
+        </mh-tooltip>
+        <mh-tooltip
+          content="Auto-flips with document direction"
+          placement="end"
+          class="row-1-column-3"
+        >
+          <mh-button>end</mh-button>
+        </mh-tooltip>
+        <section dir="rtl">
+          <div class="flex-row">
+            <mh-tooltip
+              content="Auto-flips with document direction"
+              placement="start"
+              class="row-1-column-4"
+            >
+              <mh-button>start (RTL)</mh-button>
+            </mh-tooltip>
+            <mh-tooltip
+              content="Auto-flips with document direction"
+              placement="end"
+              class="row-1-column-5"
+            >
+              <mh-button>end (RTL)</mh-button>
+            </mh-tooltip>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section data-spec="slot">
+      <h3>Rich content via slot</h3>
+      <div class="row">
+        <mh-tooltip placement="top">
+          <mh-button>Hover me</mh-button>
+          <span slot="content">
+            <strong>Bold label</strong><br />
+            Extra line of detail
+          </span>
+        </mh-tooltip>
+      </div>
+    </section>
+
+    <section data-spec="delays">
+      <h3>Show / hide delays</h3>
+      <div class="row">
+        <mh-tooltip
+          content="Show delay: 500 ms"
+          show-delay="500"
+        >
+          <mh-button>500 ms show delay</mh-button>
+        </mh-tooltip>
+        <mh-tooltip
+          content="Hide delay: 500 ms"
+          hide-delay="500"
+        >
+          <mh-button>500 ms hide delay</mh-button>
+        </mh-tooltip>
+        <mh-tooltip
+          content="Show 300 ms · Hide 600 ms"
+          show-delay="300"
+          hide-delay="600"
+        >
+          <mh-button>300 ms / 600 ms</mh-button>
+        </mh-tooltip>
+      </div>
+    </section>
+
+    <section data-spec="disabled">
+      <h3>Toggle state</h3>
+
+      <div class="row">
+        <mh-tooltip
+          id="toggledTooltip"
+          content="This tooltip can be toggled on/off"
+        >
+          <mh-button>Hover me</mh-button>
+        </mh-tooltip>
+
+        <mh-button
+          id="toggleDisabled"
+          appearance="outlined"
+        >
+          Toggle disabled
+        </mh-button>
+      </div>
+    </section>
+
+    <section data-spec="programmatic-control">
+      <h3>Programmatic control</h3>
+      <div class="row">
+        <mh-tooltip
+          id="progTooltip"
+          content="Opened programmatically"
+          placement="top"
+        >
+          <mh-button>Target</mh-button>
+        </mh-tooltip>
+        <mh-button id="btnShow">show()</mh-button>
+        <mh-button id="btnHide">hide()</mh-button>
+        <mh-button id="btnToggle">toggle()</mh-button>
+        <mh-button id="btnShowDelay">show(1000 ms)</mh-button>
+      </div>
+    </section>
+
+    <!-- ── On non-button trigger ─────────────────────────────────── -->
+    <section data-spec="non-button-trigger">
+      <h3>Trigger: icon button</h3>
+      <div class="row">
+        <mh-tooltip
+          content="Add item"
+          placement="top"
+        >
+          <mh-icon-button
+            label="Add"
+            name="add"
+          ></mh-icon-button>
+        </mh-tooltip>
+        <mh-tooltip
+          content="Delete item"
+          placement="bottom"
+        >
+          <mh-icon-button
+            label="Delete"
+            name="delete"
+          ></mh-icon-button>
+        </mh-tooltip>
+      </div>
+    </section>
+  </body>
+</html>

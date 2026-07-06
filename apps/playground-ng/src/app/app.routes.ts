@@ -12,6 +12,7 @@ import { IconComponent } from './icon.component';
 import { RadioComponent } from './radio.component';
 import { SkeletonComponent } from './skeleton.component';
 import { SpinnerComponent } from './spinner.component';
+import { TooltipComponent } from './tooltip.component';
 
 export const appRoutes: Route[] = [
   {
@@ -58,5 +59,9 @@ export const appRoutes: Route[] = [
   {
     path: 'spinner',
     component: SpinnerComponent,
+  },
+  {
+    path: 'tooltip',
+    component: TooltipComponent,
   },
 ];
