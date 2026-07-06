@@ -1,6 +1,6 @@
 import { Directive, input } from '@angular/core';
 
-import type { IconSize } from '@myhealth/design-kit/icon';
+import type { IconName, IconSize } from '@myhealth/design-kit/icon';
 
 @Directive({
   selector: 'mh-icon',
@@ -13,7 +13,7 @@ import type { IconSize } from '@myhealth/design-kit/icon';
   },
 })
 export class Icon {
-  readonly name = input<string>();
+  readonly name = input<IconName>();
   readonly src = input<string>();
   readonly label = input('');
   readonly size = input<IconSize>('m');

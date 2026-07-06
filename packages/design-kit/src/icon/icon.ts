@@ -5,6 +5,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { Size } from '../core';
 import { ErrorEvent, LoadEvent } from '../core/event';
 
+import { IconName } from './icon-name';
 import styles from './icon.css?inline';
 import size from './icon.size.css?inline';
 
@@ -34,7 +35,7 @@ export class Icon extends LitElement {
   @state() private svg = '';
 
   /** The name of the icon to draw. Available names depend on the icon library being used. */
-  @property({ reflect: true }) name?: string;
+  @property({ reflect: true }) name?: IconName;
 
   /**
    * An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and
@@ -66,7 +67,7 @@ export class Icon extends LitElement {
     if (props.has('rotate')) this.#rotate();
   }
 
-  #loadBuiltInSvg(name: string) {
+  #loadBuiltInSvg(name: IconName) {
     const key = `./svg/${name}.svg`;
     this.svg = icons[key] ?? '';
     this.dispatchEvent(new LoadEvent());
