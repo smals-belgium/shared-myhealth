@@ -13,8 +13,8 @@ export type TooltipPlacement =
   | 'bottom'
   | 'left'
   | 'right'
-  | 'before'
-  | 'after';
+  | 'start'
+  | 'end';
 
 /** Default delay in ms before showing the tooltip. */
 export const DEFAULT_TOOLTIP_SHOW_DELAY = 0;
@@ -55,7 +55,7 @@ export class Tooltip extends LitElement {
   /** Fallback text when no `content` slot content is provided. */
   @property() content = '';
 
-  /** Position of the tooltip relative to the trigger. `before`/`after` adapt to text direction; `left`/`right` are always physical. */
+  /** Position of the tooltip relative to the trigger. `start`/`end` adapt to text direction; `left`/`right` are always physical. */
   @property({ reflect: true }) placement: TooltipPlacement = 'top';
 
   /** Whether the tooltip is currently visible. Can be set programmatically. */

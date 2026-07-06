@@ -355,8 +355,8 @@ describe('tooltip', () => {
       'bottom',
       'left',
       'right',
-      'before',
-      'after',
+      'start',
+      'end',
     ] as const;
 
     placements.forEach(placement => {

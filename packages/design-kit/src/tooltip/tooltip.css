@@ -73,14 +73,14 @@
   transform: translateY(-50%);
 }
 
-/* before / after: logical sides — inline-start/end, adapts to RTL text direction. */
-:host([placement='before']) [part='tooltip'] {
+/* start / end: logical sides — inline-start/end, adapts to RTL text direction. */
+:host([placement='start']) [part='tooltip'] {
   inset-inline-end: calc(100% + var(--mh-tooltip__offset));
   inset-block-start: 50%;
   transform: translateY(-50%);
 }
 
-:host([placement='after']) [part='tooltip'] {
+:host([placement='end']) [part='tooltip'] {
   inset-inline-start: calc(100% + var(--mh-tooltip__offset));
   inset-block-start: 50%;
   transform: translateY(-50%);
