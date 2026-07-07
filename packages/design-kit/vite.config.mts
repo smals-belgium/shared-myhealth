@@ -47,6 +47,7 @@ export default defineConfig(() => ({
         'slide-toggle/index': 'src/slide-toggle/index.ts',
         'snackbar/index': 'src/snackbar/index.ts',
         'spinner/index': 'src/spinner/index.ts',
+        'table/index': 'src/table/index.ts',
         'text-input/index': 'src/text-input/index.ts',
       },
       // Change this to the formats you want to support.
