@@ -14,6 +14,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <li><a href="/radio">radio</a></li>
       <li><a href="/skeleton">skeleton</a></li>
       <li><a href="/spinner">spinner</a></li>
+      <li><a href="/tooltip">tooltip</a></li>
     </ul>
   </nav> `,
   changeDetection: ChangeDetectionStrategy.OnPush,

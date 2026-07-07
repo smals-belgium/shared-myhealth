@@ -46,15 +46,18 @@ import { TOOLTIP } from '@myhealth/vitals-ng/tooltip';
       content="Hides after 500 ms"
       [hideDelay]="500"
     >
-      <mh-button>hide delay</mh-button>
+      <mh-button>Hides after 500 ms</mh-button>
     </mh-tooltip>
-
+    <h3>Enabled</h3>
+    <mh-tooltip content="This tooltip appears on hover">
+      <mh-button>Enabled tooltip</mh-button>
+    </mh-tooltip>
     <h3>Disabled</h3>
     <mh-tooltip
-      content="You will never see this"
-      [disabled]="true"
+      content="You should not see this tooltip"
+      disabled
     >
-      <mh-button>disabled</mh-button>
+      <mh-button>Disabled tooltip</mh-button>
     </mh-tooltip>
   </article>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
