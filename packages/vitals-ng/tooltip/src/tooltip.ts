@@ -1,4 +1,9 @@
-import { Directive, input } from '@angular/core';
+import {
+  booleanAttribute,
+  Directive,
+  input,
+  numberAttribute,
+} from '@angular/core';
 
 import type { TooltipPlacement } from '@myhealth/design-kit/tooltip';
 
@@ -16,8 +21,8 @@ import type { TooltipPlacement } from '@myhealth/design-kit/tooltip';
 export class Tooltip {
   readonly content = input('');
   readonly placement = input<TooltipPlacement>('top');
-  readonly open = input(false);
-  readonly disabled = input(false);
-  readonly showDelay = input(0);
-  readonly hideDelay = input(0);
+  readonly open = input(false, { transform: booleanAttribute });
+  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly showDelay = input(0, { transform: numberAttribute });
+  readonly hideDelay = input(0, { transform: numberAttribute });
 }
