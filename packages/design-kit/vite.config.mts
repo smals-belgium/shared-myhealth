@@ -1,9 +1,9 @@
 /// <reference types='vitest' />
 import * as path from 'path';
 
-import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -14,17 +14,16 @@ export default defineConfig(() => ({
       tsconfigPath: path.join(import.meta.dirname, 'tsconfig.lib.json'),
     }),
     // Copy static assets (font files) plus package metadata into the published
-    // dist so consumers can access fonts under `@myhealth/design-kit/assets/*`.
-    nxCopyAssetsPlugin([
-      { input: 'assets/fonts', glob: '**/*', output: 'assets/fonts' },
-    ]),
+    // dist so consumers can access fonts under `@smals-belgium-shared/vitals/assets/*`.
+    viteStaticCopy({
+      targets: [
+        { src: 'assets/fonts', dest: '.' },
+        // this is a bit strange, but because the source file is outside the projectRoot
+        // we have to cd back into the outDir from the projectRoot...
+        { src: '../../LICENSE.md', dest: './dist/' },
+      ],
+    }),
   ],
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [],
-  // },
-  // Configuration for building your library.
-  // See: https://vite.dev/guide/build.html#library-mode
   build: {
     outDir: './dist',
     emptyOutDir: true,
@@ -34,6 +33,8 @@ export default defineConfig(() => ({
     },
     lib: {
       entry: {
+        index: 'src/index.ts',
+        'core/index': 'src/core/index.ts',
         'button/index': 'src/button/index.ts',
         'card/index': 'src/card/index.ts',
         'checkbox/index': 'src/checkbox/index.ts',

@@ -1,5 +1,3 @@
-import { join } from 'path';
-
 import { configs } from 'typescript-eslint';
 
 /**

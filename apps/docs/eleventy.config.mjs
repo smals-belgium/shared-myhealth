@@ -1,10 +1,9 @@
 import path from 'node:path';
 
 export default function (config) {
+  const workspaceRoot = path.join(import.meta.dirname, '..', '..');
   const componentsDist = path.join(
-    import.meta.dirname,
-    '..',
-    '..',
+    workspaceRoot,
     'packages',
     'design-kit',
     'dist',
@@ -14,19 +13,26 @@ export default function (config) {
   config.addPassthroughCopy('src/styles');
   config.addPassthroughCopy('src/scripts');
 
-  // Rebuild the docs when the design-kit build output or its custom elements
-  // manifest changes, so a running `serve` reflects design-kit edits.
+  // design-kit's dist build treats `lit` (and its sub-packages) as an
+  // external dependency, so its bare `import 'lit'` specifiers only resolve
+  // in a bundler-based consumer (Vite, Angular, ...). Docs is a plain static
+  // site with no bundler, so we vendor lit's own package folders here and
+  // resolve the bare specifiers via an import map (see layout.njk).
+  for (const pkg of [
+    'lit',
+    'lit-html',
+    'lit-element',
+    '@lit/reactive-element',
+  ]) {
+    config.addPassthroughCopy({
+      [path.join(workspaceRoot, 'node_modules', pkg)]: `assets/vendor/${pkg}`,
+    });
+  }
+
+  // Rebuild the docs when the design-kit build output (including its custom
+  // elements manifest and CSS) changes, so a running `serve` reflects
+  // design-kit edits.
   config.addWatchTarget(componentsDist);
-  config.addWatchTarget(
-    path.join(
-      import.meta.dirname,
-      '..',
-      '..',
-      'packages',
-      'design-kit',
-      'custom-elements.json',
-    ),
-  );
 
   return {
     dir: {

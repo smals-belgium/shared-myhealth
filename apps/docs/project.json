@@ -4,6 +4,7 @@
   "sourceRoot": "apps/docs/src",
   "projectType": "application",
   "tags": ["type:app", "scope:docs"],
+  "implicitDependencies": ["vitals"],
   "targets": {
     "clean": {
       "executor": "nx:run-commands",
@@ -13,51 +14,28 @@
       }
     },
     "build": {
-      "dependsOn": [
-        {
-          "projects": ["@myhealth/design-kit"],
-          "target": "bundle"
-        },
-        {
-          "projects": ["@myhealth/design-kit"],
-          "target": "generate-manifest"
-        }
-      ],
       "executor": "nx:run-commands",
+      "dependsOn": ["^bundle"],
       "outputs": ["{projectRoot}/dist"],
       "options": {
         "command": "npm run build",
         "cwd": "apps/docs"
       }
     },
-    "serve": {
-      "dependsOn": [
-        {
-          "projects": ["@myhealth/design-kit"],
-          "target": "bundle"
-        },
-        {
-          "projects": ["@myhealth/design-kit"],
-          "target": "generate-manifest"
-        }
-      ],
+    "watch-vitals": {
       "executor": "nx:run-commands",
+      "continuous": true,
       "options": {
-        "parallel": true,
-        "commands": [
-          {
-            "command": "cd packages/design-kit && npx vite build --watch",
-            "prefix": "[design-kit:build]"
-          },
-          {
-            "command": "cd packages/design-kit && npx cem analyze --watch",
-            "prefix": "[design-kit:manifest]"
-          },
-          {
-            "command": "cd apps/docs && npm run serve",
-            "prefix": "[docs]"
-          }
-        ]
+        "command": "npx nx watch --projects vitals --includeDependencies -- npx nx run vitals:bundle"
+      }
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "continuous": true,
+      "dependsOn": ["^bundle", "watch-vitals"],
+      "options": {
+        "command": "npm run serve",
+        "cwd": "apps/docs"
       }
     }
   }

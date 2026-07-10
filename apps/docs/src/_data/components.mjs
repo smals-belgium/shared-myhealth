@@ -85,6 +85,7 @@ export default function () {
     rootDir,
     'packages',
     'design-kit',
+    'dist',
     'custom-elements.json',
   );
 

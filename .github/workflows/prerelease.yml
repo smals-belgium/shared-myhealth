@@ -1,0 +1,43 @@
+name: Pre-release
+
+on:
+  workflow_dispatch:
+    inputs:
+      project:
+        description: Project to release
+        required: true
+        type: choice
+        options:
+          - vitals
+          - vitals-ng
+
+permissions:
+  contents: read
+
+jobs:
+  prerelease:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npx nx build ${{ inputs.project }}
+
+      - name: Version and publish prerelease
+        run: node tools/prerelease.mjs ${{ inputs.project }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: true
