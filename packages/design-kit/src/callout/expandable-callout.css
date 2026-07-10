@@ -1,7 +1,15 @@
+/* Restore the column stack layout that the regular callout overrides to a row. */
+:host {
+  flex-direction: column;
+  padding: 0;
+  gap: 0;
+}
+
 /* The disclosure wraps the whole callout; stack the summary and region. */
 details {
   display: flex;
   flex-direction: column;
+  width: stretch;
 }
 
 /* The summary is the toggle, so it gets the clickable affordance and removes the native marker. */
@@ -38,6 +46,19 @@ summary[part='header']:active {
 summary[part='header']:focus-visible {
   outline: none;
   box-shadow: inset 0 0 0 var(--mh-border-width-m) var(--mh-callout__color);
+}
+
+/* Indent the collapsible content to align under the title (past the icon + gap). */
+[part='content'] {
+  padding-inline: calc(
+      var(--mh-callout__icon-size) + var(--mh-callout__spacing) * 2
+    )
+    var(--mh-callout__spacing);
+  padding-block-end: var(--mh-callout__spacing);
+}
+
+[part='title'] {
+  flex-grow: 1;
 }
 
 [part='toggle'] {

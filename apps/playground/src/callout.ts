@@ -1,7 +1,10 @@
 import type {
+  Callout,
   CalloutToggledEvent,
   ExpandableCallout,
 } from '@myhealth/design-kit';
+
+(document.querySelector<Callout>('#filled-info') as Callout).closable = false;
 
 const expandable = (id: string) =>
   document.querySelector<ExpandableCallout>(`#${id}`);
