@@ -1,4 +1,5 @@
 {
+  "name": "vitals",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "tags": ["type:dk"],
   "targets": {
@@ -19,17 +20,17 @@
         "cwd": "packages/design-kit"
       }
     },
-    "generate-manifest": {
-      "executor": "nx:run-commands",
-      "outputs": ["{projectRoot}/custom-elements.json"],
-      "options": {
-        "command": "cem analyze",
-        "cwd": "packages/design-kit"
-      }
-    },
     "bundle": {
+      "executor": "nx:run-commands",
       "dependsOn": ["build"],
-      "command": "node tools/postcss.js"
+      "outputs": [
+        "{projectRoot}/dist/custom-elements.json",
+        "{projectRoot}/dist/my-health.css"
+      ],
+      "options": {
+        "cwd": "packages/design-kit",
+        "commands": ["cem analyze", "node ../../tools/postcss.js"]
+      }
     }
   }
 }

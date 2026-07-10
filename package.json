@@ -1,11 +1,12 @@
 {
   "name": "@myhealth/source",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "SEE LICENSE IN ./LICENSE.md",
   "scripts": {
     "start": "nx run playground:serve",
     "start:ng": "nx run playground-ng:serve",
-    "build": "nx run design-kit:build:production",
+    "build": "nx run-many -t build --all",
+    "bundle": "nx run-many -t bundle --all",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "lint": "nx run-many -t lint --all",
@@ -83,7 +84,8 @@
     "@angular/platform-browser": "~21.2.0",
     "@angular/router": "~21.2.0",
     "lit": "^3.3.2",
-    "rxjs": "~7.8.0"
+    "rxjs": "~7.8.0",
+    "vite-plugin-static-copy": "^4.1.1"
   },
   "nx": {
     "includedScripts": []

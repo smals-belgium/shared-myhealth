@@ -19,6 +19,7 @@ export type IconName =
   | 'keyboard_arrow_down'
   | 'language'
   | 'menu'
+  | 'notifications'
   | 'person'
   | 'print'
   | 'remove'

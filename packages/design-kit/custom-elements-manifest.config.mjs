@@ -3,7 +3,7 @@ import { getTsProgram, typeParserPlugin } from '@wc-toolkit/type-parser';
 export default {
   globs: ['src/**/*.ts'],
   exclude: ['src/**/*.spec.ts', 'src/**/*.test.ts'],
-  outdir: '.',
+  outdir: './dist',
   litelement: true,
 
   overrideModuleCreation({ ts, globs }) {
