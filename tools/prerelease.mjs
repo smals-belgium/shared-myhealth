@@ -20,6 +20,11 @@ if (!project) {
 const client = new ReleaseClient(
   {
     projects: [project],
+    version: {
+      currentVersionResolver: 'registry',
+      currentVersionResolverMetadata: { tag: 'next' },
+      fallbackCurrentVersionResolver: 'disk',
+    },
   },
   /* ignoreNxJsonConfig */ true,
 );
@@ -31,7 +36,7 @@ const { projectsVersionData } = await client.releaseVersion({
   gitCommit: false,
   gitTag: false,
   stageChanges: false,
-  versionActionsOptions: { skipLockFileUpdate: true },
+  versionActionsOptionsOverrides: { skipLockFileUpdate: true },
 });
 
 const newVersion = projectsVersionData[project]?.newVersion;

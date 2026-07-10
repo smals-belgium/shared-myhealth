@@ -1,7 +1,10 @@
 {
   "name": "@smals-belgium-shared/vitals",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "SEE LICENSE IN ./dist/LICENSE.md",
+  "repository": {
+    "url": "https://github.com/smals-belgium/shared-myhealth"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
