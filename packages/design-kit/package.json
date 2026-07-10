@@ -1,10 +1,22 @@
 {
-  "name": "@myhealth/design-kit",
+  "name": "@smals-belgium-shared/vitals",
   "version": "0.0.1",
+  "license": "SEE LICENSE IN ./dist/LICENSE.md",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "customElements": "dist/custom-elements.json",
+  "files": [
+    "dist",
+    "*.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "lit": "^3.3.2"
+  },
   "exports": {
     "./package.json": "./package.json",
     "./core": {
@@ -73,12 +85,5 @@
       "default": "./dist/text-input/index.js"
     },
     "./assets/*": "./dist/assets/*"
-  },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
-    "lit": "^3.3.2"
-  },
-  "customElements": "custom-elements.json"
+  }
 }

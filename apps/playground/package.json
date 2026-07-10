@@ -10,6 +10,6 @@
     ]
   },
   "dependencies": {
-    "@myhealth/design-kit": "0.0.1"
+    "@smals-belgium-shared/vitals": "~0.0.1"
   }
 }

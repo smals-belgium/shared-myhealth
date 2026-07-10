@@ -1,0 +1,21 @@
+{
+  "name": "@smals-belgium-shared/vitals-ng",
+  "version": "0.0.1",
+  "license": "SEE LICENSE IN ./LICENSE.md",
+  "dependencies": {
+    "@smals-belgium-shared/vitals": "~0.0.1"
+  },
+  "peerDependencies": {
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0"
+  },
+  "peerDependenciesMeta": {
+    "@angular/forms": {
+      "optional": true
+    }
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  }
+}

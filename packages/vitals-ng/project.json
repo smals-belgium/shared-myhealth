@@ -4,23 +4,23 @@
   "sourceRoot": "packages/vitals-ng/src",
   "prefix": "mh",
   "projectType": "library",
-  "tags": ["type:dk"],
-  "implicitDependencies": ["@myhealth/design-kit"],
   "release": {
     "version": {
-      "manifestRootsToUpdate": ["dist/{projectRoot}"],
+      "manifestRootsToUpdate": ["{projectRoot}/dist"],
       "currentVersionResolver": "git-tag",
       "fallbackCurrentVersionResolver": "disk"
     }
   },
+  "tags": ["type:dk"],
+  "implicitDependencies": ["vitals"],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
       "dependsOn": ["^bundle"],
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "outputs": ["{projectRoot}/dist"],
       "defaultConfiguration": "production",
       "options": {
-        "project": "packages/vitals-ng/ng-package.json",
+        "project": "packages/vitals-ng/src/ng-package.json",
         "tsConfig": "packages/vitals-ng/tsconfig.lib.json"
       },
       "configurations": {
@@ -30,13 +30,14 @@
         "development": {}
       }
     },
+    "bundle": {
+      "dependsOn": ["build"],
+      "command": "cp LICENSE.md {projectRoot}/dist/LICENSE.md && cp {projectRoot}/*.md {projectRoot}/dist"
+    },
     "nx-release-publish": {
       "options": {
-        "packageRoot": "dist/{projectRoot}"
+        "packageRoot": "{projectRoot}/dist"
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
   }
 }
