@@ -1,5 +1,5 @@
-import { html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { html, nothing } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 
 import { LocalizeController } from '../core/i18n';
 
@@ -25,10 +25,9 @@ import { CalloutClosedEvent } from './callout-closed.event';
  * @slot actions - The callout's actions, typically buttons.
  *
  * @csspart icon - The variant icon at the start of the callout.
- * @csspart header - The top row that wraps the icon, title, and close button.
  * @csspart title - The container for the `title` slot.
  * @csspart close - The close (`X`) icon button.
- * @csspart region - The region that wraps the description and actions. Has role="status" or role="alert" based on variant.
+ * @csspart region - The center column that wraps the title, description, and actions. Has role="status" or role="alert" based on variant.
  * @csspart content - The inner wrapper that holds the description and actions.
  * @csspart description - The container for the `description` slot.
  * @csspart actions - The container that wraps the `actions` slot.
@@ -39,6 +38,9 @@ import { CalloutClosedEvent } from './callout-closed.event';
 export class Callout extends CalloutBase {
   private readonly localize = new LocalizeController(this);
 
+  /** Whether to show the close button. Defaults to `true`. */
+  @property({ type: Boolean, reflect: true }) closable = true;
+
   #onCloseClick = () => {
     this.dispatchEvent(new CalloutClosedEvent());
     this.remove();
@@ -46,21 +48,7 @@ export class Callout extends CalloutBase {
 
   override render() {
     return html`
-      <div part="header">
-        ${this.renderIcon()}
-        <div
-          part="title"
-          id="title"
-        >
-          <slot name="title"></slot>
-        </div>
-        <mh-icon-button
-          part="close"
-          name="close"
-          label=${this.localize.term('close')}
-          @click=${this.#onCloseClick}
-        ></mh-icon-button>
-      </div>
+      ${this.renderIcon()}
 
       <div
         part="region"
@@ -68,6 +56,12 @@ export class Callout extends CalloutBase {
         aria-labelledby="title"
         aria-live=${this.getContentRole() === 'alert' ? 'assertive' : 'polite'}
       >
+        <div
+          part="title"
+          id="title"
+        >
+          <slot name="title"></slot>
+        </div>
         <div part="content">
           <slot
             name="description"
@@ -78,6 +72,17 @@ export class Callout extends CalloutBase {
           </div>
         </div>
       </div>
+
+      ${this.closable
+        ? html`
+            <mh-icon-button
+              part="close"
+              name="close"
+              label=${this.localize.term('close')}
+              @click=${this.#onCloseClick}
+            ></mh-icon-button>
+          `
+        : nothing}
     `;
   }
 }

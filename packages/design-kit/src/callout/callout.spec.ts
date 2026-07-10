@@ -72,6 +72,28 @@ describe('callout', () => {
     });
   });
 
+  describe('closable', () => {
+    it('shows the close button by default', async () => {
+      const el = await fixture<Callout>(html`<mh-callout></mh-callout>`);
+
+      expect(part('close', el)).toBeTruthy();
+    });
+
+    it('hides the close button when closable is false', async () => {
+      const el = await fixture<Callout>(
+        html`<mh-callout .closable=${false}></mh-callout>`,
+      );
+
+      expect(part('close', el)).toBeNull();
+    });
+
+    it('reflects closable as an attribute', async () => {
+      const el = await fixture<Callout>(html`<mh-callout></mh-callout>`);
+
+      expect(el.getAttribute('closable')).not.toBeNull();
+    });
+  });
+
   describe('close', () => {
     it('emits mh-callout-closed and removes itself when the close button is activated', async () => {
       const el = await fixture<Callout>(html`<mh-callout></mh-callout>`);
