@@ -6,6 +6,7 @@ export type IconName =
   | 'arrow_back_ios_new'
   | 'arrow_top_left'
   | 'chat'
+  | 'check'
   | 'check_circle'
   | 'chevron_right'
   | 'close'

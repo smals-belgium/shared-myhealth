@@ -1,6 +1,6 @@
 {
-  "name": "@myhealth/playground",
-  "version": "0.0.1",
+  "name": "@smals-belgium-shared/playground",
+  "version": "0.0.0",
   "private": true,
   "nx": {
     "name": "playground",
@@ -10,6 +10,6 @@
     ]
   },
   "dependencies": {
-    "@smals-belgium-shared/vitals": "~0.0.1"
+    "@smals-belgium-shared/vitals": "~0.0.0"
   }
 }

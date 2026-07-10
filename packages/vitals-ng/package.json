@@ -1,9 +1,12 @@
 {
   "name": "@smals-belgium-shared/vitals-ng",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "license": "SEE LICENSE IN ./LICENSE.md",
+  "repository": {
+    "url": "https://github.com/smals-belgium/shared-myhealth"
+  },
   "dependencies": {
-    "@smals-belgium-shared/vitals": "~0.0.1"
+    "@smals-belgium-shared/vitals": "~0.0.0"
   },
   "peerDependencies": {
     "@angular/core": "^21.2.0",
