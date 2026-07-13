@@ -3,9 +3,10 @@
   color: var(--mh-color-neutral-type-louder);
   background-color: #ffffff; /* not an existing fill color */
   border-color: var(--mh-color-neutral-border);
+  cursor: pointer;
 }
 
-[part='base']:hover:not(:disabled) {
+[part='base']:hover:not(:has(input:disabled)) {
   background-color: var(--mh-color-neutral-fill-quieter);
 }
 
@@ -14,7 +15,7 @@
   border-color: var(--mh-color-brand-fill-quiet);
 }
 
-:host([selected]) [part='base']:hover:not(:disabled) {
+:host([selected]) [part='base']:hover:not(:has(input:disabled)) {
   background-color: color-mix(
     in srgb,
     var(--mh-color-brand-fill-quiet),
@@ -22,7 +23,7 @@
   );
 }
 
-:host([selected]) [part='base']:active:not(:disabled) {
+:host([selected]) [part='base']:active:not(:has(input:disabled)) {
   background-color: color-mix(
     in srgb,
     var(--mh-color-brand-fill-quiet),
@@ -30,22 +31,79 @@
   );
 }
 
-/* The leading checkmark. It is always present so it can transition in and out. */
-[part='checkmark'] {
-  color: var(--mh-color-brand-type-loud);
-  overflow: hidden;
+/* Focus ring: shown on the label when the inner input receives keyboard focus. */
+[part='base']:has(input:focus-visible) {
+  outline: var(--mh-border-width-m) solid var(--mh-color-brand-border);
+  outline-offset: 2px;
+}
+
+/* Disabled cursor on the label wrapper. */
+:host([disabled]) [part='base'] {
+  cursor: not-allowed;
+}
+
+/*
+ * The native checkbox input is repurposed as the animated leading checkmark.
+ * Its native appearance is removed and ::before draws the checkmark via clip-path.
+ */
+input[part='input'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: inherit;
+
+  /* Actual icon dimensions; max-width collapses it when unchecked. */
+  width: 1.5rem;
+  height: 1.5rem;
+
+  /* Collapsed (unchecked) state */
   max-width: 0;
+  overflow: hidden;
   opacity: 0;
   transform: scale(0.6);
   margin-inline-end: -10px; /* cancel the base gap while collapsed */
+
   transition-property: max-width, opacity, transform, margin-inline-end;
   transition-duration: var(--mh-transition-normal);
   transition-timing-function: var(--mh-transition-easing);
-}
 
-:host([selected]) [part='checkmark'] {
-  max-width: 2rem;
-  opacity: 1;
-  transform: scale(1);
-  margin-inline-end: 0;
+  /* Checkmark drawn via clip-path (same polygon as mh-checkbox). */
+  &::before {
+    content: '';
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--mh-color-brand-type-loud);
+    clip-path: polygon(
+      39.79% 75%,
+      16.04% 51.25%,
+      21.98% 45.31%,
+      39.79% 63.13%,
+      78.02% 24.9%,
+      83.96% 30.83%
+    );
+  }
+
+  /* Expanded (checked) state */
+  &:checked {
+    max-width: 2rem;
+    opacity: 1;
+    transform: scale(1);
+    margin-inline-end: 0;
+  }
+
+  /* Focus ring is shown on the label wrapper via :has(); suppress the default input ring. */
+  &:focus-visible {
+    outline: none;
+  }
 }

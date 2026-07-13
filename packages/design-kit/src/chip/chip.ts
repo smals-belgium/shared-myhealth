@@ -3,11 +3,11 @@ import { customElement, property } from 'lit/decorators.js';
 
 import type { Variant } from '../core';
 
+import displayStyles from './chip.appearance.css?inline';
 import styles from './chip.css?inline';
-import displayStyles from './display-chip.css?inline';
 
-/** The display chip's theme variant. */
-export type DisplayChipVariant = Variant | 'tertiary';
+/** The chip's theme variant. */
+export type ChipVariant = Variant | 'tertiary';
 
 /**
  * @summary Display chips are compact, non-actionable labels that communicate a status or category.
@@ -24,12 +24,12 @@ export type DisplayChipVariant = Variant | 'tertiary';
  *
  * @cssproperty [--mh-chip__height=2rem] - The chip's minimum height.
  */
-@customElement('mh-display-chip')
-export class DisplayChip extends LitElement {
+@customElement('mh-chip')
+export class Chip extends LitElement {
   static override readonly styles = [styles, displayStyles].map(unsafeCSS);
 
   /** The chip's theme variant. */
-  @property({ reflect: true }) variant: DisplayChipVariant = 'neutral';
+  @property({ reflect: true }) variant: ChipVariant = 'neutral';
 
   override render() {
     return html`
