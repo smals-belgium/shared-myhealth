@@ -5,6 +5,7 @@
 - can hardly distinguish medium and light font colors
 - secondary and tertiary never used
 - type neutral light should be lighter
+- do we need the tertiary colors? they are rarely used, I think only in the chips component
 
 ## divider
 

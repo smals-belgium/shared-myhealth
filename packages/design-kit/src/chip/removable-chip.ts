@@ -4,7 +4,7 @@ import { customElement, property, query } from 'lit/decorators.js';
 import { LocalizeController } from '../core/i18n';
 import touchTarget from '../core/touch-target.css?inline';
 
-import { ChipBase } from './base';
+import { InteractiveChipBase } from './base';
 import { ChipRemoveEvent } from './chip-remove.event';
 import styles from './chip.css?inline';
 import removableStyles from './removable-chip.css?inline';
@@ -31,7 +31,7 @@ import removableStyles from './removable-chip.css?inline';
  * @cssproperty [--mh-chip__height=2rem] - The chip's minimum height.
  */
 @customElement('mh-removable-chip')
-export class RemovableChip extends ChipBase {
+export class RemovableChip extends InteractiveChipBase {
   static override readonly styles = [styles, removableStyles, touchTarget].map(
     unsafeCSS,
   );
@@ -58,11 +58,11 @@ export class RemovableChip extends ChipBase {
   }
 
   #requestRemove = () => {
-    if (this.disabled) return;
     this.dispatchEvent(new ChipRemoveEvent(this.value));
   };
 
   #onKeyDown = (event: KeyboardEvent) => {
+    if (this.disabled) return;
     if (event.key === 'Backspace' || event.key === 'Delete') {
       event.preventDefault();
       this.#requestRemove();

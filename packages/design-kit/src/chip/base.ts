@@ -2,7 +2,7 @@ import { LitElement } from 'lit';
 import { property, query } from 'lit/decorators.js';
 
 /** Shared behavior for the interactive (`<button>`-based) chips. */
-export abstract class ChipBase extends LitElement {
+export abstract class InteractiveChipBase extends LitElement {
   @query('[part="base"]') el!: HTMLElement;
 
   /** Whether the chip is disabled. */

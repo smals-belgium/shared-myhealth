@@ -49,5 +49,5 @@
 }
 
 :host([variant='tertiary']) [part='start'] {
-  color: var(--mh-color-tertiary-fill-louder);
+  color: var(--mh-color-warning-type-louder);
 }

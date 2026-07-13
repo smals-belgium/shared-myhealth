@@ -5,7 +5,11 @@
 - [ ] add custom element manifests
 - [ ] add @required annotation for runtime property checking
 
-## Icon
+## Core
+
+- [ ] Add custom `MhEvent` or a `MhEventOptions` constant to avoid repeating the same event options in all events.
+
+## Icon§
 
 - [ ] add cache
 - [ ] add more stock icons

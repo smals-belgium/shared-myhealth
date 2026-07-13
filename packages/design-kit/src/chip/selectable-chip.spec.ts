@@ -3,10 +3,20 @@ import { html } from 'lit';
 
 import { assertAccessibility, part } from '../core/testing';
 
-import '../icon';
 import './selectable-chip';
-import type { ChipSelectionChangeEvent } from './chip-selection-change.event';
 import type { SelectableChip } from './selectable-chip';
+
+const setFormValueSpy = vi.fn();
+
+beforeAll(() => {
+  if (
+    typeof ElementInternals !== 'undefined' &&
+    !ElementInternals.prototype.setFormValue
+  )
+    ElementInternals.prototype.setFormValue = setFormValueSpy;
+});
+
+beforeEach(() => setFormValueSpy.mockClear());
 
 describe('mh-selectable-chip', () => {
   describe('accessibility', () => {
@@ -34,11 +44,18 @@ describe('mh-selectable-chip', () => {
   });
 
   describe('base', () => {
-    it('renders a button as the base', async () => {
+    it('renders a label as the base', async () => {
       const el = await fixture<SelectableChip>(
         html`<mh-selectable-chip>Filter</mh-selectable-chip>`,
       );
-      expect(part('base', el)?.tagName).toBe('BUTTON');
+      expect(part('base', el)?.tagName).toBe('LABEL');
+    });
+
+    it('renders a checkbox input inside the label', async () => {
+      const el = await fixture<SelectableChip>(
+        html`<mh-selectable-chip>Filter</mh-selectable-chip>`,
+      );
+      expect(part<HTMLInputElement>('input', el)?.type).toBe('checkbox');
     });
   });
 
@@ -59,33 +76,29 @@ describe('mh-selectable-chip', () => {
       expect(el.hasAttribute('selected')).toBe(true);
     });
 
-    it('sets aria-pressed="true" when selected', async () => {
+    it('sets the input as checked when selected', async () => {
       const el = await fixture<SelectableChip>(
         html`<mh-selectable-chip selected>Filter</mh-selectable-chip>`,
       );
-      expect(part('base', el)?.getAttribute('aria-pressed')).toBe('true');
+      expect(part<HTMLInputElement>('input', el)?.checked).toBe(true);
     });
 
-    it('sets aria-pressed="false" when unselected', async () => {
+    it('sets the input as unchecked when not selected', async () => {
       const el = await fixture<SelectableChip>(
         html`<mh-selectable-chip>Filter</mh-selectable-chip>`,
       );
-      expect(part('base', el)?.getAttribute('aria-pressed')).toBe('false');
+      expect(part<HTMLInputElement>('input', el)?.checked).toBe(false);
     });
 
-    it('toggles selection and emits mh-chip-selection-change on click', async () => {
+    it('toggles selection and emits change event on click', async () => {
       const el = await fixture<SelectableChip>(
-        html`<mh-selectable-chip>Filter</mh-selectable-chip>`,
+        html`<mh-selectable-chip value="alpha">Filter</mh-selectable-chip>`,
       );
 
-      const changed = oneEvent(
-        el,
-        'mh-chip-selection-change',
-      ) as Promise<ChipSelectionChangeEvent>;
-      part<HTMLButtonElement>('base', el)?.click();
-      const event = await changed;
+      const changed = oneEvent(el, 'change') as Promise<Event>;
+      part<HTMLLabelElement>('base', el)?.click();
+      await changed;
 
-      expect(event.selected).toBe(true);
       expect(el.selected).toBe(true);
     });
 
@@ -95,8 +108,8 @@ describe('mh-selectable-chip', () => {
       );
       const changeHandler = vi.fn();
 
-      el.addEventListener('mh-chip-selection-change', changeHandler);
-      part<HTMLButtonElement>('base', el)?.click();
+      el.addEventListener('change', changeHandler);
+      part<HTMLLabelElement>('base', el)?.click();
 
       expect(changeHandler).not.toHaveBeenCalled();
       expect(el.selected).toBe(false);

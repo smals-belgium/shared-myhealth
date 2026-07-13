@@ -1,7 +1,8 @@
-import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { PropertyValueMap, html, unsafeCSS } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
+import { CheckboxBase } from './checkbox-base';
 import styles from './checkbox.css?inline';
 
 /**
@@ -25,20 +26,12 @@ import styles from './checkbox.css?inline';
  * @cssstate invalid - Applied when the control is invalid.
  */
 @customElement('mh-checkbox')
-export class Checkbox extends LitElement {
+export class Checkbox extends CheckboxBase {
   static override readonly styles = unsafeCSS(styles);
-  static formAssociated = true;
-  readonly internals = this.attachInternals();
-
-  @query('[part="input"]') el?: HTMLInputElement;
 
   @property() override title = '';
 
-  @property({ reflect: true }) name?: string;
-  @property({ reflect: true }) value?: string;
-
   @property({ type: Boolean, reflect: true }) checked = false;
-  @property({ type: Boolean, reflect: true }) disabled = false;
   @property({ type: Boolean, reflect: true }) required = false;
 
   /**
@@ -47,36 +40,28 @@ export class Checkbox extends LitElement {
    */
   @property({ type: Boolean, reflect: true }) indeterminate = false;
 
-  // Captures the HTML-declared defaults once; used to restore state on form reset.
-  #defaultChecked: boolean | undefined;
+  // Captures the HTML-declared default once; used to restore state on form reset.
   #defaultIndeterminate: boolean | undefined;
 
-  override readonly click = () => this.el?.click();
-  override readonly focus = () => this.el?.focus();
-  override readonly blur = () => this.el?.blur();
+  protected get checkedState() {
+    return this.checked;
+  }
+  protected set checkedState(value: boolean) {
+    this.checked = value;
+  }
 
   override connectedCallback() {
     super.connectedCallback();
-    this.#defaultChecked ??= this.checked;
     this.#defaultIndeterminate ??= this.indeterminate;
-    this.internals.role = 'checkbox';
   }
 
-  formResetCallback() {
-    this.checked = this.#defaultChecked ?? false;
+  override formResetCallback() {
+    super.formResetCallback();
     this.indeterminate = this.#defaultIndeterminate ?? false;
-    this.internals.setFormValue(this.checked ? (this.value ?? null) : null);
   }
 
   override updated(changed: PropertyValueMap<this>) {
-    if (changed.has('checked') && this.checked)
-      this.internals.setFormValue(this.value ?? null);
-  }
-
-  #onChange() {
-    if (this.el) this.checked = this.el.checked;
-    this.internals.setFormValue(this.checked ? (this.value ?? null) : null);
-    this.dispatchEvent(new Event('change', { bubbles: true }));
+    if (changed.has('checked') && this.checked) this.syncFormValue();
   }
 
   override render() {
@@ -93,7 +78,7 @@ export class Checkbox extends LitElement {
           .required=${this.required}
           .indeterminate=${this.indeterminate}
           aria-checked=${this.checked ? 'true' : 'false'}
-          @change=${this.#onChange}
+          @change=${this.handleChange}
         />
         <slot part="label"></slot>
       </label>
