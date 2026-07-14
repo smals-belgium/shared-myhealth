@@ -5,17 +5,14 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import styles from './slide-toggle.css?inline';
 
 /**
- * Position of the slide toggle's label.
- */
-export type LabelPosition = 'left' | 'right';
-
-/**
  * @summary A slide toggle is a switch that allows users to toggle an option on or off.
  * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/slide-toggle
  * @status stable
  * @since 1.0
  *
- * @slot - The slide toggle's label.
+ * @slot - The slide toggle's label. Rendered on the end side by default.
+ * @slot start - Content rendered on the start side of the toggle.
+ * @slot end - Content rendered on the end side of the toggle.
  *
  * @event blur - Emitted when the control loses focus.
  * @event focus - Emitted when the control gains focus.
@@ -31,7 +28,6 @@ export type LabelPosition = 'left' | 'right';
  * @cssstate disabled - Applied when the control is disabled.
  * @cssstate invalid - Applied when the control is invalid.
  *
- * @attr label-position - Position of the label: "left" or "right" (default: "right").
  */
 @customElement('mh-slide-toggle')
 export class SlideToggle extends LitElement {
@@ -49,8 +45,6 @@ export class SlideToggle extends LitElement {
   @property({ type: Boolean, reflect: true }) checked = false;
   @property({ type: Boolean, reflect: true }) disabled = false;
   @property({ type: Boolean, reflect: true }) required = false;
-  @property({ reflect: true, attribute: 'label-position' })
-  labelPosition: LabelPosition = 'right';
 
   // Captures the HTML-declared defaults once; used to restore state on form reset.
   #defaultChecked: boolean | undefined;
@@ -105,13 +99,19 @@ export class SlideToggle extends LitElement {
           aria-checked=${this.checked ? 'true' : 'false'}
           @change=${this.#onChange}
         />
-        ${this.labelPosition === 'left' ? html`<slot part="label"></slot>` : ''}
+        <slot
+          name="start"
+          part="label"
+        ></slot>
         <span part="track">
           <span part="thumb">${this.#getIcon()}</span>
         </span>
-        ${this.labelPosition === 'right'
-          ? html`<slot part="label"></slot>`
-          : ''}
+        <slot
+          name="end"
+          part="label"
+        >
+          <slot part="label"></slot>
+        </slot>
       </label>
     `;
   }

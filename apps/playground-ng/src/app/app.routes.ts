@@ -11,6 +11,7 @@ import { IconButtonComponent } from './icon-button.component';
 import { IconComponent } from './icon.component';
 import { RadioComponent } from './radio.component';
 import { SkeletonComponent } from './skeleton.component';
+import { SlideToggleComponent } from './slide-toggle.component';
 import { SpinnerComponent } from './spinner.component';
 
 export const appRoutes: Route[] = [
@@ -54,6 +55,10 @@ export const appRoutes: Route[] = [
   {
     path: 'skeleton',
     component: SkeletonComponent,
+  },
+  {
+    path: 'slide-toggle',
+    component: SlideToggleComponent,
   },
   {
     path: 'spinner',

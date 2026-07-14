@@ -205,8 +205,8 @@ describe('slide-toggle', () => {
     });
   });
 
-  describe('labelPosition', () => {
-    it('defaults to "right"', async () => {
+  describe('slots', () => {
+    it('renders start and end named slots in the component', async () => {
       const el = await fixture<SlideToggle>(
         html`<mh-slide-toggle
           name="lp1"
@@ -214,34 +214,50 @@ describe('slide-toggle', () => {
           >Enable</mh-slide-toggle
         >`,
       );
-      expect(el.labelPosition).toBe('right');
-      expect(el.getAttribute('label-position')).toBe('right');
+      expect(el.shadowRoot?.querySelector('slot[name="start"]')).not.toBeNull();
+      expect(el.shadowRoot?.querySelector('slot[name="end"]')).not.toBeNull();
     });
 
-    it('reflects labelPosition to the host attribute when set to "left"', async () => {
+    it('projects explicitly slotted start and end labels', async () => {
       const el = await fixture<SlideToggle>(
         html`<mh-slide-toggle
           name="lp2"
           value="1"
-          label-position="left"
-          >Enable</mh-slide-toggle
-        >`,
+        >
+          <span slot="start">On</span>
+          <span slot="end">Off</span>
+        </mh-slide-toggle>`,
       );
-      expect(el.labelPosition).toBe('left');
-      expect(el.getAttribute('label-position')).toBe('left');
+
+      const startSlot = el.shadowRoot?.querySelector(
+        'slot[name="start"]',
+      ) as HTMLSlotElement;
+      const endSlot = el.shadowRoot?.querySelector(
+        'slot[name="end"]',
+      ) as HTMLSlotElement;
+
+      expect(startSlot.assignedElements()[0]?.textContent?.trim()).toBe('On');
+      expect(endSlot.assignedElements()[0]?.textContent?.trim()).toBe('Off');
     });
 
-    it('reflects labelPosition to the host attribute when set to "right"', async () => {
+    it('treats default slot content as end label content', async () => {
       const el = await fixture<SlideToggle>(
         html`<mh-slide-toggle
           name="lp3"
           value="1"
-          label-position="right"
           >Enable</mh-slide-toggle
         >`,
       );
-      expect(el.labelPosition).toBe('right');
-      expect(el.getAttribute('label-position')).toBe('right');
+
+      const endSlot = el.shadowRoot?.querySelector(
+        'slot[name="end"]',
+      ) as HTMLSlotElement;
+      const endContent = endSlot
+        .assignedNodes({ flatten: true })
+        .map(node => node.textContent ?? '')
+        .join(' ');
+
+      expect(endContent).toContain('Enable');
     });
   });
 

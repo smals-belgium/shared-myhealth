@@ -44,6 +44,7 @@ export default defineConfig(() => ({
         'icon-button/index': 'src/icon-button/index.ts',
         'radio/index': 'src/radio/index.ts',
         'skeleton/index': 'src/skeleton/index.ts',
+        'slide-toggle/index': 'src/slide-toggle/index.ts',
         'snackbar/index': 'src/snackbar/index.ts',
         'spinner/index': 'src/spinner/index.ts',
         'text-input/index': 'src/text-input/index.ts',

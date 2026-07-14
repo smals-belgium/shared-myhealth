@@ -44,6 +44,9 @@
       "@myhealth/vitals-ng/icon": ["./packages/vitals-ng/src/icon/index.ts"],
       "@myhealth/vitals-ng/icon-button": [
         "./packages/vitals-ng/src/icon-button/index.ts"
+      ],
+      "@myhealth/vitals-ng/slide-toggle": [
+        "./packages/vitals-ng/src/slide-toggle/index.ts"
       ]
     }
   }

@@ -13,6 +13,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <li><a href="/icon-button">icon-button</a></li>
       <li><a href="/radio">radio</a></li>
       <li><a href="/skeleton">skeleton</a></li>
+      <li><a href="/slide-toggle">slide-toggle</a></li>
       <li><a href="/spinner">spinner</a></li>
     </ul>
   </nav> `,
