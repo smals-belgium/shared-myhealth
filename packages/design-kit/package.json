@@ -73,6 +73,11 @@
       "import": "./dist/skeleton/index.js",
       "default": "./dist/skeleton/index.js"
     },
+    "./slide-toggle": {
+      "types": "./dist/slide-toggle/index.d.ts",
+      "import": "./dist/slide-toggle/index.js",
+      "default": "./dist/slide-toggle/index.js"
+    },
     "./snackbar": {
       "types": "./dist/snackbar/index.d.ts",
       "import": "./dist/snackbar/index.js",
