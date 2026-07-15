@@ -7,6 +7,36 @@ DS Figma: https://www.figma.com/design/OvonpzXEpimUD9FZfDVvgF/MaSant%C3%A9---Glo
 
 [Look here if you want to contribute](./CONTRIBUTING.md)
 
+### Global theme (tokens, fonts, base styles)
+
+The package exposes a single official global stylesheet entrypoint:
+
+`@smals-belgium-shared/vitals/theme.css`
+
+This file includes:
+
+- global design tokens (`--mh-*`)
+- bundled `@font-face` declarations (Open Sans)
+- essential base global styles used by the design system
+
+#### Angular
+
+For integration examples (Angular `build.options.styles`, SCSS `@forward`), see the [vitals-ng README](../vitals-ng/README.md#add-theme).
+
+#### Other contexts (Vite, Webpack, plain CSS)
+
+Import the stylesheet once from your app entrypoint or global stylesheet:
+
+```css
+@import '@smals-belgium-shared/vitals/theme.css';
+```
+
+Or from JavaScript/TypeScript:
+
+```ts
+import '@smals-belgium-shared/vitals/theme.css';
+```
+
 ### Using your own font
 
 The kit ships with [Open Sans](https://fonts.google.com/specimen/Open+Sans) self-hosted as the default

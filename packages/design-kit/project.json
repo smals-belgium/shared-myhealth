@@ -25,11 +25,19 @@
       "dependsOn": ["build"],
       "outputs": [
         "{projectRoot}/dist/custom-elements.json",
-        "{projectRoot}/dist/my-health.css"
+        "{projectRoot}/dist/theme.css"
       ],
       "options": {
         "cwd": "packages/design-kit",
         "commands": ["cem analyze", "node ../../tools/postcss.js"]
+      }
+    },
+    "verify-package": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["bundle"],
+      "options": {
+        "command": "node ../../tools/verify-package-integrity.mjs dist/theme.css dist/LICENSE.md dist/custom-elements.json dist/assets/fonts/open-sans-variable-latin.woff2 dist/assets/fonts/open-sans-variable-italic-latin.woff2",
+        "cwd": "packages/design-kit"
       }
     }
   }
