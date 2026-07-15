@@ -42,6 +42,17 @@ jobs:
           git config user.email "mags-team@smals.be"
           git config user.name "SMALS Belgium - MAGS team"
 
+      - name: Bundle project
+        run: npx nx bundle ${{ inputs.project }}
+
+      - name: Verify theme package
+        if: inputs.project == 'vitals'
+        run: npx nx run vitals:verify-package
+
+      - name: Verify vitals-ng package
+        if: inputs.project == 'vitals-ng'
+        run: npx nx run vitals-ng:verify-package
+
       - name: Create release
         run: npx nx release --projects=${{ inputs.project }}
         env:
