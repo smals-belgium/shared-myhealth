@@ -13,7 +13,7 @@
   "implicitDependencies": ["vitals"],
   "targets": {
     "prepare-package-json": {
-      "command": "node -e \"require('fs').copyFileSync('{projectRoot}/package.json', '{projectRoot}/src/package.json')\""
+      "command": "cp {projectRoot}/package.json {projectRoot}/src/package.json"
     },
     "build": {
       "executor": "@nx/angular:package",
@@ -33,10 +33,7 @@
     },
     "bundle": {
       "dependsOn": ["build"],
-      "command": "node ../../tools/copy-dist-assets.mjs",
-      "options": {
-        "cwd": "packages/vitals-ng"
-      }
+      "command": "cp LICENSE.md {projectRoot}/dist/LICENSE.md && cp {projectRoot}/*.md {projectRoot}/dist"
     },
     "nx-release-publish": {
       "options": {

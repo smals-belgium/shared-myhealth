@@ -23,7 +23,7 @@ Include a theme stylesheet. The most idiomatic Angular approach to this is to
 
 ```scss
 // my-app/src/styles.scss
-@forward '@smals-belgium-shared/vitals/theme.css';
+@import '@smals-belgium-shared/vitals/dist/theme.css';
 ```
 
 #### Build target stylesheet
@@ -35,7 +35,7 @@ Include a theme stylesheet. The most idiomatic Angular approach to this is to
   "options": {
     "styles": [
       "my-app/src/styles.scss",
-      "node_modules/@smals-belgium-shared/vitals/theme.css"
+      "node_modules/@smals-belgium-shared/vitals/dist/theme.css"
     ]
   },
 ```
