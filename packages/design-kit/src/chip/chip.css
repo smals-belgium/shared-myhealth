@@ -13,6 +13,8 @@
   align-items: center;
   justify-content: center;
   min-height: var(--mh-chip__height);
+  /* Stretch to host width without forcing width in regular inline usage. */
+  width: stretch;
   margin: 0;
   padding: 2px 10px;
 
