@@ -37,13 +37,8 @@ jobs:
       - name: Bundle project
         run: npx nx bundle ${{ inputs.project }}
 
-      - name: Verify theme package
-        if: inputs.project == 'vitals'
-        run: npx nx run vitals:verify-package
-
-      - name: Verify vitals-ng package
-        if: inputs.project == 'vitals-ng'
-        run: npx nx run vitals-ng:verify-package
+      - name: Verify package
+        run: npx nx run ${{ inputs.project }}:verify-package
 
       - name: Version and publish prerelease
         run: node tools/prerelease.mjs ${{ inputs.project }}
