@@ -44,8 +44,8 @@
       "executor": "nx:run-commands",
       "dependsOn": ["bundle"],
       "options": {
-        "command": "node ../../tools/verify-package-integrity.mjs dist/LICENSE.md",
-        "cwd": "packages/vitals-ng"
+        "command": "node ../../../tools/verify-package-integrity.mjs LICENSE.md",
+        "cwd": "packages/vitals-ng/dist"
       }
     }
   }
