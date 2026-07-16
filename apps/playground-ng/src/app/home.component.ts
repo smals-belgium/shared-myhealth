@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
         <li><a routerLink="/skeleton">skeleton</a></li>
         <li><a routerLink="/slide-toggle">slide-toggle</a></li>
         <li><a routerLink="/spinner">spinner</a></li>
+        <li><a routerLink="/tooltip">tooltip</a></li>
       </ul>
     </nav>
   `,
