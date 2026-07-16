@@ -7,6 +7,8 @@ import styles from './dialog.css?inline';
 
 export type DialogVariant = 'basic' | 'fullscreen';
 
+export const closeDirective = 'mh-dialog-close';
+
 // To be removed when TypeScript is upgraded to a version that adds this type
 declare global {
   interface HTMLDialogElement {
@@ -27,7 +29,7 @@ declare global {
  * @slot - The dialog's main content.
  * @slot header-title - The dialog's title, displayed at the start of the header.
  * @slot header-actions - Actions displayed at the end of the header, such as a close button.
- * @slot actions - The dialog's actions, typically buttons. Add the `dialog-close` attribute to any element here to
+ * @slot actions - The dialog's actions, typically buttons. Add the `mh-dialog-close` attribute to any element here to
  *  close the dialog when it is activated; its value is forwarded as the close result.
  *
  * @csspart dialog - The native `dialog` element.
@@ -86,6 +88,7 @@ export class Dialog extends LitElement {
   #onClose = () => {
     this.#releaseScrollLock();
     this.toggleAttribute('open', false);
+    this.dispatchEvent(new Event('close'));
     this.dispatchEvent(new DialogAfterClosedEvent(this.#result));
     this.#resetResult();
   };
@@ -133,6 +136,7 @@ export class Dialog extends LitElement {
   #onCancel = (event: Event) => {
     // There's a Chrome bug here which we'll leave for now: https://issues.chromium.org/issues/41491338
     if (this.closedby === 'none') event.preventDefault();
+    else this.dispatchEvent(new Event('cancel'));
   };
 
   #onClick = (event: MouseEvent) => {
@@ -141,11 +145,11 @@ export class Dialog extends LitElement {
       .composedPath()
       .find(
         (target): target is HTMLElement =>
-          target instanceof HTMLElement && target.hasAttribute('dialog-close'),
+          target instanceof HTMLElement && target.hasAttribute(closeDirective),
       );
 
     if (trigger) {
-      const result = trigger.getAttribute('dialog-close');
+      const result = trigger.getAttribute(closeDirective);
       if (result) this.close(result);
       else this.close();
       return;

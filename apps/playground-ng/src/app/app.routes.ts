@@ -4,6 +4,7 @@ import { Route } from '@angular/router';
 
 import { ButtonComponent } from './button.component';
 import { CheckboxComponent } from './checkbox.component';
+import { DialogComponent } from './dialog.component';
 import { DividerComponent } from './divider.component';
 import { FormSandbox } from './form-sandbox';
 import { HomeComponent } from './home.component';
@@ -27,6 +28,10 @@ export const appRoutes: Route[] = [
   {
     path: 'checkbox',
     component: CheckboxComponent,
+  },
+  {
+    path: 'dialog',
+    component: DialogComponent,
   },
   {
     path: 'divider',
