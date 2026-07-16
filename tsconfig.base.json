@@ -25,6 +25,9 @@
       "@myhealth/vitals-ng/button": [
         "./packages/vitals-ng/src/button/index.ts"
       ],
+      "@smals-belgium-shared/vitals-ng/button": [
+        "./packages/vitals-ng/src/button/index.ts"
+      ],
       "@myhealth/vitals-ng/radio": ["./packages/vitals-ng/src/radio/index.ts"],
       "@myhealth/vitals-ng/checkbox": [
         "./packages/vitals-ng/src/checkbox/index.ts"
@@ -47,6 +50,12 @@
       ],
       "@myhealth/vitals-ng/slide-toggle": [
         "./packages/vitals-ng/src/slide-toggle/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/icon-button": [
+        "./packages/vitals-ng/src/icon-button/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/dialog": [
+        "./packages/vitals-ng/src/dialog/index.ts"
       ]
     }
   }

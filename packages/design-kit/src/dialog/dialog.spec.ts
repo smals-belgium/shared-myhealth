@@ -39,7 +39,7 @@ describe('dialog', () => {
           <p>Body content</p>
           <button
             slot="actions"
-            dialog-close
+            mh-dialog-close
           >
             Close
           </button>
@@ -173,13 +173,13 @@ describe('dialog', () => {
     });
   });
 
-  describe('dialog-close attribute', () => {
+  describe('mh-dialog-close attribute', () => {
     it('closes with the attribute value when an action is activated', async () => {
       const el = await fixture<Dialog>(html`
         <mh-dialog>
           <button
             slot="actions"
-            dialog-close="ok"
+            mh-dialog-close="ok"
           >
             OK
           </button>
