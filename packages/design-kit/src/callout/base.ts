@@ -2,9 +2,11 @@ import { html, LitElement, unsafeCSS } from 'lit';
 import { property } from 'lit/decorators.js';
 
 import { Variant } from '../core';
+import variant from '../core/variant.css?inline';
 
 import appearance from './callout.appearance.css?inline';
 import styles from './callout.css?inline';
+import variantOverrides from './callout.variant.css?inline';
 
 export type CalloutVariant = Variant | 'info';
 export type CalloutAppearance = 'filled' | 'outlined';
@@ -21,7 +23,12 @@ const VARIANT_ICONS: Record<CalloutVariant, string> = {
 
 /** Shared behavior and styling for the regular and expandable callouts. */
 export abstract class CalloutBase extends LitElement {
-  static override readonly styles = [styles, appearance].map(unsafeCSS);
+  static override readonly styles = [
+    styles,
+    variant,
+    variantOverrides,
+    appearance,
+  ].map(unsafeCSS);
 
   /** The callout's variant. Determines the icon and color. */
   @property({ reflect: true }) variant: CalloutVariant = 'info';

@@ -137,12 +137,31 @@ world. For example most form components will have to do something along these li
   }
 ```
 
-Note that changes the `target` property of the event to your custom component; it's no longer pointing to the original
-element. More importantly, **even when you do not interfere with a composed event, it's `target` will also change
-to the host component**. In other words: the re-targeting behaviour is the same in both cases.
+Note that this changes the `target` property of the event to your custom component; it's no longer pointing to the
+original element. More importantly, **even when you do not interfere with a composed event, it's `target` will also
+change to the host component**. In other words: the re-targeting behaviour is the same in both cases.
 
 Why is this important ? Because you might be expecting the event to carry information like the form item's `value`
 property. That's why you have to mirror such properties on the host component and keep them in sync.
+
+#### Custom events
+
+The design philosophy of this library in general is to stay as close as possible to existing native API's.
+This includes events. The general rule is to use native events where possible, and create custom events only if
+no native event can cover the case. Custom events must be prefixed with `mh-` just like component selectors.
+
+Some use cases:
+
+- **wrapping an existing native element** to be able to style it with shadow DOM encapsulation. In this case you
+  make sure all native events go through. As discussed earlier: if they're composed, there's nothing to do, if they're
+  not you must redispatch **the same event**.
+- **composing native elements** to create something new or slightly different. If the composed element fires native
+  events that you want to expose in your own API, use that.
+- **creating new elements** altogether. Try to find existing native events from other HTML elements that cover the
+  same use case (or similar enough that it makes sense). For example, if the component can be closed in some way,
+  reuse HTMLDialogElement's "close" event.
+
+Consider creating a custom event only when none of these paths lead to a solution.
 
 ### Error handling
 

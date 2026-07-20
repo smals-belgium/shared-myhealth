@@ -5,14 +5,18 @@ export const assertAccessibility = (el: Element) => {
   return expect(el).to.be.accessible();
 };
 
+const getNodes = (el: Element) => {
+  if (el.shadowRoot) return Array.from(el.shadowRoot.childNodes);
+  if ('assignedNodes' in el) return (el as HTMLSlotElement).assignedNodes();
+  return Array.from(el.childNodes);
+};
+
 export const textContent = (el: Element) =>
-  el.shadowRoot
-    ? Array.from(el.shadowRoot.childNodes)
-        .filter(node => node.nodeType === Node.TEXT_NODE)
-        .map(node => node.textContent)
-        .join('')
-        .trim()
-    : '';
+  getNodes(el)
+    .filter(node => node.nodeType === Node.TEXT_NODE)
+    .map(node => node.textContent)
+    .join('')
+    .trim();
 
 export const adoptedStylesheet = (el: Element) =>
   Array.from(el.shadowRoot?.querySelectorAll('style') ?? [])

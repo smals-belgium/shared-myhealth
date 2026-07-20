@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { DIVIDER } from '@myhealth/vitals-ng/divider';
+import { DIVIDER } from '@smals-belgium-shared/vitals-ng/divider';
 
 @Component({
-  selector: 'app-divider',
   imports: [DIVIDER],
   template: `
     <h2>Divider</h2>
@@ -15,4 +14,4 @@ import { DIVIDER } from '@myhealth/vitals-ng/divider';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DividerComponent {}
+export class DividerSandbox {}

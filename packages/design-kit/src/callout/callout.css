@@ -1,85 +1,66 @@
 :host {
-  --mh-callout__spacing: var(--mh-space-s);
+  --mh-callout__space: var(--mh-space-s);
   --mh-callout__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
   --mh-callout__icon-size: 1.75rem;
 
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: var(--mh-callout__spacing);
-  padding: var(--mh-callout__spacing);
+  gap: var(--mh-callout__space);
+  padding: var(--mh-callout__space);
   box-shadow: var(--mh-callout__box-shadow);
   border-radius: var(--mh-border-radius);
-  background-color: var(--mh-callout__background);
-  color: var(--mh-callout__color);
-
-  /* Clip the header's hover/active tint to the rounded corners. */
-  overflow: hidden;
-}
-
-/* Used by mh-expandable-callout's <summary> header row. */
-[part='header'] {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--mh-callout__spacing);
-  padding: var(--mh-callout__spacing);
+  background-color: var(--mh-callout__color-fill);
+  color: var(--mh-callout__color-type);
 }
 
 [part='icon'] {
-  flex: none;
-  color: var(--mh-callout__icon-color);
-}
-
-/* The center column: stacks title, description, and actions. */
-[part='region'] {
-  flex: 1 1 auto;
-  min-width: 0;
+  color: var(--mh-callout__color-icon);
 }
 
 [part='title'] {
-  font-weight: 600;
+  --mh-margin-slotted-heading: 0;
+  --mh-font-size-slotted-heading: 1rem;
+  --mh-font-weight-slotted-heading: 600;
+
+  margin: var(--mh-margin-slotted-heading);
+  font-size: var(--mh-font-size-slotted-heading);
+  font-weight: var(--mh-font-weight-slotted-heading);
 }
 
-[part='close'] {
-  flex: none;
-}
-
-/* The inner wrapper holds the description and actions. */
+/* The center column: stacks title, description, and actions. */
 [part='content'] {
   display: flex;
   flex-direction: column;
-  gap: var(--mh-callout__spacing);
+  flex: 1 1 auto;
+  min-width: 0;
   min-height: 0;
   overflow: hidden;
 }
 
-[part='description'] {
-  display: block;
-}
-
-[part='actions'] {
+[part='actions'][mh-has-slotted-content] {
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  gap: calc(var(--mh-callout__spacing) / 2);
+  margin-top: var(--mh-callout__space);
+  gap: calc(var(--mh-callout__space) / 2);
 }
 
 /* Tint the close button to match the callout's text color. */
 [part='close'] {
-  --mh-icon-button__color-type: var(--mh-callout__color);
-  --mh-icon-button__color-type__hover: var(--mh-callout__color);
-  --mh-icon-button__color-type__active: var(--mh-callout__color);
+  --mh-icon-button__color-type: var(--mh-callout__color-close);
+  --mh-icon-button__color-type__hover: var(--mh-callout__color-close);
+  --mh-icon-button__color-type__active: var(--mh-callout__color-close);
   --mh-icon-button__color-fill: transparent;
   --mh-icon-button__color-fill__hover: color-mix(
     in srgb,
-    var(--mh-callout__color) 12%,
+    var(--mh-callout__color-close) 12%,
     transparent
   );
   --mh-icon-button__color-fill__active: color-mix(
     in srgb,
-    var(--mh-callout__color) 20%,
+    var(--mh-callout__color-close) 20%,
     transparent
   );
 }

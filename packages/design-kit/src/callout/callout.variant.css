@@ -1,0 +1,21 @@
+/** default variant values */
+:host {
+  --mh-callout__color-fill: var(--mh-color-fill-quieter);
+  --mh-callout__color-focus: var(--mh-color-fill-quiet);
+  --mh-callout__color-icon: var(--mh-color-type-loud);
+  --mh-callout__color-type: var(--mh-callout__color-icon);
+  --mh-callout__color-close: var(--mh-callout__color-icon);
+}
+
+/** warning and danger have lighter text/icon colour than default */
+:host([variant='warning']),
+:host([variant='danger']) {
+  --mh-callout__color-icon: var(--mh-color-type);
+}
+
+/** neutral has darker text colour than default and the icon becomes red instead of variant colour */
+:host([variant='neutral']) {
+  --mh-callout__color-close: var(--mh-color-type-louder);
+  --mh-callout__color-type: var(--mh-color-type-louder);
+  --mh-callout__color-icon: var(--mh-color-danger-type);
+}

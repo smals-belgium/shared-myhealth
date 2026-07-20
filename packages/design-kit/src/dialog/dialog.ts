@@ -1,13 +1,15 @@
 import { html, LitElement, unsafeCSS } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 
+import { childEventDirective } from '../core/directive';
+
 import { DialogAfterClosedEvent } from './dialog-after-closed.event';
 import { DialogAfterOpenedEvent } from './dialog-after-opened.event';
 import styles from './dialog.css?inline';
 
 export type DialogVariant = 'basic' | 'fullscreen';
 
-export const closeDirective = 'mh-dialog-close';
+export const dialogCloseDirective = 'mh-dialog-close';
 
 // To be removed when TypeScript is upgraded to a version that adds this type
 declare global {
@@ -139,21 +141,13 @@ export class Dialog extends LitElement {
     else this.dispatchEvent(new Event('cancel'));
   };
 
-  #onClick = (event: MouseEvent) => {
-    // Close when an element flagged with `dialog-close` is activated, forwarding its value as the result.
-    const trigger = event
-      .composedPath()
-      .find(
-        (target): target is HTMLElement =>
-          target instanceof HTMLElement && target.hasAttribute(closeDirective),
-      );
+  #onCloseTrigger = childEventDirective({
+    name: dialogCloseDirective,
+    onEvent: ({ value }) => (value ? this.close(value) : this.close()),
+  });
 
-    if (trigger) {
-      const result = trigger.getAttribute(closeDirective);
-      if (result) this.close(result);
-      else this.close();
-      return;
-    }
+  #onClick = (event: MouseEvent) => {
+    this.#onCloseTrigger(event);
 
     // Native `closedby` not supported by Safari yet, until then... custom implementation for backdrop click
     if (this.closedby === 'any' && event.target === this.dialog) this.close();
