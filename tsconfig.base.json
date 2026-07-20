@@ -6,7 +6,11 @@
     "emitDeclarationOnly": false,
     "importHelpers": true,
     "isolatedModules": true,
-    "lib": ["es2022", "dom", "dom.iterable"],
+    "lib": [
+      "es2022",
+      "dom",
+      "dom.iterable"
+    ],
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "noEmitOnError": true,
@@ -17,18 +21,28 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
-    "customConditions": ["@myhealth/source"],
+    "customConditions": [
+      "@myhealth/source"
+    ],
     "paths": {
-      "@myhealth/design-kit": ["packages/design-kit"],
-      "@smals-belgium-shared/vitals": ["packages/design-kit"],
-      "@myhealth/vitals-ng": ["./packages/vitals-ng/src/index.ts"],
+      "@myhealth/design-kit": [
+        "packages/design-kit"
+      ],
+      "@smals-belgium-shared/vitals": [
+        "packages/design-kit"
+      ],
+      "@myhealth/vitals-ng": [
+        "./packages/vitals-ng/src/index.ts"
+      ],
       "@myhealth/vitals-ng/button": [
         "./packages/vitals-ng/src/button/index.ts"
       ],
       "@smals-belgium-shared/vitals-ng/button": [
         "./packages/vitals-ng/src/button/index.ts"
       ],
-      "@myhealth/vitals-ng/radio": ["./packages/vitals-ng/src/radio/index.ts"],
+      "@myhealth/vitals-ng/radio": [
+        "./packages/vitals-ng/src/radio/index.ts"
+      ],
       "@myhealth/vitals-ng/checkbox": [
         "./packages/vitals-ng/src/checkbox/index.ts"
       ],
@@ -44,7 +58,9 @@
       "@myhealth/vitals-ng/text-input": [
         "./packages/vitals-ng/src/text-input/index.ts"
       ],
-      "@myhealth/vitals-ng/icon": ["./packages/vitals-ng/src/icon/index.ts"],
+      "@myhealth/vitals-ng/icon": [
+        "./packages/vitals-ng/src/icon/index.ts"
+      ],
       "@myhealth/vitals-ng/icon-button": [
         "./packages/vitals-ng/src/icon-button/index.ts"
       ],
@@ -59,6 +75,9 @@
       ],
       "@myhealth/vitals-ng/tooltip": [
         "./packages/vitals-ng/src/tooltip/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/chip": [
+        "./packages/vitals-ng/chip/src/index.ts"
       ]
     }
   }

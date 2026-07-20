@@ -33,6 +33,11 @@
       "import": "./dist/button/index.js",
       "default": "./dist/button/index.js"
     },
+    "./callout": {
+      "types": "./dist/callout/index.d.ts",
+      "import": "./dist/callout/index.js",
+      "default": "./dist/callout/index.js"
+    },
     "./card": {
       "types": "./dist/card/index.d.ts",
       "import": "./dist/card/index.js",
@@ -42,6 +47,11 @@
       "types": "./dist/checkbox/index.d.ts",
       "import": "./dist/checkbox/index.js",
       "default": "./dist/checkbox/index.js"
+    },
+    "./chip": {
+      "types": "./dist/chip/index.d.ts",
+      "import": "./dist/chip/index.js",
+      "default": "./dist/chip/index.js"
     },
     "./dialog": {
       "types": "./dist/dialog/index.d.ts",

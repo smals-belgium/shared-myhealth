@@ -21,7 +21,7 @@ import type {
   },
 })
 export class Anchor {
-  readonly href = input.required<string>();
+  readonly href = input<string>();
   readonly title = input('');
   readonly target = input<HTMLAnchorElement['target']>('_self');
   readonly rel = input<string>();
