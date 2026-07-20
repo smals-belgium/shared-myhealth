@@ -1,48 +1,20 @@
-/*
- * Variant colors and appearances. Each variant maps onto an existing color family; the appearance then decides how
- * those colors are applied to the surface, text, and icon.
+/**
+ * :host([appearance='filled']) { }
+ *
+ * Appearance only changes colours, no shapes, so `filled` has no changes compared to base variant
  */
-:host {
-  /* The variant color tokens, resolved per `variant` below. */
-  --mh-callout__variant-fill: var(--mh-color-brand-fill-quieter);
-  --mh-callout__variant-type: var(--mh-color-brand-type-louder);
 
-  /* The applied colors, switched by `appearance`. Defaults to the `filled` appearance. */
-  --mh-callout__background: var(--mh-callout__variant-fill);
-  --mh-callout__color: var(--mh-callout__variant-type);
-  --mh-callout__icon-color: var(--mh-callout__variant-type);
-}
-
-/* Map each variant onto an existing color family. */
-:host([variant='info']),
-:host([variant='brand']) {
-  --mh-callout__variant-fill: var(--mh-color-brand-fill-quieter);
-  --mh-callout__variant-type: var(--mh-color-brand-type-louder);
-}
-
-:host([variant='success']) {
-  --mh-callout__variant-fill: var(--mh-color-success-fill-quieter);
-  --mh-callout__variant-type: var(--mh-color-success-type-loud);
-}
-
-:host([variant='warning']) {
-  --mh-callout__variant-fill: var(--mh-color-warning-fill-quieter);
-  --mh-callout__variant-type: var(--mh-color-warning-type);
-}
-
-:host([variant='danger']) {
-  --mh-callout__variant-fill: var(--mh-color-danger-fill-quieter);
-  --mh-callout__variant-type: var(--mh-color-danger-type);
-}
-
-:host([variant='neutral']) {
-  --mh-callout__variant-fill: var(--mh-color-neutral-fill-quieter);
-  --mh-callout__variant-type: var(--mh-color-neutral-type-louder);
-  --mh-callout__icon-color: var(--mh-color-danger-type);
-}
-
-/* Outlined appearance: a white surface with black text; only the icon keeps the variant color. */
+/*
+ * - White surface with black text
+ * - Icon is always medium variant colour (whereas in `filled` there are overrides)
+ */
 :host([appearance='outlined']) {
-  --mh-callout__background: var(--mh-color-neutral-type-quieter);
-  --mh-callout__color: var(--mh-color-neutral-type-louder);
+  --mh-callout__color-fill: var(--mh-color-neutral-type-quieter);
+  --mh-callout__color-type: var(--mh-color-neutral-type-louder);
+  --mh-callout__color-icon: var(--mh-color-type);
+}
+
+/* Need to override again specifically for outlined, otherwise the above rule takes over */
+:host([appearance='outlined'][variant='neutral']) {
+  --mh-callout__color-icon: var(--mh-color-danger-type);
 }

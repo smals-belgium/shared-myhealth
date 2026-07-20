@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { BUTTON } from '@myhealth/vitals-ng/button';
-import { SLIDE_TOGGLE } from '@myhealth/vitals-ng/slide-toggle';
+import { BUTTON } from '@smals-belgium-shared/vitals-ng/button';
+import { SLIDE_TOGGLE } from '@smals-belgium-shared/vitals-ng/slide-toggle';
 
 @Component({
-  selector: 'app-slide-toggle',
   imports: [BUTTON, SLIDE_TOGGLE],
   template: ` <form id="form">
     <h2>Slide Toggle</h2>
@@ -61,4 +60,4 @@ import { SLIDE_TOGGLE } from '@myhealth/vitals-ng/slide-toggle';
   </form>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SlideToggleComponent {}
+export class SlideToggleSandbox {}

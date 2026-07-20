@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ICON } from '@myhealth/vitals-ng/icon';
+import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
 
 @Component({
-  selector: 'app-icon',
   imports: [ICON],
   template: ` <h2>Icon</h2>
     normal: <mh-icon name="search"></mh-icon><br />
@@ -36,4 +35,4 @@ import { ICON } from '@myhealth/vitals-ng/icon';
     ></mh-icon>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IconComponent {}
+export class IconSandbox {}
