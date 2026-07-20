@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { BUTTON } from '@myhealth/vitals-ng/button';
-import { RADIO } from '@myhealth/vitals-ng/radio';
+import { BUTTON } from '@smals-belgium-shared/vitals-ng/button';
+import { RADIO } from '@smals-belgium-shared/vitals-ng/radio';
 
 @Component({
-  selector: 'app-radio',
   imports: [BUTTON, RADIO],
   template: ` <form id="form">
     <h2>Radio</h2>
@@ -38,4 +37,4 @@ import { RADIO } from '@myhealth/vitals-ng/radio';
   </form>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RadioComponent {}
+export class RadioSandbox {}

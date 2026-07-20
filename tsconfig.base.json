@@ -21,47 +21,48 @@
     "paths": {
       "@myhealth/design-kit": ["packages/design-kit"],
       "@smals-belgium-shared/vitals": ["packages/design-kit"],
-      "@myhealth/vitals-ng": ["./packages/vitals-ng/src/index.ts"],
-      "@myhealth/vitals-ng/button": [
-        "./packages/vitals-ng/src/button/index.ts"
-      ],
+      "@smals-belgium-shared/vitals-ng": ["./packages/vitals-ng/src/index.ts"],
       "@smals-belgium-shared/vitals-ng/button": [
         "./packages/vitals-ng/src/button/index.ts"
       ],
-      "@myhealth/vitals-ng/radio": ["./packages/vitals-ng/src/radio/index.ts"],
-      "@myhealth/vitals-ng/checkbox": [
+      "@smals-belgium-shared/vitals-ng/callout": [
+        "./packages/vitals-ng/src/callout/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/checkbox": [
         "./packages/vitals-ng/src/checkbox/index.ts"
       ],
-      "@myhealth/vitals-ng/divider": [
-        "./packages/vitals-ng/src/divider/index.ts"
-      ],
-      "@myhealth/vitals-ng/spinner": [
-        "./packages/vitals-ng/src/spinner/index.ts"
-      ],
-      "@myhealth/vitals-ng/skeleton": [
-        "./packages/vitals-ng/src/skeleton/index.ts"
-      ],
-      "@myhealth/vitals-ng/text-input": [
-        "./packages/vitals-ng/src/text-input/index.ts"
-      ],
-      "@myhealth/vitals-ng/icon": ["./packages/vitals-ng/src/icon/index.ts"],
-      "@myhealth/vitals-ng/icon-button": [
-        "./packages/vitals-ng/src/icon-button/index.ts"
-      ],
-      "@myhealth/vitals-ng/slide-toggle": [
-        "./packages/vitals-ng/src/slide-toggle/index.ts"
-      ],
-      "@smals-belgium-shared/vitals-ng/icon-button": [
-        "./packages/vitals-ng/src/icon-button/index.ts"
+      "@smals-belgium-shared/vitals-ng/chip": [
+        "./packages/vitals-ng/src/chip/index.ts"
       ],
       "@smals-belgium-shared/vitals-ng/dialog": [
         "./packages/vitals-ng/src/dialog/index.ts"
       ],
-      "@myhealth/vitals-ng/tooltip": [
-        "./packages/vitals-ng/src/tooltip/index.ts"
+      "@smals-belgium-shared/vitals-ng/divider": [
+        "./packages/vitals-ng/src/divider/index.ts"
       ],
-      "@smals-belgium-shared/vitals-ng/chip": [
-        "./packages/vitals-ng/chip/src/index.ts"
+      "@smals-belgium-shared/vitals-ng/icon": [
+        "./packages/vitals-ng/src/icon/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/icon-button": [
+        "./packages/vitals-ng/src/icon-button/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/radio": [
+        "./packages/vitals-ng/src/radio/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/skeleton": [
+        "./packages/vitals-ng/src/skeleton/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/slide-toggle": [
+        "./packages/vitals-ng/src/slide-toggle/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/spinner": [
+        "./packages/vitals-ng/src/spinner/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/text-input": [
+        "./packages/vitals-ng/src/text-input/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/tooltip": [
+        "./packages/vitals-ng/src/tooltip/index.ts"
       ]
     }
   }

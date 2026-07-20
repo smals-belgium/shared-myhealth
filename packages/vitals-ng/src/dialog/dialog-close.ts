@@ -14,6 +14,6 @@ export class DialogClose {
   constructor() {
     const { nativeElement } = inject<ElementRef<HTMLElement>>(ElementRef);
     if (!nativeElement.closest('mh-dialog'))
-      throw new Error('mh-dialog-close used outside of mh-modal');
+      throw new Error('mh-dialog-close used outside of mh-dialog');
   }
 }

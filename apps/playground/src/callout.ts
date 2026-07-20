@@ -1,8 +1,4 @@
-import type {
-  Callout,
-  CalloutToggledEvent,
-  ExpandableCallout,
-} from '@myhealth/design-kit';
+import type { Callout, ExpandableCallout } from '@myhealth/design-kit';
 
 (document.querySelector<Callout>('#filled-info') as Callout).closable = false;
 
@@ -14,12 +10,11 @@ const wireToggle = (triggerId: string, calloutId: string) => {
     .querySelector(`#${triggerId}`)
     ?.addEventListener('click', () => expandable(calloutId)?.toggle());
 
-  expandable(calloutId)?.addEventListener(
-    'mh-callout-toggled',
-    (event: CalloutToggledEvent) => {
-      console.log(`"${calloutId}" toggled open: ${String(event.open)}`);
-    },
-  );
+  expandable(calloutId)?.addEventListener('toggle', (event: ToggleEvent) => {
+    console.log(
+      `"${calloutId}" toggled from ${event.oldState} to ${event.newState}`,
+    );
+  });
 };
 
 document.addEventListener('mh-callout-closed', event => {

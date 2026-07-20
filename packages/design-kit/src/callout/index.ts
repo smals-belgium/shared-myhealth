@@ -4,8 +4,6 @@ import type { ExpandableCallout } from './expandable-callout';
 export * from './callout';
 export * from './expandable-callout';
 export type { CalloutAppearance, CalloutVariant } from './base';
-export * from './callout-closed.event';
-export * from './callout-toggled.event';
 
 declare global {
   interface HTMLElementTagNameMap {

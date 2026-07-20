@@ -2,9 +2,9 @@ import { html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import { CalloutBase } from './base';
-import { CalloutClosedEvent } from './callout-closed.event';
-import { CalloutToggledEvent } from './callout-toggled.event';
 import expandable from './expandable-callout.css?inline';
+
+export type ExpandableCalloutState = 'open' | 'closed';
 
 /**
  * @summary Expandable callouts are inline banners that disclose their content on demand. Built on the native
@@ -18,11 +18,11 @@ import expandable from './expandable-callout.css?inline';
  *
  * @dependency mh-icon
  *
- * @event mh-callout-toggled - Emitted when the callout is expanded or collapsed. The `open` property carries the new state.
+ * @event toggle - Emitted when the callout is expanded or collapsed.
  * @event mh-callout-closed - Emitted when a `callout-close` button is activated and the callout removes itself.
  *
+ * @slot - The callout's descriptive content, shown below the title when expanded.
  * @slot title - The callout's title, shown next to the icon. Activating it toggles the callout.
- * @slot description - The callout's descriptive content, shown below the title when expanded.
  * @slot actions - The callout's actions, typically buttons. Add the `callout-close` attribute to any element
  *  here to dismiss and remove the callout when it is activated.
  *
@@ -47,22 +47,22 @@ export class ExpandableCallout extends CalloutBase {
   /** Whether the callout is expanded. Reflects as an attribute. */
   @property({ type: Boolean, reflect: true }) open = false;
 
-  /** Expands or collapses the callout and emits `mh-callout-toggled`. Pass `force` to set an explicit state. */
-  toggle(force?: boolean) {
-    const next = force ?? !this.open;
-    if (next === this.open) return;
-
-    this.open = next;
-    this.dispatchEvent(new CalloutToggledEvent(this.open));
+  get #state(): ExpandableCalloutState {
+    return this.open ? 'open' : 'closed';
   }
 
-  #onToggle = (event: Event) => {
-    const { open } = event.target as HTMLDetailsElement;
-    // Guard against Lit-initiated renders re-setting the same state.
-    if (open === this.open) return;
+  /** Expands or collapses the callout. Pass `force` to set an explicit state. */
+  toggle = (force?: boolean) => (this.open = force ?? !this.open);
 
-    this.open = open;
-    this.dispatchEvent(new CalloutToggledEvent(open));
+  #onToggle = (event: ToggleEvent) => {
+    this.open = event.newState === 'open';
+
+    this.dispatchEvent(
+      new ToggleEvent('toggle', {
+        oldState: event.oldState,
+        newState: this.#state,
+      }),
+    );
   };
 
   #onCloseTrigger = (event: MouseEvent) => {
@@ -70,12 +70,13 @@ export class ExpandableCallout extends CalloutBase {
       .composedPath()
       .find(
         (target): target is HTMLElement =>
-          target instanceof HTMLElement && target.hasAttribute('callout-close'),
+          target instanceof HTMLElement &&
+          target.hasAttribute('mh-callout-close'),
       );
 
     if (!trigger) return;
 
-    this.dispatchEvent(new CalloutClosedEvent());
+    this.dispatchEvent(new Event('close'));
     this.remove();
   };
 
@@ -110,10 +111,7 @@ export class ExpandableCallout extends CalloutBase {
           @click=${this.#onCloseTrigger}
         >
           <div part="content">
-            <slot
-              name="description"
-              part="description"
-            ></slot>
+            <slot part="description"></slot>
             <div part="actions">
               <slot name="actions"></slot>
             </div>
