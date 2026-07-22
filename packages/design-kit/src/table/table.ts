@@ -89,7 +89,7 @@ export class Table extends LitElement {
       childList: true,
       subtree: true,
       attributes: true,
-      attributeFilter: ['expandable'],
+      attributeFilter: ['expandable', 'selected', 'disabled'],
     });
   }
 
