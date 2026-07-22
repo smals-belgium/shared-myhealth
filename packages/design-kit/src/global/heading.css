@@ -9,26 +9,32 @@ h6 {
   letter-spacing: 0;
 }
 
+/**
+ * If any component wants to explicitly change the `font-size` of a slotted heading element,
+ * it can do so by setting the `--mh-font-size-slotted-heading` variable.
+ * This value will then take precedence over the default heading's font size.
+ */
+
 h1 {
-  font-size: var(--mh-font-size-xxxl);
+  font-size: var(--mh-font-size-slotted-heading, var(--mh-font-size-xxxl));
 }
 
 h2 {
-  font-size: var(--mh-font-size-xxl);
+  font-size: var(--mh-font-size-slotted-heading, var(--mh-font-size-xxl));
 }
 
 h3 {
-  font-size: var(--mh-font-size-xl);
+  font-size: var(--mh-font-size-slotted-heading, var(--mh-font-size-xl));
 }
 
 h4 {
-  font-size: var(--mh-font-size-l);
+  font-size: var(--mh-font-size-slotted-heading, var(--mh-font-size-l));
 }
 
 h5 {
-  font-size: var(--mh-font-size);
+  font-size: var(--mh-font-size-slotted-heading, var(--mh-font-size));
 }
 
 h6 {
-  font-size: var(--mh-font-size-s);
+  font-size: var(--mh-font-size-slotted-heading, var(--mh-font-size-s));
 }

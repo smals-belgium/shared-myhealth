@@ -1,5 +1,5 @@
 :host {
-  --mh-dialog__spacing: var(--mh-space-m);
+  --mh-dialog__spacing: 1.25rem;
 
   --mh-dialog__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
 
@@ -55,7 +55,7 @@
   align-items: center;
   justify-content: space-between;
   gap: calc(var(--mh-dialog__spacing) / 2);
-  padding: 0 var(--mh-dialog__spacing);
+  padding: var(--mh-dialog__spacing) var(--mh-dialog__spacing) 0;
 }
 
 [part='header-title'],
@@ -64,6 +64,15 @@
   flex-direction: row;
   align-items: center;
   gap: calc(var(--mh-dialog__spacing) / 2);
+}
+
+/**
+ * Actions like buttons are bigger than the header-title,
+ * and we need to make sure there's no height difference when there are actions present or not.
+ * Hence the negative margin to break out of the header container element.
+ */
+[part='header-actions'] {
+  margin: -1rem 0;
 }
 
 [part='content'] {
@@ -82,6 +91,14 @@
   padding: var(--mh-dialog__spacing) var(--mh-dialog__spacing);
 }
 
+[name='header-title']::slotted(*) {
+  --mh-font-size-slotted-heading: 1rem;
+
+  margin: 0;
+  font-size: var(--mh-font-size-slotted-heading);
+  font-weight: 700;
+}
+
 /* On mobile, stack the actions and let them fill the dialog width. */
 @container (max-width: 480px) {
   [part='actions'] {
@@ -89,7 +106,7 @@
     align-items: stretch;
   }
 
-  [part='actions'] ::slotted(mh-button) {
+  [part='actions'] ::slotted(*) {
     width: 100%;
   }
 }
