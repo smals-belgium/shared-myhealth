@@ -43,7 +43,9 @@
 }
 
 [name='header-title']::slotted(*) {
+  --mh-font-size-slotted-heading: 1rem;
+
   margin: 0;
-  font-size: 1rem;
+  font-size: var(--mh-font-size-slotted-heading);
   font-weight: 700;
 }

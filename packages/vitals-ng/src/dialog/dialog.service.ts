@@ -108,7 +108,7 @@ export class DialogService implements OnDestroy {
       dialogRef.element.remove();
     });
 
-    // Make sure the List component is fully initialised before showing the dialog
+    // Make sure the Lit component is fully initialised before showing the dialog
     dialogRef.element.updateComplete
       .then(() => dialogRef.element.showModal())
       .catch(dialogCreationError);
