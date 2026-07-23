@@ -47,7 +47,8 @@
       ],
       "@myhealth/vitals-ng/slide-toggle": [
         "./packages/vitals-ng/src/slide-toggle/index.ts"
-      ]
+      ],
+      "@myhealth/vitals-ng/table": ["./packages/vitals-ng/src/table/index.ts"]
     }
   }
 }

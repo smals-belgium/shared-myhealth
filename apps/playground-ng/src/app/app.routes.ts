@@ -13,6 +13,7 @@ import { RadioComponent } from './radio.component';
 import { SkeletonComponent } from './skeleton.component';
 import { SlideToggleComponent } from './slide-toggle.component';
 import { SpinnerComponent } from './spinner.component';
+import { TableComponent } from './table.component';
 
 export const appRoutes: Route[] = [
   {
@@ -63,5 +64,9 @@ export const appRoutes: Route[] = [
   {
     path: 'spinner',
     component: SpinnerComponent,
+  },
+  {
+    path: 'table',
+    component: TableComponent,
   },
 ];

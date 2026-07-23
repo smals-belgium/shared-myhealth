@@ -15,6 +15,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <li><a href="/skeleton">skeleton</a></li>
       <li><a href="/slide-toggle">slide-toggle</a></li>
       <li><a href="/spinner">spinner</a></li>
+      <li><a href="/table">table</a></li>
     </ul>
   </nav> `,
   changeDetection: ChangeDetectionStrategy.OnPush,

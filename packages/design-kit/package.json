@@ -93,6 +93,11 @@
       "import": "./dist/text-input/index.js",
       "default": "./dist/text-input/index.js"
     },
+    "./table": {
+      "types": "./dist/table/index.d.ts",
+      "import": "./dist/table/index.js",
+      "default": "./dist/table/index.js"
+    },
     "./assets/*": "./dist/assets/*"
   }
 }
