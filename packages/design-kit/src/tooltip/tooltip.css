@@ -4,8 +4,7 @@
   --mh-tooltip__radius: var(--mh-border-radius);
   --mh-tooltip__padding-block: 0.375rem;
   --mh-tooltip__padding-inline: 0.5rem;
-  --mh-tooltip__offset: 0.5rem;
-  --mh-tooltip__z-index: 1000;
+  --mh-tooltip__offset: 0.25rem;
 
   position: relative;
   display: inline-flex;
@@ -17,7 +16,6 @@
 
 [part='tooltip'] {
   position: absolute;
-  z-index: var(--mh-tooltip__z-index);
 
   max-inline-size: 20rem;
   inline-size: max-content;
@@ -34,8 +32,10 @@
 
   pointer-events: none;
 
-  /* Hidden by default; visibility:hidden keeps the element in the layout tree so
-     CSS transitions can animate opacity when it becomes visible. */
+  /*
+    Hidden by default. Keeping visibility separate from opacity prevents interaction
+    while allowing opacity transitions when the tooltip becomes visible.
+  */
   opacity: 0;
   visibility: hidden;
 }
@@ -45,51 +45,8 @@
   visibility: visible;
 }
 
-/* ── Positioning ────────────────────────────────────────────────────────── */
-
-/* top / bottom: centred horizontally, above or below the trigger. */
-:host([placement='top']) [part='tooltip'] {
-  inset-inline-start: 50%;
-  inset-block-end: calc(100% + var(--mh-tooltip__offset));
-  translate: -50% 0;
-}
-
-:host([placement='bottom']) [part='tooltip'] {
-  inset-inline-start: 50%;
-  inset-block-start: calc(100% + var(--mh-tooltip__offset));
-  translate: -50% 0;
-}
-
-/* left / right: physical sides — always left or always right regardless of text direction. */
-:host([placement='left']) [part='tooltip'] {
-  right: calc(100% + var(--mh-tooltip__offset));
-  top: 50%;
-  translate: 0 -50%;
-}
-
-:host([placement='right']) [part='tooltip'] {
-  left: calc(100% + var(--mh-tooltip__offset));
-  top: 50%;
-  translate: 0 -50%;
-}
-
-/* start / end: logical sides — inline-start/end, adapts to RTL text direction. */
-:host([placement='start']) [part='tooltip'] {
-  inset-inline-end: calc(100% + var(--mh-tooltip__offset));
-  inset-block-start: 50%;
-  translate: 0 -50%;
-}
-
-:host([placement='end']) [part='tooltip'] {
-  inset-inline-start: calc(100% + var(--mh-tooltip__offset));
-  inset-block-start: 50%;
-  translate: 0 -50%;
-}
-
 @media (prefers-reduced-motion: no-preference) {
   [part='tooltip'] {
-    transition:
-      opacity 0.12s ease-out,
-      visibility 0.12s ease-out;
+    transition: opacity 0.12s ease-out;
   }
 }
