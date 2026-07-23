@@ -6,6 +6,7 @@ import {
   queryAssignedElements,
 } from 'lit/decorators.js';
 
+import placement from './tooltip-placement.css?inline';
 import styles from './tooltip.css?inline';
 
 export type TooltipPlacement =
@@ -45,12 +46,12 @@ let tooltipCounter = 0;
  * @cssproperty [--mh-tooltip__radius=var(--mh-border-radius)] - Tooltip border radius.
  * @cssproperty [--mh-tooltip__padding-block=0.375rem] - Vertical padding.
  * @cssproperty [--mh-tooltip__padding-inline=0.5rem] - Horizontal padding.
- * @cssproperty [--mh-tooltip__offset=0.5rem] - Gap between the trigger and the tooltip surface.
+ * @cssproperty [--mh-tooltip__offset=0.25rem] - Gap between the trigger and the tooltip surface.
  * @cssproperty [--mh-tooltip__z-index=1000] - Stacking order.
  */
 @customElement('mh-tooltip')
 export class Tooltip extends LitElement {
-  static override readonly styles = unsafeCSS(styles);
+  static override readonly styles = [unsafeCSS(styles), unsafeCSS(placement)];
 
   /** Fallback text when no `content` slot content is provided. */
   @property() content = '';
