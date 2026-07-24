@@ -1,12 +1,25 @@
 import { fixture, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part, slot } from '../core/testing';
+import {
+  assertAccessibility,
+  defaultSlot,
+  part,
+  slot,
+  textContent,
+} from '../core/testing';
 
-import type { CalloutClosedEvent } from './callout-closed.event.js';
-import type { CalloutToggledEvent } from './callout-toggled.event.js';
 import './expandable-callout';
+import {
+  polyfillDetailsToggle,
+  polyfillToggleEvent,
+} from './details-polyfill.mock';
 import type { ExpandableCallout } from './expandable-callout.js';
+
+beforeAll(() => {
+  polyfillToggleEvent();
+  polyfillDetailsToggle();
+});
 
 describe('expandable-callout', () => {
   describe('accessibility', () => {
@@ -14,7 +27,7 @@ describe('expandable-callout', () => {
       const el = await fixture<ExpandableCallout>(html`
         <mh-expandable-callout open>
           <span slot="title">Title</span>
-          <span slot="description">Description</span>
+          Description
         </mh-expandable-callout>
       `);
 
@@ -27,13 +40,13 @@ describe('expandable-callout', () => {
       const el = await fixture<ExpandableCallout>(html`
         <mh-expandable-callout open>
           <span slot="title">Title</span>
-          <span slot="description">Description</span>
+          Description
           <span slot="actions">Actions</span>
         </mh-expandable-callout>
       `);
 
       expect(slot('title', el)?.assignedNodes().length).toBe(1);
-      expect(slot('description', el)?.assignedNodes().length).toBe(1);
+      expect(textContent(defaultSlot(el)!)).toBe('Description');
       expect(slot('actions', el)?.assignedNodes().length).toBe(1);
     });
   });
@@ -85,7 +98,7 @@ describe('expandable-callout', () => {
       expect(part('close', el)).toBeNull();
     });
 
-    it('toggles open and emits mh-callout-toggled when the summary is activated', async () => {
+    it('toggles open and emits "toggle" when the summary is activated', async () => {
       const el = await fixture<ExpandableCallout>(html`
         <mh-expandable-callout>
           <span slot="title">Title</span>
@@ -95,12 +108,9 @@ describe('expandable-callout', () => {
       setTimeout(() =>
         part('header', el)?.dispatchEvent(new MouseEvent('click')),
       );
-      const event = (await oneEvent(
-        el,
-        'mh-callout-toggled',
-      )) as CalloutToggledEvent;
+      const event = (await oneEvent(el, 'toggle')) as ToggleEvent;
 
-      expect(event.open).toBe(true);
+      expect(event.newState).toBe('open');
       expect(el.open).toBe(true);
     });
 
@@ -132,7 +142,7 @@ describe('expandable-callout', () => {
       expect(el.open).toBe(false);
     });
 
-    it('emits mh-callout-toggled via toggle()', async () => {
+    it('emits "toggle" via toggle()', async () => {
       const el = await fixture<ExpandableCallout>(html`
         <mh-expandable-callout>
           <span slot="title">Title</span>
@@ -140,23 +150,21 @@ describe('expandable-callout', () => {
       `);
 
       setTimeout(() => el.toggle());
-      const event = (await oneEvent(
-        el,
-        'mh-callout-toggled',
-      )) as CalloutToggledEvent;
+      const event = (await oneEvent(el, 'toggle')) as ToggleEvent;
 
-      expect(event.open).toBe(true);
+      expect(event.newState).toBe('open');
+      expect(el.open).toBe(true);
     });
   });
 
   describe('callout-close', () => {
-    it('removes itself and emits mh-callout-closed when a callout-close button is activated', async () => {
+    it('removes itself and emits close when a mh-callout-close button is activated', async () => {
       const el = await fixture<ExpandableCallout>(html`
         <mh-expandable-callout open>
           <span slot="title">Title</span>
           <button
             slot="actions"
-            callout-close
+            mh-callout-close
           >
             Dismiss
           </button>
@@ -165,10 +173,7 @@ describe('expandable-callout', () => {
 
       const button = el.querySelector('button');
       setTimeout(() => button?.click());
-      const event = (await oneEvent(
-        el,
-        'mh-callout-closed',
-      )) as CalloutClosedEvent;
+      const event = await oneEvent(el, 'close');
 
       expect(event).toBeInstanceOf(Event);
       expect(el.isConnected).toBe(false);

@@ -4,7 +4,6 @@ import { customElement, property } from 'lit/decorators.js';
 import { LocalizeController } from '../core/i18n';
 
 import { CalloutBase } from './base';
-import { CalloutClosedEvent } from './callout-closed.event';
 
 /**
  * @summary Callouts are inline banners that communicate a contextual status or message. They show a fixed icon for
@@ -20,8 +19,8 @@ import { CalloutClosedEvent } from './callout-closed.event';
  *
  * @event mh-callout-closed - Emitted after the close button is activated and the callout removes itself.
  *
+ * @slot - The callout's descriptive content, shown below the title.
  * @slot title - The callout's title, shown next to the icon.
- * @slot description - The callout's descriptive content, shown below the title.
  * @slot actions - The callout's actions, typically buttons.
  *
  * @csspart icon - The variant icon at the start of the callout.
@@ -42,7 +41,7 @@ export class Callout extends CalloutBase {
   @property({ type: Boolean, reflect: true }) closable = true;
 
   #onCloseClick = () => {
-    this.dispatchEvent(new CalloutClosedEvent());
+    this.dispatchEvent(new Event('close'));
     this.remove();
   };
 
@@ -63,10 +62,7 @@ export class Callout extends CalloutBase {
           <slot name="title"></slot>
         </div>
         <div part="content">
-          <slot
-            name="description"
-            part="description"
-          ></slot>
+          <slot part="description"></slot>
           <div part="actions">
             <slot name="actions"></slot>
           </div>

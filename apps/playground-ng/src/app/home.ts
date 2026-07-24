@@ -2,16 +2,18 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
   imports: [RouterModule],
   template: `
     <nav>
       <ul>
+        <li><a routerLink="/form-sandbox">form-sandbox</a></li>
+      </ul>
+      <ul>
         <li><a routerLink="/button">button</a></li>
+        <li><a routerLink="/callout">callout</a></li>
         <li><a routerLink="/checkbox">checkbox</a></li>
         <li><a routerLink="/dialog">dialog</a></li>
         <li><a routerLink="/divider">divider</a></li>
-        <li><a routerLink="/form-sandbox">form-sandbox</a></li>
         <li><a routerLink="/icon">icon</a></li>
         <li><a routerLink="/icon-button">icon-button</a></li>
         <li><a routerLink="/radio">radio</a></li>
@@ -24,4 +26,4 @@ import { RouterModule } from '@angular/router';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {}
+export class Home {}

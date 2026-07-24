@@ -38,7 +38,13 @@
 }
 
 [part='title'] {
-  font-weight: 600;
+  --mh-margin-slotted-heading: 0;
+  --mh-font-size-slotted-heading: 1rem;
+  --mh-font-weight-slotted-heading: 600;
+
+  margin: var(--mh-margin-slotted-heading);
+  font-size: var(--mh-font-size-slotted-heading);
+  font-weight: var(--mh-font-weight-slotted-heading);
 }
 
 [part='close'] {

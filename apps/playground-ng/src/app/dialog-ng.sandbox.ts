@@ -40,7 +40,6 @@ export class ComponentDialog {
 }
 
 @Component({
-  selector: 'app-dialog',
   imports: [BUTTON, DIALOG, ICON_BUTTON],
   template: `
     <h2>Dialog</h2>
@@ -86,7 +85,7 @@ export class ComponentDialog {
   viewProviders: [DialogService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DialogComponent {
+export class DialogSandbox {
   readonly #dialog = inject(DialogService);
 
   protected readonly log = console.log;

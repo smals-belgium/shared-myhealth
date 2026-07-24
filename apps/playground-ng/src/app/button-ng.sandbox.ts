@@ -1,12 +1,10 @@
 /* eslint-disable max-lines */
-
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { BUTTON } from '@myhealth/vitals-ng/button';
-import { ICON } from '@myhealth/vitals-ng/icon';
+import { BUTTON } from '@smals-belgium-shared/vitals-ng/button';
+import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
 
 @Component({
-  selector: 'app-button',
   imports: [BUTTON, ICON],
   template: ` <article>
       <h2>Button</h2>
@@ -362,4 +360,4 @@ import { ICON } from '@myhealth/vitals-ng/icon';
     </article>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent {}
+export class ButtonSandbox {}

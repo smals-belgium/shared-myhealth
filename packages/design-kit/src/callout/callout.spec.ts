@@ -1,11 +1,19 @@
 import { fixture, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part, slot } from '../core/testing';
+import {
+  assertAccessibility,
+  defaultSlot,
+  part,
+  slot,
+  textContent,
+} from '../core/testing';
 
 import './callout';
-import type { CalloutClosedEvent } from './callout-closed.event.js';
 import type { Callout } from './callout.js';
+import { polyfillToggleEvent } from './details-polyfill.mock';
+
+beforeAll(() => polyfillToggleEvent());
 
 describe('callout', () => {
   describe('accessibility', () => {
@@ -13,7 +21,7 @@ describe('callout', () => {
       const el = await fixture<Callout>(html`
         <mh-callout>
           <span slot="title">Title</span>
-          <span slot="description">Description</span>
+          Description
           <button slot="actions">Dismiss</button>
         </mh-callout>
       `);
@@ -27,13 +35,13 @@ describe('callout', () => {
       const el = await fixture<Callout>(html`
         <mh-callout>
           <span slot="title">Title</span>
-          <span slot="description">Description</span>
+          Description
           <span slot="actions">Actions</span>
         </mh-callout>
       `);
 
       expect(slot('title', el)?.assignedNodes().length).toBe(1);
-      expect(slot('description', el)?.assignedNodes().length).toBe(1);
+      expect(textContent(defaultSlot(el)!)).toBe('Description');
       expect(slot('actions', el)?.assignedNodes().length).toBe(1);
     });
   });
@@ -95,16 +103,13 @@ describe('callout', () => {
   });
 
   describe('close', () => {
-    it('emits mh-callout-closed and removes itself when the close button is activated', async () => {
+    it('emits clos and removes itself when the close button is activated', async () => {
       const el = await fixture<Callout>(html`<mh-callout></mh-callout>`);
 
       setTimeout(() =>
         part('close', el)?.dispatchEvent(new MouseEvent('click')),
       );
-      const event = (await oneEvent(
-        el,
-        'mh-callout-closed',
-      )) as CalloutClosedEvent;
+      const event = await oneEvent(el, 'close');
 
       expect(event).toBeInstanceOf(Event);
       expect(el.isConnected).toBe(false);

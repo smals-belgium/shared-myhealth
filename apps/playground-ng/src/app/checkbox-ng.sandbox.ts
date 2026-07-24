@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { BUTTON } from '@myhealth/vitals-ng/button';
-import { CHECKBOX } from '@myhealth/vitals-ng/checkbox';
+import { BUTTON } from '@smals-belgium-shared/vitals-ng/button';
+import { CHECKBOX } from '@smals-belgium-shared/vitals-ng/checkbox';
 
 @Component({
-  selector: 'app-checkbox',
   imports: [BUTTON, CHECKBOX],
   template: ` <form id="form">
     <h2>Checkbox</h2>
@@ -45,4 +44,4 @@ import { CHECKBOX } from '@myhealth/vitals-ng/checkbox';
   </form>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CheckboxComponent {}
+export class CheckboxSandbox {}

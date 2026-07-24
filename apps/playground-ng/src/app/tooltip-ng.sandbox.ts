@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { BUTTON } from '@myhealth/vitals-ng/button';
-import { TOOLTIP } from '@myhealth/vitals-ng/tooltip';
+import { BUTTON } from '@smals-belgium-shared/vitals-ng/button';
+import { TOOLTIP } from '@smals-belgium-shared/vitals-ng/tooltip';
 
 @Component({
-  selector: 'app-tooltip',
   imports: [TOOLTIP, BUTTON],
   template: ` <article>
     <h2>Tooltip</h2>
@@ -62,4 +61,4 @@ import { TOOLTIP } from '@myhealth/vitals-ng/tooltip';
   </article>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TooltipComponent {}
+export class TooltipSandbox {}

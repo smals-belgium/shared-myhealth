@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { ICON_BUTTON } from '@myhealth/vitals-ng/icon-button';
+import { ICON_BUTTON } from '@smals-belgium-shared/vitals-ng/icon-button';
 
 @Component({
-  selector: 'app-icon-button',
   imports: [ICON_BUTTON],
   template: ` <h2>Icon Button</h2>
     <mh-icon-button
@@ -55,4 +54,4 @@ import { ICON_BUTTON } from '@myhealth/vitals-ng/icon-button';
     ></mh-icon-button>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IconButtonComponent {}
+export class IconButtonSandbox {}

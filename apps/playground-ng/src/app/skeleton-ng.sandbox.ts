@@ -1,9 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { SKELETON } from '@myhealth/vitals-ng/skeleton';
+import { SKELETON } from '@smals-belgium-shared/vitals-ng/skeleton';
 
 @Component({
-  selector: 'app-skeleton',
   imports: [SKELETON],
   template: ` <h2>Skeleton</h2>
 
@@ -35,4 +34,4 @@ import { SKELETON } from '@myhealth/vitals-ng/skeleton';
     </div>`,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SkeletonComponent {}
+export class SkeletonSandbox {}
