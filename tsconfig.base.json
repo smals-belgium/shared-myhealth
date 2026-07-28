@@ -64,7 +64,9 @@
       "@smals-belgium-shared/vitals-ng/tooltip": [
         "./packages/vitals-ng/src/tooltip/index.ts"
       ],
-      "@myhealth/vitals-ng/table": ["./packages/vitals-ng/src/table/index.ts"]
+      "@smals-belgium-shared/vitals-ng/table": [
+        "./packages/vitals-ng/src/table/index.ts"
+      ]
     }
   }
 }
