@@ -2,14 +2,17 @@ import { html, LitElement, PropertyValues, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-import { Size } from '../core';
+import type { Size } from '../core';
+import { cssProperties, parseLinearGradient } from '../core/css';
 import { ErrorEvent, LoadEvent } from '../core/event';
 
 import { IconName } from './icon-name';
 import styles from './icon.css?inline';
 import size from './icon.size.css?inline';
+import { addLinearGradient } from './linear-gradient';
 
 export type IconSize = Size;
+export type IconCssProperty = 'gradient' | 'rotate-angle';
 
 const icons: Record<string, string> = import.meta.glob('./svg/*.svg', {
   query: '?raw',
@@ -26,7 +29,8 @@ const icons: Record<string, string> = import.meta.glob('./svg/*.svg', {
  * @event mh-load - Emitted when the icon has loaded.
  * @event mh-error - Emitted when the icon fails to load due to an error.
  *
- * @cssproperty --rotate-angle - The rotation angle of the icon.
+ * @cssproperty --mh-icon__gradient - A gradient function to apply to the icon (only linear-gradient supported for now).
+ * @cssproperty --mh-icon__rotate-angle - The rotation angle of the icon.
  */
 @customElement('mh-icon')
 export class Icon extends LitElement {
@@ -54,6 +58,8 @@ export class Icon extends LitElement {
 
   /** Sets the rotation degree of the icon */
   @property({ type: Number, reflect: true }) rotate = 0;
+
+  readonly #cssProperties = cssProperties<IconCssProperty>(this);
 
   protected override willUpdate(props: PropertyValues<this>) {
     if (props.has('src') && this.src && this.#validateSrc(this.src))
@@ -125,11 +131,21 @@ export class Icon extends LitElement {
     }
   }
 
-  #rotate() {
-    this.style.setProperty('--rotate-angle', `${this.rotate.toString(10)}deg`);
-  }
+  readonly #rotate = () =>
+    this.#cssProperties.set('rotate-angle', `${this.rotate.toString(10)}deg`);
 
   override render() {
-    return this.svg ? html`${unsafeHTML(this.svg)}` : html`#`;
+    if (!this.svg) return html`#`;
+    if (!this.#cssProperties.has('gradient'))
+      return html`${unsafeHTML(this.svg)}`;
+
+    const gradient = parseLinearGradient(this.#cssProperties.get('gradient'));
+    // If there's an error, dispatch it, but still display the icon without the gradient
+    if (gradient instanceof Error) {
+      this.dispatchEvent(new ErrorEvent(gradient));
+      return html`${unsafeHTML(this.svg)}`;
+    }
+
+    return html`${unsafeHTML(addLinearGradient(this.svg, gradient))}`;
   }
 }

@@ -1,8 +1,9 @@
 :host {
-  --rotate-angle: 0deg;
+  --mh-icon__rotate-angle: 0deg;
 
   box-sizing: content-box;
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
 }
@@ -13,5 +14,5 @@ svg {
 }
 
 :host([rotate]) {
-  transform: rotate(var(--rotate-angle, 0deg));
+  transform: rotate(var(--mh-icon__rotate-angle, 0deg));
 }

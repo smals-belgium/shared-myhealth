@@ -24,7 +24,7 @@ export const polyfillToggleEvent = () => {
     }
   }
 
-  (window as any).ToggleEvent = MockToggleEvent;
+  window.ToggleEvent = MockToggleEvent;
 };
 
 /**

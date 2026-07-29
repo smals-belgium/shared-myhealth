@@ -1,0 +1,2 @@
+# because we need to copy this file from project root because of ng-packgr conventions
+src/package.json

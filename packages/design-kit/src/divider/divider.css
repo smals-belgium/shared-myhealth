@@ -1,7 +1,7 @@
 :host {
-  --color: var(--mh-color-neutral-border);
-  --width: var(--mh-border-width-s);
-  --spacing: var(--mh-space-m);
+  --mh-divider__color: var(--mh-color-neutral-border);
+  --mh-divider__width: var(--mh-border-width-s);
+  --mh-divider__space: var(--mh-space-m);
 }
 
 :host([loudness='louder']) {
@@ -22,14 +22,14 @@
 
 :host(:not([orientation='vertical'])) {
   display: block;
-  border-top: solid var(--width) var(--color);
-  margin: var(--spacing) 0;
+  border-top: solid var(--mh-divider__width) var(--mh-divider__color);
+  margin: var(--mh-divider__space) 0;
 }
 
 :host([orientation='vertical']) {
   display: inline-block;
   height: 100%;
-  border-inline-start: solid var(--width) var(--color);
+  border-inline-start: solid var(--mh-divider__width) var(--mh-divider__color);
   margin: 0 var(--spacing);
   min-block-size: 1lh;
 }
