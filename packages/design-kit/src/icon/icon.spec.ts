@@ -101,9 +101,9 @@ describe('icon', () => {
       await elementUpdated(el);
       await el.updateComplete;
 
-      expect(getComputedStyle(el).getPropertyValue('--rotate-angle')).toBe(
-        '90deg',
-      );
+      expect(
+        getComputedStyle(el).getPropertyValue('--mh-icon__rotate-angle'),
+      ).toBe('90deg');
     });
 
     it(`doesn't rotate the icon when 'rotate' is not defined`, async () => {
@@ -112,9 +112,9 @@ describe('icon', () => {
       await elementUpdated(el);
       await el.updateComplete;
 
-      expect(getComputedStyle(el).getPropertyValue('--rotate-angle')).toBe(
-        '0deg',
-      );
+      expect(
+        getComputedStyle(el).getPropertyValue('--mh-icon__rotate-angle'),
+      ).toBe('0deg');
     });
   });
 

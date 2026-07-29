@@ -4,8 +4,6 @@
 dist
 tmp
 out-tsc
-# because we need to copy this file from project root because of ng-packgr conventions
-packages/vitals-ng/src/package.json
 
 # dependencies
 node_modules

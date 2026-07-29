@@ -9,6 +9,7 @@ const jsRules = {
     { ignoreConsecutiveComments: true },
   ],
   curly: ['error', 'multi'],
+  'id-length': ['error', { exceptions: ['x', 'y', 'z'] }],
   'no-case-declarations': 'off',
   'no-magic-numbers': ['error', { ignore: [0, 1, 2, 10] }],
   'no-multi-assign': 'off',
