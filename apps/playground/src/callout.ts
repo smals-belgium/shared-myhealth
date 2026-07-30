@@ -1,6 +1,4 @@
-import type { Callout, ExpandableCallout } from '@myhealth/design-kit';
-
-(document.querySelector<Callout>('#filled-info') as Callout).closable = false;
+import type { ExpandableCallout } from '@myhealth/design-kit';
 
 const expandable = (id: string) =>
   document.querySelector<ExpandableCallout>(`#${id}`);
