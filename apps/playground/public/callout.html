@@ -31,41 +31,38 @@
     <!-- Filled appearance -->
     <h3>Filled appearance</h3>
     <div style="display: grid; gap: 1rem; max-width: 40rem">
-      <mh-callout
-        id="filled-info"
-        variant="info"
-      >
+      <mh-callout variant="info">
         This is an informational message with some extra detail.
         <mh-button slot="actions">Got it</mh-button>
       </mh-callout>
 
       <mh-callout
-        id="filled-success"
         variant="success"
+        closable
       >
         <h4 slot="title">Saved successfully</h4>
         Your changes have been stored.
       </mh-callout>
 
       <mh-callout
-        id="filled-warning"
         variant="warning"
+        closable
       >
         <span slot="title">Check your input</span>
         Some fields need your attention.
       </mh-callout>
 
       <mh-callout
-        id="filled-danger"
         variant="danger"
+        closable
       >
         <span slot="title">Something went wrong</span>
         We could not complete your request.
       </mh-callout>
 
       <mh-callout
-        id="filled-neutral"
         variant="neutral"
+        closable
       >
         <span slot="title">New notification</span>
         You have a new message in your inbox.
@@ -76,45 +73,45 @@
     <h3>Outlined appearance</h3>
     <div style="display: grid; gap: 1rem; max-width: 40rem">
       <mh-callout
-        id="outlined-info"
         variant="info"
         appearance="outlined"
+        closable
       >
         <span slot="title">Information</span>
         White surface with a colored icon.
       </mh-callout>
 
       <mh-callout
-        id="outlined-success"
         variant="success"
         appearance="outlined"
+        closable
       >
         <span slot="title">Saved successfully</span>
         White surface with a colored icon.
       </mh-callout>
 
       <mh-callout
-        id="outlined-warning"
         variant="warning"
         appearance="outlined"
+        closable
       >
         <span slot="title">Check your input</span>
         White surface with a colored icon.
       </mh-callout>
 
       <mh-callout
-        id="outlined-danger"
         variant="danger"
         appearance="outlined"
+        closable
       >
         <span slot="title">Something went wrong</span>
         White surface with a colored icon.
       </mh-callout>
 
       <mh-callout
-        id="outlined-neutral"
         variant="neutral"
         appearance="outlined"
+        closable
       >
         <span slot="title">New notification</span>
         White surface with a colored icon.
@@ -125,7 +122,6 @@
     <h3>Expandable callout</h3>
     <div style="display: grid; gap: 1rem; max-width: 40rem">
       <mh-expandable-callout
-        id="expansion-info"
         variant="info"
         open
       >
@@ -138,34 +134,22 @@
         >
       </mh-expandable-callout>
 
-      <mh-expandable-callout
-        id="expansion-success"
-        variant="success"
-      >
+      <mh-expandable-callout variant="success">
         <span slot="title">Saved successfully</span>
         Click the title or the chevron to expand and collapse this callout.
       </mh-expandable-callout>
 
-      <mh-expandable-callout
-        id="expansion-warning"
-        variant="warning"
-      >
+      <mh-expandable-callout variant="warning">
         <span slot="title">Check your input</span>
         Click the title or the chevron to expand and collapse this callout.
       </mh-expandable-callout>
 
-      <mh-expandable-callout
-        id="expansion-danger"
-        variant="danger"
-      >
+      <mh-expandable-callout variant="danger">
         <span slot="title">Something went wrong</span>
         Click the title or the chevron to expand and collapse this callout.
       </mh-expandable-callout>
 
-      <mh-expandable-callout
-        id="expansion-neutral"
-        variant="neutral"
-      >
+      <mh-expandable-callout variant="neutral">
         <span slot="title">New notification</span>
         Click the title or the chevron to expand and collapse this callout.
       </mh-expandable-callout>

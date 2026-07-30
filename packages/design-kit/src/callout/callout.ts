@@ -38,8 +38,8 @@ import { CalloutBase } from './base';
 export class Callout extends CalloutBase {
   private readonly localize = new LocalizeController(this);
 
-  /** Whether to show the close button. Defaults to `true`. */
-  @property({ type: Boolean, reflect: true }) closable = true;
+  /** Whether to show the close button. Not shown by default. */
+  @property({ type: Boolean, reflect: true }) closable = false;
 
   #onCloseClick = () => {
     this.dispatchEvent(new Event('close'));

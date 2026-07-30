@@ -81,30 +81,34 @@ describe('callout', () => {
   });
 
   describe('closable', () => {
-    it('shows the close button by default', async () => {
+    it('does not show the close button by default', async () => {
       const el = await fixture<Callout>(html`<mh-callout></mh-callout>`);
-
-      expect(part('close', el)).toBeTruthy();
-    });
-
-    it('hides the close button when closable is false', async () => {
-      const el = await fixture<Callout>(
-        html`<mh-callout .closable=${false}></mh-callout>`,
-      );
 
       expect(part('close', el)).toBeNull();
     });
 
+    it('shows the close button when closable is set', async () => {
+      const el = await fixture<Callout>(
+        html`<mh-callout closable></mh-callout>`,
+      );
+
+      expect(part('close', el)).toBeTruthy();
+    });
+
     it('reflects closable as an attribute', async () => {
       const el = await fixture<Callout>(html`<mh-callout></mh-callout>`);
+      el.closable = true;
+      await el.updateComplete;
 
       expect(el.getAttribute('closable')).not.toBeNull();
     });
   });
 
   describe('close', () => {
-    it('emits clos and removes itself when the close button is activated', async () => {
-      const el = await fixture<Callout>(html`<mh-callout></mh-callout>`);
+    it('emits close and removes itself when the close button is activated', async () => {
+      const el = await fixture<Callout>(
+        html`<mh-callout closable></mh-callout>`,
+      );
 
       setTimeout(() =>
         part('close', el)?.dispatchEvent(new MouseEvent('click')),
