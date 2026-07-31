@@ -1,5 +1,5 @@
+import { partitionErrors, trim, validate } from './parser-util';
 import { isStop, parseStop, Stop } from './stop.parser';
-import { partition, trim, validate } from './util';
 
 /**
  * SVG: https://developer.mozilla.org/en-US/docs/Web/SVG/Reference/Element/linearGradient
@@ -23,10 +23,20 @@ const validation = validate({
     'First argument should be an angle value in degrees or a valid color stop',
 });
 
-const angleRE = () => /^(?<value>\d{0,3})deg$/gmu;
-const isValidAngle = (value: string) => angleRE().test(value);
+/**
+ * Regex that matches a CSS angle value defined in degrees.
+ * - starts with 1 to 3 digits
+ * - ends with `deg`
+ *
+ * @example
+ * 315deg   // valid
+ * 2356deg  // invalid
+ * 315      // invalid
+ */
+const angleRegEx = () => /^(?<value>\d{1,3})deg$/gmu;
+const isValidAngle = (value: string) => angleRegEx().test(value);
 const parseAngle = (value: string) =>
-  parseInt(angleRE().exec(value)?.groups?.value ?? '0', 10);
+  parseInt(angleRegEx().exec(value)?.groups?.value ?? '0', 10);
 
 /**
  * Takes a CSS string value, validates it as a proper linear-gradient function, and returns a structured data object
@@ -66,11 +76,10 @@ export const parseLinearGradient = (value: string): LinearGradient | Error => {
   const [head, ...tail] = args;
   if (!isValidAngle(head) && !isStop(head)) return error('firstArg');
 
-  const stops = partition((isValidAngle(head) ? tail : args).map(parseStop));
-  if (stops.failures.length) return stops.failures[0];
+  const [failures, stops] = partitionErrors(
+    (isValidAngle(head) ? tail : args).map(parseStop),
+  );
+  if (failures.length) return failures[0];
 
-  return {
-    angle: parseAngle(head),
-    stops: stops.successes,
-  };
+  return { angle: parseAngle(head), stops };
 };
