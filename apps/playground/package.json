@@ -7,7 +7,17 @@
     "tags": [
       "type:app",
       "scope:playground"
-    ]
+    ],
+    "implicitDependencies": [
+      "vitals"
+    ],
+    "targets": {
+      "serve": {
+        "dependsOn": [
+          "^generate-icon-name"
+        ]
+      }
+    }
   },
   "dependencies": {
     "@smals-belgium-shared/vitals": "~0.0.0"
