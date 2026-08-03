@@ -98,6 +98,11 @@
       "import": "./dist/spinner/index.js",
       "default": "./dist/spinner/index.js"
     },
+    "./tabs": {
+      "types": "./dist/tabs/index.d.ts",
+      "import": "./dist/tabs/index.js",
+      "default": "./dist/tabs/index.js"
+    },
     "./text-input": {
       "types": "./dist/text-input/index.d.ts",
       "import": "./dist/text-input/index.js",

@@ -14,6 +14,7 @@ import { RadioSandbox } from './radio-ng.sandbox';
 import { SkeletonSandbox } from './skeleton-ng.sandbox';
 import { SlideToggleSandbox } from './slide-toggle-ng.sandbox';
 import { SpinnerSandbox } from './spinner-ng.sandbox';
+import { TabsSandbox } from './tabs-ng.sandbox';
 import { TooltipSandbox } from './tooltip-ng.sandbox';
 
 export const appRoutes: Route[] = [
@@ -73,6 +74,10 @@ export const appRoutes: Route[] = [
   {
     path: 'spinner',
     component: SpinnerSandbox,
+  },
+  {
+    path: 'tabs',
+    component: TabsSandbox,
   },
   {
     path: 'tooltip',
