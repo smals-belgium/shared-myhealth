@@ -1,0 +1,9 @@
+:host {
+  display: table-cell;
+  font-size: var(--mh-font-size);
+  color: var(--mh-color-neutral-type-louder);
+  vertical-align: middle;
+  font-weight: 600;
+  background-color: var(--mh-color-brand-fill-quieter);
+  padding: 20px 20px 20px 10px;
+}

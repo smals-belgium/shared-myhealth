@@ -108,6 +108,11 @@
       "import": "./dist/tooltip/index.js",
       "default": "./dist/tooltip/index.js"
     },
+    "./table": {
+      "types": "./dist/table/index.d.ts",
+      "import": "./dist/table/index.js",
+      "default": "./dist/table/index.js"
+    },
     "./assets/*": "./dist/assets/*"
   }
 }
