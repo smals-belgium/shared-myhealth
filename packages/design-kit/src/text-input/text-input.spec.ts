@@ -481,6 +481,7 @@ describe('text-input', () => {
 
         setFormValueSpy.mockClear();
         el.formResetCallback();
+        await el.updateComplete;
 
         expect(setFormValueSpy).toHaveBeenCalledWith('original');
       });
@@ -494,6 +495,7 @@ describe('text-input', () => {
 
         setFormValueSpy.mockClear();
         el.formResetCallback();
+        await el.updateComplete;
 
         expect(setFormValueSpy).toHaveBeenCalledWith(null);
       });

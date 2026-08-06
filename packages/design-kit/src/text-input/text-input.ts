@@ -148,7 +148,6 @@ export class TextInput extends LitElement {
 
   formResetCallback() {
     this.value = this.#defaultValue ?? null;
-    this.internals.setFormValue(this.value);
   }
 
   override updated(changed: PropertyValueMap<this>) {
@@ -165,7 +164,7 @@ export class TextInput extends LitElement {
   #onInput = () => (this.value = this.el?.value);
 
   #onChange() {
-    if (this.el) this.internals.setFormValue(this.el.value);
+    if (this.el) this.value = this.el.value;
     this.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
@@ -196,7 +195,7 @@ export class TextInput extends LitElement {
         aria-describedby="help hint"
         .disabled=${this.disabled}
         .required=${this.required}
-        .value=${ifDefined(this.value)}
+        .value=${this.value ?? ''}
         @change=${this.#onChange}
         @input=${this.#onInput}
       />

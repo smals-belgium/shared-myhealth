@@ -48,7 +48,7 @@ Angular version: {{ version }}
 
     <mh-text-input
       name="textInput"
-      ngModel
+      [ngModel]="text"
       required
       minlength="2"
       maxlength="10"
@@ -58,6 +58,24 @@ Angular version: {{ version }}
     >
       text
     </mh-text-input>
+  </fieldset>
+
+  <fieldset>
+    <legend>select</legend>
+
+    <mh-select
+      name="gender2"
+      required
+      placeholder="select one"
+      help="Please select your gender"
+      hint="Male, female or other"
+      [ngModel]="gender2"
+    >
+      Gender
+      <mh-option value="f">I'm a lady</mh-option>
+      <mh-option value="m">I'm a gentleman</mh-option>
+      <mh-option value="x">I'm not certain yet</mh-option>
+    </mh-select>
   </fieldset>
 
   Form value {{ form.value | json }}<br />

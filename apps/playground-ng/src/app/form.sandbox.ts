@@ -6,6 +6,7 @@ import { version } from '@smals-belgium-shared/vitals-ng';
 import { BUTTON } from '@smals-belgium-shared/vitals-ng/button';
 import { CHECKBOX } from '@smals-belgium-shared/vitals-ng/checkbox';
 import { RADIO } from '@smals-belgium-shared/vitals-ng/radio';
+import { SELECT } from '@smals-belgium-shared/vitals-ng/select';
 import { TEXT_INPUT } from '@smals-belgium-shared/vitals-ng/text-input';
 
 const formErrors = (form: NgForm) =>
@@ -21,11 +22,14 @@ const formErrors = (form: NgForm) =>
   );
 
 @Component({
-  imports: [FormsModule, JsonPipe, BUTTON, CHECKBOX, RADIO, TEXT_INPUT],
+  imports: [FormsModule, JsonPipe, BUTTON, CHECKBOX, RADIO, SELECT, TEXT_INPUT],
   templateUrl: './form.sandbox.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormSandbox {
   readonly version = version;
   readonly errors = formErrors;
+
+  readonly text = '123';
+  readonly gender2 = 'm';
 }

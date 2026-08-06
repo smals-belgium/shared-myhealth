@@ -33,7 +33,7 @@ export type SelectSize = Extract<Size, 's' | 'm'>;
  * @slot hint - The form-field hint label.
  *
  * @event blur - Emitted when the control loses focus.
- * @event focus - Emitted when the control gains focus.
+ * @event focus - Emitted when the contGol gains focus.
  *
  * @csspart base - The native `label` that wraps the `select`.
  * @csspart label - The actual label content.
@@ -86,8 +86,17 @@ export class Select extends LitElement {
   // TBD
   multiple = false;
 
+  #getOption = (selector: string) =>
+    this.querySelector<Option>(`mh-option${selector}`);
+
   get #selectedOption() {
-    return this.querySelector<Option>('mh-option[selected]');
+    return this.#getOption('[selected]');
+  }
+
+  #selectOption(value?: string | null) {
+    this.#selectedOption?.removeAttribute('selected');
+    if (value)
+      this.#getOption(`[value="${value}"]`)?.setAttribute('selected', '');
   }
 
   get #selectedLabel() {
@@ -115,7 +124,11 @@ export class Select extends LitElement {
 
   formResetCallback() {
     this.value = this.#defaultValue ?? null;
-    this.internals.setFormValue(this.value);
+  }
+
+  override update(changed: PropertyValueMap<this>) {
+    if (changed.has('value')) this.#selectOption(this.value);
+    super.update(changed);
   }
 
   override updated(changed: PropertyValueMap<this>) {
@@ -127,9 +140,8 @@ export class Select extends LitElement {
     if (changed.has('open')) this.listbox?.togglePopover(this.open);
   }
 
-  /* @internal - used by options to update labels */
-  handleDefaultSlotChange() {
-    this.value = this.querySelector<Option>('mh-option[selected]')?.value;
+  #handleDefaultSlotChange() {
+    this.value = this.#selectedOption?.value;
     this.#defaultValue ??= this.value;
 
     const textNodes = Array.from(this.childNodes).filter(
@@ -149,10 +161,7 @@ export class Select extends LitElement {
 
   #onOptionClick = childEventDirective({
     name: 'mh-option',
-    onEvent: ({ target, value }) => {
-      this.#selectedOption?.removeAttribute('selected');
-      target.setAttribute('selected', '');
-
+    onEvent: ({ value }) => {
       this.value = value;
       this.open = false;
       this.dispatchEvent(new Event('change', { bubbles: true }));
@@ -195,7 +204,7 @@ export class Select extends LitElement {
       @mouseup=${this.#onOptionClick}
       @toggle=${this.#openClose.onToggle}
     >
-      <slot @slotchange=${this.handleDefaultSlotChange}></slot>
+      <slot @slotchange=${this.#handleDefaultSlotChange}></slot>
     </div>
   `;
 
