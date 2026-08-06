@@ -32,6 +32,10 @@ jobs:
 
       - name: Build docs app
         run: npx nx build docs
+        env:
+          # Project pages are served from https://<owner>.github.io/<repo>/,
+          # so root-relative asset URLs need this prefix.
+          DOCS_PATH_PREFIX: /${{ github.event.repository.name }}/
 
       - name: Build docs artifact
         uses: actions/upload-pages-artifact@v5
