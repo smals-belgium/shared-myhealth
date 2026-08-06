@@ -35,6 +35,10 @@ export default function (config) {
   config.addWatchTarget(componentsDist);
 
   return {
+    // GitHub Pages serves project sites (as opposed to <org>.github.io user/org
+    // pages) from a `/<repo-name>/` subpath, so root-relative asset URLs need
+    // this prefix. Set via the deploy workflow; defaults to `/` for local dev.
+    pathPrefix: process.env.DOCS_PATH_PREFIX || '/',
     dir: {
       input: 'src',
       includes: '_includes',

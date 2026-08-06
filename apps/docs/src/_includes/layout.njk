@@ -7,52 +7,50 @@
       {% if title %}
         {{ title }} –
       {% endif %}Design Kit Docs</title>
-    <link rel="stylesheet" href="/styles/docs.css"/>
-    <link rel="stylesheet" href="/assets/design-kit/theme.css"/>
+    <link rel="stylesheet" href="{{ '/styles/docs.css' | url }}"/>
+    <link rel="stylesheet" href="{{ '/assets/design-kit/theme.css' | url }}"/>
     <script type="importmap">
       {
         "imports": {
-          "lit": "/assets/vendor/lit/index.js",
-          "lit/": "/assets/vendor/lit/",
-          "lit-html": "/assets/vendor/lit-html/lit-html.js",
-          "lit-html/": "/assets/vendor/lit-html/",
-          "lit-element": "/assets/vendor/lit-element/index.js",
-          "lit-element/": "/assets/vendor/lit-element/",
-          "@lit/reactive-element": "/assets/vendor/@lit/reactive-element/reactive-element.js",
-          "@lit/reactive-element/": "/assets/vendor/@lit/reactive-element/"
+          "lit": "{{ '/assets/vendor/lit/index.js' | url }}",
+          "lit/": "{{ '/assets/vendor/lit/' | url }}",
+          "lit-html": "{{ '/assets/vendor/lit-html/lit-html.js' | url }}",
+          "lit-html/": "{{ '/assets/vendor/lit-html/' | url }}",
+          "lit-element": "{{ '/assets/vendor/lit-element/index.js' | url }}",
+          "lit-element/": "{{ '/assets/vendor/lit-element/' | url }}",
+          "@lit/reactive-element": "{{ '/assets/vendor/@lit/reactive-element/reactive-element.js' | url }}",
+          "@lit/reactive-element/": "{{ '/assets/vendor/@lit/reactive-element/' | url }}"
         }
       }
     </script>
-    <script type="module" src="/assets/design-kit/index.js"></script>
-    <script defer src="/scripts/docs-controls.js"></script>
+    <script type="module" src="{{ '/assets/design-kit/index.js' | url }}"></script>
+    <script defer src="{{ '/scripts/docs-controls.js' | url }}"></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="app-shell">
       <aside class="sidebar">
         <div class="sidebar-brand">
-          <a href="/" aria-label="Design Kit Docs home">
+          <a href="{{ '/' | url }}" aria-label="Design Kit Docs home">
             <span class="sidebar-brand-name">Design Kit</span>
             <span class="sidebar-brand-version">design-kit.version</span>
           </a>
         </div>
         <nav aria-label="Documentation">
           <div class="nav-group">
-            <a href="/" class="nav-item{% if page.url === '/' %} is-active{% endif %}">Introduction</a>
+            <a href="{{ '/' | url }}" class="nav-item{% if page.url === '/' %} is-active{% endif %}">Introduction</a>
           </div>
           <div class="nav-group">
             <span class="nav-group-label">Components</span>
             {% for component in components.components %}
-              <a
-                href="/components/{{ component.slug }}/"
-                class="nav-item{% if page.url === '/components/' + component.slug + '/' %} is-active{% endif %}">
+              <a href="{{ ('/components/' + component.slug + '/') | url }}" class="nav-item{% if page.url === '/components/' + component.slug + '/' %} is-active{% endif %}">
                 {{ component.name }}
               </a>
             {% endfor %}
           </div>
           <div class="nav-group">
             <span class="nav-group-label">Tokens</span>
-            <a href="/tokens/color/" class="nav-item{% if page.url === '/tokens/color/' %} is-active{% endif %}">
+            <a href="{{ '/tokens/color/' | url }}" class="nav-item{% if page.url === '/tokens/color/' %} is-active{% endif %}">
               Color
             </a>
           </div>

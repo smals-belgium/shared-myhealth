@@ -15,7 +15,7 @@ title: Introduction
   <h2 id="components-heading">Components</h2>
   <div class="component-list">
     {% for component in components.components %}
-      <a href="/components/{{ component.slug }}/" class="component-entry">
+      <a href="{{ ('/components/' + component.slug + '/') | url }}" class="component-entry">
         <span class="component-entry-name">{{ component.name }}</span>
         {% if component.tags.length %}
           <span class="component-entry-tags">{{ component.tags | join(', ') }}</span>
