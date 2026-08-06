@@ -1,7 +1,17 @@
 import path from 'node:path';
 
+const dateFormatter = new Intl.DateTimeFormat('en-GB', {
+  dateStyle: 'long',
+  timeStyle: 'short',
+  timeZone: 'Europe/Brussels',
+});
+
 export default function (config) {
   const workspaceRoot = path.join(import.meta.dirname, '..', '..');
+
+  config.addFilter('formatDate', isoString =>
+    dateFormatter.format(new Date(isoString)),
+  );
   const componentsDist = path.join(
     workspaceRoot,
     'packages',
