@@ -17,9 +17,11 @@ import { RouterModule } from '@angular/router';
         <li><a routerLink="/icon">icon</a></li>
         <li><a routerLink="/icon-button">icon-button</a></li>
         <li><a routerLink="/radio">radio</a></li>
+        <li><a routerLink="/select">select</a></li>
         <li><a routerLink="/skeleton">skeleton</a></li>
         <li><a routerLink="/slide-toggle">slide-toggle</a></li>
         <li><a routerLink="/spinner">spinner</a></li>
+        <li><a routerLink="/text-input">text-input</a></li>
         <li><a routerLink="/tooltip">tooltip</a></li>
       </ul>
     </nav>
