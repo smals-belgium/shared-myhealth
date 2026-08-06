@@ -1,5 +1,5 @@
-import('@myhealth/design-kit').catch(() =>
-  console.error('Failed to load design-kit'),
+import('@myhealth/design-kit').catch((error: unknown) =>
+  console.error('Failed to load design-kit', error),
 );
 
 document.addEventListener('mh-error', event => {

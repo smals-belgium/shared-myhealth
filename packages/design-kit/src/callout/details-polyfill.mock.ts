@@ -5,28 +5,6 @@
 
 // AI slop
 
-export const polyfillToggleEvent = () => {
-  class MockToggleEvent extends Event {
-    oldState: string;
-    newState: string;
-
-    constructor(
-      type: string,
-      init?: EventInit & {
-        oldState?: string;
-        newState?: string;
-      },
-    ) {
-      super(type, init);
-
-      this.oldState = init?.oldState ?? 'closed';
-      this.newState = init?.newState ?? 'open';
-    }
-  }
-
-  window.ToggleEvent = MockToggleEvent;
-};
-
 /**
  * Jsdom does not implement the native `<details>`/`<summary>` disclosure
  * behaviour: clicking the summary neither toggles the `open` attribute nor

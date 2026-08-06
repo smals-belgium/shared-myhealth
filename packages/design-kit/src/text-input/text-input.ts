@@ -1,14 +1,13 @@
-import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
+import { LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property, query, queryAll } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 import type { Size } from '../core';
-import size from '../form-control/form-control.size.css?inline';
+import { cssStateReflect } from '../core/css';
+import { getInternals } from '../core/internals';
+import { renderFormField } from '../form-control/form-field';
 
-import iconButtonSlot from './text-input-icon-button.slot.css?inline';
-import iconSlot from './text-input-icon.slot.css?inline';
-import styles from './text-input.css?inline';
-import vars from './text-input.vars.css?inline';
+import { textInputStyles } from './text-input.styles';
 
 /** HTMLInputElement['type'] is `string`, so we narrow it down. */
 export type TextInputType =
@@ -55,36 +54,39 @@ export type InputMode =
   | 'url';
 
 /**
- * @summary Checkboxes let users toggle an option on or off, or select multiple items from a list. They also support an
- * indeterminate state for partial selections in groups.
- * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/checkbox
+ * @summary Text inputs collect single-line data from the user, such as text, email addresses, and passwords.
+ * Number inputs are excluded from this list; they have their own dedicated component in Vitals.
+ * Supports labels, hints, validation, and start or end slots.
+ * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/text-input
  * @status stable
  * @since 1.0
  *
- * @slot - The input label.
+ * @slot - The input label
+ * @slot start - An element, such as `<mh-icon>`, placed before the text input.
+ * @slot end - An element, such as `<mh-icon>`, placed after the text input.
+ * @slot help - The form-field help label.
+ * @slot hint - The form-field hint label.
  *
  * @event blur - Emitted when the control loses focus.
  * @event focus - Emitted when the control gains focus.
  *
  * @csspart base - The native `label` that wraps the `input`.
- * @csspart label - The actual label content.
- * @csspart input - The native radio input.
+ * @csspart label - The actual label content
+ * @csspart help - The actual help description content.
+ * @csspart hint - The actual hint description content.
+ * @csspart input-container - The wrapper that contains all input elements.
+ * @csspart start - Left side of the input container.
+ * @csspart input - The actual native input element.
+ * @csspart end - Right side of the input container.
  *
- * @cssstate checked - Applied when the control is checked.
  * @cssstate disabled - Applied when the control is disabled.
  * @cssstate invalid - Applied when the control is invalid.
  */
 @customElement('mh-text-input')
 export class TextInput extends LitElement {
-  static override readonly styles = [
-    vars,
-    styles,
-    size,
-    iconSlot,
-    iconButtonSlot,
-  ].map(unsafeCSS);
+  static override readonly styles = textInputStyles;
   static formAssociated = true;
-  readonly internals = this.attachInternals();
+  readonly internals = getInternals(this);
 
   @query('[part="input"]') el?: HTMLInputElement;
   @queryAll('slot') slots?: NodeListOf<HTMLSlotElement>;
@@ -139,8 +141,9 @@ export class TextInput extends LitElement {
 
   override connectedCallback() {
     super.connectedCallback();
+    this.addController(cssStateReflect(this, ['disabled', 'required']));
     this.#defaultValue ??= this.value;
-    this.internals.role = 'checkbox';
+    this.internals.role = 'textbox';
   }
 
   formResetCallback() {
@@ -166,63 +169,49 @@ export class TextInput extends LitElement {
     this.dispatchEvent(new Event('change', { bubbles: true }));
   }
 
-  // eslint-disable-next-line max-lines-per-function
+  #renderInput = () => html`
+    <div part="input-container">
+      <slot
+        name="start"
+        part="start"
+      ></slot>
+
+      <input
+        id="input"
+        part="input"
+        type=${this.type}
+        title=${this.title}
+        name=${ifDefined(this.name)}
+        placeholder=${ifDefined(this.placeholder)}
+        minlength=${ifDefined(this.minlength)}
+        maxlength=${ifDefined(this.maxlength)}
+        pattern=${ifDefined(this.pattern)}
+        autocapitalize=${this.autocapitalize}
+        autocomplete=${ifDefined(this.autocomplete)}
+        spellcheck=${this.spellcheck}
+        ?autocorrect=${this.autocorrect}
+        ?autofocus=${this.autofocus}
+        enterkeyhint=${ifDefined(this.enterkeyhint)}
+        inputmode=${ifDefined(this.inputmode)}
+        aria-describedby="help hint"
+        .disabled=${this.disabled}
+        .required=${this.required}
+        .value=${ifDefined(this.value)}
+        @change=${this.#onChange}
+        @input=${this.#onInput}
+      />
+
+      <slot
+        name="end"
+        part="end"
+      ></slot>
+    </div>
+  `;
+
   override render() {
-    return html`
-      <label part="base">
-        <slot part="label"></slot>
-
-        <div
-          id="help"
-          part="help"
-        >
-          ${this.help}
-        </div>
-
-        <div part="input-container">
-          <slot
-            name="start"
-            part="start"
-          ></slot>
-
-          <input
-            id="input"
-            part="input"
-            type=${this.type}
-            title=${this.title}
-            name=${ifDefined(this.name)}
-            placeholder=${ifDefined(this.placeholder)}
-            minlength=${ifDefined(this.minlength)}
-            maxlength=${ifDefined(this.maxlength)}
-            pattern=${ifDefined(this.pattern)}
-            autocapitalize=${this.autocapitalize}
-            autocomplete=${ifDefined(this.autocomplete)}
-            spellcheck=${this.spellcheck}
-            ?autocorrect=${this.autocorrect}
-            ?autofocus=${this.autofocus}
-            enterkeyhint=${ifDefined(this.enterkeyhint)}
-            inputmode=${ifDefined(this.inputmode)}
-            aria-describedby="help hint"
-            .disabled=${this.disabled}
-            .required=${this.required}
-            .value=${ifDefined(this.value)}
-            @change=${this.#onChange}
-            @input=${this.#onInput}
-          />
-
-          <slot
-            name="end"
-            part="end"
-          ></slot>
-        </div>
-      </label>
-
-      <div
-        id="hint"
-        part="hint"
-      >
-        ${this.hint}
-      </div>
-    `;
+    return renderFormField({
+      host: this,
+      renderInput: this.#renderInput,
+    });
   }
 }

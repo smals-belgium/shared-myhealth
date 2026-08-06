@@ -1,11 +1,6 @@
 :host {
   /* --- type --- */
-  --mh-text-input__color-type-label: var(--mh-color-neutral-type-louder);
   --mh-text-input__color-type-input: var(--mh-color-neutral-type-louder);
-  --mh-text-input__color-type-help: var(--mh-color-neutral-type-loud);
-  --mh-text-input__color-type-hint: var(--mh-color-neutral-type);
-  --mh-text-input__color-type-required-symbol: var(--mh-color-danger-type);
-  --mh-text-input__color-type-disabled: var(--mh-color-neutral-type);
   --mh-text-input__color-type-icon: var(--mh-color-neutral-type-loud);
   --mh-text-input__color-type-icon-button: var(--mh-color-brand-type);
   --mh-text-input__color-type-icon-button__hover: var(

@@ -2,11 +2,10 @@ import { html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import { childEventDirective, slotContentDirective } from '../core/directive';
+import { openCloseBehaviour } from '../core/open-close.behaviour';
 
 import { CalloutBase } from './base';
 import expandable from './expandable-callout.css?inline';
-
-export type ExpandableCalloutState = 'open' | 'closed';
 
 export const calloutCloseDirective = 'mh-callout-close';
 
@@ -51,23 +50,13 @@ export class ExpandableCallout extends CalloutBase {
   /** Whether the callout is expanded. Reflects as an attribute. */
   @property({ type: Boolean, reflect: true }) open = false;
 
-  get #state(): ExpandableCalloutState {
-    return this.open ? 'open' : 'closed';
-  }
+  readonly #openClose = openCloseBehaviour(this);
 
-  /** Expands or collapses the callout. Pass `force` to set an explicit state. */
-  readonly toggle = (force?: boolean) => (this.open = force ?? !this.open);
-
-  #onToggle = (event: ToggleEvent) => {
-    this.open = event.newState === 'open';
-
-    this.dispatchEvent(
-      new ToggleEvent('toggle', {
-        oldState: event.oldState,
-        newState: this.#state,
-      }),
-    );
-  };
+  /**
+   * Expands or collapses the callout.
+   * @see openCloseBehaviour#toggle
+   */
+  readonly toggle = this.#openClose.toggle;
 
   #onCloseTrigger = childEventDirective({
     name: calloutCloseDirective,
@@ -81,7 +70,7 @@ export class ExpandableCallout extends CalloutBase {
     return html`
       <details
         ?open=${this.open}
-        @toggle=${this.#onToggle}
+        @toggle=${this.#openClose.onToggle}
       >
         <summary part="header">
           ${this.renderIcon()}

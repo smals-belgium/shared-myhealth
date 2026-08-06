@@ -9,7 +9,6 @@ import type { IconName, IconSize } from '@smals-belgium-shared/vitals/icon';
     '[attr.src]': 'src()',
     '[attr.label]': 'label()',
     '[attr.size]': 'size()',
-    '[attr.rotate]': 'rotate()',
   },
 })
 export class Icon {
@@ -17,5 +16,4 @@ export class Icon {
   readonly src = input<string>();
   readonly label = input('');
   readonly size = input<IconSize>('m');
-  readonly rotate = input(0);
 }

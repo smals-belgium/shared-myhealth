@@ -78,6 +78,11 @@
       "import": "./dist/radio/index.js",
       "default": "./dist/radio/index.js"
     },
+    "./select": {
+      "types": "./dist/select/index.d.ts",
+      "import": "./dist/select/index.js",
+      "default": "./dist/select/index.js"
+    },
     "./skeleton": {
       "types": "./dist/skeleton/index.d.ts",
       "import": "./dist/skeleton/index.js",

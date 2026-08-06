@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>MyHealth Playground - select</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+    <script
+      type="module"
+      src="/src/form.ts"
+    ></script>
+  </head>
+
+  <body>
+    <form id="form">
+      <h2>Select</h2>
+      <mh-select
+        id="select"
+        name="gender"
+        required
+        placeholder="placeholder"
+        help="is preselected with 'm'"
+        hint="a hint here"
+      >
+        Gender
+        <mh-option value="f">I'm a lady</mh-option>
+        <mh-option
+          value="m"
+          selected
+          >I'm a gentleman</mh-option
+        >
+        <mh-option
+          value="x"
+          disabled
+          >I don't know</mh-option
+        >
+      </mh-select>
+
+      <br style="margin: 1rem" />
+      <mh-select
+        name="gender2"
+        required
+        disabled
+        placeholder="placeholder"
+        help="help text"
+        hint="a hint here"
+      >
+        Gender
+        <mh-option value="f">I'm a lady</mh-option>
+        <mh-option value="m">I'm a gentleman</mh-option>
+        <mh-option value="x">I don't know</mh-option>
+      </mh-select>
+
+      <br style="margin: 1rem" />
+      <mh-select
+        name="gender3"
+        required
+        placeholder="placeholder"
+        size="s"
+        help="has complex label, size s, option decorations, many options"
+        hint="a hint here"
+      >
+        <span slot="label">Gender <i>bender</i></span>
+        <mh-option value="f">
+          <mh-icon name="add"></mh-icon>
+          I'm a lady
+        </mh-option>
+        <mh-option value="m">
+          <mh-icon name="close"></mh-icon>
+          I'm a gentleman
+        </mh-option>
+        <mh-option value="x">
+          <mh-icon name="search"></mh-icon>
+          I don't know
+        </mh-option>
+        <mh-option value="r">I'm a raccoon</mh-option>
+        <mh-option value="d">I'm a dog</mh-option>
+        <mh-option value="h">I'm a horse</mh-option>
+        <mh-option value="c">I'm a colibri</mh-option>
+        <mh-option value="g">I'm a gazelle</mh-option>
+      </mh-select>
+
+      <footer>
+        <mh-button type="submit">submit</mh-button>
+        <mh-button
+          type="reset"
+          appearance="outlined"
+          >reset</mh-button
+        >
+      </footer>
+    </form>
+  </body>
+</html>

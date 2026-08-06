@@ -7,11 +7,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
   template: ` <h2>Icon</h2>
     normal: <mh-icon name="search"></mh-icon><br />
     rotate:
-    <mh-icon
-      name="search"
-      [rotate]="45"
-    ></mh-icon
-    ><br />
+    <mh-icon name="search"></mh-icon><br />
     <h2>Sizes</h2>
     <mh-icon
       name="search"
