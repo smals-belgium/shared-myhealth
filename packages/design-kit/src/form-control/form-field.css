@@ -1,0 +1,48 @@
+:host {
+  --mh-form-field__color-type-label: var(--mh-color-neutral-type-louder);
+  --mh-form-field__color-type-help: var(--mh-color-neutral-type-loud);
+  --mh-form-field__color-type-hint: var(--mh-color-neutral-type);
+  --mh-form-field__color-type-required-symbol: var(--mh-color-danger-type);
+  --mh-form-field__color-type-disabled: var(--mh-color-neutral-type);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+:host(:state(disabled)) label,
+label:has(input:disabled) {
+  & [part='label'],
+  & [part='label']::after,
+  & [part='help'] {
+    color: var(--mh-form-field__color-type-disabled);
+  }
+}
+
+[part='base'] {
+  width: stretch;
+}
+
+[part='label'] {
+  display: flex;
+  gap: 0.25rem;
+  color: var(--mh-form-field__color-type-label);
+
+  :host(:state(required)) &::after,
+  label:has(:required) &::after {
+    content: '*';
+    color: var(--mh-form-field__color-type-required-symbol);
+  }
+}
+
+[part='help'] {
+  font-size: 0.75rem;
+  color: var(--mh-form-field__color-type-help);
+  margin-bottom: 0.125rem;
+}
+
+[part='hint'] {
+  font-size: 0.75rem;
+  color: var(--mh-form-field__color-type-hint);
+}

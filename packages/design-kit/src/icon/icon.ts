@@ -56,9 +56,6 @@ export class Icon extends LitElement {
   /** The icon's size. */
   @property({ reflect: true }) size: IconSize = 'm';
 
-  /** Sets the rotation degree of the icon */
-  @property({ type: Number, reflect: true }) rotate = 0;
-
   readonly #cssProperties = cssProperties<IconCssProperty>(this);
 
   protected override willUpdate(props: PropertyValues<this>) {
@@ -70,7 +67,6 @@ export class Icon extends LitElement {
   protected override update(props: PropertyValues<this>): void {
     super.update(props);
     if (props.has('label')) this.#handleLabelChange();
-    if (props.has('rotate')) this.#rotate();
   }
 
   #loadBuiltInSvg(name: IconName) {
@@ -130,9 +126,6 @@ export class Icon extends LitElement {
       this.setAttribute('aria-hidden', 'true');
     }
   }
-
-  readonly #rotate = () =>
-    this.#cssProperties.set('rotate-angle', `${this.rotate.toString(10)}deg`);
 
   override render() {
     if (!this.svg) return html`#`;

@@ -89,35 +89,6 @@ describe('icon', () => {
     });
   });
 
-  describe('rotating', () => {
-    it(`rotates the icon when 'rotate' is defined`, async () => {
-      const el = await fixture<Icon>(
-        html`<mh-icon
-          name="search"
-          rotate="90"
-        ></mh-icon>`,
-      );
-
-      await elementUpdated(el);
-      await el.updateComplete;
-
-      expect(
-        getComputedStyle(el).getPropertyValue('--mh-icon__rotate-angle'),
-      ).toBe('90deg');
-    });
-
-    it(`doesn't rotate the icon when 'rotate' is not defined`, async () => {
-      const el = await fixture<Icon>(html`<mh-icon name="search"></mh-icon>`);
-
-      await elementUpdated(el);
-      await el.updateComplete;
-
-      expect(
-        getComputedStyle(el).getPropertyValue('--mh-icon__rotate-angle'),
-      ).toBe('0deg');
-    });
-  });
-
   describe('load event', () => {
     it(`emits mh-load immediately when a built-in icon loads`, async () => {
       const el = await fixture<Icon>(html`<mh-icon></mh-icon>`);

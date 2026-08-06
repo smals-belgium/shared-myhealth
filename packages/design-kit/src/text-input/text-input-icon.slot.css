@@ -11,5 +11,5 @@
 }
 
 label:has(input:disabled) ::slotted(mh-icon) {
-  color: var(--mh-text-input_color-type-disabled);
+  color: var(--mh-form-field_color-type-disabled);
 }
