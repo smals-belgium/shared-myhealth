@@ -13,20 +13,20 @@ import { DIALOG, DialogService } from '@smals-belgium-shared/vitals-ng/dialog';
 import { ICON_BUTTON } from '@smals-belgium-shared/vitals-ng/icon-button';
 
 @Component({
-  imports: [BUTTON],
+  imports: [BUTTON, DIALOG],
   template: `
     hello {{ message() }}
 
     <mh-button
       mh-dialog-close
-      slot="actions"
+      mh-dialog-slot="actions"
       appearance="outlined"
     >
       cancel
     </mh-button>
 
     <mh-button
-      slot="actions"
+      mh-dialog-slot="actions"
       (click)="closeDialog.emit({ data: message() })"
     >
       close
@@ -56,7 +56,7 @@ export class ComponentDialog {
       <h2 slot="header-title">Delete item?</h2>
       <mh-icon-button
         mh-dialog-close
-        slot="header-actions"
+        mh-dialog-slot="header-actions"
         name="close"
         label="Close dialog"
       ></mh-icon-button>
@@ -66,14 +66,14 @@ export class ComponentDialog {
       </p>
       <mh-button
         mh-dialog-close
-        slot="actions"
+        mh-dialog-slot="actions"
         appearance="outlined"
       >
         Cancel
       </mh-button>
       <mh-button
         [mh-dialog-close]="true"
-        slot="actions"
+        mh-dialog-slot="actions"
         variant="danger"
       >
         Delete

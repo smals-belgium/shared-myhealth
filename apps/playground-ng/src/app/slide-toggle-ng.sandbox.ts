@@ -27,7 +27,7 @@ import { SLIDE_TOGGLE } from '@smals-belgium-shared/vitals-ng/slide-toggle';
       name="settings"
       value="analytics"
     >
-      <span slot="start">Analytics</span>
+      <span mh-slide-toggle-slot="start">Analytics</span>
     </mh-slide-toggle>
     <br />
     <mh-slide-toggle
@@ -45,7 +45,7 @@ import { SLIDE_TOGGLE } from '@smals-belgium-shared/vitals-ng/slide-toggle';
       value="newsletter"
       disabled
     >
-      <span slot="start">Newsletter subscription</span>
+      <span mh-slide-toggle-slot="start">Newsletter subscription</span>
     </mh-slide-toggle>
     <br />
 
