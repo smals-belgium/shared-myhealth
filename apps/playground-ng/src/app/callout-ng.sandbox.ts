@@ -26,13 +26,13 @@ import { CALLOUT } from '@smals-belgium-shared/vitals-ng/callout';
         variant="info"
         [open]="true"
       >
-        <h3 slot="title">expando</h3>
+        <h3 mh-callout-slot="title">expando</h3>
 
         I still have a message for you
 
         <mh-button
           mh-callout-close
-          slot="actions"
+          mh-callout-slot="actions"
         >
           Mark as read
         </mh-button>

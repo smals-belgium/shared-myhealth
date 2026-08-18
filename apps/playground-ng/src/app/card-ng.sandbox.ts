@@ -33,7 +33,7 @@ import { ICON_BUTTON } from '@smals-belgium-shared/vitals-ng/icon-button';
         Details
         <mh-icon
           name="chevron_right"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon>
       </mh-button>
     </mh-card>

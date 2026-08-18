@@ -14,56 +14,56 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
       <mh-button
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
       <mh-button
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button variant="danger">Click me</mh-button>
       <mh-button variant="danger"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
       <mh-button variant="danger"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button variant="warning">Click me</mh-button>
       <mh-button variant="warning"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
       <mh-button variant="warning"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button variant="success">Click me</mh-button>
       <mh-button variant="success"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
       <mh-button variant="success"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
 
@@ -72,14 +72,14 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
       <mh-button appearance="outlined"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
       <mh-button appearance="outlined"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button
@@ -92,7 +92,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="danger"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
@@ -101,7 +101,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="danger"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button
@@ -114,7 +114,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="warning"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
@@ -123,7 +123,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="warning"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button
@@ -136,7 +136,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="success"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
@@ -145,7 +145,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="success"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
 
@@ -154,14 +154,14 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
       <mh-button appearance="link"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
       <mh-button appearance="link"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button
@@ -174,7 +174,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="danger"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
@@ -183,7 +183,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="danger"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button
@@ -196,7 +196,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="warning"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
@@ -205,7 +205,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="warning"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button
@@ -218,7 +218,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="success"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
@@ -227,7 +227,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         variant="success"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
 
@@ -257,14 +257,14 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
       <mh-button size="s"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
       <mh-button size="s"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button
@@ -277,7 +277,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         appearance="outlined"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
@@ -286,7 +286,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         appearance="outlined"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
       <mh-button
@@ -299,7 +299,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         appearance="link"
         ><mh-icon
           name="add"
-          slot="start"
+          mh-button-slot="start"
         ></mh-icon
         >Add me</mh-button
       >
@@ -308,7 +308,7 @@ import { ICON } from '@smals-belgium-shared/vitals-ng/icon';
         appearance="link"
         >Add me<mh-icon
           name="add"
-          slot="end"
+          mh-button-slot="end"
         ></mh-icon
       ></mh-button>
 
