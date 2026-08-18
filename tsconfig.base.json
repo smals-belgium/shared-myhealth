@@ -66,6 +66,9 @@
       ],
       "@smals-belgium-shared/vitals-ng/select": [
         "./packages/vitals-ng/src/select/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/card": [
+        "./packages/vitals-ng/src/card/index.ts"
       ]
     }
   }

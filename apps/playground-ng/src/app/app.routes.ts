@@ -3,6 +3,7 @@ import { Route } from '@angular/router';
 
 import { ButtonSandbox } from './button-ng.sandbox';
 import { CalloutSandbox } from './callout-ng.sandbox';
+import { CardSandbox } from './card-ng.sandbox';
 import { CheckboxSandbox } from './checkbox-ng.sandbox';
 import { DialogSandbox } from './dialog-ng.sandbox';
 import { DividerSandbox } from './divider-ng.sandbox';
@@ -35,6 +36,10 @@ export const appRoutes: Route[] = [
   {
     path: 'callout',
     component: CalloutSandbox,
+  },
+  {
+    path: 'card',
+    component: CardSandbox,
   },
   {
     path: 'checkbox',
