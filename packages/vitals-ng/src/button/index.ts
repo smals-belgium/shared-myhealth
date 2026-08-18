@@ -1,5 +1,7 @@
 import '@smals-belgium-shared/vitals/button';
 
+import { NgModule } from '@angular/core';
+
 import { Anchor } from './anchor';
 import { Button } from './button';
 import { AnchorSlot, ButtonSlot } from './button-slot';
@@ -8,4 +10,8 @@ export * from './anchor';
 export * from './button';
 export * from './button-slot';
 
-export const BUTTON = [Anchor, AnchorSlot, Button, ButtonSlot];
+@NgModule({
+  imports: [Anchor, AnchorSlot, Button, ButtonSlot],
+  exports: [Anchor, AnchorSlot, Button, ButtonSlot],
+})
+export class BUTTON {}

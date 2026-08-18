@@ -1,5 +1,7 @@
 import '@smals-belgium-shared/vitals/chip';
 
+import { NgModule } from '@angular/core';
+
 import { Chip } from './chip';
 import { ChipSlot } from './chip-slot';
 import { RemovableChip } from './removable-chip';
@@ -10,4 +12,8 @@ export * from './chip-slot';
 export * from './removable-chip';
 export * from './selectable-chip';
 
-export const CHIP = [Chip, ChipSlot, RemovableChip, SelectableChip];
+@NgModule({
+  imports: [Chip, ChipSlot, RemovableChip, SelectableChip],
+  exports: [Chip, ChipSlot, RemovableChip, SelectableChip],
+})
+export class CHIP {}
