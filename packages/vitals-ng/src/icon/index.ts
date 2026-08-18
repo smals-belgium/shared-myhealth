@@ -1,7 +1,13 @@
 import '@smals-belgium-shared/vitals/icon';
 
+import { NgModule } from '@angular/core';
+
 import { Icon } from './icon';
 
 export * from './icon';
 
-export const ICON = [Icon];
+@NgModule({
+  imports: [Icon],
+  exports: [Icon],
+})
+export class ICON {}

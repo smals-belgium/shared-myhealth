@@ -1,7 +1,13 @@
 import '@smals-belgium-shared/vitals/radio';
 
+import { NgModule } from '@angular/core';
+
 import { Radio } from './radio';
 
 export * from './radio';
 
-export const RADIO = [Radio];
+@NgModule({
+  imports: [Radio],
+  exports: [Radio],
+})
+export class RADIO {}

@@ -1,5 +1,7 @@
 import '@smals-belgium-shared/vitals/callout';
 
+import { NgModule } from '@angular/core';
+
 import { Callout } from './callout';
 import { CalloutClose } from './callout-close';
 import { CalloutSlot } from './callout-slot';
@@ -10,4 +12,8 @@ export * from './callout-close';
 export * from './callout-slot';
 export * from './expandable-callout';
 
-export const CALLOUT = [Callout, CalloutClose, CalloutSlot, ExpandableCallout];
+@NgModule({
+  imports: [Callout, CalloutClose, CalloutSlot, ExpandableCallout],
+  exports: [Callout, CalloutClose, CalloutSlot, ExpandableCallout],
+})
+export class CALLOUT {}
