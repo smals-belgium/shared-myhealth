@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
       <ul>
         <li><a routerLink="/button">button</a></li>
         <li><a routerLink="/callout">callout</a></li>
+        <li><a routerLink="/card">card</a></li>
         <li><a routerLink="/checkbox">checkbox</a></li>
         <li><a routerLink="/dialog">dialog</a></li>
         <li><a routerLink="/divider">divider</a></li>
