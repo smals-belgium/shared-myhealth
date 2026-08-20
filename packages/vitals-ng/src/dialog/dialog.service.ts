@@ -2,7 +2,6 @@ import {
   ApplicationRef,
   ComponentRef,
   createComponent,
-  ElementRef,
   EnvironmentInjector,
   inject,
   Injectable,
@@ -12,7 +11,10 @@ import {
   Type,
 } from '@angular/core';
 
-import type { Dialog } from '@smals-belgium-shared/vitals/dialog';
+import {
+  getContainerEl,
+  overlay,
+} from '@smals-belgium-shared/vitals-ng/cdk/overlay';
 
 import type { DialogConfig } from './dialog-config';
 import { DialogRef } from './dialog-ref';
@@ -23,10 +25,6 @@ const createDialog = <R>(config: DialogConfig<unknown>) => {
   if (config.variant) el.variant = config.variant;
   if (config.closedby) el.closedby = config.closedby;
   return new DialogRef<R>(el);
-};
-
-const dialogCreationError = (error: unknown) => {
-  throw new Error('mh-dialog creation failed', { cause: error });
 };
 
 const getRemovedNodes = (mutations: MutationRecord[]) =>
@@ -68,9 +66,7 @@ export class DialogService implements OnDestroy {
   readonly #appRef = inject(ApplicationRef);
   readonly #environmentInjector = inject(EnvironmentInjector);
   readonly #hostInjector = inject(Injector);
-  readonly #hostElementRef = inject<ElementRef<Dialog>>(ElementRef, {
-    optional: true,
-  });
+  readonly #container = getContainerEl();
   readonly #dialogRefs = new Set<{ close: () => void }>();
 
   /**
@@ -108,10 +104,7 @@ export class DialogService implements OnDestroy {
       dialogRef.element.remove();
     });
 
-    // Make sure the Lit component is fully initialised before showing the dialog
-    dialogRef.element.updateComplete
-      .then(() => dialogRef.element.showModal())
-      .catch(dialogCreationError);
+    overlay(dialogRef).ready(el => el.showModal());
 
     return dialogRef;
   }
@@ -133,25 +126,13 @@ export class DialogService implements OnDestroy {
   }
 
   /**
-   * Try to inject into the component that created the dialog,
-   * otherwise the nearest Angular application root
-   * and if all else fails, the body element.
-   */
-  #getContainerEl = () =>
-    this.#hostElementRef?.nativeElement ??
-    (this.#appRef.components[0]?.location.nativeElement as
-      | HTMLElement
-      | undefined) ??
-    document.body;
-
-  /**
    * Inject the dialog into the best possible container and as a backup measure start observing the removal
    * of that container node. When the container is removed, destroy any dialogs connected to it.
    * Since afterClosed$ completes immediately, there is no risk of duplicate close handling.
    */
   #initContainer = <R>(
     dialogRef: DialogRef<R>,
-    container: HTMLElement = this.#getContainerEl(),
+    container: HTMLElement = this.#container,
   ) => {
     container.append(dialogRef.element);
     if (!container.parentNode) return undefined;

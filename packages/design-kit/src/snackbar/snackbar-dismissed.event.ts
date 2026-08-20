@@ -1,5 +1,8 @@
 /** Describes why a snackbar was dismissed. */
-export type SnackbarDismissReason = 'close-button' | 'timeout' | 'programmatic';
+export type SnackbarDismissReason =
+  | 'action-button'
+  | 'timeout'
+  | 'programmatic';
 
 export class SnackbarDismissedEvent extends Event {
   readonly reason: SnackbarDismissReason;

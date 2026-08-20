@@ -43,7 +43,7 @@
   min-width: 0;
 }
 
-[part='close'] {
+[part='action'] {
   flex: 0 0 auto;
   margin-inline-start: auto;
 
