@@ -6,6 +6,7 @@ import { liveAnnouncer } from '../core/live-announcer';
 
 import { SnackbarDismissedEvent } from './snackbar-dismissed.event';
 import type { SnackbarDismissReason } from './snackbar-dismissed.event';
+import { SnackbarOpenedEvent } from './snackbar-opened.event';
 import styles from './snackbar.css?inline';
 
 /** The default auto-dismiss duration, in milliseconds. */
@@ -18,15 +19,17 @@ export const DEFAULT_SNACKBAR_DURATION = 3000;
  * @status stable
  * @since 1.0
  *
+ * @dependency mh-button
  * @dependency mh-icon-button
  *
+ * @event mh-snackbar-opened - Emitted after the snackbar was opened.
  * @event mh-snackbar-dismissed - Emitted after the snackbar has been dismissed. The `reason` property describes why.
  *
  * @slot - The snackbar's message content. Falls back to the `message` argument passed to `open()`.
  *
  * @csspart snackbar - The snackbar's container surface.
  * @csspart message - The element wrapping the message.
- * @csspart close - The close (`X`) icon button.
+ * @csspart action - The action button. A close (`X`) button by default, but can render a custom `action` label instead.
  *
  * @cssproperty [--mh-snackbar__spacing=var(--mh-space-m)] - The amount of space around and between sections of the snackbar.
  * @cssproperty [--mh-snackbar__background=var(--mh-color-neutral-fill-louder)] - The background color of the surface.
@@ -43,14 +46,14 @@ export class Snackbar extends LitElement {
 
   private readonly localize = new LocalizeController(this);
 
-  /** The message to display. Set automatically by {@link open}; a default slot takes precedence when provided. */
-  @property() message = '';
-
   /** The `aria-live` politeness used to announce the message. */
   @property({ reflect: true }) politeness: 'polite' | 'assertive' = 'polite';
 
   /** Auto-dismiss the snackbar after this many milliseconds. Set to `0` to keep it open until dismissed. */
   @property({ type: Number }) duration = DEFAULT_SNACKBAR_DURATION;
+
+  /** Label for an action button, shown in place of the default close (`X`) icon button. */
+  @property() action?: string;
 
   #timer?: ReturnType<typeof setTimeout>;
 
@@ -63,15 +66,22 @@ export class Snackbar extends LitElement {
    * Opens the snackbar with the given message. Any snackbar that is already open is dismissed first, so that only one
    * snackbar is visible at a time.
    */
-  open(message: string) {
+  open() {
     Snackbar.current?.dismiss();
 
-    this.message = message;
     this.toggleAttribute('open', true);
     Snackbar.current = this;
 
+    const message = Array.from(this.childNodes)
+      .filter(node => node.nodeType === Node.TEXT_NODE)
+      .map(node => node.textContent?.trim())
+      .join('')
+      .trim();
+
     liveAnnouncer.announce(message, this.politeness);
     this.#startTimer();
+
+    this.dispatchEvent(new SnackbarOpenedEvent());
   }
 
   /** Dismisses the snackbar, emitting `mh-snackbar-dismissed` with the given reason. */
@@ -109,14 +119,35 @@ export class Snackbar extends LitElement {
     if (Snackbar.current === this) Snackbar.current = next;
   }
 
-  #onCloseClick = () => this.dismiss('close-button');
+  readonly #onActionClick = () => this.dismiss('action-button');
 
   // Pause the auto-dismiss timer while the pointer rests on the snackbar or it holds focus, then restart it on leave.
   // Pausing on focus keeps the snackbar from disappearing while a keyboard or screen-reader user interacts with it.
-  #pause = () => this.#clearTimer();
-  #resume = () => {
+  readonly #pause = () => this.#clearTimer();
+  readonly #resume = () => {
     if (this.isOpen) this.#startTimer();
   };
+
+  readonly #renderActionButton = () => html`
+    <mh-button
+      part="action"
+      size="s"
+      variant="brand"
+      @click=${this.#onActionClick}
+    >
+      ${this.action}
+    </mh-button>
+  `;
+
+  readonly #renderCloseButton = () => html`
+    <mh-icon-button
+      part="action"
+      name="close"
+      loudness="loud"
+      label=${this.localize.term('close')}
+      @click=${this.#onActionClick}
+    ></mh-icon-button>
+  `;
 
   override render() {
     return html`
@@ -127,19 +158,12 @@ export class Snackbar extends LitElement {
         @focusin=${this.#pause}
         @focusout=${this.#resume}
       >
-        <span
+        <slot
           part="message"
           aria-hidden="true"
         >
-          <slot>${this.message}</slot>
-        </span>
-        <mh-icon-button
-          part="close"
-          name="close"
-          loudness="loud"
-          label=${this.localize.term('close')}
-          @click=${this.#onCloseClick}
-        ></mh-icon-button>
+        </slot>
+        ${this.action ? this.#renderActionButton() : this.#renderCloseButton()}
       </div>
     `;
   }

@@ -36,7 +36,19 @@
       aria-live="polite"
     ></span>
 
-    <mh-snackbar id="basicSnackbar"></mh-snackbar>
+    <mh-snackbar id="basicSnackbar">Message archived</mh-snackbar>
+
+    <br style="margin: 1rem" />
+
+    <!-- Snackbar with action -->
+    <h3>Custom action</h3>
+    <mh-button id="openAction">Show snackbar</mh-button>
+    <mh-snackbar
+      id="actionSnackbar"
+      action="open"
+    >
+      Download complete
+    </mh-snackbar>
 
     <br style="margin: 1rem" />
 
@@ -47,7 +59,9 @@
     <mh-snackbar
       id="assertiveSnackbar"
       politeness="assertive"
-    ></mh-snackbar>
+    >
+      Connection lost
+    </mh-snackbar>
 
     <script
       type="module"

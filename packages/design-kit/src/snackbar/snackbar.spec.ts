@@ -2,7 +2,12 @@ import { fixture, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 
 import { liveAnnouncer } from '../core/live-announcer';
-import { assertAccessibility, defaultSlot, part } from '../core/testing';
+import {
+  assertAccessibility,
+  defaultSlot,
+  part,
+  textContent,
+} from '../core/testing';
 
 import './snackbar';
 import type { SnackbarDismissedEvent } from './snackbar-dismissed.event.js';
@@ -11,8 +16,10 @@ import type { Snackbar } from './snackbar.js';
 describe('snackbar', () => {
   describe('accessibility', () => {
     it('passes accessibility tests', async () => {
-      const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
-      el.open('Message archived');
+      const el = await fixture<Snackbar>(
+        html`<mh-snackbar>Message archived</mh-snackbar>`,
+      );
+      el.open();
 
       await assertAccessibility(el);
     });
@@ -27,32 +34,30 @@ describe('snackbar', () => {
     });
 
     it('opens with a message and reflects the open attribute', async () => {
-      const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+      const el = await fixture<Snackbar>(
+        html`<mh-snackbar>Saved</mh-snackbar>`,
+      );
 
-      el.open('Saved');
+      el.open();
 
       expect(el.isOpen).toBe(true);
       expect(el.hasAttribute('open')).toBe(true);
-      expect(el.message).toBe('Saved');
+
+      const slot = defaultSlot(el);
+      if (slot) expect(textContent(slot)).toBe('Saved');
+      else expect(slot).not.toBe(null);
     });
 
     it('dismisses and clears the open attribute', async () => {
-      const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+      const el = await fixture<Snackbar>(
+        html`<mh-snackbar>Saved</mh-snackbar>`,
+      );
 
-      el.open('Saved');
+      el.open();
       el.dismiss();
 
       expect(el.isOpen).toBe(false);
       expect(el.hasAttribute('open')).toBe(false);
-    });
-
-    it('renders the default slot when provided', async () => {
-      const el = await fixture<Snackbar>(
-        html`<mh-snackbar><span>Custom content</span></mh-snackbar>`,
-      );
-      el.open('Fallback');
-
-      expect(defaultSlot(el)?.assignedElements().length).toBe(1);
     });
   });
 
@@ -61,10 +66,10 @@ describe('snackbar', () => {
       vi.useFakeTimers();
       try {
         const el = await fixture<Snackbar>(
-          html`<mh-snackbar politeness="assertive"></mh-snackbar>`,
+          html`<mh-snackbar politeness="assertive">Urgent</mh-snackbar>`,
         );
 
-        el.open('Urgent');
+        el.open();
         vi.advanceTimersByTime(100);
 
         const { region } = liveAnnouncer;
@@ -78,9 +83,11 @@ describe('snackbar', () => {
     it('auto-dismisses after the default 3s duration', async () => {
       vi.useFakeTimers();
       try {
-        const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+        const el = await fixture<Snackbar>(
+          html`<mh-snackbar>Saved</mh-snackbar>`,
+        );
 
-        el.open('Saved');
+        el.open();
         expect(el.isOpen).toBe(true);
 
         vi.advanceTimersByTime(3000);
@@ -95,10 +102,10 @@ describe('snackbar', () => {
       vi.useFakeTimers();
       try {
         const el = await fixture<Snackbar>(
-          html`<mh-snackbar duration="0"></mh-snackbar>`,
+          html`<mh-snackbar duration="0">Saved</mh-snackbar>`,
         );
 
-        el.open('Saved');
+        el.open();
         vi.advanceTimersByTime(10000);
 
         expect(el.isOpen).toBe(true);
@@ -110,9 +117,11 @@ describe('snackbar', () => {
     it('resets the auto-dismiss timer while the pointer hovers', async () => {
       vi.useFakeTimers();
       try {
-        const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+        const el = await fixture<Snackbar>(
+          html`<mh-snackbar>Saved</mh-snackbar>`,
+        );
 
-        el.open('Saved');
+        el.open();
         vi.advanceTimersByTime(2000);
 
         const surface = part('snackbar', el);
@@ -134,13 +143,62 @@ describe('snackbar', () => {
     });
   });
 
+  describe('action', () => {
+    it('renders the close icon button by default', async () => {
+      const el = await fixture<Snackbar>(
+        html`<mh-snackbar>Saved</mh-snackbar>`,
+      );
+      el.open();
+      await el.updateComplete;
+
+      const actionEl = part('action', el);
+      expect(actionEl).toBeTruthy();
+      expect(actionEl?.tagName.toLowerCase()).toBe('mh-icon-button');
+    });
+
+    it('renders an action button with the given label instead of the close button', async () => {
+      const el = await fixture<Snackbar>(
+        html`<mh-snackbar action="Undo">Saved</mh-snackbar>`,
+      );
+      el.open();
+      await el.updateComplete;
+
+      const actionEl = part('action', el);
+      expect(actionEl).toBeTruthy();
+      expect(actionEl?.tagName.toLowerCase()).toBe('mh-button');
+      expect(textContent(actionEl!)).toBe('Undo');
+    });
+
+    it('dismisses with the action-button reason when the action button is clicked', async () => {
+      const el = await fixture<Snackbar>(
+        html`<mh-snackbar action="Undo">Saved</mh-snackbar>`,
+      );
+      el.open();
+      await el.updateComplete;
+
+      const dismissed = oneEvent(
+        el,
+        'mh-snackbar-dismissed',
+      ) as Promise<SnackbarDismissedEvent>;
+      part<HTMLElement>('action', el)?.click();
+      const event = await dismissed;
+
+      expect(event.reason).toBe('action-button');
+      expect(el.isOpen).toBe(false);
+    });
+  });
+
   describe('single instance', () => {
     it('dismisses a previously open snackbar when another opens', async () => {
-      const first = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
-      const second = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+      const first = await fixture<Snackbar>(
+        html`<mh-snackbar>First</mh-snackbar>`,
+      );
+      const second = await fixture<Snackbar>(
+        html`<mh-snackbar>Second</mh-snackbar>`,
+      );
 
-      first.open('First');
-      second.open('Second');
+      first.open();
+      second.open();
 
       expect(first.isOpen).toBe(false);
       expect(second.isOpen).toBe(true);
@@ -151,9 +209,11 @@ describe('snackbar', () => {
     it('announces in a shared visually hidden region in the document body', async () => {
       vi.useFakeTimers();
       try {
-        const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+        const el = await fixture<Snackbar>(
+          html`<mh-snackbar>Saved</mh-snackbar>`,
+        );
 
-        el.open('Saved');
+        el.open();
         vi.advanceTimersByTime(100);
 
         const { region } = liveAnnouncer;
@@ -167,9 +227,11 @@ describe('snackbar', () => {
     });
 
     it('hides the visual message from assistive technology to avoid double announcement', async () => {
-      const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+      const el = await fixture<Snackbar>(
+        html`<mh-snackbar>Saved</mh-snackbar>`,
+      );
 
-      el.open('Saved');
+      el.open();
       await el.updateComplete;
 
       expect(part('message', el)?.getAttribute('aria-hidden')).toBe('true');
@@ -178,14 +240,16 @@ describe('snackbar', () => {
     it('clears the region before injecting so identical messages re-announce', async () => {
       vi.useFakeTimers();
       try {
-        const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+        const el = await fixture<Snackbar>(
+          html`<mh-snackbar>Message archived</mh-snackbar>`,
+        );
 
-        el.open('Message archived');
+        el.open();
         vi.advanceTimersByTime(100);
         expect(liveAnnouncer.region?.textContent).toBe('Message archived');
 
         // Re-opening clears the region first, then re-injects the same text.
-        el.open('Message archived');
+        el.open();
         expect(liveAnnouncer.region?.textContent).toBe('');
 
         vi.advanceTimersByTime(100);
@@ -198,9 +262,11 @@ describe('snackbar', () => {
     it('keeps the announcement after the snackbar dismisses so polite messages are not lost', async () => {
       vi.useFakeTimers();
       try {
-        const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
+        const el = await fixture<Snackbar>(
+          html`<mh-snackbar>Message archived</mh-snackbar>`,
+        );
 
-        el.open('Message archived');
+        el.open();
         vi.advanceTimersByTime(100);
         el.dismiss();
 
@@ -213,18 +279,20 @@ describe('snackbar', () => {
   });
 
   describe('events', () => {
-    it('emits mh-snackbar-dismissed with the close-button reason', async () => {
-      const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
-      el.open('Saved');
+    it('emits mh-snackbar-dismissed with the action-button reason', async () => {
+      const el = await fixture<Snackbar>(
+        html`<mh-snackbar>Saved</mh-snackbar>`,
+      );
+      el.open();
 
       const dismissed = oneEvent(
         el,
         'mh-snackbar-dismissed',
       ) as Promise<SnackbarDismissedEvent>;
-      part<HTMLElement>('close', el)?.click();
+      part<HTMLElement>('action', el)?.click();
       const event = await dismissed;
 
-      expect(event.reason).toBe('close-button');
+      expect(event.reason).toBe('action-button');
       expect(el.isOpen).toBe(false);
     });
 
@@ -232,14 +300,14 @@ describe('snackbar', () => {
       vi.useFakeTimers();
       try {
         const el = await fixture<Snackbar>(
-          html`<mh-snackbar duration="1000"></mh-snackbar>`,
+          html`<mh-snackbar duration="1000">Saved</mh-snackbar>`,
         );
 
         const dismissed = oneEvent(
           el,
           'mh-snackbar-dismissed',
         ) as Promise<SnackbarDismissedEvent>;
-        el.open('Saved');
+        el.open();
         vi.advanceTimersByTime(1000);
         const event = await dismissed;
 
@@ -250,8 +318,10 @@ describe('snackbar', () => {
     });
 
     it('emits mh-snackbar-dismissed with the programmatic reason', async () => {
-      const el = await fixture<Snackbar>(html`<mh-snackbar></mh-snackbar>`);
-      el.open('Saved');
+      const el = await fixture<Snackbar>(
+        html`<mh-snackbar>Saved</mh-snackbar>`,
+      );
+      el.open();
 
       const dismissed = oneEvent(
         el,

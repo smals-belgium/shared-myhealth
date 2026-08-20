@@ -11,6 +11,7 @@
   "peerDependencies": {
     "@angular/core": "^21.2.0",
     "@angular/forms": "^21.2.0",
+    "lit": "^3.3.2",
     "rxjs": "^7.8.0"
   },
   "peerDependenciesMeta": {
