@@ -7,6 +7,8 @@ label {
   flex-direction: row;
   align-items: center;
   width: stretch;
+  vertical-align: middle;
+  line-height: inherit;
 
   &:has(input:user-invalid) {
     color: var(--mh-color-danger-type);
