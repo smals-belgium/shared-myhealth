@@ -3,8 +3,8 @@ import { customElement, property } from 'lit/decorators.js';
 
 import type { Variant } from '../core';
 
-import appearance from './chip.appearance.css?inline';
 import styles from './chip.css?inline';
+import variant from './chip.variant.css?inline';
 
 /** The chip's theme variant. */
 export type ChipVariant = Variant | 'tertiary';
@@ -26,7 +26,7 @@ export type ChipVariant = Variant | 'tertiary';
  */
 @customElement('mh-chip')
 export class Chip extends LitElement {
-  static override readonly styles = [styles, appearance].map(unsafeCSS);
+  static override readonly styles = [styles, variant].map(unsafeCSS);
 
   /** The chip's theme variant. */
   @property({ reflect: true }) variant: ChipVariant = 'neutral';

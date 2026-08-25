@@ -8,6 +8,7 @@
   justify-content: center;
   transform: rotate(var(--mh-icon__rotate-angle, 0deg));
   transition: 200ms ease-out;
+  color-scheme: light;
 }
 
 svg {

@@ -12,6 +12,7 @@
 
   /* The native dialog renders in the top layer, so the host itself takes no space. */
   display: contents;
+  color-scheme: light;
 }
 
 [part='dialog'] {

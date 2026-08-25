@@ -4,6 +4,8 @@
   --mh-form-field__color-type-hint: var(--mh-color-neutral-type);
   --mh-form-field__color-type-required-symbol: var(--mh-color-danger-type);
   --mh-form-field__color-type-disabled: var(--mh-color-neutral-type);
+
+  color-scheme: light;
 }
 
 label {

@@ -2,6 +2,7 @@
   --mh-icon-button__size: 2.5rem;
 
   display: inline-block;
+  color-scheme: light;
 }
 
 [part='button'] {

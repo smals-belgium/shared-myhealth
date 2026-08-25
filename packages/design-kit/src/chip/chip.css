@@ -4,6 +4,7 @@
   --mh-chip__color-type: var(--mh-color-neutral-type-louder);
 
   display: inline-block;
+  color-scheme: light;
 }
 
 [part='base'] {
