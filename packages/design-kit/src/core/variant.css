@@ -1,3 +1,7 @@
+:host {
+  color-scheme: light;
+}
+
 :host([variant='info']),
 :host([variant='brand']) {
   --mh-color-type-louder: var(--mh-color-brand-type-louder);

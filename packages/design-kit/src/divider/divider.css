@@ -2,6 +2,8 @@
   --mh-divider__color: var(--mh-color-neutral-border);
   --mh-divider__width: var(--mh-border-width-s);
   --mh-divider__space: var(--mh-space-m);
+
+  color-scheme: light;
 }
 
 :host([loudness='louder']) {

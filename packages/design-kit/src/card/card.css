@@ -5,6 +5,7 @@
   flex-direction: column;
   background-color: #ffffff;
   border-radius: var(--mh-border-radius);
+  color-scheme: light;
 }
 
 [part='header'] {
