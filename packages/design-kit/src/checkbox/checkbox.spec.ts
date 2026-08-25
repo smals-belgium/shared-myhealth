@@ -233,7 +233,7 @@ describe('checkbox', () => {
   });
 
   describe('form association', () => {
-    it('has role "checkbox" via internals', async () => {
+    it('does not set a role via internals (native input carries the semantics)', async () => {
       const el = await fixture<Checkbox>(
         html`<mh-checkbox
           name="p"
@@ -241,7 +241,7 @@ describe('checkbox', () => {
           >Option</mh-checkbox
         >`,
       );
-      expect(el.internals.role).toBe('checkbox');
+      expect(el.internals.role).toBeNull();
     });
 
     it('sets form value when checked', async () => {

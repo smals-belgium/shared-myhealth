@@ -76,6 +76,10 @@
       "@smals-belgium-shared/vitals-ng/cdk/overlay": [
         "./packages/vitals-ng/src/cdk/overlay/index.ts"
       ]
-    }
+    },
+    "noUncheckedSideEffectImports": false,
+    "types": ["*"],
+    "esModuleInterop": false,
+    "ignoreDeprecations": "6.0"
   }
 }

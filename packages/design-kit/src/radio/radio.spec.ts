@@ -377,7 +377,7 @@ describe('radio', () => {
   });
 
   describe('form association', () => {
-    it('has role "radio" via internals', async () => {
+    it('does not set a role via internals (native input carries the semantics)', async () => {
       const el = await fixture<Radio>(
         html`<mh-radio
           name="w"
@@ -385,7 +385,7 @@ describe('radio', () => {
           >Option</mh-radio
         >`,
       );
-      expect(el.internals.role).toBe('radio');
+      expect(el.internals.role).toBeNull();
     });
 
     it('sets form value when checked', async () => {

@@ -52,7 +52,6 @@ export class Radio extends LitElement {
   override connectedCallback() {
     super.connectedCallback();
     this.#defaultChecked ??= this.checked;
-    this.internals.role = 'radio';
     radioGroups.connect(this);
   }
 
