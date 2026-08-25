@@ -47,6 +47,7 @@ input {
 
   flex: 1;
   margin: 0 0.5rem;
+  width: 100%;
   height: calc(var(--mh-text-input__size-height) - 2px);
   border-radius: var(--mh-text-input__size-border-radius);
   font-family: inherit;
