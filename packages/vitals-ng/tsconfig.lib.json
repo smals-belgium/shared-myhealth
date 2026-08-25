@@ -6,7 +6,8 @@
     "declarationMap": true,
     "inlineSources": true,
     "sourceMap": true,
-    "types": []
+    "types": [],
+    "rootDir": "src"
   },
   "include": ["src/**/*.ts"],
   "exclude": [
@@ -17,6 +18,14 @@
     "vitest.config.mts",
     "src/test-setup.ts"
   ],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
+  },
   "references": [
     {
       "path": "../design-kit/tsconfig.lib.json"

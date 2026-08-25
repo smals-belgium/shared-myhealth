@@ -56,7 +56,6 @@ export class SlideToggle extends LitElement {
   override connectedCallback() {
     super.connectedCallback();
     this.#defaultChecked ??= this.checked;
-    this.internals.role = 'switch';
   }
 
   formResetCallback() {

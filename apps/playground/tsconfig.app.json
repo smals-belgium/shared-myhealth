@@ -11,7 +11,8 @@
     "tsBuildInfoFile": "dist/tsconfig.app.tsbuildinfo",
     "paths": {
       "@myhealth/design-kit": ["./packages/design-kit/src/index.ts"]
-    }
+    },
+    "ignoreDeprecations": "6.0"
   },
   "exclude": [
     "out-tsc",

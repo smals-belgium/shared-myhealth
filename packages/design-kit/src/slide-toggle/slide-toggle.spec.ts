@@ -262,7 +262,7 @@ describe('slide-toggle', () => {
   });
 
   describe('form association', () => {
-    it('has role "switch" via internals', async () => {
+    it('does not set a role via internals (native input carries the semantics)', async () => {
       const el = await fixture<SlideToggle>(
         html`<mh-slide-toggle
           name="p"
@@ -270,7 +270,7 @@ describe('slide-toggle', () => {
           >Enable</mh-slide-toggle
         >`,
       );
-      expect(el.internals.role).toBe('switch');
+      expect(el.internals.role).toBeNull();
     });
 
     it('sets form value when checked', async () => {

@@ -11,47 +11,24 @@ import { textInputStyles } from './text-input.styles';
 
 /** HTMLInputElement['type'] is `string`, so we narrow it down. */
 export type TextInputType =
-  | 'email'
-  | 'password'
-  | 'search'
-  | 'tel'
-  | 'text'
-  | 'url';
+  'email' | 'password' | 'search' | 'tel' | 'text' | 'url';
 
 export type TextInputSize = Extract<Size, 's' | 'm'>;
 
 /** Controls whether and how text input is automatically capitalized as it is entered by the user. */
 export type AutoCapitalize =
-  | 'off'
-  | 'none'
-  | 'on'
-  | 'sentences'
-  | 'words'
-  | 'characters';
+  'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters';
 
 /** Used to customize the label or icon of the Enter key on virtual keyboards. */
 export type EnterKeyHint =
-  | 'enter'
-  | 'done'
-  | 'go'
-  | 'next'
-  | 'previous'
-  | 'search'
-  | 'send';
+  'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
 
 /**
  * Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
  * keyboard on supportive devices.
  */
 export type InputMode =
-  | 'none'
-  | 'text'
-  | 'decimal'
-  | 'numeric'
-  | 'tel'
-  | 'search'
-  | 'email'
-  | 'url';
+  'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url';
 
 /**
  * @summary Text inputs collect single-line data from the user, such as text, email addresses, and passwords.
@@ -143,7 +120,6 @@ export class TextInput extends LitElement {
     super.connectedCallback();
     this.addController(cssStateReflect(this, ['disabled', 'required']));
     this.#defaultValue ??= this.value;
-    this.internals.role = 'textbox';
   }
 
   formResetCallback() {

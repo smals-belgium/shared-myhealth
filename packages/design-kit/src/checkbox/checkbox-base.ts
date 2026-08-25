@@ -37,7 +37,6 @@ export abstract class CheckboxBase extends LitElement {
   override connectedCallback() {
     super.connectedCallback();
     this.#defaultChecked ??= this.checkedState;
-    this.internals.role = 'checkbox';
   }
 
   formResetCallback() {
