@@ -25,7 +25,7 @@
   /* Avoid hover state on disabled input */
   label:has(input:not(:disabled)) & {
     &:hover {
-      border-color: var(--mh-text-input__color-border-input__invalid);
+      border-color: var(--mh-text-input__color-border-input__hover);
     }
 
     &:has(input:user-invalid):hover {
@@ -58,5 +58,13 @@ input {
   &:disabled {
     cursor: not-allowed;
     background-color: var(--mh-text-input__color-fill-input__disabled);
+  }
+
+  /*
+   * Override blue-ish autofill selection background color.
+   * Box-shadow instead of background-color is a trick for browser consistency.
+   */
+  &:autofill {
+    box-shadow: 0 0 0 1000px var(--mh-text-input__color-fill-input) inset;
   }
 }
