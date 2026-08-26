@@ -10,6 +10,11 @@ import styles from './option.css?inline';
  * @documentation https://github.com/smals-belgium/myhealth-storybook-design-kit/docs/components/option
  * @status stable
  * @since 1.0
+ *
+ * @cssproperty [--mh-option__size-border-radius=var(--mh-border-radius)] - The border radius of the option item.
+ * @cssproperty [--mh-option__color-fill__hover=var(--mh-color-brand-fill-quiet)] - The background color on hover.
+ * @cssproperty [--mh-option__color-fill__selected=var(--mh-color-brand-fill-quieter)] - The background color when selected.
+ * @cssproperty [--mh-option__color-type__disabled=var(--mh-color-neutral-type-loud)] - The text color when disabled.
  */
 @customElement('mh-option')
 export class Option extends LitElement {

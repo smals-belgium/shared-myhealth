@@ -1,37 +1,37 @@
 :host([placement='top']) [part='tooltip'] {
   inset-inline-start: 50%;
-  inset-block-end: calc(100% + var(--mh-tooltip__offset));
+  inset-block-end: calc(100% + var(--mh-tooltip__size-offset));
   translate: -50% 0;
 }
 
 :host([placement='bottom']) [part='tooltip'] {
   inset-inline-start: 50%;
-  inset-block-start: calc(100% + var(--mh-tooltip__offset));
+  inset-block-start: calc(100% + var(--mh-tooltip__size-offset));
   translate: -50% 0;
 }
 
 /* left / right: physical sides — always left or always right regardless of text direction. */
 :host([placement='left']) [part='tooltip'] {
-  right: calc(100% + var(--mh-tooltip__offset));
+  right: calc(100% + var(--mh-tooltip__size-offset));
   top: 50%;
   translate: 0 -50%;
 }
 
 :host([placement='right']) [part='tooltip'] {
-  left: calc(100% + var(--mh-tooltip__offset));
+  left: calc(100% + var(--mh-tooltip__size-offset));
   top: 50%;
   translate: 0 -50%;
 }
 
 /* start / end: logical sides — inline-start/end, adapts to RTL text direction. */
 :host([placement='start']) [part='tooltip'] {
-  inset-inline-end: calc(100% + var(--mh-tooltip__offset));
+  inset-inline-end: calc(100% + var(--mh-tooltip__size-offset));
   inset-block-start: 50%;
   translate: 0 -50%;
 }
 
 :host([placement='end']) [part='tooltip'] {
-  inset-inline-start: calc(100% + var(--mh-tooltip__offset));
+  inset-inline-start: calc(100% + var(--mh-tooltip__size-offset));
   inset-block-start: 50%;
   translate: 0 -50%;
 }

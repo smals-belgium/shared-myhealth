@@ -170,3 +170,78 @@ Consider creating a custom event only when none of these paths lead to a solutio
 ### Accesibility (a11y)
 
 ### Testing
+
+### CSS custom properties
+
+All CSS custom properties exposed by a component follow a structured naming pattern. Every segment is mandatory
+except where noted.
+
+```
+--mh-<component>__<category>[-<qualifier>]-[<target>][__<state>]
+```
+
+| Segment                  | Separator     | Description                                                                                                                                                                       |
+| ------------------------ | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mh`                     | `-`           | Global design system prefix. Always present.                                                                                                                                      |
+| `component`              | `__` (double) | The custom element tag without the `mh-` prefix. E.g. `text-input`, `icon-button`.                                                                                                |
+| `category`               | `-`           | The CSS concept being customised. See table below.                                                                                                                                |
+| `qualifier` _(optional)_ | `-`           | Narrows the category when needed. E.g. `fill`, `border`, `width`. **Always placed before target.**                                                                                |
+| `target` _(optional)_    | `-`           | The sub-element being styled. **Omit when the variable applies to the host element itself.**                                                                                      |
+| `state` _(optional)_     | `__` (double) | An interactive or validation state: `hover`, `focus`, `active`, `disabled`, `invalid`, etc. Multiple states can be combined with a single dash: `invalid-hover`, `invalid-focus`. |
+
+#### Categories
+
+| Category     | Used for                                                                                                                                     |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `color`      | Any color value. Use qualifier to specify `fill` (background), `type` (text/foreground), `border`, `icon`, `gradient`, etc.                  |
+| `size`       | Dimensions, spacing, radii, offsets. Use qualifier `space` for multi-purpose spacing; specific names otherwise (`height`, `width`, `inset`). |
+| `animation`  | Timing, duration, easing. Never use `size` for these.                                                                                        |
+| `box-shadow` | Box shadow shorthand. Used verbatim as the category — no qualifier or target needed.                                                         |
+| `z-index`    | Stacking order. Used verbatim as the category — no qualifier or target needed.                                                               |
+
+#### Rules
+
+1. **Omit `target` when styling the host.** `--mh-card__size-space` (host spacing) vs `--mh-text-input__color-border-input` (targets the `input` child).
+2. **Qualifier before target.** `size-width-track` ✅ — `size-track-width` ❌.
+3. **State always uses `__` double underscore.** `--mh-button__color-fill__hover`.
+4. **Single underscore is never valid.** Only `-` within segments and `__` between component and the rest, and before state.
+5. **`color-type` means text/foreground color** per the design token convention.
+6. **`color-fill` means background color.**
+7. **`animation` for all timing values** — never `size`.
+
+#### Examples
+
+```css
+/* ✅ Correct */
+--mh-text-input__color-border-input              /* category=color, qualifier=border, target=input */
+--mh-text-input__color-border-input__invalid     /* + state */
+--mh-card__size-space                            /* category=size, qualifier=space, no target (host) */
+--mh-spinner__size-width-track                   /* category=size, qualifier=width, target=track */
+--mh-spinner__animation-speed                    /* category=animation, no target */
+--mh-dialog__box-shadow                          /* CSS property name as category */
+
+/* ❌ Wrong */
+--spacing                                        /* no prefix, no component */
+--mh-card__space                                 /* missing category */
+--mh-spinner__size-track-width                   /* target before qualifier */
+--mh-text-input_color-border                     /* single underscore */
+```
+
+#### `@cssproperty` annotations
+
+Every public CSS custom property **must** have a `@cssproperty` annotation in the component's TypeScript file.
+Include the default value in bracket notation and a short description.
+
+```ts
+/**
+ * @cssproperty [--mh-card__size-space=var(--mh-space-m)] - The amount of space around and between sections of the card.
+ * @cssproperty [--mh-text-input__color-border-input=var(--mh-color-neutral-border)] - The border color of the input field.
+ * @cssproperty --mh-icon-button__color-fill - The background color. Defaults vary by loudness.
+ */
+```
+
+Use `[--name=default]` when a single concrete default applies. Use bare `--name` when the default varies (e.g. per
+loudness variant) and add a note in the description.
+
+Internal calculation helpers (e.g. `--radius`, `--circumference` in spinner) are **not** public API and must not
+be annotated.

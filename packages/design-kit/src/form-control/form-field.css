@@ -3,7 +3,7 @@
   --mh-form-field__color-type-help: var(--mh-color-neutral-type-loud);
   --mh-form-field__color-type-hint: var(--mh-color-neutral-type);
   --mh-form-field__color-type-required-symbol: var(--mh-color-danger-type);
-  --mh-form-field__color-type-disabled: var(--mh-color-neutral-type);
+  --mh-form-field__color-type__disabled: var(--mh-color-neutral-type);
 
   color-scheme: light;
 }
@@ -18,7 +18,7 @@ label:has(input:disabled) {
   & [part='label'],
   & [part='label']::after,
   & [part='help'] {
-    color: var(--mh-form-field__color-type-disabled);
+    color: var(--mh-form-field__color-type__disabled);
   }
 }
 

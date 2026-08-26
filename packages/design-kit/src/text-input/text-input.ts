@@ -58,6 +58,27 @@ export type InputMode =
  *
  * @cssstate disabled - Applied when the control is disabled.
  * @cssstate invalid - Applied when the control is invalid.
+ *
+ * @cssproperty [--mh-text-input__color-type-input=var(--mh-color-neutral-type-louder)] - The text color of the input field.
+ * @cssproperty [--mh-text-input__color-type-icon=var(--mh-color-neutral-type-loud)] - The color of decorative icons in the input.
+ * @cssproperty [--mh-text-input__color-type-icon-button=var(--mh-color-brand-type)] - The color of icon buttons inside the input.
+ * @cssproperty [--mh-text-input__color-type-icon-button__hover=var(--mh-color-brand-type-loud)] - The color of icon buttons on hover.
+ * @cssproperty [--mh-text-input__color-type-icon-button__active=var(--mh-color-brand-type-louder)] - The color of icon buttons when pressed.
+ * @cssproperty [--mh-text-input__color-fill-input=#ffffff] - The background color of the input field.
+ * @cssproperty [--mh-text-input__color-fill-input__disabled=#ffffff] - The background color when disabled.
+ * @cssproperty [--mh-text-input__color-border-input=var(--mh-color-neutral-border)] - The border color of the input field.
+ * @cssproperty [--mh-text-input__color-border-input__hover=var(--mh-color-brand-border)] - The border color on hover.
+ * @cssproperty [--mh-text-input__color-border-input__focus=var(--mh-color-brand-border-loud)] - The border color when focused.
+ * @cssproperty [--mh-text-input__color-border-input__invalid=var(--mh-color-danger-border)] - The border color when invalid.
+ * @cssproperty --mh-text-input__color-border-input__invalid-hover - The border color when invalid and hovered.
+ * @cssproperty [--mh-text-input__size-height=var(--mh-form-control-height)] - The height of the input field.
+ * @cssproperty [--mh-text-input__size-border-radius=var(--mh-border-radius)] - The border radius of the input field.
+ *
+ * @cssproperty [--mh-form-field__color-type-label=var(--mh-color-neutral-type-louder)] - The color of the field label.
+ * @cssproperty [--mh-form-field__color-type-help=var(--mh-color-neutral-type-loud)] - The color of the help text.
+ * @cssproperty [--mh-form-field__color-type-hint=var(--mh-color-neutral-type)] - The color of the hint text.
+ * @cssproperty [--mh-form-field__color-type-required-symbol=var(--mh-color-danger-type)] - The color of the required `*` symbol.
+ * @cssproperty [--mh-form-field__color-type__disabled=var(--mh-color-neutral-type)] - The label and hint color when disabled.
  */
 @customElement('mh-text-input')
 export class TextInput extends LitElement {

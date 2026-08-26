@@ -1,10 +1,10 @@
 :host([animation='sheen']) [part~='indicator'] {
   background: linear-gradient(
     270deg,
-    var(--mh-skeleton__sheen-color),
+    var(--mh-skeleton__color-sheen),
     var(--mh-skeleton__color),
     var(--mh-skeleton__color),
-    var(--mh-skeleton__sheen-color)
+    var(--mh-skeleton__color-sheen)
   );
   background-size: 400% 100%;
   animation: sheen 8s ease-in-out infinite;

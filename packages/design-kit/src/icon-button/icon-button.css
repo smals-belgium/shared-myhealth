@@ -1,5 +1,5 @@
 :host {
-  --mh-icon-button__size: 2.5rem;
+  --mh-icon-button__size-icon: 2.5rem;
 
   display: inline-block;
   color-scheme: light;
@@ -9,8 +9,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--mh-icon-button__size);
-  height: var(--mh-icon-button__size);
+  width: var(--mh-icon-button__size-icon);
+  height: var(--mh-icon-button__size-icon);
   cursor: pointer;
   border: none;
   font-family: inherit;

@@ -24,7 +24,8 @@ import selectableStyles from './selectable-chip.css?inline';
  * @csspart start - The container that wraps the `start` slot.
  * @csspart main - The container that wraps the label.
  *
- * @cssproperty [--mh-chip__height=2rem] - The chip's minimum height.
+ * @cssproperty [--mh-chip__size-height=2rem] - The chip's minimum height.
+ * @cssproperty [--mh-chip__color-type=var(--mh-color-neutral-type)] - The chip's text color.
  */
 @customElement('mh-selectable-chip')
 export class SelectableChip extends CheckboxBase {

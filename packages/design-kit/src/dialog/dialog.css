@@ -1,10 +1,10 @@
 :host {
-  --mh-dialog__spacing: 1.25rem;
+  --mh-dialog__size-space: 1.25rem;
 
   --mh-dialog__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
 
   /* Backdrop tint: brand fill shown at 60% transparency (40% opacity). */
-  --mh-dialog__backdrop: color-mix(
+  --mh-dialog__color-backdrop: color-mix(
     in srgb,
     var(--mh-color-brand-fill) 60%,
     transparent
@@ -36,7 +36,7 @@
 }
 
 [part='dialog']::backdrop {
-  background-color: var(--mh-dialog__backdrop);
+  background-color: var(--mh-dialog__color-backdrop);
 }
 
 /* Fullscreen variant: the dialog covers the entire viewport with no rounded corners or shadow. */
@@ -55,8 +55,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: calc(var(--mh-dialog__spacing) / 2);
-  padding: var(--mh-dialog__spacing) var(--mh-dialog__spacing) 0;
+  gap: calc(var(--mh-dialog__size-space) / 2);
+  padding: var(--mh-dialog__size-space) var(--mh-dialog__size-space) 0;
 }
 
 [part='header-title'],
@@ -64,7 +64,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: calc(var(--mh-dialog__spacing) / 2);
+  gap: calc(var(--mh-dialog__size-space) / 2);
 }
 
 /**
@@ -79,7 +79,7 @@
 [part='content'] {
   display: block;
   flex: 1 1 auto;
-  padding: 0 var(--mh-dialog__spacing);
+  padding: 0 var(--mh-dialog__size-space);
   overflow: auto;
 }
 
@@ -88,8 +88,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  gap: calc(var(--mh-dialog__spacing) / 2);
-  padding: var(--mh-dialog__spacing) var(--mh-dialog__spacing);
+  gap: calc(var(--mh-dialog__size-space) / 2);
+  padding: var(--mh-dialog__size-space) var(--mh-dialog__size-space);
 }
 
 [name='header-title']::slotted(*) {

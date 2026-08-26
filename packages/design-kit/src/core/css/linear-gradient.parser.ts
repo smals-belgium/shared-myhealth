@@ -51,7 +51,7 @@ const parseAngle = (value: string) =>
  * @example
  * ```css
  * // input
- * --mh-icon__gradient: linear-gradient(229deg, #2473db -37.55%, #76e1b1 100%);
+ * --mh-icon__color-gradient: linear-gradient(229deg, #2473db -37.55%, #76e1b1 100%);
  * ```
  *
  * ```json

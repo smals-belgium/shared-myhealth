@@ -38,7 +38,14 @@ export const calloutCloseDirective = 'mh-callout-close';
  * @csspart description - The container for the `description` slot.
  * @csspart actions - The container that wraps the `actions` slot.
  *
- * @cssproperty [--mh-callout__space=var(--mh-space-m)] - The amount of space around and between sections of the callout.
+ * @cssproperty [--mh-callout__size-space=var(--mh-space-m)] - The amount of space around and between sections of the callout.
+ * @cssproperty [--mh-callout__box-shadow=var(--mh-shadow-s)] - The shadow cast by the callout.
+ * @cssproperty [--mh-callout__color-fill=var(--mh-color-info-fill)] - The background color of the callout.
+ * @cssproperty [--mh-callout__color-type=var(--mh-color-info-type)] - The text color of the callout.
+ * @cssproperty [--mh-callout__color-icon=var(--mh-color-info-icon)] - The color of the variant icon.
+ * @cssproperty [--mh-callout__color-close=var(--mh-color-info-icon)] - The color of the close button icon.
+ * @cssproperty [--mh-callout__color-focus=var(--mh-color-info-border-loud)] - The focus ring color of the toggle.
+ * @cssproperty [--mh-callout__size-icon=var(--mh-icon-size-s)] - The size of the variant icon.
  */
 @customElement('mh-expandable-callout')
 export class ExpandableCallout extends CalloutBase {
@@ -91,9 +98,9 @@ export class ExpandableCallout extends CalloutBase {
           part="content"
           role=${this.getContentRole()}
           aria-labelledby="title"
-          aria-live=${this.getContentRole() === 'alert'
-            ? 'assertive'
-            : 'polite'}
+          aria-live=${
+            this.getContentRole() === 'alert' ? 'assertive' : 'polite'
+          }
           @click=${this.#onCloseTrigger}
         >
           <slot part="description"></slot>

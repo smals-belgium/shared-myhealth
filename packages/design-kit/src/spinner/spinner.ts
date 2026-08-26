@@ -14,11 +14,11 @@ import styles from './spinner.css?inline';
  *
  * @csspart base - The component's base wrapper.
  *
- * @cssproperty --track-width - The width of the track.
- * @cssproperty --track-color - The color of the track.
- * @cssproperty --indicator-color - The color of the spinner's indicator.
- * @cssproperty --size - The size of the visual.
- * @cssproperty --speed - The time it takes for the spinner to complete one animation cycle.
+ * @cssproperty [--mh-spinner__size-radius=2em] - The size (width and height) of the spinner.
+ * @cssproperty [--mh-spinner__size-width-track=2px] - The stroke width of the circular track.
+ * @cssproperty [--mh-spinner__color-track=var(--mh-color-neutral-fill-quiet)] - The color of the background track ring.
+ * @cssproperty [--mh-spinner__color-indicator=var(--mh-color-brand-fill)] - The color of the animated arc.
+ * @cssproperty [--mh-spinner__animation-speed=2s] - The duration of one full rotation cycle.
  */
 @customElement('mh-spinner')
 export class Spinner extends LitElement {
