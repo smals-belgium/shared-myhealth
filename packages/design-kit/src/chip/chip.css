@@ -1,6 +1,6 @@
 :host {
   /** The chip's height. Interactive chips keep a minimum 24px target for accessibility. */
-  --mh-chip__height: 2rem;
+  --mh-chip__size-height: 2rem;
   --mh-chip__color-type: var(--mh-color-neutral-type-louder);
 
   display: inline-block;
@@ -13,7 +13,7 @@
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  min-height: var(--mh-chip__height);
+  min-height: var(--mh-chip__size-height);
   /* Stretch to host width without forcing width in regular inline usage. */
   width: stretch;
   margin: 0;

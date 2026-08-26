@@ -28,7 +28,9 @@ import removableStyles from './removable-chip.css?inline';
  * @csspart main - The container that wraps the label.
  * @csspart remove - The trailing remove `<button>`.
  *
- * @cssproperty [--mh-chip__height=2rem] - The chip's minimum height.
+ * @cssproperty [--mh-chip__size-height=2rem] - The chip's minimum height.
+ * @cssproperty [--mh-chip__color-type=var(--mh-color-neutral-type)] - The chip's text color.
+ * @cssproperty [--mh-chip__size-icon=1rem] - The size of the remove icon.
  */
 @customElement('mh-removable-chip')
 export class RemovableChip extends InteractiveChipBase {

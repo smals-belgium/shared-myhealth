@@ -1,12 +1,12 @@
 :host {
-  --mh-icon__rotate-angle: 0deg;
+  --mh-icon__size-angle-rotate: 0deg;
 
   box-sizing: content-box;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  transform: rotate(var(--mh-icon__rotate-angle, 0deg));
+  transform: rotate(var(--mh-icon__size-angle-rotate, 0deg));
   transition: 200ms ease-out;
   color-scheme: light;
 }

@@ -1,5 +1,5 @@
 :host {
-  --spacing: var(--mh-space-m);
+  --mh-card__size-space: var(--mh-space-m);
 
   display: flex;
   flex-direction: column;
@@ -15,13 +15,13 @@
 
 [part='header'],
 [part='footer'] {
-  gap: calc(var(--spacing) / 2);
-  padding: calc(var(--spacing) / 2) var(--spacing);
+  gap: calc(var(--mh-card__size-space) / 2);
+  padding: calc(var(--mh-card__size-space) / 2) var(--mh-card__size-space);
 }
 
 [part='body'] {
   display: block;
-  padding: 0 var(--spacing);
+  padding: 0 var(--mh-card__size-space);
 }
 
 [name='header'],
@@ -34,7 +34,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: calc(var(--spacing) / 2);
+  gap: calc(var(--mh-card__size-space) / 2);
 }
 
 [name='header'],

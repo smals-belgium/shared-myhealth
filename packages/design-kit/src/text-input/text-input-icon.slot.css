@@ -1,5 +1,5 @@
 ::slotted(mh-icon) {
-  color: var(--mh-text-input_color-type-icon);
+  color: var(--mh-text-input__color-type-icon);
 }
 
 [part='start']::slotted(mh-icon) {
@@ -11,5 +11,5 @@
 }
 
 label:has(input:disabled) ::slotted(mh-icon) {
-  color: var(--mh-form-field_color-type-disabled);
+  color: var(--mh-form-field__color-type__disabled);
 }

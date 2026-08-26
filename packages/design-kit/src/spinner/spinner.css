@@ -1,9 +1,9 @@
 :host {
-  --track-width: 2px;
-  --track-color: var(--mh-color-neutral-fill-quiet);
-  --indicator-color: var(--mh-color-brand-fill);
-  --speed: 2s;
-  --size: 2em;
+  --mh-spinner__size-width-track: 2px;
+  --mh-spinner__color-track: var(--mh-color-neutral-fill-quiet);
+  --mh-spinner__color-indicator: var(--mh-color-brand-fill);
+  --mh-spinner__animation-speed: 2s;
+  --mh-spinner__size-radius: 2em;
 
   /*
     Resizing a spinner element using anything but font-size will break the animation because the animation uses em
@@ -13,8 +13,8 @@
   */
   flex: none;
   display: inline-flex;
-  width: var(--size);
-  height: var(--size);
+  width: var(--mh-spinner__size-radius);
+  height: var(--mh-spinner__size-radius);
   color-scheme: light;
 }
 
@@ -22,27 +22,29 @@ svg {
   width: 100%;
   height: 100%;
   aspect-ratio: 1;
-  animation: spin var(--speed) linear infinite;
+  animation: spin var(--mh-spinner__animation-speed) linear infinite;
 }
 
 .track,
 .indicator {
-  --radius: calc(var(--size) / 2 - var(--track-width) / 2);
+  --radius: calc(
+    var(--mh-spinner__size-radius) / 2 - var(--mh-spinner__size-width-track) / 2
+  );
   --circumference: calc(var(--radius) * 2 * 3.141592654);
 
-  cx: calc(var(--size) / 2);
-  cy: calc(var(--size) / 2);
+  cx: calc(var(--mh-spinner__size-radius) / 2);
+  cy: calc(var(--mh-spinner__size-radius) / 2);
   r: var(--radius);
   fill: none;
-  stroke-width: var(--track-width);
+  stroke-width: var(--mh-spinner__size-width-track);
 }
 
 .track {
-  stroke: var(--track-color);
+  stroke: var(--mh-spinner__color-track);
 }
 
 .indicator {
-  stroke: var(--indicator-color);
+  stroke: var(--mh-spinner__color-indicator);
   stroke-linecap: round;
   stroke-dasharray:
     calc(0.597 * var(--circumference)), calc(0.796 * var(--circumference));

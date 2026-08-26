@@ -38,11 +38,11 @@
   background-color: var(--mh-select__color-fill-input);
 
   mh-icon {
-    --mh-icon__rotate-angle: 90deg;
+    --mh-icon__size-angle-rotate: 90deg;
     color: var(--mh-select__color-chevron);
 
     :host(:state(open)) & {
-      --mh-icon__rotate-angle: 270deg;
+      --mh-icon__size-angle-rotate: 270deg;
     }
   }
 
@@ -69,7 +69,7 @@
 
   &:disabled,
   &:disabled mh-icon {
-    color: var(--mh-form-field__color-type-disabled);
+    color: var(--mh-form-field__color-type__disabled);
     border-color: var(--mh-select__color-border-input);
     cursor: not-allowed;
   }

@@ -41,8 +41,9 @@ declare global {
  * @csspart content - The default (content) slot.
  * @csspart actions - The container that wraps the `actions` slot.
  *
- * @cssproperty [--mh-dialog__spacing=var(--mh-space-m)] - The amount of space around and between sections of the dialog.
- * @cssproperty [--mh-dialog__backdrop=color-mix(in srgb, var(--mh-color-brand-fill) 60%, transparent)] - The backdrop color.
+ * @cssproperty [--mh-dialog__size-space=var(--mh-space-m)] - The amount of space around and between sections of the dialog.
+ * @cssproperty [--mh-dialog__color-backdrop=color-mix(in srgb, var(--mh-color-brand-fill) 60%, transparent)] - The backdrop color.
+ * @cssproperty [--mh-dialog__box-shadow=var(--mh-shadow-l)] - The shadow cast by the dialog panel.
  */
 @customElement('mh-dialog')
 export class Dialog extends LitElement {

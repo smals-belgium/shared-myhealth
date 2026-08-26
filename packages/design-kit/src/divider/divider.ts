@@ -12,9 +12,9 @@ import styles from './divider.css?inline';
  * @status stable
  * @since 1.0
  *
- * @cssproperty --color - The color of the divider.
- * @cssproperty --width - The width of the divider.
- * @cssproperty --spacing - The spacing of the divider.
+ * @cssproperty [--mh-divider__color=var(--mh-color-neutral-border)] - The color of the divider line.
+ * @cssproperty [--mh-divider__size-width=var(--mh-border-width-s)] - The thickness of the divider line.
+ * @cssproperty [--mh-divider__size-space=var(--mh-space-m)] - The margin on either side of the divider.
  */
 @customElement('mh-divider')
 export class Divider extends LitElement {

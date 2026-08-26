@@ -17,8 +17,8 @@ details {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--mh-callout__space);
-  padding: var(--mh-callout__space);
+  gap: var(--mh-callout__size-space);
+  padding: var(--mh-callout__size-space);
   cursor: pointer;
 
   &::-webkit-details-marker {
@@ -50,8 +50,8 @@ details {
 
 [part='content'] {
   container: callout-content / inline-size;
-  padding-inline: var(--mh-callout__space);
-  margin-bottom: var(--mh-callout__space);
+  padding-inline: var(--mh-callout__size-space);
+  margin-bottom: var(--mh-callout__size-space);
 }
 
 /* On mobile, stack the actions and let them fill the callout width. */

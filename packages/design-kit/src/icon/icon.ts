@@ -12,7 +12,7 @@ import size from './icon.size.css?inline';
 import { addLinearGradient } from './linear-gradient';
 
 export type IconSize = Size;
-export type IconCssProperty = 'gradient' | 'rotate-angle';
+export type IconCssProperty = 'color-gradient' | 'size-rotate-angle';
 
 const icons: Record<string, string> = import.meta.glob('./svg/*.svg', {
   query: '?raw',
@@ -29,8 +29,8 @@ const icons: Record<string, string> = import.meta.glob('./svg/*.svg', {
  * @event mh-load - Emitted when the icon has loaded.
  * @event mh-error - Emitted when the icon fails to load due to an error.
  *
- * @cssproperty --mh-icon__gradient - A gradient function to apply to the icon (only linear-gradient supported for now).
- * @cssproperty --mh-icon__rotate-angle - The rotation angle of the icon.
+ * @cssproperty --mh-icon__color-gradient - A gradient function to apply to the icon (only linear-gradient supported for now).
+ * @cssproperty --mh-icon__size-angle-rotate - The rotation angle of the icon.
  */
 @customElement('mh-icon')
 export class Icon extends LitElement {
@@ -129,10 +129,12 @@ export class Icon extends LitElement {
 
   override render() {
     if (!this.svg) return html`#`;
-    if (!this.#cssProperties.has('gradient'))
+    if (!this.#cssProperties.has('color-gradient'))
       return html`${unsafeHTML(this.svg)}`;
 
-    const gradient = parseLinearGradient(this.#cssProperties.get('gradient'));
+    const gradient = parseLinearGradient(
+      this.#cssProperties.get('color-gradient'),
+    );
     // If there's an error, dispatch it, but still display the icon without the gradient
     if (gradient instanceof Error) {
       this.dispatchEvent(new ErrorEvent(gradient));

@@ -10,12 +10,7 @@ import placement from './tooltip-placement.css?inline';
 import styles from './tooltip.css?inline';
 
 export type TooltipPlacement =
-  | 'top'
-  | 'bottom'
-  | 'left'
-  | 'right'
-  | 'start'
-  | 'end';
+  'top' | 'bottom' | 'left' | 'right' | 'start' | 'end';
 
 /** Default delay in ms before showing the tooltip. */
 export const DEFAULT_TOOLTIP_SHOW_DELAY = 0;
@@ -41,12 +36,12 @@ let tooltipCounter = 0;
  * @csspart trigger - Wrapper around the trigger slot.
  * @csspart tooltip - The visible tooltip surface.
  *
- * @cssproperty [--mh-tooltip__background=var(--mh-color-neutral-fill-loud)] - Tooltip background color.
- * @cssproperty [--mh-tooltip__color=var(--mh-color-neutral-type-quieter)] - Tooltip text color.
- * @cssproperty [--mh-tooltip__radius=var(--mh-border-radius)] - Tooltip border radius.
- * @cssproperty [--mh-tooltip__padding-block=0.375rem] - Vertical padding.
- * @cssproperty [--mh-tooltip__padding-inline=0.5rem] - Horizontal padding.
- * @cssproperty [--mh-tooltip__offset=0.25rem] - Gap between the trigger and the tooltip surface.
+ * @cssproperty [--mh-tooltip__color-fill=var(--mh-color-neutral-fill-loud)] - Tooltip background color.
+ * @cssproperty [--mh-tooltip__color-type=var(--mh-color-neutral-type-quieter)] - Tooltip text color.
+ * @cssproperty [--mh-tooltip__size-border-radius=var(--mh-border-radius)] - Tooltip border radius.
+ * @cssproperty [--mh-tooltip__size-padding-block=0.375rem] - Vertical padding.
+ * @cssproperty [--mh-tooltip__size-padding-inline=0.5rem] - Horizontal padding.
+ * @cssproperty [--mh-tooltip__size-offset=0.25rem] - Gap between the trigger and the tooltip surface.
  * @cssproperty [--mh-tooltip__z-index=1000] - Stacking order.
  */
 @customElement('mh-tooltip')

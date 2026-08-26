@@ -50,6 +50,23 @@ export type SelectSize = Extract<Size, 's' | 'm'>;
  * @cssstate required - Applied when the control is required.
  * @cssstate disabled - Applied when the control is disabled.
  * @cssstate invalid - Applied when the control is invalid.
+ *
+ * @cssproperty [--mh-select__color-chevron=var(--mh-color-brand-type)] - The color of the dropdown chevron icon.
+ * @cssproperty [--mh-select__color-border-input=var(--mh-color-neutral-border)] - The border color of the select button.
+ * @cssproperty [--mh-select__color-border-input__hover=var(--mh-color-brand-border)] - The border color on hover.
+ * @cssproperty [--mh-select__color-border-input__focus=var(--mh-color-brand-border-loud)] - The border color when focused.
+ * @cssproperty [--mh-select__color-border-input__invalid=var(--mh-color-danger-border)] - The border color when invalid.
+ * @cssproperty --mh-select__color-border-input__invalid-hover - The border color when invalid and hovered.
+ * @cssproperty --mh-select__color-fill-input - The background color of the select button.
+ * @cssproperty [--mh-select__shadow-listbox=0px 3px 10px 0px rgba(0,0,0,0.15)] - The shadow of the dropdown listbox.
+ * @cssproperty [--mh-select__size-height=var(--mh-form-control-height)] - The height of the select button.
+ * @cssproperty [--mh-select__size-border-radius=var(--mh-border-radius)] - The border radius of the select button.
+ *
+ * @cssproperty [--mh-form-field__color-type-label=var(--mh-color-neutral-type-louder)] - The color of the field label.
+ * @cssproperty [--mh-form-field__color-type-help=var(--mh-color-neutral-type-loud)] - The color of the help text.
+ * @cssproperty [--mh-form-field__color-type-hint=var(--mh-color-neutral-type)] - The color of the hint text.
+ * @cssproperty [--mh-form-field__color-type-required-symbol=var(--mh-color-danger-type)] - The color of the required `*` symbol.
+ * @cssproperty [--mh-form-field__color-type__disabled=var(--mh-color-neutral-type)] - The label and hint color when disabled.
  */
 @customElement('mh-select')
 export class Select extends LitElement {

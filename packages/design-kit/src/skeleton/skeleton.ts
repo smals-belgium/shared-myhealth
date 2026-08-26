@@ -18,7 +18,7 @@ export const DEFAULT_SKELETON_COUNT = 7;
 
 /**
  * @summary Skeletons show placeholder shapes where content will appear once it finishes loading, reducing perceived
- *  wait time and preventing layout shift. Size a row by setting `--mh-skeleton__height` and the element's `width`, and
+ *  wait time and preventing layout shift. Size a row by setting `--mh-skeleton__size-height` and the element's `width`, and
  *  render several rows at once with the `count` attribute.
  *
  *  A single skeleton exposes one loading status to assistive technology, so a block of rows is announced once without
@@ -30,10 +30,10 @@ export const DEFAULT_SKELETON_COUNT = 7;
  * @csspart indicator - A skeleton row, responsible for its color and animation. One is rendered per `count`.
  *
  * @cssproperty --mh-skeleton__color - The base color of the skeleton.
- * @cssproperty --mh-skeleton__sheen-color - The sheen color shown while the skeleton is in its loading state.
- * @cssproperty --mh-skeleton__border-radius - The border radius of the skeleton's rows.
- * @cssproperty --mh-skeleton__height - The height of a single skeleton row.
- * @cssproperty --mh-skeleton__gap - The gap between skeleton rows.
+ * @cssproperty --mh-skeleton__color-sheen - The sheen color shown while the skeleton is in its loading state.
+ * @cssproperty --mh-skeleton__size-border-radius - The border radius of the skeleton's rows.
+ * @cssproperty --mh-skeleton__size-height - The height of a single skeleton row.
+ * @cssproperty --mh-skeleton__size-gap - The gap between skeleton rows.
  */
 @customElement('mh-skeleton')
 export class Skeleton extends LitElement {

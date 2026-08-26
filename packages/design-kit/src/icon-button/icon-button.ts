@@ -27,6 +27,16 @@ export type IconButtonLoudness = Extract<Loudness, 'normal' | 'loud'>;
  *
  * @csspart button - The native button.
  * @csspart icon - The inner `<mh-icon>` element.
+ *
+ * @cssproperty [--mh-icon-button__size-icon=2.5rem] - The size of the icon button (width and height).
+ * @cssproperty --mh-icon-button__color-type - The icon color. Defaults vary by loudness.
+ * @cssproperty --mh-icon-button__color-type__hover - The icon color on hover.
+ * @cssproperty --mh-icon-button__color-type__active - The icon color when pressed.
+ * @cssproperty [--mh-icon-button__color-type__disabled=var(--mh-color-neutral-type)] - The icon color when disabled.
+ * @cssproperty --mh-icon-button__color-fill - The background color. Defaults vary by loudness.
+ * @cssproperty --mh-icon-button__color-fill__hover - The background color on hover.
+ * @cssproperty --mh-icon-button__color-fill__active - The background color when pressed.
+ * @cssproperty --mh-icon-button__color-fill__disabled - The background color when disabled.
  */
 @customElement('mh-icon-button')
 export class IconButton extends LitElement {

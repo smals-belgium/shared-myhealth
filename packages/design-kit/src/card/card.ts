@@ -30,7 +30,7 @@ export type CardAppearance = 'raised' | 'outlined';
  * @csspart body - The container that wraps the card's main content.
  * @csspart footer - The container that wraps the card's footer.
  *
- * @cssproperty [--spacing=var(--mh-space-m)] - The amount of space around and between sections of the card.
+ * @cssproperty [--mh-card__size-space=var(--mh-space-m)] - The amount of space around and between sections of the card.
  * Expects a single value.
  */
 @customElement('mh-card')

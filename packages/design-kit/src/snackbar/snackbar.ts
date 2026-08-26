@@ -31,11 +31,11 @@ export const DEFAULT_SNACKBAR_DURATION = 3000;
  * @csspart message - The element wrapping the message.
  * @csspart action - The action button. A close (`X`) button by default, but can render a custom `action` label instead.
  *
- * @cssproperty [--mh-snackbar__spacing=var(--mh-space-m)] - The amount of space around and between sections of the snackbar.
- * @cssproperty [--mh-snackbar__background=var(--mh-color-neutral-fill-louder)] - The background color of the surface.
- * @cssproperty [--mh-snackbar__color=var(--mh-color-neutral-type-quieter)] - The text and icon color.
- * @cssproperty [--mh-snackbar__width=360px] - The width of the surface including its margins. Scales down to the viewport width on smaller screens.
- * @cssproperty [--mh-snackbar__inset=var(--mh-space-m)] - The margin around the surface.
+ * @cssproperty [--mh-snackbar__size-space=var(--mh-space-m)] - The amount of space around and between sections of the snackbar.
+ * @cssproperty [--mh-snackbar__color-fill=var(--mh-color-neutral-fill-louder)] - The background color of the surface.
+ * @cssproperty [--mh-snackbar__color-type=var(--mh-color-neutral-type-quieter)] - The text and icon color.
+ * @cssproperty [--mh-snackbar__size-width=360px] - The width of the surface including its margins. Scales down to the viewport width on smaller screens.
+ * @cssproperty [--mh-snackbar__size-inset=var(--mh-space-m)] - The margin around the surface.
  */
 @customElement('mh-snackbar')
 export class Snackbar extends LitElement {

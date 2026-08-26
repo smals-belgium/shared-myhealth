@@ -1,13 +1,13 @@
 :host {
-  --mh-callout__space: var(--mh-space-s);
+  --mh-callout__size-space: var(--mh-space-s);
   --mh-callout__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
-  --mh-callout__icon-size: 1.75rem;
+  --mh-callout__size-icon: 1.75rem;
 
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: var(--mh-callout__space);
-  padding: var(--mh-callout__space);
+  gap: var(--mh-callout__size-space);
+  padding: var(--mh-callout__size-space);
   box-shadow: var(--mh-callout__box-shadow);
   border-radius: var(--mh-border-radius);
   background-color: var(--mh-callout__color-fill);
@@ -43,8 +43,8 @@
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: var(--mh-callout__space);
-  gap: calc(var(--mh-callout__space) / 2);
+  margin-top: var(--mh-callout__size-space);
+  gap: calc(var(--mh-callout__size-space) / 2);
 }
 
 /* Tint the close button to match the callout's text color. */
