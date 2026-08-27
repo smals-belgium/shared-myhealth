@@ -2,9 +2,9 @@
   --mh-tooltip__color-fill: var(--mh-color-neutral-fill-loud);
   --mh-tooltip__color-type: var(--mh-color-neutral-type-quieter);
   --mh-tooltip__size-border-radius: var(--mh-border-radius);
+  --mh-tooltip__size-offset: 0.25rem;
   --mh-tooltip__size-padding-block: 0.375rem;
   --mh-tooltip__size-padding-inline: 0.5rem;
-  --mh-tooltip__size-offset: 0.25rem;
   --mh-tooltip__z-index: 1000;
 
   position: relative;

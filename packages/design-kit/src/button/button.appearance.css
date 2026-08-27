@@ -20,7 +20,7 @@
 
 :host([appearance='outlined']) [part='base'] {
   color: var(--mh-color-type);
-  background-color: #ffffff; /* not an existing fill color */
+  background-color: #fff; /* not an existing fill color */
   border-color: var(--mh-color-border);
 
   &:hover {

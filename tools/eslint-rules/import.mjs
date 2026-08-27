@@ -88,7 +88,7 @@ export const importPluginConfig = [
   },
   // many config files of external tools work with default exports
   {
-    files: ['**/*.config.ts', '**/*.config.mjs', '**/*.config.mts'],
+    files: ['**/*.config.ts', '**/*.mjs', '**/*.config.mts'],
     rules: {
       'import/no-default-export': 'off',
     },

@@ -44,8 +44,8 @@ input {
 
     [part='thumb'] {
       box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.12),
-        0 0 0 var(--state-layer-spread) rgba(0, 0, 0, 0.06);
+        0 2px 4px rgb(0 0 0 / 12%),
+        0 0 0 var(--state-layer-spread) rgb(0 0 0 / 6%);
     }
   }
 
@@ -54,8 +54,8 @@ input {
 
     [part='thumb'] {
       box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.12),
-        0 0 0 var(--state-layer-spread) rgba(0, 0, 0, 0.06);
+        0 2px 4px rgb(0 0 0 / 12%),
+        0 0 0 var(--state-layer-spread) rgb(0 0 0 / 6%);
     }
   }
 
@@ -64,7 +64,7 @@ input {
 
     [part='thumb'] {
       box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.12),
+        0 2px 4px rgb(0 0 0 / 12%),
         0 0 0 var(--state-layer-spread)
           color-mix(in srgb, var(--mh-color-brand-fill) 8%, transparent);
     }
@@ -75,7 +75,7 @@ input {
 
     [part='thumb'] {
       box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.12),
+        0 2px 4px rgb(0 0 0 / 12%),
         0 0 0 var(--state-layer-spread)
           color-mix(in srgb, var(--mh-color-brand-fill) 8%, transparent);
     }
@@ -104,14 +104,14 @@ input {
     background-color: var(--mh-color-danger-fill);
 
     [part='thumb'] {
-      background-color: #ffffff;
+      background-color: #fff;
     }
   }
 
   &:user-invalid:hover ~ [part='track'] [part='thumb'],
   &:user-invalid:focus-visible ~ [part='track'] [part='thumb'] {
     box-shadow:
-      0 2px 4px rgba(0, 0, 0, 0.12),
+      0 2px 4px rgb(0 0 0 / 12%),
       0 0 0 var(--state-layer-spread)
         color-mix(
           in srgb,
@@ -146,12 +146,12 @@ input {
   width: var(--thumb-size);
   height: var(--thumb-size);
   border-radius: 50%;
-  background-color: #ffffff;
+  background-color: #fff;
   transition:
     transform var(--transition),
     box-shadow var(--transition),
     color var(--transition);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 12%);
   display: flex;
   align-items: center;
   justify-content: center;

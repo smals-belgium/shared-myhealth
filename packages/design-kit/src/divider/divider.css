@@ -1,7 +1,7 @@
 :host {
   --mh-divider__color: var(--mh-color-neutral-border);
-  --mh-divider__size-width: var(--mh-border-width-s);
   --mh-divider__size-space: var(--mh-space-m);
+  --mh-divider__size-width: var(--mh-border-width-s);
 
   color-scheme: light;
 }

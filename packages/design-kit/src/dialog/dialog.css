@@ -1,14 +1,11 @@
 :host {
-  --mh-dialog__size-space: 1.25rem;
-
-  --mh-dialog__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
-
-  /* Backdrop tint: brand fill shown at 60% transparency (40% opacity). */
+  --mh-dialog__box-shadow: 1px 1px 4px 0px rgb(0 0 0 / 13%);
   --mh-dialog__color-backdrop: color-mix(
     in srgb,
     var(--mh-color-brand-fill) 60%,
     transparent
   );
+  --mh-dialog__size-space: 1.25rem;
 
   /* The native dialog renders in the top layer, so the host itself takes no space. */
   display: contents;

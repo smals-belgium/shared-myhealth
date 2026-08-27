@@ -62,6 +62,8 @@
     "postcss": "^8.5.15",
     "postcss-import": "^16.1.1",
     "prettier": "^3.8.1",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard": "^40.0.0",
     "swc-loader": "0.1.15",
     "tslib": "^2.3.0",
     "typescript": "6.0.3",

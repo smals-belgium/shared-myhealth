@@ -1,9 +1,9 @@
 :host {
-  --mh-snackbar__size-space: var(--mh-space-m);
   --mh-snackbar__color-fill: var(--mh-color-neutral-fill-louder);
   --mh-snackbar__color-type: var(--mh-color-neutral-type-quieter);
-  --mh-snackbar__size-width: 360px;
   --mh-snackbar__size-inset: var(--mh-space-m);
+  --mh-snackbar__size-space: var(--mh-space-m);
+  --mh-snackbar__size-width: 360px;
 
   /* The snackbar is a fixed overlay, so the host itself takes no layout space. */
   display: contents;
@@ -23,6 +23,7 @@
   gap: calc(var(--mh-snackbar__size-space) / 2);
 
   box-sizing: border-box;
+
   /* Default 360px wide including its side margins; shrinks to the viewport (minus margins) on smaller screens. */
   width: calc(
     min(var(--mh-snackbar__size-width), 100vw) - 2 *
@@ -33,7 +34,7 @@
 
   border-radius: var(--mh-border-radius);
   background-color: var(--mh-snackbar__color-fill);
-  box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
+  box-shadow: 1px 1px 4px 0 rgb(0 0 0 / 13%);
   color: var(--mh-snackbar__color-type);
 }
 

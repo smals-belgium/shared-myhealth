@@ -1,20 +1,20 @@
 :host {
   /* --- type --- */
-  --mh-text-input__color-type-input: var(--mh-color-neutral-type-louder);
   --mh-text-input__color-type-icon: var(--mh-color-neutral-type-loud);
   --mh-text-input__color-type-icon-button: var(--mh-color-brand-type);
-  --mh-text-input__color-type-icon-button__hover: var(
-    --mh-color-brand-type-loud
-  );
   --mh-text-input__color-type-icon-button__active: var(
     --mh-color-brand-type-louder
   );
+  --mh-text-input__color-type-icon-button__hover: var(
+    --mh-color-brand-type-loud
+  );
+  --mh-text-input__color-type-input: var(--mh-color-neutral-type-louder);
 
   /* --- fill --- */
-  --mh-text-input__color-fill-input: #ffffff;
-  --mh-text-input__color-fill-input__disabled: #ffffff;
+  --mh-text-input__color-fill-input: #fff;
+  --mh-text-input__color-fill-input__disabled: #fff;
 
-  /* border */
+  /* --- border --- */
   --mh-text-input__color-border-input: var(--mh-color-neutral-border);
   --mh-text-input__color-border-input__focus: var(--mh-color-brand-border-loud);
   --mh-text-input__color-border-input__hover: var(--mh-color-brand-border);
