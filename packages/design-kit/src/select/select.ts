@@ -58,7 +58,7 @@ export type SelectSize = Extract<Size, 's' | 'm'>;
  * @cssproperty [--mh-select__color-border-input__invalid=var(--mh-color-danger-border)] - The border color when invalid.
  * @cssproperty --mh-select__color-border-input__invalid-hover - The border color when invalid and hovered.
  * @cssproperty --mh-select__color-fill-input - The background color of the select button.
- * @cssproperty [--mh-select__shadow-listbox=0px 3px 10px 0px rgba(0,0,0,0.15)] - The shadow of the dropdown listbox.
+ * @cssproperty [--mh-select__box-shadow-listbox=0px 3px 10px 0px rgba(0,0,0,0.15)] - The shadow of the dropdown listbox.
  * @cssproperty [--mh-select__size-height=var(--mh-form-control-height)] - The height of the select button.
  * @cssproperty [--mh-select__size-border-radius=var(--mh-border-radius)] - The border radius of the select button.
  *

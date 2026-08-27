@@ -48,7 +48,7 @@ input {
     height: var(--outer-size);
     border-radius: var(--mh-border-radius);
     border: 1px solid var(--mh-color-brand-border);
-    background-color: #ffffff;
+    background-color: #fff;
     box-shadow: 0 0 0 0 transparent;
     transition:
       border-color var(--mh-transition-normal) var(--mh-transition-easing),
@@ -63,6 +63,7 @@ input {
     z-index: 1;
     width: var(--inner-size);
     height: var(--inner-size);
+
     /* converted from checkmark svg */
     clip-path: polygon(
       39.79% 75%,

@@ -1,7 +1,7 @@
 :host {
-  --mh-option__color-type__disabled: var(--mh-color-neutral-type-loud);
   --mh-option__color-fill__hover: var(--mh-color-brand-fill-quiet);
   --mh-option__color-fill__selected: var(--mh-color-brand-fill-quieter);
+  --mh-option__color-type__disabled: var(--mh-color-neutral-type-loud);
   --mh-option__size-border-radius: var(--mh-border-radius);
 
   display: flex;

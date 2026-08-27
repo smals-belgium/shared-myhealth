@@ -1,7 +1,7 @@
 :host {
-  --mh-callout__size-space: var(--mh-space-s);
-  --mh-callout__box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.13);
+  --mh-callout__box-shadow: 1px 1px 4px 0px rgb(0 0 0 / 13%);
   --mh-callout__size-icon: 1.75rem;
+  --mh-callout__size-space: var(--mh-space-s);
 
   display: flex;
   flex-direction: row;
@@ -40,9 +40,8 @@
 
 [part='actions'][mh-has-slotted-content] {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   align-items: center;
-  flex-wrap: wrap;
   margin-top: var(--mh-callout__size-space);
   gap: calc(var(--mh-callout__size-space) / 2);
 }

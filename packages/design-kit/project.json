@@ -32,6 +32,21 @@
         "commands": ["cem analyze", "node ../../tools/postcss.js"]
       }
     },
+    "stylelint": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/src/**/*.css",
+        "{projectRoot}/.stylelintrc.mjs",
+        "{workspaceRoot}/tools/stylelint-rules/**/*",
+        { "externalDependencies": ["stylelint"] }
+      ],
+      "outputs": [],
+      "options": {
+        "command": "stylelint 'src/**/*.css'",
+        "cwd": "packages/design-kit"
+      }
+    },
     "verify-package": {
       "executor": "nx:run-commands",
       "dependsOn": ["bundle"],

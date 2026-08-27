@@ -1,7 +1,7 @@
 /* Selectable chips: toggle between an unselected (white) and a selected (brand) state. */
 [part='base'] {
   color: var(--mh-color-neutral-type-louder);
-  background-color: #ffffff; /* not an existing fill color */
+  background-color: #fff; /* not an existing fill color */
   border-color: var(--mh-color-neutral-border);
   cursor: pointer;
 }

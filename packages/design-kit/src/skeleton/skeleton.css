@@ -2,8 +2,8 @@
   --mh-skeleton__color: var(--mh-color-brand-fill-quiet);
   --mh-skeleton__color-sheen: var(--mh-color-brand-fill-quieter);
   --mh-skeleton__size-border-radius: var(--mh-border-radius);
-  --mh-skeleton__size-height: 1rem;
   --mh-skeleton__size-gap: var(--mh-space-s);
+  --mh-skeleton__size-height: 1rem;
 
   display: flex;
   flex-direction: column;
