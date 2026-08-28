@@ -1,22 +1,16 @@
 import { fixture, oneEvent } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part } from '../core/testing';
+import {
+  assertAccessibility,
+  part,
+  polyfillAttachInternals,
+} from '../core/testing';
 
 import './selectable-chip';
 import type { SelectableChip } from './selectable-chip';
 
-const setFormValueSpy = vi.fn();
-
-beforeAll(() => {
-  if (
-    typeof ElementInternals !== 'undefined' &&
-    !ElementInternals.prototype.setFormValue
-  )
-    ElementInternals.prototype.setFormValue = setFormValueSpy;
-});
-
-beforeEach(() => setFormValueSpy.mockClear());
+beforeAll(polyfillAttachInternals);
 
 describe('mh-selectable-chip', () => {
   describe('accessibility', () => {

@@ -1,22 +1,16 @@
 import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part } from '../core/testing';
+import {
+  assertAccessibility,
+  part,
+  polyfillAttachInternals,
+} from '../core/testing';
 
 import './checkbox';
 import type { Checkbox } from './checkbox';
 
-const setFormValueSpy = vi.fn();
-
-beforeAll(() => {
-  if (
-    typeof ElementInternals !== 'undefined' &&
-    !ElementInternals.prototype.setFormValue
-  )
-    ElementInternals.prototype.setFormValue = setFormValueSpy;
-});
-
-beforeEach(() => setFormValueSpy.mockClear());
+beforeAll(polyfillAttachInternals);
 
 describe('checkbox', () => {
   const getInput = (el: Checkbox) => part<HTMLInputElement>('input', el);
@@ -252,11 +246,11 @@ describe('checkbox', () => {
           >Option</mh-checkbox
         >`,
       );
-      setFormValueSpy.mockClear();
+      const setFormValue = vi.spyOn(el.internals, 'setFormValue');
       getInput(el)?.click();
       await el.updateComplete;
 
-      expect(setFormValueSpy).toHaveBeenCalledWith('yes');
+      expect(setFormValue).toHaveBeenCalledWith('yes');
     });
 
     it('clears form value when unchecked', async () => {
@@ -268,11 +262,11 @@ describe('checkbox', () => {
           >Option</mh-checkbox
         >`,
       );
-      setFormValueSpy.mockClear();
+      const setFormValue = vi.spyOn(el.internals, 'setFormValue');
       getInput(el)?.click();
       await el.updateComplete;
 
-      expect(setFormValueSpy).toHaveBeenCalledWith(null);
+      expect(setFormValue).toHaveBeenCalledWith(null);
     });
 
     describe('form reset', () => {
@@ -342,10 +336,10 @@ describe('checkbox', () => {
         getInput(el)?.click();
         await el.updateComplete;
 
-        setFormValueSpy.mockClear();
+        const setFormValue = vi.spyOn(el.internals, 'setFormValue');
         el.formResetCallback();
 
-        expect(setFormValueSpy).toHaveBeenCalledWith('yes');
+        expect(setFormValue).toHaveBeenCalledWith('yes');
       });
 
       it('clears form value on reset for unchecked default', async () => {
@@ -359,10 +353,10 @@ describe('checkbox', () => {
         getInput(el)?.click();
         await el.updateComplete;
 
-        setFormValueSpy.mockClear();
+        const setFormValue = vi.spyOn(el.internals, 'setFormValue');
         el.formResetCallback();
 
-        expect(setFormValueSpy).toHaveBeenCalledWith(null);
+        expect(setFormValue).toHaveBeenCalledWith(null);
       });
     });
   });

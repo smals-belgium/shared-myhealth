@@ -1,2 +1,2 @@
-export * from './event.polyfill';
-export * from './wc-helpers';
+export * from './a11y';
+export * from './public';

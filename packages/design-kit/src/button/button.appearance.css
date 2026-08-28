@@ -18,9 +18,13 @@
   }
 }
 
+:host([appearance='filled']) mh-spinner {
+  --mh-spinner__color-indicator: var(--mh-color-brand-type-quieter);
+}
+
 :host([appearance='outlined']) [part='base'] {
   color: var(--mh-color-type);
-  background-color: #fff; /* not an existing fill color */
+  background-color: transparent;
   border-color: var(--mh-color-border);
 
   &:hover {

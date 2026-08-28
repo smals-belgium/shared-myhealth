@@ -7,34 +7,31 @@ import { RADIO } from '.';
 @Component({
   template: `
     <form #form="ngForm">
-      <mh-radio
-        name="gender"
-        value="m"
-        required
-        ngModel
-      >
-        Male
-      </mh-radio>
-
-      <mh-radio
-        name="gender"
-        value="f"
-        required
-        ngModel
-      >
-        Female
-      </mh-radio>
+      @for (gender of genders; track gender.key) {
+        <mh-radio
+          name="gender"
+          required
+          ngModel
+          [value]="gender.key"
+        >
+          {{ gender.label }}
+        </mh-radio>
+      }
     </form>
   `,
   imports: [FormsModule, RADIO],
 })
 class RadioForm {
+  genders = [
+    { key: 'm', label: 'Male' },
+    { key: 'f', label: 'Female' },
+  ];
   value = false;
   form = viewChild.required<NgForm>('form');
 }
 
 describe('radio form integration', () => {
-  it('marks the form valid when a radio is selected', async () => {
+  it(`marks the form valid when a radio is selected`, async () => {
     const fixture = TestBed.createComponent(RadioForm);
     fixture.detectChanges();
     await fixture.whenStable();
@@ -49,5 +46,15 @@ describe('radio form integration', () => {
     fixture.detectChanges();
 
     expect(form.valid).toBe(true);
+  });
+
+  it(`can select on reflected value attribute`, async () => {
+    const fixture = TestBed.createComponent(RadioForm);
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const radio = fixture.nativeElement.querySelector('mh-radio[value="f"]');
+    expect(radio).not.toBeNull();
   });
 });

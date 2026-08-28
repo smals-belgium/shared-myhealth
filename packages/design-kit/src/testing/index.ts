@@ -1,1 +1,1 @@
-export * from '../core/testing';
+export * from '../core/testing/public';
