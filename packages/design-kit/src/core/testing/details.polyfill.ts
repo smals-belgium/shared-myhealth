@@ -1,9 +1,21 @@
-/* eslint-disable no-undef */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable func-names */
 /* eslint-disable max-lines-per-function */
+import { polyfillToggleEvent } from './toggle-event.polyfill';
 
 // AI slop
+
+const dispatchToggle = (
+  details: HTMLDetailsElement,
+  oldState: 'open' | 'closed',
+) => {
+  const newState = details.open ? 'open' : 'closed';
+  if (oldState === newState) return;
+
+  details.dispatchEvent(
+    new ToggleEvent('toggle', { oldState, newState, source: null }),
+  );
+};
 
 /**
  * Jsdom does not implement the native `<details>`/`<summary>` disclosure
@@ -22,22 +34,14 @@
  *    capturing `click` listener that toggles `open` when a `<summary>` is
  *    activated, like the browser does.
  */
-export const polyfillDetailsToggle = () => {
+export const polyfillDetails = () => {
+  polyfillToggleEvent();
+
   const proto = HTMLDetailsElement.prototype as {
     __mhDetailsPolyfilled?: boolean;
   };
   if (proto.__mhDetailsPolyfilled) return;
   proto.__mhDetailsPolyfilled = true;
-
-  const dispatchToggle = (
-    details: HTMLDetailsElement,
-    oldState: 'open' | 'closed',
-  ) => {
-    const newState = details.open ? 'open' : 'closed';
-    if (oldState === newState) return;
-
-    details.dispatchEvent(new ToggleEvent('toggle', { oldState, newState }));
-  };
 
   const openDescriptor = Object.getOwnPropertyDescriptor(
     HTMLDetailsElement.prototype,

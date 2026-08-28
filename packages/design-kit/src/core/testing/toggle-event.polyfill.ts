@@ -1,3 +1,13 @@
+export type ToggleTransition = {
+  oldState: 'open' | 'closed';
+  newState: 'open' | 'closed';
+};
+
+export type ToggleEventInit = ToggleTransition & {
+  source: Element | null;
+  type: 'beforetoggle' | 'toggle';
+};
+
 export const polyfillToggleEvent = () => {
   class MockToggleEvent extends Event {
     oldState: string;
@@ -20,5 +30,5 @@ export const polyfillToggleEvent = () => {
     }
   }
 
-  window.ToggleEvent = MockToggleEvent;
+  window.ToggleEvent ??= MockToggleEvent;
 };

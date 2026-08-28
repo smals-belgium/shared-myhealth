@@ -5,19 +5,15 @@ import {
   assertAccessibility,
   defaultSlot,
   part,
-  polyfillToggleEvent,
+  polyfillDetails,
   slot,
   textContent,
 } from '../core/testing';
 
 import './expandable-callout';
-import { polyfillDetailsToggle } from './details-polyfill.mock';
 import type { ExpandableCallout } from './expandable-callout.js';
 
-beforeAll(() => {
-  polyfillToggleEvent();
-  polyfillDetailsToggle();
-});
+beforeAll(polyfillDetails);
 
 describe('expandable-callout', () => {
   describe('accessibility', () => {

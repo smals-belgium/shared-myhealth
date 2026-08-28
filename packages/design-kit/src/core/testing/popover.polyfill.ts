@@ -1,20 +1,19 @@
-type ToggleTransition = {
-  oldState: 'open' | 'closed';
-  newState: 'open' | 'closed';
-};
-
-type ToggleEventInit = ToggleTransition & {
-  type: 'beforetoggle' | 'toggle';
-};
+import { polyfillToggleEvent } from './toggle-event.polyfill';
+import type {
+  ToggleEventInit,
+  ToggleTransition,
+} from './toggle-event.polyfill';
 
 const dispatchToggle = (
   el: HTMLElement,
-  { type, oldState, newState }: ToggleEventInit,
+  { type, oldState, newState }: Omit<ToggleEventInit, 'source'>,
 ) => {
-  el.dispatchEvent(new ToggleEvent(type, { oldState, newState }));
+  el.dispatchEvent(new ToggleEvent(type, { oldState, newState, source: null }));
 };
 
 export const polyfillPopover = () => {
+  polyfillToggleEvent();
+
   if (!HTMLElement.prototype.showPopover)
     HTMLElement.prototype.showPopover = function showPopover() {
       if (this.hasAttribute('popover-open')) return;

@@ -4,26 +4,18 @@ import { html } from 'lit';
 import {
   assertAccessibility,
   part,
-  polyfillToggleEvent,
+  polyfillAttachInternals,
+  polyfillPopover,
 } from '../core/testing';
 
 import type { Option } from './option';
 import './option';
-import { polyfillPopover } from './popover-polyfill.mock';
 import type { Select } from './select';
 import './select';
 
-const setFormValueSpy = vi.fn();
-
 beforeAll(() => {
-  polyfillToggleEvent();
   polyfillPopover();
-
-  if (
-    typeof ElementInternals !== 'undefined' &&
-    !ElementInternals.prototype.setFormValue
-  )
-    ElementInternals.prototype.setFormValue = setFormValueSpy;
+  polyfillAttachInternals();
 
   // Jsdom does not implement `innerText` (it depends on layout), but the component
   // relies on it to read/write plain text content. Fall back to `textContent`.
@@ -38,8 +30,6 @@ beforeAll(() => {
       },
     });
 });
-
-beforeEach(() => setFormValueSpy.mockClear());
 
 describe('select', () => {
   const getToggleButton = (el: Select) =>
@@ -299,12 +289,12 @@ describe('select', () => {
           <mh-option value="b">B</mh-option>
         </mh-select>`,
       );
-      setFormValueSpy.mockClear();
+      const setFormValue = vi.spyOn(el.internals, 'setFormValue');
 
       el.value = 'b';
       await el.updateComplete;
 
-      expect(setFormValueSpy).toHaveBeenCalledWith('b');
+      expect(setFormValue).toHaveBeenCalledWith('b');
     });
   });
 
@@ -744,11 +734,11 @@ describe('select', () => {
         el.value = 'b';
         await el.updateComplete;
 
-        setFormValueSpy.mockClear();
+        const setFormValue = vi.spyOn(el.internals, 'setFormValue');
         el.formResetCallback();
         await el.updateComplete;
 
-        expect(setFormValueSpy).toHaveBeenCalledWith('a');
+        expect(setFormValue).toHaveBeenCalledWith('a');
       });
     });
   });

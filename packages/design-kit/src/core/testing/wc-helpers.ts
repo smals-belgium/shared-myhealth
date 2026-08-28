@@ -1,10 +1,3 @@
-import { expect } from '@open-wc/testing';
-
-export const assertAccessibility = (el: Element) => {
-  document.body.appendChild(el);
-  return expect(el).to.be.accessible();
-};
-
 const getNodes = (el: Element) => {
   if (el.shadowRoot) return Array.from(el.shadowRoot.childNodes);
   if ('assignedNodes' in el) return (el as HTMLSlotElement).assignedNodes();

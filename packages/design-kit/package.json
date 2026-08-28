@@ -20,14 +20,6 @@
   "dependencies": {
     "lit": "^3.3.2"
   },
-  "peerDependencies": {
-    "@open-wc/testing": "^4.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@open-wc/testing": {
-      "optional": true
-    }
-  },
   "exports": {
     "./package.json": "./package.json",
     "./theme.css": "./dist/theme.css",

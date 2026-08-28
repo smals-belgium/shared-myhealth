@@ -1,25 +1,16 @@
 import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part } from '../core/testing';
+import {
+  assertAccessibility,
+  part,
+  polyfillAttachInternals,
+} from '../core/testing';
 
 import './radio';
 import type { Radio } from './radio';
 
-// JSDOM does not implement ElementInternals.setFormValue; polyfill it so form-
-// associated behaviour (which calls setFormValue inside radioGroups.updateValue)
-// does not throw and break unrelated assertions.
-const setFormValueSpy = vi.fn();
-
-beforeAll(() => {
-  if (
-    typeof ElementInternals !== 'undefined' &&
-    !ElementInternals.prototype.setFormValue
-  )
-    ElementInternals.prototype.setFormValue = setFormValueSpy;
-});
-
-beforeEach(() => setFormValueSpy.mockClear());
+beforeAll(polyfillAttachInternals);
 
 describe('radio', () => {
   const getInput = (el: Radio) => part<HTMLInputElement>('input', el);
@@ -325,28 +316,28 @@ describe('radio', () => {
   describe('radio group behaviour', () => {
     it('unchecks other radios in the same group when one is checked', async () => {
       const group = await fixture<HTMLDivElement>(html`
-          <div>
-            <mh-radio
-              name="group-u"
-              value="a"
-              checked
-              >A</mh-radio
-            >
-            <mh-radio
-              name="group-u"
-              value="b"
-              >B</mh-radio
-            >
-            <mh-radio
-              name="group-u"
-              value="c"
-              >C</mh-radio
-            >
-          </div>
-        `),
-        [, r2, r3] = Array.from(group.querySelectorAll<Radio>('mh-radio'));
+        <div>
+          <mh-radio
+            name="group-u"
+            value="a"
+            checked
+            >A</mh-radio
+          >
+          <mh-radio
+            name="group-u"
+            value="b"
+            >B</mh-radio
+          >
+          <mh-radio
+            name="group-u"
+            value="c"
+            >C</mh-radio
+          >
+        </div>
+      `);
+      const [, r2, r3] = Array.from(group.querySelectorAll<Radio>('mh-radio'));
 
-      getInput(r2)?.click();
+      r2.click();
       await r2.updateComplete;
       expect(r2.checked).toBe(true);
       expect(r3.checked).toBe(false);
@@ -354,22 +345,24 @@ describe('radio', () => {
 
     it('does not affect radios in a different group', async () => {
       const container = await fixture<HTMLDivElement>(html`
-          <div>
-            <mh-radio
-              name="group-v1"
-              value="x"
-              checked
-              >X</mh-radio
-            >
-            <mh-radio
-              name="group-v2"
-              value="y"
-              checked
-              >Y</mh-radio
-            >
-          </div>
-        `),
-        [r1, r2] = Array.from(container.querySelectorAll<Radio>('mh-radio'));
+        <div>
+          <mh-radio
+            name="group-v1"
+            value="x"
+            checked
+            >X</mh-radio
+          >
+          <mh-radio
+            name="group-v2"
+            value="y"
+            checked
+            >Y</mh-radio
+          >
+        </div>
+      `);
+      const [r1, r2] = Array.from(
+        container.querySelectorAll<Radio>('mh-radio'),
+      );
 
       expect(r1.checked).toBe(true);
       expect(r2.checked).toBe(true);
@@ -396,38 +389,42 @@ describe('radio', () => {
           >Option</mh-radio
         >`,
       );
-      setFormValueSpy.mockClear();
-      getInput(el)?.click();
+      const setFormValue = vi.spyOn(el.internals, 'setFormValue');
+      el.click();
       await el.updateComplete;
 
-      expect(setFormValueSpy).toHaveBeenCalledWith('selected');
+      expect(setFormValue).toHaveBeenCalledWith('selected');
     });
 
     it('clears form value of deselected radio when another is selected', async () => {
       const container = await fixture<HTMLDivElement>(html`
-          <div>
-            <mh-radio
-              name="group-y"
-              value="a"
-              checked
-              >A</mh-radio
-            >
-            <mh-radio
-              name="group-y"
-              value="b"
-              >B</mh-radio
-            >
-          </div>
-        `),
-        [, r2] = Array.from(container.querySelectorAll<Radio>('mh-radio'));
+        <div>
+          <mh-radio
+            name="group-y"
+            value="a"
+            checked
+            >A</mh-radio
+          >
+          <mh-radio
+            name="group-y"
+            value="b"
+            >B</mh-radio
+          >
+        </div>
+      `);
+      const [radioA, radioB] = Array.from(
+        container.querySelectorAll<Radio>('mh-radio'),
+      );
+      const setFormValueA = vi.spyOn(radioA.internals, 'setFormValue');
+      const setFormValueB = vi.spyOn(radioB.internals, 'setFormValue');
 
-      setFormValueSpy.mockClear();
-      getInput(r2)?.click();
-      await r2.updateComplete;
+      await radioA.updateComplete;
+      await radioB.updateComplete;
+      radioB.click();
 
       // Null for the deselected radio, 'b' for the selected one
-      expect(setFormValueSpy).toHaveBeenCalledWith(null);
-      expect(setFormValueSpy).toHaveBeenCalledWith('b');
+      expect(setFormValueA).toHaveBeenCalledWith(null);
+      expect(setFormValueB).toHaveBeenCalledWith('b');
     });
   });
 });

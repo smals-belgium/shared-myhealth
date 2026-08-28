@@ -1,7 +1,11 @@
 import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part } from '../core/testing';
+import {
+  assertAccessibility,
+  part,
+  polyfillAttachInternals,
+} from '../core/testing';
 
 import './button';
 import type { ButtonVariant } from './base';
@@ -199,6 +203,46 @@ describe('button', () => {
       el.click();
 
       expect(clickHandler).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('form integration', () => {
+    beforeEach(polyfillAttachInternals);
+
+    it(`submits a form`, async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <mh-button type="submit">submit</mh-button>
+        </form>
+      `);
+      const button = form.querySelector<Button>('mh-button')!;
+      const submitHandler = vi.fn((event: SubmitEvent) =>
+        event.preventDefault(),
+      );
+
+      form.addEventListener('submit', submitHandler);
+
+      await button.updateComplete;
+      button.click();
+
+      expect(submitHandler).toHaveBeenCalled();
+    });
+
+    it(`resets a form`, async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <mh-button type="reset">submit</mh-button>
+        </form>
+      `);
+      const button = form.querySelector<Button>('mh-button')!;
+      const resetHandler = vi.fn();
+
+      form.addEventListener('reset', resetHandler);
+
+      await button.updateComplete;
+      button.click();
+
+      expect(resetHandler).toHaveBeenCalled();
     });
   });
 });

@@ -12,6 +12,7 @@ export default [
         'error',
         {
           ignoredFiles: ['{projectRoot}/*.config.{js,cjs,mjs,ts,cts,mts}'],
+          ignoredDependencies: ['@open-wc/testing'],
         },
       ],
     },
@@ -28,6 +29,14 @@ export default [
       '@typescript-eslint/unbound-method': 'off',
       // we're mirroring native elements (and their attributes) in many cases
       'lit/no-native-attributes': 'off',
+    },
+  },
+  {
+    files: ['**/*.polyfill.ts'],
+    rules: {
+      // it's the point of polyfills to add things that exist in the type but not in the actual (JSDOM) implementation
+      // and only if the implementation doesn't exist yet, so we have to check even if the type says it exists
+      '@typescript-eslint/no-unnecessary-condition': 'off',
     },
   },
   {

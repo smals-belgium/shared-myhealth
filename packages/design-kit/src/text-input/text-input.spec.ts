@@ -1,22 +1,16 @@
 import { fixture } from '@open-wc/testing';
 import { html } from 'lit';
 
-import { assertAccessibility, part } from '../core/testing';
+import {
+  assertAccessibility,
+  part,
+  polyfillAttachInternals,
+} from '../core/testing';
 
 import './text-input';
 import type { TextInput } from './text-input';
 
-const setFormValueSpy = vi.fn();
-
-beforeAll(() => {
-  if (
-    typeof ElementInternals !== 'undefined' &&
-    !ElementInternals.prototype.setFormValue
-  )
-    ElementInternals.prototype.setFormValue = setFormValueSpy;
-});
-
-beforeEach(() => setFormValueSpy.mockClear());
+beforeAll(polyfillAttachInternals);
 
 describe('text-input', () => {
   const getInput = (el: TextInput) => part<HTMLInputElement>('input', el);
@@ -165,11 +159,11 @@ describe('text-input', () => {
           >Label</mh-text-input
         >`,
       );
-      setFormValueSpy.mockClear();
+      const setFormValue = vi.spyOn(el.internals, 'setFormValue');
       el.value = 'updated';
       await el.updateComplete;
 
-      expect(setFormValueSpy).toHaveBeenCalledWith('updated');
+      expect(setFormValue).toHaveBeenCalledWith('updated');
     });
   });
 
@@ -427,14 +421,14 @@ describe('text-input', () => {
         html`<mh-text-input name="ah">Label</mh-text-input>`,
       );
       const input = getInput(el);
-      setFormValueSpy.mockClear();
+      const setFormValue = vi.spyOn(el.internals, 'setFormValue');
       if (input) {
         input.value = 'typed text';
         input.dispatchEvent(new Event('change'));
       }
       await el.updateComplete;
 
-      expect(setFormValueSpy).toHaveBeenCalledWith('typed text');
+      expect(setFormValue).toHaveBeenCalledWith('typed text');
     });
 
     describe('form reset', () => {
@@ -479,11 +473,11 @@ describe('text-input', () => {
         el.value = 'modified';
         await el.updateComplete;
 
-        setFormValueSpy.mockClear();
+        const setFormValue = vi.spyOn(el.internals, 'setFormValue');
         el.formResetCallback();
         await el.updateComplete;
 
-        expect(setFormValueSpy).toHaveBeenCalledWith('original');
+        expect(setFormValue).toHaveBeenCalledWith('original');
       });
 
       it('clears form value on reset when no initial value was set', async () => {
@@ -493,11 +487,11 @@ describe('text-input', () => {
         el.value = 'modified';
         await el.updateComplete;
 
-        setFormValueSpy.mockClear();
+        const setFormValue = vi.spyOn(el.internals, 'setFormValue');
         el.formResetCallback();
         await el.updateComplete;
 
-        expect(setFormValueSpy).toHaveBeenCalledWith(null);
+        expect(setFormValue).toHaveBeenCalledWith(null);
       });
     });
   });

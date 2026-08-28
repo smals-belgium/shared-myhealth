@@ -8,22 +8,6 @@ import '@smals-belgium-shared/vitals/dialog';
 import { DialogRef } from './dialog-ref';
 import { DialogService } from './dialog.service';
 
-// JSDOM does not implement the native modal dialog APIs, so we polyfill what's needed for mh-dialog
-beforeAll(() => {
-  const proto = HTMLDialogElement.prototype;
-
-  if (typeof proto.showModal !== 'function') {
-    proto.showModal = function showModal() {
-      this.open = true;
-    };
-    proto.close = function close() {
-      if (!this.open) return;
-      this.open = false;
-      this.dispatchEvent(new Event('close'));
-    };
-  }
-});
-
 @Component({
   template: `<p>Hello {{ data() }}</p>`,
 })
