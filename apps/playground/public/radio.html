@@ -18,6 +18,23 @@
       rel="stylesheet"
       href="/src/styles.css"
     />
+    <style>
+      mh-radio {
+        width: 100%;
+        padding: var(--mh-space-xs) 0;
+        border-bottom: 1px solid var(--mh-color-neutral-border-quiet);
+      }
+
+      fieldset,
+      mh-radio::part(label) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        min-width: 0;
+        gap: var(--mh-space-xs);
+      }
+    </style>
 
     <script
       type="module"
@@ -36,28 +53,63 @@
       <mh-radio
         name="gender"
         value="f"
-        >I'm a lady</mh-radio
       >
+        I'm a lady
+      </mh-radio>
       <mh-radio
         name="gender"
         value="m"
         checked
-        >I'm a gentleman</mh-radio
       >
+        I'm a gentleman
+      </mh-radio>
       <mh-radio
         name="gender"
         value="x"
         disabled
-        >I don't know</mh-radio
       >
+        I don't know
+      </mh-radio>
+
+      <fieldset>
+        <legend>Select a profile</legend>
+        <mh-radio
+          name="profile"
+          value="dad"
+        >
+          Daddy
+          <mh-chip><mh-icon name="person"></mh-icon>Me</mh-chip>
+        </mh-radio>
+        <mh-radio
+          name="profile"
+          value="mom"
+        >
+          Mommy
+          <mh-chip>My wife</mh-chip>
+        </mh-radio>
+        <mh-radio
+          name="profile"
+          value="son"
+        >
+          Sonny
+          <mh-chip>The heir</mh-chip>
+        </mh-radio>
+        <mh-radio
+          name="profile"
+          value="daughter"
+        >
+          Princess
+          <mh-chip>My baby</mh-chip>
+        </mh-radio>
+      </fieldset>
 
       <footer>
         <mh-button type="submit">submit</mh-button>
         <mh-button
           type="reset"
           appearance="outlined"
-          >reset</mh-button
-        >
+          >reset
+        </mh-button>
       </footer>
     </form>
   </body>

@@ -28,19 +28,37 @@ Angular version: {{ version }}
     <legend>radio</legend>
 
     <mh-radio
-      name="gender"
-      value="m"
-      ngModel
-      required
-      >male</mh-radio
+      name="profile"
+      value="dad"
+      [ngModel]="profile"
     >
+      Daddy
+      <mh-chip><mh-icon name="person"></mh-icon>Me</mh-chip>
+    </mh-radio>
     <mh-radio
-      name="gender"
-      value="f"
-      ngModel
-      required
-      >female</mh-radio
+      name="profile"
+      value="mom"
+      [ngModel]="profile"
     >
+      Mommy
+      <mh-chip>My wife</mh-chip>
+    </mh-radio>
+    <mh-radio
+      name="profile"
+      value="son"
+      [ngModel]="profile"
+    >
+      Sonny
+      <mh-chip>The heir</mh-chip>
+    </mh-radio>
+    <mh-radio
+      name="profile"
+      value="daughter"
+      [ngModel]="profile"
+    >
+      Princess
+      <mh-chip>My baby</mh-chip>
+    </mh-radio>
   </fieldset>
 
   <fieldset>

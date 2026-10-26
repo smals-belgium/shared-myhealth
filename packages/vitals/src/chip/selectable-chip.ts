@@ -2,7 +2,7 @@ import { PropertyValueMap, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import { CheckboxBase } from '../checkbox';
+import { CheckboxBase } from '../checkbox/checkbox-base';
 
 import styles from './chip.css?inline';
 import selectableStyles from './selectable-chip.css?inline';
