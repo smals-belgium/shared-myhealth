@@ -18,5 +18,10 @@
 
     /* The minimum interactive target size (WCAG 2.5.5 Target Size (Enhanced), AAA). */
     --mh-target-size-min: 44px;
+
+    --mh-safe-area-inset-top: 0px;
+    --mh-safe-area-inset-right: 0px;
+    --mh-safe-area-inset-bottom: 0px;
+    --mh-safe-area-inset-left: 0px;
   }
 }
