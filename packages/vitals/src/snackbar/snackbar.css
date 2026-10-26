@@ -12,7 +12,9 @@
 
 [part='snackbar'] {
   position: fixed;
-  inset-block-end: var(--mh-snackbar__size-inset);
+  inset-block-end: calc(
+    var(--mh-snackbar__size-inset) + var(--mh-safe-area-inset-bottom)
+  );
   inset-inline-start: 50%;
   transform: translateX(-50%);
   z-index: 1000;
@@ -26,8 +28,14 @@
 
   /* Default 360px wide including its side margins; shrinks to the viewport (minus margins) on smaller screens. */
   width: calc(
-    min(var(--mh-snackbar__size-width), 100vw) - 2 *
-      var(--mh-snackbar__size-inset)
+    min(
+        var(--mh-snackbar__size-width),
+        calc(
+          100vw - var(--mh-safe-area-inset-left) -
+            var(--mh-safe-area-inset-right)
+        )
+      ) -
+      2 * var(--mh-snackbar__size-inset)
   );
   padding: calc(var(--mh-snackbar__size-space) / 2)
     var(--mh-snackbar__size-space);
