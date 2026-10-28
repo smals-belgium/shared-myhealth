@@ -1,6 +1,6 @@
 import { LitElement } from 'lit';
 
-import { propUpdatedEffect } from '../core/controller';
+import { propUpdatedEffect } from '../core/controller/prop-updated.effect';
 import { getInternals } from '../core/internals';
 
 /**

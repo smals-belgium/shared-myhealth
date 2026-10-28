@@ -1,4 +1,4 @@
-import { propUpdatedEffect } from '../core/controller';
+import { propUpdatedEffect } from '../core/controller/prop-updated.effect';
 import { activateAt, getActiveIndex } from '../form-control/option';
 
 import { Select } from './select';

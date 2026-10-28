@@ -1,6 +1,10 @@
 import { LitElement, html, unsafeCSS, PropertyValues } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 
+import {
+  popoverTriggerController,
+  PopoverTargetAction,
+} from '../core/controller/popover-trigger.controller';
 import { ErrorEvent } from '../core/event/error.event';
 import type { Loudness } from '../core/loudness';
 import touchTarget from '../core/touch-target.css?inline';
@@ -47,7 +51,7 @@ export class IconButton extends LitElement {
     touchTarget,
   ].map(unsafeCSS);
 
-  @query('[part="button"]') el!: HTMLElement;
+  @query('[part="button"]') el!: HTMLButtonElement;
 
   @property() override title = '';
 
@@ -64,9 +68,17 @@ export class IconButton extends LitElement {
   /** Disables the button. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  @property({ attribute: 'popovertarget' }) popoverTarget?: string;
+  @property({ attribute: 'popovertargetaction' })
+  popoverTargetAction: PopoverTargetAction = 'toggle';
+
   override readonly click = () => this.el.click();
   override readonly focus = () => this.el.focus();
   override readonly blur = () => this.el.blur();
+
+  override firstUpdated() {
+    this.addController(popoverTriggerController(this, this.el));
+  }
 
   override willUpdate(props: PropertyValues<this>) {
     if (

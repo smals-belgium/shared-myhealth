@@ -1,6 +1,11 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
+import {
+  popoverTriggerController,
+  PopoverTargetAction,
+} from '../core/controller/popover-trigger.controller';
+
 import { ButtonBase } from './base';
 
 /**
@@ -10,7 +15,6 @@ import { ButtonBase } from './base';
  * @status stable
  * @since 1.0
  *
- * @dependency mh-icon
  * @dependency mh-spinner
  *
  * @event click - Emitted when the button is clicked.
@@ -27,8 +31,13 @@ import { ButtonBase } from './base';
  * @csspart end - The container that wraps the `end` slot.
  * @csspart spinner - The spinner that shows when the button is in the loading state.
  *
- * @cssstate icon-button - Applied when the button contains only a `<mh-icon>` with no other content.
  * @cssstate loading - Applied when the button is in the loading state.
+ *
+ * @csspropery --mh-button__layout-align - The alignment of the button contents with respect to the container.
+ * @csspropery --mh-button__size-border-radius - Corner radius, fully rounded by default.
+ * @csspropery --mh-button__size-border-width - Width of the border (for outlined appearance).
+ * @csspropery --mh-button__size-height - Height of the button.
+ * @csspropery --mh-button__size-type-weight - Font weight of the text; slightly bolder than copy by default.
  */
 @customElement('mh-button')
 export class Button extends ButtonBase {
@@ -46,6 +55,16 @@ export class Button extends ButtonBase {
 
   /** Disables the button. */
   @property({ type: Boolean }) disabled = false;
+
+  @property({ attribute: 'popovertarget' }) popoverTarget?: string;
+  @property({ attribute: 'popovertargetaction' })
+  popoverTargetAction: PopoverTargetAction = 'toggle';
+
+  override firstUpdated() {
+    this.addController(
+      popoverTriggerController(this, this.el as HTMLButtonElement),
+    );
+  }
 
   #onClick = () => {
     const { form } = this.internals;
