@@ -42,7 +42,7 @@ let tooltipCounter = 0;
  * @cssproperty [--mh-tooltip__size-padding-block=0.375rem] - Vertical padding.
  * @cssproperty [--mh-tooltip__size-padding-inline=0.5rem] - Horizontal padding.
  * @cssproperty [--mh-tooltip__size-offset=0.25rem] - Gap between the trigger and the tooltip surface.
- * @cssproperty [--mh-tooltip__z-index=1000] - Stacking order.
+ * @cssproperty [--mh-tooltip__layout-z-index=1000] - Stacking order.
  */
 @customElement('mh-tooltip')
 export class Tooltip extends LitElement {

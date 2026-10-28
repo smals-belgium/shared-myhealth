@@ -8,6 +8,7 @@ export * from './divider';
 export * from './icon';
 export * from './icon-button';
 export * from './iterator';
+export * from './popover-menu';
 export * from './radio';
 export * from './select';
 export * from './skeleton';

@@ -78,6 +78,11 @@
       "import": "./dist/iterator/index.js",
       "default": "./dist/iterator/index.js"
     },
+    "./popover-menu": {
+      "types": "./dist/popover-menu/index.d.ts",
+      "import": "./dist/popover-menu/index.js",
+      "default": "./dist/popover-menu/index.js"
+    },
     "./radio": {
       "types": "./dist/radio/index.d.ts",
       "import": "./dist/radio/index.js",

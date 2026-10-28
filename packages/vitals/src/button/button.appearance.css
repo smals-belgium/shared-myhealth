@@ -1,20 +1,71 @@
-:host([appearance='filled']) [part='base'] {
-  color: var(--mh-color-type-quieter);
-  background-color: var(--mh-color-fill);
-  border-color: transparent;
+:host {
+  --mh-button__color-type__disabled: var(--mh-color-neutral-type);
+}
+
+:host([appearance='filled']) {
+  --mh-button__color-type: var(--mh-color-type-quieter);
+  --mh-button__color-type__active: var(--mh-button__color-type);
+  --mh-button__color-type__hover: var(--mh-button__color-type);
+  --mh-button__color-fill: var(--mh-color-fill);
+  --mh-button__color-fill__active: var(--mh-color-fill-louder);
+  --mh-button__color-fill__disabled: var(--mh-color-neutral-fill-quiet);
+  --mh-button__color-fill__hover: var(--mh-color-fill-loud);
+  --mh-button__color-border: transparent;
+  --mh-button__color-border__active: var(--mh-button__color-border);
+  --mh-button__color-border__disabled: var(--mh-button__color-border);
+  --mh-button__color-border__hover: var(--mh-button__color-border);
+}
+
+:host([appearance='outlined']) {
+  --mh-button__color-type: var(--mh-color-type);
+  --mh-button__color-type__active: var(--mh-color-type-louder);
+  --mh-button__color-type__hover: var(--mh-color-type-loud);
+  --mh-button__color-fill: transparent;
+  --mh-button__color-fill__active: var(--mh-color-fill-quiet);
+  --mh-button__color-fill__disabled: inherit;
+  --mh-button__color-fill__hover: var(--mh-color-fill-quieter);
+  --mh-button__color-border: var(--mh-color-border);
+  --mh-button__color-border__active: var(--mh-color-border-louder);
+  --mh-button__color-border__disabled: var(--mh-color-neutral-border);
+  --mh-button__color-border__hover: var(--mh-color-border-loud);
+}
+
+:host([appearance='link']) {
+  --mh-button__color-type: var(--mh-color-type);
+  --mh-button__color-type__active: var(--mh-color-type-louder);
+  --mh-button__color-type__hover: var(--mh-color-type-loud);
+  --mh-button__color-fill: transparent;
+  --mh-button__color-fill__active: var(--mh-button__color-fill);
+  --mh-button__color-fill__disabled: var(--mh-button__color-fill);
+  --mh-button__color-fill__hover: var(--mh-button__color-fill);
+  --mh-button__color-border: transparent;
+  --mh-button__color-border__active: var(--mh-button__color-border);
+  --mh-button__color-border__disabled: var(--mh-button__color-border);
+  --mh-button__color-border__hover: var(--mh-button__color-border);
+}
+
+:host [part='base'] {
+  color: var(--mh-button__color-type);
+  background-color: var(--mh-button__color-fill);
+  border-color: var(--mh-button__color-border);
 
   &:hover {
-    background-color: var(--mh-color-fill-loud);
+    color: var(--mh-button__color-type__hover);
+    background-color: var(--mh-button__color-fill__hover);
+    border-color: var(--mh-button__color-border__hover);
   }
 
   &:active {
-    background-color: var(--mh-color-fill-louder);
+    color: var(--mh-button__color-type__active);
+    background-color: var(--mh-button__color-fill__active);
+    border-color: var(--mh-button__color-border__active);
   }
 
   &:disabled,
   :host([disabled]) & {
-    color: var(--mh-color-neutral-type);
-    background-color: var(--mh-color-neutral-fill-quiet);
+    color: var(--mh-button__color-type__disabled);
+    background-color: var(--mh-button__color-fill__disabled);
+    border-color: var(--mh-button__color-border__disabled);
   }
 }
 
@@ -22,49 +73,7 @@
   --mh-spinner__color-indicator: var(--mh-color-brand-type-quieter);
 }
 
-:host([appearance='outlined']) [part='base'] {
-  color: var(--mh-color-type);
-  background-color: transparent;
-  border-color: var(--mh-color-border);
-
-  &:hover {
-    color: var(--mh-color-type-loud);
-    background-color: var(--mh-color-border-quieter);
-    border-color: var(--mh-color-border-loud);
-  }
-
-  &:active {
-    color: var(--mh-color-type-louder);
-    background-color: var(--mh-color-fill-quiet);
-    border-color: var(--mh-color-fill-louder);
-  }
-
-  &:disabled,
-  :host([disabled]) & {
-    color: var(--mh-color-neutral-type);
-    background-color: inherit;
-    border-color: var(--mh-color-neutral-fill);
-  }
-}
-
 :host([appearance='link']) [part='base'] {
   font-weight: 500;
   text-decoration: underline;
-  color: var(--mh-color-type);
-  background-color: transparent;
-  border-color: transparent;
-
-  &:hover {
-    color: var(--mh-color-type-loud);
-  }
-
-  &:active {
-    color: var(--mh-color-type-louder);
-  }
-
-  &:disabled,
-  :host([disabled]) & {
-    color: var(--mh-color-neutral-type);
-    border-color: transparent;
-  }
 }

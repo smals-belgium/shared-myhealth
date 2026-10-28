@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign -- actually would make it less readable */
-import { propUpdateEffect } from '../core/controller';
+import { propUpdateEffect } from '../core/controller/prop-update.effect';
 import {
   activateAt,
   commitActiveValue,

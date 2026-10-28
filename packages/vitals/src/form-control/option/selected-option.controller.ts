@@ -1,4 +1,4 @@
-import { propUpdateEffect } from '../../core/controller';
+import { propUpdateEffect } from '../../core/controller/prop-update.effect';
 
 import { getOption, getSelectedOption, OptionHost } from './option.selectors';
 

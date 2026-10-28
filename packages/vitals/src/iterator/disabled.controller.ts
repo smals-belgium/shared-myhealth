@@ -1,4 +1,4 @@
-import { propUpdatedEffect } from '../core/controller';
+import { propUpdatedEffect } from '../core/controller/prop-updated.effect';
 import { getAllOptions } from '../form-control/option';
 
 import { Iterator } from './iterator';

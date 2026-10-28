@@ -1,4 +1,4 @@
-import { propUpdatedEffect } from '../core/controller';
+import { propUpdatedEffect } from '../core/controller/prop-updated.effect';
 import { cssStates } from '../core/css';
 
 import { Select } from './select';
