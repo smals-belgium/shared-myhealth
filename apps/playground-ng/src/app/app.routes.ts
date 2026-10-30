@@ -11,6 +11,7 @@ import { FormSandbox } from './form.sandbox';
 import { Home } from './home';
 import { IconButtonSandbox } from './icon-button-ng.sandbox';
 import { IconSandbox } from './icon-ng.sandbox';
+import { PopoverMenuSandbox } from './popover-menu-ng.sandbox';
 import { RadioSandbox } from './radio-ng.sandbox';
 import { SelectSandbox } from './select-ng.sandbox';
 import { SkeletonSandbox } from './skeleton-ng.sandbox';
@@ -67,6 +68,10 @@ export const appRoutes: Route[] = [
   {
     path: 'icon-button',
     component: IconButtonSandbox,
+  },
+  {
+    path: 'popover-menu',
+    component: PopoverMenuSandbox,
   },
   {
     path: 'radio',
