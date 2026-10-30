@@ -47,8 +47,8 @@ const meta = { url: 'https://github.com/smals-belgium/shared-myhealth' };
  * they map directly to the CSS property name and are never split on their internal dash.
  * Listed longest-first so prefix matching tries them before single-word categories.
  */
-const ATOMIC_CATEGORIES = ['box-shadow', 'z-index'];
-const SIMPLE_CATEGORIES = ['color', 'size', 'animation'];
+const ATOMIC_CATEGORIES = ['box-shadow'];
+const SIMPLE_CATEGORIES = ['color', 'size', 'animation', 'layout'];
 const ALL_CATEGORIES = [...ATOMIC_CATEGORIES, ...SIMPLE_CATEGORIES];
 
 /**

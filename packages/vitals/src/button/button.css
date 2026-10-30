@@ -1,4 +1,10 @@
 :host {
+  --mh-button__layout-align: center;
+  --mh-button__size-border-radius: 9999px;
+  --mh-button__size-border-width: var(--mh-border-width-m);
+  --mh-button__size-height: var(--mh-form-control-height);
+  --mh-button__size-type-weight: 600;
+
   display: inline-block;
 }
 
@@ -6,7 +12,7 @@
   display: inline-flex;
   gap: 0.25rem;
   align-items: center;
-  justify-content: center;
+  justify-content: var(--mh-button__layout-align);
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
@@ -16,15 +22,16 @@
   font-family: inherit;
   line-height: inherit;
   font-size: inherit;
-  font-weight: 600;
-  height: var(--mh-form-control-height);
+  font-weight: var(--mh-button__size-type-weight);
+  height: var(--mh-button__size-height);
 
   /* Stretch to host width without forcing width in regular inline usage. */
-  width: stretch;
+  width: 100%;
+  box-sizing: border-box;
 
-  border-radius: 9999px;
+  border-radius: var(--mh-button__size-border-radius);
   border-style: solid;
-  border-width: var(--mh-border-width-m);
+  border-width: var(--mh-button__size-border-width);
 
   transition-property:
     background, border, box-shadow, color, opacity, transform;
