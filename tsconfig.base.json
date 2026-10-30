@@ -77,8 +77,14 @@
       "@smals-belgium-shared/vitals-ng/cdk/overlay": [
         "./packages/vitals-ng/src/cdk/overlay/index.ts"
       ],
+      "@smals-belgium-shared/vitals-ng/cdk/popover": [
+        "./packages/vitals-ng/src/cdk/popover/index.ts"
+      ],
       "@smals-belgium-shared/vitals-ng/table": [
         "./packages/vitals-ng/src/table/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/popover-menu": [
+        "./packages/vitals-ng/src/popover-menu/index.ts"
       ]
     },
     "noUncheckedSideEffectImports": false,
