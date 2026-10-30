@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
         <li><a routerLink="/divider">divider</a></li>
         <li><a routerLink="/icon">icon</a></li>
         <li><a routerLink="/icon-button">icon-button</a></li>
+        <li><a routerLink="/popover-menu">popover-menu</a></li>
         <li><a routerLink="/radio">radio</a></li>
         <li><a routerLink="/select">select</a></li>
         <li><a routerLink="/skeleton">skeleton</a></li>

@@ -79,6 +79,9 @@
       ],
       "@smals-belgium-shared/vitals-ng/table": [
         "./packages/vitals-ng/src/table/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/popover-menu": [
+        "./packages/vitals-ng/src/popover-menu/index.ts"
       ]
     },
     "noUncheckedSideEffectImports": false,
