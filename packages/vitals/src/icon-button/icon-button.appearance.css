@@ -1,8 +1,7 @@
-:host([appearance='round']) [part='button'] {
-  border-radius: var(--mh-icon-button__size-icon);
+:host([appearance='round']) {
+  --mh-icon-button__size-radius: var(--mh-icon-button__size-icon);
 }
 
-:host([appearance='square']) [part='button'] {
-  border-radius: var(--mh-border-radius);
-  box-shadow: 0 1px 9px 0 rgb(0 0 0 / 15%);
+:host([appearance='square']) {
+  --mh-icon-button__size-radius: var(--mh-border-radius);
 }
