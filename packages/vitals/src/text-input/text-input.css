@@ -3,23 +3,27 @@
   align-items: center;
 
   height: var(--mh-text-input__size-height);
+  box-sizing: border-box;
   border-radius: var(--mh-text-input__size-border-radius);
   border-style: solid;
   border-width: 1px;
   border-color: var(--mh-text-input__color-border-input);
   background-color: var(--mh-text-input__color-fill-input);
 
-  &:has(input:focus) {
+  &:has(input:focus-visible) {
     border-color: var(--mh-text-input__color-border-input__focus);
-    box-shadow: 0 0 0 1px var(--mh-text-input__color-border-input__focus);
+    outline: var(--mh-border-width-s) dashed
+      var(--mh-text-input__color-border-input__focus);
+    outline-offset: var(--mh-focus-offset);
   }
 
   &:has(input:user-invalid) {
     border-color: var(--mh-text-input__color-border-input__invalid);
   }
 
-  &:has(input:user-invalid):has(input:focus) {
-    box-shadow: 0 0 0 1px var(--mh-text-input__color-border-input__invalid);
+  &:has(input:user-invalid):has(input:focus),
+  &:has(input:user-invalid):has(input:focus-visible) {
+    outline-color: var(--mh-text-input__color-border-input__invalid);
   }
 
   /* Avoid hover state on disabled input */
@@ -48,7 +52,7 @@ input {
   flex: 1;
   margin: 0 0.5rem;
   width: 100%;
-  height: calc(var(--mh-text-input__size-height) - 2px);
+  height: calc(var(--mh-text-input__size-height) - 6px);
   border-radius: var(--mh-text-input__size-border-radius);
   font-family: inherit;
   font-size: 1rem;

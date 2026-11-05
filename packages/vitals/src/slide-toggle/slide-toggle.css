@@ -40,7 +40,9 @@ input {
   }
 
   &:focus-visible ~ [part='track'] {
-    background-color: var(--mh-color-neutral-fill-loud);
+    background-color: var(--mh-color-neutral-fill);
+    outline: var(--mh-border-width-s) dashed var(--mh-color-neutral-border);
+    outline-offset: var(--mh-focus-offset);
 
     [part='thumb'] {
       box-shadow:
@@ -60,7 +62,9 @@ input {
   }
 
   &:checked:focus-visible ~ [part='track'] {
-    background-color: var(--mh-color-brand-fill-loud);
+    background-color: var(--mh-color-brand-fill);
+    outline: var(--mh-border-width-s) dashed var(--mh-color-brand-border);
+    outline-offset: var(--mh-focus-offset);
 
     [part='thumb'] {
       box-shadow:
@@ -95,7 +99,6 @@ input {
     background-color: var(--mh-color-brand-fill-quiet);
   }
 
-  &:disabled:focus-visible ~ [part='track'] [part='thumb'],
   &:disabled:hover ~ [part='track'] [part='thumb'] {
     box-shadow: none;
   }
@@ -108,16 +111,21 @@ input {
     }
   }
 
-  &:user-invalid:hover ~ [part='track'] [part='thumb'],
-  &:user-invalid:focus-visible ~ [part='track'] [part='thumb'] {
-    box-shadow:
-      0 2px 4px rgb(0 0 0 / 12%),
-      0 0 0 var(--state-layer-spread)
-        color-mix(
-          in srgb,
-          var(--mh-color-danger-border-quieter) 8%,
-          transparent
-        );
+  &:user-invalid:hover ~ [part='track'],
+  &:user-invalid:focus-visible ~ [part='track'] {
+    outline: var(--mh-border-width-s) dashed var(--mh-color-danger-border);
+    outline-offset: var(--mh-focus-offset);
+
+    [part='thumb'] {
+      box-shadow:
+        0 2px 4px rgb(0 0 0 / 12%),
+        0 0 0 var(--state-layer-spread)
+          color-mix(
+            in srgb,
+            var(--mh-color-danger-border-quieter) 8%,
+            transparent
+          );
+    }
   }
 }
 

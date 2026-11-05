@@ -1,4 +1,5 @@
 :host {
+  --mh-button__color-outline: var(--mh-color-border);
   --mh-button__layout-align: center;
   --mh-button__size-border-radius: 9999px;
   --mh-button__size-border-width: var(--mh-border-width-m);
@@ -38,6 +39,11 @@
   transition-duration: var(--mh-transition-normal);
   transition-timing-function: var(--mh-transition-easing);
   transform-origin: center;
+
+  &:focus-visible {
+    outline: var(--mh-border-width-s) dashed var(--mh-button__color-outline);
+    outline-offset: var(--mh-focus-offset);
+  }
 
   &:disabled,
   :host([disabled]) & {

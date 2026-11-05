@@ -34,7 +34,6 @@ export class Tab extends TabBase {
         role="tabpanel"
         id=${this.panelId}
         aria-label=${this.label || nothing}
-        tabindex="0"
         ?hidden=${!this.active}
       >
         <slot></slot>
