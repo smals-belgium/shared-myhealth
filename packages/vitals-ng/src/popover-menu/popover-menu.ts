@@ -21,11 +21,13 @@ import { Popover } from '@smals-belgium-shared/vitals-ng/cdk/popover';
   selector: 'mh-popover-menu',
   hostDirectives: [Popover],
   host: {
+    '[attr.label]': 'label()',
     '[attr.position]': 'position()',
     '[attr.align]': 'align()',
   },
 })
 export class PopoverMenu {
+  readonly label = input.required<string>();
   readonly position = input<PopoverPosition>('below');
   readonly align = input<PopoverAlignment>('start');
 }

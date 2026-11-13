@@ -15,7 +15,10 @@ import { POPOVER_MENU } from '@smals-belgium-shared/vitals-ng/popover-menu';
     >
     </mh-icon-button>
 
-    <mh-popover-menu #menu="popover">
+    <mh-popover-menu
+      #menu="popover"
+      label="little menu actions"
+    >
       <mh-button>Edit</mh-button>
       <mh-a>Delete</mh-a>
       <mh-a [disabled]="true">Disabled</mh-a>

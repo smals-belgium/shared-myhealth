@@ -36,8 +36,9 @@ export const polyfillPopover = () => {
 
   if (!HTMLElement.prototype.togglePopover)
     HTMLElement.prototype.togglePopover = function togglePopover(
-      force?: boolean,
+      options?: boolean | { force?: boolean },
     ) {
+      const force = typeof options === 'object' ? options.force : options;
       const shouldOpen = force ?? !this.hasAttribute('popover-open');
 
       if (shouldOpen) this.showPopover();

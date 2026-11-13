@@ -72,10 +72,14 @@ input {
     outline: none;
   }
 
-  &:hover::after,
-  &:focus-visible::after {
+  &:hover::after {
     box-shadow: 0 0 0 var(--state-layer-spread)
       var(--mh-color-brand-border-quieter);
+  }
+
+  &:focus-visible::after {
+    outline: var(--mh-border-width-s) dashed var(--mh-color-brand-border);
+    outline-offset: var(--mh-focus-offset);
   }
 
   &:disabled {
@@ -91,10 +95,13 @@ input {
     border-color: var(--mh-color-danger-border);
   }
 
-  &:user-invalid:hover::after,
-  &:user-invalid:focus-visible::after {
+  &:user-invalid:hover::after {
     box-shadow: 0 0 0 var(--state-layer-spread)
       var(--mh-color-danger-border-quieter);
+  }
+
+  &:user-invalid:focus-visible::after {
+    outline-color: var(--mh-color-danger-border);
   }
 
   &:checked:user-invalid::before {
@@ -112,8 +119,7 @@ input {
     transform: scale(1);
   }
 
-  &:disabled:hover::before,
-  &:disabled:focus-visible::before {
+  &:disabled:hover::before {
     opacity: 0;
     transform: scale(0.5);
   }

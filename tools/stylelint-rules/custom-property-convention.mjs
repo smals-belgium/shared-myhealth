@@ -48,7 +48,7 @@ const meta = { url: 'https://github.com/smals-belgium/shared-myhealth' };
  * Listed longest-first so prefix matching tries them before single-word categories.
  */
 const ATOMIC_CATEGORIES = ['box-shadow'];
-const SIMPLE_CATEGORIES = ['color', 'size', 'animation', 'layout'];
+const SIMPLE_CATEGORIES = ['color', 'size', 'animation', 'layout', 'style'];
 const ALL_CATEGORIES = [...ATOMIC_CATEGORIES, ...SIMPLE_CATEGORIES];
 
 /**
