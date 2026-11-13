@@ -56,6 +56,36 @@ describe('mh-tab', () => {
       expect(part('panel', el)?.hasAttribute('aria-label')).toBe(false);
     });
 
+    it('is a tab stop when its content has nothing focusable', async () => {
+      const el = await fixture<Tab>(
+        html`<mh-tab active>Panel content</mh-tab>`,
+      );
+
+      expect(part('panel', el)?.getAttribute('tabindex')).toBe('0');
+    });
+
+    it('is not a tab stop when its content is focusable', async () => {
+      const el = await fixture<Tab>(
+        html`<mh-tab active
+          ><p><a href="#x">Link</a></p></mh-tab
+        >`,
+      );
+      defaultSlot(el)?.dispatchEvent(new Event('slotchange'));
+      await el.updateComplete;
+
+      expect(part('panel', el)?.hasAttribute('tabindex')).toBe(false);
+    });
+
+    it('is a tab stop when the only focusable content is disabled', async () => {
+      const el = await fixture<Tab>(
+        html`<mh-tab active><button disabled>No</button></mh-tab>`,
+      );
+      defaultSlot(el)?.dispatchEvent(new Event('slotchange'));
+      await el.updateComplete;
+
+      expect(part('panel', el)?.getAttribute('tabindex')).toBe('0');
+    });
+
     it('is hidden when not active', async () => {
       const el = await fixture<Tab>(html`<mh-tab>Panel content</mh-tab>`);
 

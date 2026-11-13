@@ -3,9 +3,9 @@
   --mh-popover-menu__box-shadow: 0px 3px 10px 0px rgb(0 0 0 / 15%);
 
   --mh-popover-menu-item__color-fill: transparent;
-  --mh-popover-menu-item__color-fill__hover: var(--mh-color-brand-fill-quiet);
+  --mh-popover-menu-item__color-fill__hover: var(--mh-color-brand-fill-quieter);
   --mh-popover-menu-item__color-fill__selected: var(
-    --mh-color-brand-fill-quieter
+    --mh-color-brand-fill-quiet
   );
   --mh-popover-menu-item__color-type: var(--mh-color-neutral-type-louder);
 
@@ -23,17 +23,31 @@
   gap: 0.25rem;
 }
 
+/**
+ * Programmatic fallback focus target for when all menu items are disabled;
+ * it has no actions of its own.
+ */
+:host(:focus-visible) {
+  outline: none;
+}
+
 /** override styling of projected buttons */
 ::slotted(*) {
   --mh-button__color-type: var(--mh-popover-menu-item__color-type);
   --mh-button__color-fill: var(--mh-popover-menu-item__color-fill);
+  --mh-button__color-fill__active: var(
+    --mh-popover-menu-item__color-fill__selected
+  );
   --mh-button__color-fill__hover: var(
     --mh-popover-menu-item__color-fill__hover
   );
-  --mh-button__color-fill__active: var(
-    --mh-popover-menu-item__color-fill__selected
+  --mh-button__color-fill__focus: var(
+    --mh-popover-menu-item__color-fill__hover
   );
   --mh-button__layout-align: start;
   --mh-button__size-border-radius: var(--mh-popover-menu__size-border-radius);
   --mh-button__size-type-weight: normal;
+  --mh-button__size-outline-offset: -2px;
+  --mh-button__size-outline-width: 2px;
+  --mh-button__style-outline: solid;
 }

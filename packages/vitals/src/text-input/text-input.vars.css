@@ -16,7 +16,7 @@
 
   /* --- border --- */
   --mh-text-input__color-border-input: var(--mh-color-neutral-border);
-  --mh-text-input__color-border-input__focus: var(--mh-color-brand-border-loud);
+  --mh-text-input__color-border-input__focus: var(--mh-color-brand-border);
   --mh-text-input__color-border-input__hover: var(--mh-color-brand-border);
   --mh-text-input__color-border-input__invalid: var(--mh-color-danger-border);
   --mh-text-input__color-border-input__invalid-hover: var(

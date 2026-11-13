@@ -9,6 +9,11 @@
   background-color: var(--mh-color-brand-fill-quiet);
   border-color: transparent;
   padding-right: var(--mh-space-xs);
+
+  &:has([part='remove']:focus-visible) {
+    outline: var(--mh-border-width-s) dashed var(--mh-color-brand-border);
+    outline-offset: var(--mh-focus-offset);
+  }
 }
 
 /* The leading icon and the trailing remove button both use the brand color. */
@@ -56,8 +61,7 @@
 }
 
 [part='remove']:focus-visible {
-  outline: var(--mh-border-width-m) solid var(--mh-color-brand-border);
-  outline-offset: 2px;
+  outline: none;
 }
 
 [part='remove']:disabled {

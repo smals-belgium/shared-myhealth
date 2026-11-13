@@ -35,7 +35,16 @@
   flex: 1 1 auto;
   min-width: 0;
   min-height: 0;
-  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: var(--mh-focus-space);
+}
+
+/* Without clip margin (Safari), make room for the focus ring inside the clipped box instead. */
+@supports not (overflow-clip-margin: 0) {
+  [part='content'] {
+    padding: var(--mh-focus-space);
+    margin: calc(var(--mh-focus-space) * -1);
+  }
 }
 
 [part='actions'][mh-has-slotted-content] {
@@ -62,4 +71,5 @@
     var(--mh-callout__color-close) 20%,
     transparent
   );
+  --mh-icon-button__color-outline: var(--mh-callout__color-close);
 }

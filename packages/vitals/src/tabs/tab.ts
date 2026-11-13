@@ -1,6 +1,8 @@
 import { html, nothing, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
+import { slotFocusContainerDirective } from '../core/directive/slot-focus-container.directive';
+
 import { TabBase } from './base';
 import styles from './tab.css?inline';
 
@@ -34,10 +36,9 @@ export class Tab extends TabBase {
         role="tabpanel"
         id=${this.panelId}
         aria-label=${this.label || nothing}
-        tabindex="0"
         ?hidden=${!this.active}
       >
-        <slot></slot>
+        <slot @slotchange=${slotFocusContainerDirective}></slot>
       </div>
     `;
   }

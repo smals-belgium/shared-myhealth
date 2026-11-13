@@ -33,7 +33,7 @@
 
 /* Focus ring: shown on the label when the inner input receives keyboard focus. */
 [part='base']:has(input:focus-visible) {
-  outline: var(--mh-border-width-m) solid var(--mh-color-brand-border);
+  outline: var(--mh-border-width-s) dashed var(--mh-color-brand-border);
   outline-offset: 2px;
 }
 

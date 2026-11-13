@@ -42,10 +42,20 @@ describe('a', () => {
 
     it('sets tabindex to match disabled state', async () => {
       const el = await fixture<Anchor>(html`<mh-a>click</mh-a>`);
-      expect(getA(el)?.getAttribute('tabindex')).toBe('0');
+      expect(getA(el)?.hasAttribute('tabindex')).toBe(false);
 
       el.disabled = true;
       await elementUpdated(el);
+      expect(getA(el)?.getAttribute('tabindex')).toBe('-1');
+    });
+
+    it('does not override a tabindex set by an owner when re-rendering', async () => {
+      const el = await fixture<Anchor>(html`<mh-a>click</mh-a>`);
+      getA(el)?.setAttribute('tabindex', '-1');
+
+      el.title = 'changed';
+      await elementUpdated(el);
+
       expect(getA(el)?.getAttribute('tabindex')).toBe('-1');
     });
   });

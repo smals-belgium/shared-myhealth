@@ -596,6 +596,46 @@ describe('select', () => {
     });
   });
 
+  describe('keyboard', () => {
+    const openSelect = async () => {
+      const el = await fixture<Select>(
+        html`<mh-select name="kb">
+          Label
+          <mh-option value="a">A</mh-option>
+        </mh-select>`,
+      );
+      el.open = true;
+      await el.updateComplete;
+      return el;
+    };
+
+    const press = (el: Select, key: string) => {
+      const event = new KeyboardEvent('keydown', {
+        key,
+        bubbles: true,
+        cancelable: true,
+      });
+      el.dispatchEvent(event);
+      return event;
+    };
+
+    it('closes on Tab without claiming the event, so focus can move on', async () => {
+      const el = await openSelect();
+
+      const event = press(el, 'Tab');
+      await el.updateComplete;
+
+      expect(event.defaultPrevented).toBe(false);
+      expect(el.open).toBe(false);
+    });
+
+    it('claims other keys while open', async () => {
+      const el = await openSelect();
+
+      expect(press(el, 'Enter').defaultPrevented).toBe(true);
+    });
+  });
+
   describe('events', () => {
     it('emits focus and blur when focused and blurred', async () => {
       const el = await fixture<Select>(

@@ -44,7 +44,7 @@
   --mh-button__color-border__hover: var(--mh-button__color-border);
 }
 
-:host [part='base'] {
+[part='base'] {
   color: var(--mh-button__color-type);
   background-color: var(--mh-button__color-fill);
   border-color: var(--mh-button__color-border);

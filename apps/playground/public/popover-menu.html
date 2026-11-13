@@ -39,9 +39,12 @@
     >
     </mh-icon-button>
 
-    <mh-popover-menu id="menu">
-      <mh-button>Edit</mh-button>
-      <mh-a>Delete</mh-a>
+    <mh-popover-menu
+      id="menu"
+      label="little menu actions"
+    >
+      <mh-button onclick="console.log('edit')">Edit</mh-button>
+      <mh-a href="popover-menu.html">Delete</mh-a>
       <mh-a disabled>Disabled</mh-a>
     </mh-popover-menu>
   </body>

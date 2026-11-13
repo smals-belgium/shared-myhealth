@@ -4,7 +4,7 @@
 
   /* --- border --- */
   --mh-select__color-border-input: var(--mh-color-neutral-border);
-  --mh-select__color-border-input__focus: var(--mh-color-brand-border-loud);
+  --mh-select__color-border-input__focus: var(--mh-color-brand-border);
   --mh-select__color-border-input__hover: var(--mh-color-brand-border);
   --mh-select__color-border-input__invalid: var(--mh-color-danger-border);
   --mh-select__color-border-input__invalid-hover: var(
@@ -15,6 +15,7 @@
   /* --- size --- */
   --mh-select__size-border-radius: var(--mh-border-radius);
   --mh-select__size-height: var(--mh-form-control-height);
+  --mh-select__size-offset: var(--mh-space-xs);
 }
 
 [part='toggle-button'] {
@@ -50,9 +51,11 @@
     border-color: var(--mh-select__color-border-input__hover);
   }
 
-  &:focus {
+  &:focus-visible {
     border-color: var(--mh-select__color-border-input__focus);
-    outline: 1px solid var(--mh-select__color-border-input__focus);
+    outline: var(--mh-border-width-s) dashed
+      var(--mh-select__color-border-input__focus);
+    outline-offset: var(--mh-focus-offset);
   }
 
   :host(:state(user-invalid)) {
@@ -63,8 +66,8 @@
     border-color: var(--mh-select__color-border-input__invalid-hover);
   }
 
-  :host(:state(user-invalid)) &:focus {
-    outline: 1px solid var(--mh-select__color-border-input__invalid);
+  :host(:state(user-invalid)) &:focus-visible {
+    outline-color: var(--mh-select__color-border-input__invalid);
   }
 
   &:disabled,
@@ -93,7 +96,7 @@
   border: none;
   border-radius: var(--mh-select__size-border-radius);
   box-shadow: var(--mh-select__box-shadow-listbox);
-  transform: translateY(1px);
+  transform: translateY(var(--mh-select__size-offset));
 
   &:popover-open {
     display: flex;

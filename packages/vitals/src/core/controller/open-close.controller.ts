@@ -13,15 +13,20 @@ export type OpenCloseHost = LitElement & {
 /**
  * A Lit controller that tracks the open/closed state of any `popover` element in two directions:
  * - when the `open` property is set, toggle the `popover` accordingly
+ *   (pass `source` to tell the browser which element invoked it: without an invoker, a popover opened through
+ *   the property has no implicit anchor, so anchor positioning cannot place it next to its trigger)
  * - when the `popover` is toggled by the user, reflect that in the `open` state
  */
 export const openCloseController = (
   host: OpenCloseHost,
+  source: () => HTMLElement | undefined = () => undefined,
 ): ReactiveController => {
   host.addController(cssStateReflect(host, ['open']));
 
   host.addController(
-    propUpdatedEffect(host, 'open', () => host.togglePopover(host.open)),
+    propUpdatedEffect(host, 'open', () =>
+      host.togglePopover({ source: source(), force: host.open }),
+    ),
   );
 
   const onToggle = (event: ToggleEvent) =>

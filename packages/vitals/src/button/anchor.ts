@@ -62,7 +62,7 @@ export class Anchor extends ButtonBase {
         download=${ifDefined(this.download)}
         rel=${ifDefined(this.rel)}
         aria-disabled=${this.disabled}
-        tabindex=${this.disabled ? '-1' : '0'}
+        tabindex=${ifDefined(this.disabled ? '-1' : undefined)}
         @click=${this.#onClick}
       >
         <slot

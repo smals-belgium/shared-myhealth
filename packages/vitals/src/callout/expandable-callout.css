@@ -1,16 +1,18 @@
 /* Reset the padding added by regular callout */
 :host {
   padding: 0;
-
-  /* Clip the header's hover/active tint to the rounded corners. */
-  overflow: hidden;
 }
 
-/* The disclosure wraps the whole callout; stack the summary and region. */
 details {
   display: flex;
   flex-direction: column;
   width: stretch;
+
+  &:has([part='header']:focus-visible) {
+    border-radius: var(--mh-border-radius);
+    outline: var(--mh-border-width-s) dashed var(--mh-color-border);
+    outline-offset: var(--mh-focus-offset);
+  }
 }
 
 [part='header'] {
@@ -35,8 +37,6 @@ details {
 
   &:focus-visible {
     outline: none;
-    box-shadow: inset 0 0 0 var(--mh-border-width-m)
-      var(--mh-callout__color-type);
   }
 }
 

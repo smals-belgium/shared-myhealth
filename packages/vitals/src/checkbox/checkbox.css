@@ -33,11 +33,7 @@ input {
   flex-shrink: 0;
   width: var(--mh-target-size-min);
   height: var(--mh-target-size-min);
-  border: none;
-  border-radius: 50%;
-  background: transparent;
   cursor: pointer;
-  transition: none;
 
   /* Visual checkbox box */
   &::after {
@@ -93,10 +89,14 @@ input {
     outline: none;
   }
 
-  &:hover::after,
-  &:focus-visible::after {
+  &:hover::after {
     box-shadow: 0 0 0 var(--state-layer-spread)
       var(--mh-color-brand-border-quieter);
+  }
+
+  &:focus-visible::after {
+    outline: var(--mh-border-width-s) dashed var(--mh-color-brand-border);
+    outline-offset: var(--mh-focus-offset);
   }
 
   &:disabled {
@@ -112,10 +112,13 @@ input {
     background-color: var(--mh-color-danger-fill);
   }
 
-  &:user-invalid:hover::after,
-  &:user-invalid:focus-visible::after {
+  &:user-invalid:hover::after {
     box-shadow: 0 0 0 var(--state-layer-spread)
       var(--mh-color-danger-border-quieter);
+  }
+
+  &:user-invalid:focus-visible::after {
+    outline-color: var(--mh-color-danger-border);
   }
 
   &:disabled::after {

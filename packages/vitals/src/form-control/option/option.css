@@ -1,6 +1,7 @@
 :host {
-  --mh-option__color-fill__hover: var(--mh-color-brand-fill-quiet);
-  --mh-option__color-fill__selected: var(--mh-color-brand-fill-quieter);
+  --mh-option__color-border__hover: var(--mh-color-brand-border);
+  --mh-option__color-fill__hover: var(--mh-color-brand-fill-quieter);
+  --mh-option__color-fill__selected: var(--mh-color-brand-fill-quiet);
   --mh-option__color-type__disabled: var(--mh-color-neutral-type-loud);
   --mh-option__size-border-radius: var(--mh-border-radius);
 
@@ -11,6 +12,7 @@
   padding: 0 1rem;
   height: 2.625rem;
   cursor: pointer;
+  border: 2px solid transparent;
   border-radius: var(--mh-option__size-border-radius);
 }
 
@@ -20,6 +22,7 @@
 
 :host(:hover),
 :host(:state(active)) {
+  border-color: var(--mh-option__color-border__hover);
   background-color: var(--mh-option__color-fill__hover);
 }
 

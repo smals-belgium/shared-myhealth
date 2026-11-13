@@ -97,12 +97,22 @@ const navigate = (host: Select, key: NavigationKey) => {
  * Listen for keyboard events only when the select is `open`.
  * Dismiss any events with modifiers or Escape key (popover needs to be able to capture that one to close).
  * - Enter: commit the currently active option as new selected value
+ * - Tab: close the popover and let the tab event take care of focusing the next element in the document
  * - arrows, page keys, home and end: visually navigate through options by setting their active state
  * - any character key: visually navigate to first option who's label starts with that char
  */
 export const keyboardController = (host: Select) => {
   const onKeyDown = (event: KeyboardEvent) => {
     if (hasModifier(event) || event.key === 'Escape') return;
+
+    if (event.key === 'Tab') {
+      host.toggle(false);
+      // Let the Tab event bubble up for native focus behaviour
+      // trap all other keyboard events in the popover
+      // (for example: never submit a form on enter when a popover is open)
+      return;
+    }
+
     event.preventDefault();
     event.stopImmediatePropagation();
 

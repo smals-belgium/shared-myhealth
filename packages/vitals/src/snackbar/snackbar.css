@@ -74,6 +74,8 @@
     var(--mh-snackbar__color-type) 30%,
     transparent
   );
+  --mh-icon-button__color-outline: var(--mh-color-neutral-border-quieter);
+  --mh-icon-button__size-radius: var(--mh-border-radius);
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -10,6 +10,9 @@
     --mh-border-width-m: 0.125rem;
     --mh-border-width-l: 0.1875rem;
 
+    --mh-focus-offset: 2px;
+    --mh-focus-space: calc(var(--mh-border-width-s) + var(--mh-focus-offset));
+
     --mh-space-xs: 0.25rem;
     --mh-space-s: 0.5rem;
     --mh-space-m: 1rem;
