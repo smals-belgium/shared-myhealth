@@ -6,4 +6,6 @@
   --mh-icon-button__color-fill__disabled: transparent;
   --mh-icon-button__color-fill__hover: transparent;
   --mh-icon-button__size-icon: var(--mh-text-input__size-height);
+  --mh-icon-button__size-radius: var(--mh-border-radius);
+  --mh-focus-offset: -4px;
 }

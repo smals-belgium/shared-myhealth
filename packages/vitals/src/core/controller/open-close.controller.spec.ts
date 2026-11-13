@@ -10,10 +10,12 @@ import { openCloseController } from './open-close.controller';
 class TestHost extends LitElement {
   @property({ type: Boolean, reflect: true }) open = false;
 
+  source?: HTMLElement;
+
   override connectedCallback() {
     super.connectedCallback();
     this.setAttribute('popover', 'auto');
-    this.addController(openCloseController(this));
+    this.addController(openCloseController(this, () => this.source));
   }
 }
 
@@ -58,6 +60,20 @@ describe('openCloseController', () => {
     );
 
     expect(el.hasAttribute('popover-open')).toBe(true);
+  });
+
+  it('invokes the popover from the source when opening', async () => {
+    const el = await fixture<TestHost>(
+      html`<test-open-close-host></test-open-close-host>`,
+    );
+    const source = document.createElement('button');
+    el.source = source;
+    const showPopover = vi.spyOn(el, 'togglePopover');
+
+    el.open = true;
+    await el.updateComplete;
+
+    expect(showPopover).toHaveBeenCalledWith({ source, force: true });
   });
 
   it('syncs open to true on a native toggle event', async () => {
