@@ -74,6 +74,9 @@
       "@smals-belgium-shared/vitals-ng/snackbar": [
         "./packages/vitals-ng/src/snackbar/index.ts"
       ],
+      "@smals-belgium-shared/vitals-ng/cdk/dev-tools": [
+        "./packages/vitals-ng/src/cdk/dev-tools/index.ts"
+      ],
       "@smals-belgium-shared/vitals-ng/cdk/overlay": [
         "./packages/vitals-ng/src/cdk/overlay/index.ts"
       ],
