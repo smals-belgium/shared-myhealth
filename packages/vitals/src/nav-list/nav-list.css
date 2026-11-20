@@ -33,8 +33,17 @@ li:not(:first-child) ::slotted(mh-nav-group) {
   width: 100%;
 }
 
-/** The items stay in the light DOM, so they are styled through the custom properties they expose. */
-::slotted([slot^='nav-item-']:not(mh-nav-group)) {
+/**
+ * The items stay in the light DOM, so they are styled through the custom properties they expose.
+ *
+ * **NOTE: on the `mh-nav-content` class**
+ * This is a bail-out of the default styling that is applied to all buttons and links in a nav-list/nav-menu.
+ * By default all buttons will look like a navigation item instead of a regular button, but if for whatever insane
+ * reason your UX team decides that they need normal buttons in a nav-group, add this class to the container element.
+ *
+ * It's there if you absolutely need it, but usage is discouraged.
+ */
+::slotted([slot^='nav-item-']:not(mh-nav-group, .mh-nav-content)) {
   --mh-button__color-border: var(--mh-nav-item__color-border);
   --mh-button__color-border__active: var(--mh-nav-item__color-border);
   --mh-button__color-border__disabled: var(--mh-nav-item__color-border);

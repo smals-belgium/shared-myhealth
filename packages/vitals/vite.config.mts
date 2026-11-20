@@ -46,6 +46,7 @@ export default defineConfig(() => ({
         'icon-button/index': 'src/icon-button/index.ts',
         'iterator/index': 'src/iterator/index.ts',
         'nav-list/index': 'src/nav-list/index.ts',
+        'nav-menu/index': 'src/nav-menu/index.ts',
         'popover-menu/index': 'src/popover-menu/index.ts',
         'radio/index': 'src/radio/index.ts',
         'select/index': 'src/select/index.ts',

@@ -1,7 +1,8 @@
+import { root } from '../core/internals';
 import type { OpenCloseHost } from '../core/open-close.behaviour';
 
 import { getLastEnabledOption } from './menu-item.selectors';
-import { getEventTrigger, root } from './trigger.selectors';
+import { getEventTrigger } from './trigger.selectors';
 
 const hasModifier = (event: KeyboardEvent) =>
   event.metaKey || event.ctrlKey || event.altKey || event.shiftKey;

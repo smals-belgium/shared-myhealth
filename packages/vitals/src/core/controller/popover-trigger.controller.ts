@@ -1,5 +1,7 @@
 import { LitElement, ReactiveController } from 'lit';
 
+import { root } from '../internals';
+
 /** Properties to be implemented by a Lit component that can be used to trigger a `popover`. */
 export type PopoverTriggerHost = LitElement & {
   /**
@@ -38,8 +40,9 @@ export const popoverTriggerController = (
   const linkPopover = () => {
     if (!host.popoverTarget) return;
 
-    const root = host.getRootNode() as Document | ShadowRoot;
-    trigger.popoverTargetElement = root.getElementById(host.popoverTarget);
+    trigger.popoverTargetElement = root(host).getElementById(
+      host.popoverTarget,
+    );
     trigger.popoverTargetAction = host.popoverTargetAction;
   };
 

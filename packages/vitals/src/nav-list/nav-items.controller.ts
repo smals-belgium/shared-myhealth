@@ -1,9 +1,15 @@
 import { html, nothing } from 'lit';
-import type { ReactiveController, ReactiveControllerHost } from 'lit';
+import type {
+  ReactiveController,
+  ReactiveControllerHost,
+  TemplateResult,
+} from 'lit';
 
 const SLOT_PREFIX = 'nav-item-';
 
 const slotName = (index: number) => `${SLOT_PREFIX}${String(index)}`;
+
+type Renderer = (el: Element) => TemplateResult | typeof nothing;
 
 /**
  * Track only:
@@ -26,11 +32,16 @@ export class NavItemsController implements ReactiveController {
   readonly #observer = new MutationObserver(records => {
     if (records.some(isRelevant(this.#host))) this.#sync();
   });
+  readonly #renderAdditionalItemContent: Renderer;
 
   #items: Element[] = [];
 
-  constructor(host: ReactiveControllerHost & HTMLElement) {
+  constructor(
+    host: ReactiveControllerHost & HTMLElement,
+    renderAdditionalItemContent: Renderer = () => nothing,
+  ) {
     this.#host = host;
+    this.#renderAdditionalItemContent = renderAdditionalItemContent;
     host.addController(this);
   }
 
@@ -67,15 +78,7 @@ export class NavItemsController implements ReactiveController {
           ?data-has-disabled=${el.hasAttribute('disabled')}
         >
           <slot name=${slotName(index)}></slot>
-          ${
-            el.localName === 'mh-nav-group'
-              ? nothing
-              : html`<mh-icon
-                  part="icon"
-                  name="chevron_right"
-                >
-                </mh-icon>`
-          }
+          ${this.#renderAdditionalItemContent(el)}
         </li>
       `,
     );

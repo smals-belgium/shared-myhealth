@@ -1,8 +1,9 @@
+import { root } from '../core/internals';
 import { OpenCloseHost } from '../core/open-close.behaviour';
 
 import { triggerAriaController } from './trigger-aria.controller';
 import { triggerKeyboardController } from './trigger-keyboard.controller';
-import { getEventTrigger, root, triggers } from './trigger.selectors';
+import { getEventTrigger, triggers } from './trigger.selectors';
 
 /**
  * Multiple triggers can open a popover;

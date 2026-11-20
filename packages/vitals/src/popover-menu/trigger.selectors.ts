@@ -1,5 +1,4 @@
-export const root = (host: Node) =>
-  host.getRootNode() as (Document | ShadowRoot) & HTMLElement;
+import { root } from '../core/internals';
 
 export const triggers = (host: Element) =>
   root(host).querySelectorAll<HTMLElement>(`[popovertarget="${host.id}"]`);

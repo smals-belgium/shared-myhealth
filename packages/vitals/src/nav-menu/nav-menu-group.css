@@ -1,0 +1,82 @@
+/**
+ * The summary looks exactly like a leaf nav-item (a `mh-button` styled through nav-list.css and nav-menu.css),
+ * using the same custom properties set by the parent's appearance.
+ * The header and the chevron share a single grid cell, so the whole summary is clickable.
+ */
+summary {
+  display: grid;
+  align-items: center;
+  box-sizing: border-box;
+  height: 3.5rem;
+  padding: 0 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  color: var(--mh-color-neutral-type-louder);
+  background-color: var(--mh-nav-item__color-fill);
+  border: solid var(--mh-nav-item__color-border);
+  border-width: 0 0 1px;
+  font-weight: 600;
+  transition-property: background, border, color;
+  transition-duration: var(--mh-transition-normal);
+  transition-timing-function: var(--mh-transition-easing);
+
+  &:hover {
+    background-color: var(--mh-nav-item__color-fill__hover);
+    border-color: var(--mh-nav-item__color-border__hover);
+  }
+
+  &:active {
+    background-color: var(--mh-nav-item__color-fill__active);
+  }
+
+  &:focus-visible {
+    background-color: var(--mh-nav-item__color-fill__focus);
+    outline: 2px solid var(--mh-nav-item__color-border__focus);
+    outline-offset: -2px;
+  }
+
+  details[open] & {
+    border: none;
+  }
+}
+
+summary [part='header'] {
+  grid-area: 1 / 1;
+  align-items: center;
+}
+
+summary [part='header']::slotted(*) {
+  --mh-font-size-slotted-heading: 1em;
+  --mh-font-weight-slotted-heading: 600;
+  --mh-margin-slotted-heading: 0;
+
+  margin: var(--mh-margin-slotted-heading);
+  font-size: var(--mh-font-size-slotted-heading);
+  font-weight: var(--mh-font-weight-slotted-heading);
+  color: inherit;
+}
+
+/** Points down when closed, up when open. */
+summary [part='icon'] {
+  margin-inline-end: -0.25rem;
+  rotate: 90deg;
+  transition: rotate var(--mh-transition-normal) var(--mh-transition-easing);
+
+  details[open] & {
+    rotate: -90deg;
+  }
+}
+
+/** The items of a group are borderless, so they don't need the 1px overlap that list groups use. */
+details li:not(:first-child) {
+  margin-top: 0;
+}
+
+/** Same visual changes as nav-menu.css, scoped to the details structure so they don't leak into list groups. */
+details ::slotted([slot^='nav-item-']:not(mh-nav-group, .mh-nav-content)) {
+  --mh-button__size-border-radius: 0;
+  --mh-button__size-border-width: 0;
+  --mh-button__size-height: 2.625rem; /* 42px */
+  --mh-button__size-inset: 1.25rem 2.75rem;
+  --mh-button__size-type-weight: 400;
+}

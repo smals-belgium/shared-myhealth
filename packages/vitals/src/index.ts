@@ -9,6 +9,7 @@ export * from './icon';
 export * from './icon-button';
 export * from './iterator';
 export * from './nav-list';
+export * from './nav-menu';
 export * from './popover-menu';
 export * from './radio';
 export * from './select';

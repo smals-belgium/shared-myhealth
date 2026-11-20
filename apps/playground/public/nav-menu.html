@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vitals Playground - nav-menu</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+    <style>
+      .mh-nav-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        span {
+          font-size: 0.8rem;
+          color: var(--mh-color-neutral-type);
+        }
+      }
+    </style>
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </head>
+
+  <body>
+    <h2>NavMenu</h2>
+
+    <mh-nav-menu>
+      <mh-a href="">Item 1</mh-a>
+      <mh-button>Item 2</mh-button>
+
+      <mh-nav-group>
+        <h3 slot="header">Group 1</h3>
+        <mh-button>Group item 1</mh-button>
+        <mh-button>Group item 2</mh-button>
+        <mh-button>Group item 3</mh-button>
+        <mh-button disabled>Group item 4 is disabled</mh-button>
+        <mh-button>Group item 5</mh-button>
+      </mh-nav-group>
+
+      <mh-nav-group>
+        <h3 slot="header">Callout</h3>
+        <mh-callout variant="info">
+          <span slot="title">Information</span>
+          Yeah they want Information blocks in a menu...
+        </mh-callout>
+      </mh-nav-group>
+
+      <mh-nav-group>
+        <h3 slot="header">Log out</h3>
+        <div class="mh-nav-content">
+          Are you sure ?
+          <span>
+            (that you want log out buttons on a collapsible menu item)
+          </span>
+          <mh-button>Log out</mh-button>
+          <mh-button appearance="outlined">Cancel</mh-button>
+          Please do not use this "feature"
+        </div>
+      </mh-nav-group>
+    </mh-nav-menu>
+  </body>
+</html>

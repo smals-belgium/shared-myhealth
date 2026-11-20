@@ -1,0 +1,20 @@
+/**
+ * nav-menu uses nav-list's styles as a base and only adds a couple visual changes:
+ * - no gap between nav items or groups
+ * - no extra room above groups
+ * - each leaf nav-item is made square with only a border at the bottom
+ * All states of the nav-items such as focus or active, are already taken care of by nav-list styles
+ */
+ul {
+  gap: 0;
+}
+
+li:not(:first-child) ::slotted(mh-nav-group) {
+  margin-top: 0;
+}
+
+::slotted([slot^='nav-item-']:not(mh-nav-group, .mh-nav-content)) {
+  --mh-button__size-border-radius: 0;
+  --mh-button__size-border-width: 0 0 1px 0;
+  --mh-button__size-type-weight: 600;
+}
