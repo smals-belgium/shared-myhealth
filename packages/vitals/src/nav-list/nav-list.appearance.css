@@ -1,3 +1,4 @@
+:host(mh-nav-menu),
 :host([appearance='outlined']) {
   --mh-nav-item__color-border: var(--mh-color-neutral-border-quiet);
   --mh-nav-item__color-border__focus: var(--mh-color-brand-border);
