@@ -1,24 +1,34 @@
 import { html, LitElement, PropertyValues, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { styleMap } from 'lit/directives/style-map.js';
 
 import type { Size } from '../core';
-import { cssProperties, parseLinearGradient } from '../core/css';
 import { ErrorEvent, LoadEvent } from '../core/event';
 
 import { IconName } from './icon-name';
 import styles from './icon.css?inline';
 import size from './icon.size.css?inline';
-import { addLinearGradient } from './linear-gradient';
 
 export type IconSize = Size;
-export type IconCssProperty = 'color-gradient' | 'size-rotate-angle';
 
 const icons: Record<string, string> = import.meta.glob('./svg/*.svg', {
   query: '?raw',
   import: 'default',
   eager: true,
 });
+
+const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
+
+/**
+ * The icon is drawn as a mask over the host's background, so that `--mh-icon__color-gradient` (or `currentColor`) is
+ * resolved by the cascade alone, whenever and wherever the icon is rendered.
+ */
+const toMask = (svg: string) => {
+  const namespaced = svg.includes('xmlns=')
+    ? svg
+    : svg.replace('<svg', `<svg xmlns="${SVG_NAMESPACE}"`);
+  return `url("data:image/svg+xml,${encodeURIComponent(namespaced)}")`;
+};
 
 /**
  * @summary Icons are scalable vector symbols that represent actions, content, or status throughout your application.
@@ -55,8 +65,6 @@ export class Icon extends LitElement {
 
   /** The icon's size. */
   @property({ reflect: true }) size: IconSize = 'm';
-
-  readonly #cssProperties = cssProperties<IconCssProperty>(this);
 
   protected override willUpdate(props: PropertyValues<this>) {
     if (props.has('src') && this.src && this.#validateSrc(this.src))
@@ -129,18 +137,10 @@ export class Icon extends LitElement {
 
   override render() {
     if (!this.svg) return html`#`;
-    if (!this.#cssProperties.has('color-gradient'))
-      return html`${unsafeHTML(this.svg)}`;
 
-    const gradient = parseLinearGradient(
-      this.#cssProperties.get('color-gradient'),
-    );
-    // If there's an error, dispatch it, but still display the icon without the gradient
-    if (gradient instanceof Error) {
-      this.dispatchEvent(new ErrorEvent(gradient));
-      return html`${unsafeHTML(this.svg)}`;
-    }
-
-    return html`${unsafeHTML(addLinearGradient(this.svg, gradient))}`;
+    return html`<span
+      part="base"
+      style=${styleMap({ '--__icon__mask': toMask(this.svg) })}
+    ></span>`;
   }
 }

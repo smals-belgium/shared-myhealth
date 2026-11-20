@@ -18,34 +18,71 @@
       rel="stylesheet"
       href="/src/styles.css"
     />
+    <style>
+      body {
+        --bg-gradient-start: rgba(215, 247, 235, 1);
+        --bg-gradient-end: rgba(202, 230, 243, 1);
+
+        background:
+          linear-gradient(
+            to bottom,
+            var(--bg-gradient-start) 0%,
+            transparent 10%
+          ),
+          linear-gradient(
+            148deg,
+            var(--bg-gradient-start) 0%,
+            var(--bg-gradient-end) 75%
+          );
+      }
+
+      mh-nav-list {
+        display: block;
+        width: 500px;
+        margin: 2rem auto;
+      }
+
+      mh-nav-list::part(list) {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      mh-nav-list::part(list-item) {
+        width: 49%;
+      }
+    </style>
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
   </head>
 
   <body>
-    <nav>
-      <ul>
-        <li><a href="/button.html">Button</a></li>
-        <li><a href="/callout.html">Callout</a></li>
-        <li><a href="/card.html">Card</a></li>
-        <li><a href="/checkbox.html">Checkbox</a></li>
-        <li><a href="/chip.html">Chip</a></li>
-        <li><a href="/dialog.html">Dialog</a></li>
-        <li><a href="/divider.html">Divider</a></li>
-        <li><a href="/fonts.html">Fonts</a></li>
-        <li><a href="/icon.html">Icon</a></li>
-        <li><a href="/icon-button.html">Icon button</a></li>
-        <li><a href="/iterator.html">Iterator</a></li>
-        <li><a href="/popover-menu.html">Popover Menu</a></li>
-        <li><a href="/radio.html">Radio</a></li>
-        <li><a href="/select.html">Select</a></li>
-        <li><a href="/skeleton.html">Skeleton</a></li>
-        <li><a href="/slide-toggle.html">Slide toggle</a></li>
-        <li><a href="/snackbar.html">Snackbar</a></li>
-        <li><a href="/spinner.html">Spinner</a></li>
-        <li><a href="/table.html">Table</a></li>
-        <li><a href="/tabs.html">Tabs</a></li>
-        <li><a href="/text-input.html">Text input</a></li>
-        <li><a href="/tooltip.html">Tooltip</a></li>
-      </ul>
-    </nav>
+    <mh-nav-list appearance="transparent">
+      <mh-a href="/button.html">Button</mh-a>
+      <mh-a href="/callout.html">Callout</mh-a>
+      <mh-a href="/card.html">Card</mh-a>
+      <mh-a href="/checkbox.html">Checkbox</mh-a>
+      <mh-a href="/chip.html">Chip</mh-a>
+      <mh-a href="/dialog.html">Dialog</mh-a>
+      <mh-a href="/divider.html">Divider</mh-a>
+      <mh-a href="/fonts.html">Fonts</mh-a>
+      <mh-a href="/icon.html">Icon</mh-a>
+      <mh-a href="/icon-button.html">Icon button</mh-a>
+      <mh-a href="/iterator.html">Iterator</mh-a>
+      <mh-a href="/nav-list.html">NavList</mh-a>
+      <mh-a href="/popover-menu.html">Popover Menu</mh-a>
+      <mh-a href="/radio.html">Radio</mh-a>
+      <mh-a href="/select.html">Select</mh-a>
+      <mh-a href="/skeleton.html">Skeleton</mh-a>
+      <mh-a href="/slide-toggle.html">Slide toggle</mh-a>
+      <mh-a href="/snackbar.html">Snackbar</mh-a>
+      <mh-a href="/spinner.html">Spinner</mh-a>
+      <mh-a href="/table.html">Table</mh-a>
+      <mh-a href="/tabs.html">Tabs</mh-a>
+      <mh-a href="/text-input.html">Text input</mh-a>
+      <mh-a href="/tooltip.html">Tooltip</mh-a>
+    </mh-nav-list>
   </body>
 </html>

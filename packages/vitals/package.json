@@ -23,6 +23,8 @@
   "exports": {
     "./package.json": "./package.json",
     "./theme.css": "./dist/theme.css",
+    "./icons-url.css": "./dist/icons-url.css",
+    "./icons-inline.css": "./dist/icons-inline.css",
     "./core": {
       "types": "./dist/core/index.d.ts",
       "import": "./dist/core/index.js",
@@ -77,6 +79,11 @@
       "types": "./dist/iterator/index.d.ts",
       "import": "./dist/iterator/index.js",
       "default": "./dist/iterator/index.js"
+    },
+    "./nav-list": {
+      "types": "./dist/nav-list/index.d.ts",
+      "import": "./dist/nav-list/index.js",
+      "default": "./dist/nav-list/index.js"
     },
     "./popover-menu": {
       "types": "./dist/popover-menu/index.d.ts",

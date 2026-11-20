@@ -36,7 +36,9 @@ import { ButtonBase } from './base';
  * @csspropery --mh-button__layout-align - The alignment of the button contents with respect to the container.
  * @csspropery --mh-button__size-border-radius - Corner radius, fully rounded by default.
  * @csspropery --mh-button__size-border-width - Width of the border (for outlined appearance).
+ * @csspropery --mh-button__size-gap - Gap between the start, main and end content.
  * @csspropery --mh-button__size-height - Height of the button.
+ * @csspropery --mh-button__size-inset - Inline padding, as a `padding-inline` value (`start end` when two values).
  * @csspropery --mh-button__size-type-weight - Font weight of the text; slightly bolder than copy by default.
  */
 @customElement('mh-button')

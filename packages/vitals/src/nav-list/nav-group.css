@@ -1,0 +1,67 @@
+:host {
+  color-scheme: light;
+}
+
+/**
+ * The list gap (0.5rem) and the margin set by the parent list (1rem) put a group with header 1.5rem below the
+ * previous one. Without a header, the list gets an extra 0.5rem to make it 2rem.
+ */
+:host(:not(:first-child)) [part='header']:not([mh-has-slotted-content]) + ul {
+  margin-top: 0.5rem;
+}
+
+/**
+ * In case anyone wants to add more than a heading in the nav-group's header, we assume a horizontal layout and
+ * align all items to stick to the list items below. No further assumptions are made: it's the developer's
+ * responsibility to do further layout. In case (s)he doesn't want the default layout, this can of course still be
+ * overridden on the CSS part.
+ */
+[part='header'] {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+}
+
+/** Slotted headings get a predefined size and margin */
+[part='header']::slotted(*) {
+  --mh-font-size-slotted-heading: 1rem;
+  --mh-margin-slotted-heading: 0 0 0.5rem;
+
+  font-size: var(--mh-font-size-slotted-heading);
+  margin: var(--mh-margin-slotted-heading);
+}
+
+ul {
+  gap: 0;
+}
+
+li {
+  /** 1px of border overlap. */
+  &:not(:first-child) {
+    margin-top: -1px;
+  }
+
+  --nav-group__size-border-radius-top: 0;
+  --nav-group__size-border-radius-bottom: 0;
+
+  &:first-of-type {
+    --nav-group__size-border-radius-top: var(--mh-border-radius-xl);
+  }
+
+  &:last-of-type {
+    --nav-group__size-border-radius-bottom: var(--mh-border-radius-xl);
+  }
+}
+
+::slotted([slot^='nav-item-']:not(mh-nav-group)) {
+  --mh-button__size-border-radius: var(--nav-group__size-border-radius-top)
+    var(--nav-group__size-border-radius-top)
+    var(--nav-group__size-border-radius-bottom)
+    var(--nav-group__size-border-radius-bottom);
+}
+
+/** Make sure that the border of an active item is always on top, since they overlap. */
+::slotted([slot^='nav-item-']:hover),
+::slotted([slot^='nav-item-']:focus-within) {
+  position: relative;
+}

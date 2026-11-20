@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <title>Vitals Playground - nav-list</title>
+    <base href="/" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="stylesheet"
+      href="/src/styles.css"
+    />
+    <style>
+      .gradient {
+        --bg-gradient-start: rgba(215, 247, 235, 1);
+        --bg-gradient-end: rgba(202, 230, 243, 1);
+
+        padding: 2rem;
+        background:
+          linear-gradient(
+            to bottom,
+            var(--bg-gradient-start) 0%,
+            transparent 10%
+          ),
+          linear-gradient(
+            148deg,
+            var(--bg-gradient-start) 0%,
+            var(--bg-gradient-end) 75%
+          );
+      }
+
+      mh-nav-group mh-icon {
+        --mh-icon__color-gradient: linear-gradient(
+          229deg,
+          #3d94ce 0%,
+          #76e1b1 100%
+        );
+      }
+      mh-nav-group mh-button [slot='end'] {
+        color: grey;
+        font-style: italic;
+      }
+      mh-nav-group .custom-item-container > mh-button {
+        width: 100%;
+      }
+      mh-nav-group mh-a[slot='header'] {
+        margin-left: auto;
+      }
+    </style>
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </head>
+
+  <body>
+    <h2>NavList</h2>
+
+    <h3>--Outlined--</h3>
+    <mh-nav-list>
+      <mh-a href="">Item 1</mh-a>
+      <mh-button>Item 2</mh-button>
+
+      <mh-nav-group>
+        <h4 slot="header">Group 1</h4>
+        <mh-a
+          slot="header"
+          appearance="link"
+          href=""
+        >
+          Header link
+        </mh-a>
+        <mh-button>Group item 1</mh-button>
+        <mh-button>Group item 2</mh-button>
+        <mh-button>Group item 3</mh-button>
+        <mh-button disabled>Group item 4 is disabled</mh-button>
+        <mh-button>Group item 5</mh-button>
+      </mh-nav-group>
+    </mh-nav-list>
+
+    <h3>--No groups--</h3>
+    <mh-nav-list>
+      <mh-a href="">Item 1</mh-a>
+      <mh-button>Item 2</mh-button>
+      <mh-button>Item 3</mh-button>
+    </mh-nav-list>
+
+    <div class="gradient">
+      <h3>--Transparent--</h3>
+      <mh-nav-list appearance="transparent">
+        <mh-button>Item 1</mh-button>
+        <mh-button>Item 2</mh-button>
+
+        <mh-nav-group>
+          <h4 slot="header">Plain group</h4>
+          <mh-button>Group item 1</mh-button>
+          <mh-button>Group item 2</mh-button>
+          <mh-button disabled>Group item 3 is disabled</mh-button>
+          <mh-button>Group item 4</mh-button>
+        </mh-nav-group>
+
+        <mh-nav-group>
+          <h4 slot="header">Group with button slots</h4>
+          <mh-button>
+            <mh-icon
+              name="add"
+              slot="start"
+            >
+            </mh-icon>
+            Group item 1
+            <span slot="end">On</span>
+          </mh-button>
+
+          <div class="custom-item-container">
+            <mh-button>
+              <mh-icon
+                name="chat"
+                slot="start"
+              >
+              </mh-icon>
+              Group item 2
+              <span slot="end">Off</span>
+            </mh-button>
+          </div>
+
+          <mh-button disabled>
+            <mh-icon
+              name="inventory_2"
+              slot="start"
+            >
+            </mh-icon>
+            Group item 3 is disabled
+            <span slot="end">On</span>
+          </mh-button>
+
+          <mh-button>
+            <mh-icon
+              name="print"
+              slot="start"
+            >
+            </mh-icon>
+            Group item 4
+            <span slot="end">On</span>
+          </mh-button>
+        </mh-nav-group>
+
+        <mh-nav-group>
+          <mh-button>Group item 1 no header</mh-button>
+          <mh-button>Group item 2</mh-button>
+        </mh-nav-group>
+
+        <mh-nav-group>
+          <mh-button>Group item 1 no header</mh-button>
+          <mh-button>Group item 2</mh-button>
+        </mh-nav-group>
+      </mh-nav-list>
+    </div>
+  </body>
+</html>

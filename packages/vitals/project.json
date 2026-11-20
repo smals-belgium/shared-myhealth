@@ -27,11 +27,18 @@
       "dependsOn": ["build"],
       "outputs": [
         "{projectRoot}/dist/custom-elements.json",
-        "{projectRoot}/dist/theme.css"
+        "{projectRoot}/dist/theme.css",
+        "{projectRoot}/dist/icons-url.css",
+        "{projectRoot}/dist/icons-inline.css",
+        "{projectRoot}/dist/assets/icons"
       ],
       "options": {
         "cwd": "packages/vitals",
-        "commands": ["cem analyze", "node ../../tools/postcss.js"]
+        "commands": [
+          "cem analyze",
+          "node ../../tools/postcss.js",
+          "node tools/generate-icon-css.mjs"
+        ]
       }
     },
     "stylelint": {
@@ -53,7 +60,7 @@
       "executor": "nx:run-commands",
       "dependsOn": ["bundle"],
       "options": {
-        "command": "node ../../tools/verify-package-integrity.mjs dist/theme.css dist/LICENSE.md dist/custom-elements.json dist/assets/fonts/open-sans-variable-latin.woff2 dist/assets/fonts/open-sans-variable-italic-latin.woff2",
+        "command": "node ../../tools/verify-package-integrity.mjs dist/theme.css dist/LICENSE.md dist/custom-elements.json dist/assets/fonts/open-sans-variable-latin.woff2 dist/assets/fonts/open-sans-variable-italic-latin.woff2 dist/icons-url.css dist/icons-inline.css dist/assets/icons/add.svg",
         "cwd": "packages/vitals"
       }
     }

@@ -44,7 +44,16 @@ describe('icon', () => {
       await listener;
       await elementUpdated(el);
 
-      expect(el.shadowRoot?.querySelector('svg')).not.toBeNull();
+      expect(el.shadowRoot?.querySelector('[part="base"]')).not.toBeNull();
+    });
+
+    it(`masks the icon with the SVG`, async () => {
+      const el = await fixture<Icon>(html`<mh-icon name="search"></mh-icon>`);
+      const base = el.shadowRoot?.querySelector<HTMLElement>('[part="base"]');
+
+      expect(base?.style.getPropertyValue('--__icon__mask')).toContain(
+        'data:image/svg+xml,',
+      );
     });
 
     it(`renders SVG from custom 'src'`, async () => {
@@ -63,12 +72,12 @@ describe('icon', () => {
       await listener;
       await elementUpdated(el);
 
-      expect(el.shadowRoot?.querySelector('svg')).not.toBeNull();
+      expect(el.shadowRoot?.querySelector('[part="base"]')).not.toBeNull();
     });
 
     it(`renders '#' when anything goes wrong`, async () => {
       const el = await fixture<Icon>(html`<mh-icon></mh-icon>`);
-      expect(el.shadowRoot?.querySelector('svg')).toBeNull();
+      expect(el.shadowRoot?.querySelector('[part="base"]')).toBeNull();
       expect(textContent(el)).toBe('#');
     });
   });

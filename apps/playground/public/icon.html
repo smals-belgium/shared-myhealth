@@ -36,6 +36,11 @@
           #76e1b1 100%
         );
       }
+
+      /* Theming a single icon: swap the mask of the base part. */
+      .themed::part(base) {
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3C/svg%3E");
+      }
     </style>
   </head>
 
@@ -46,6 +51,12 @@
     <mh-icon
       name="search"
       class="rotate"
+    ></mh-icon
+    ><br />
+    themed:
+    <mh-icon
+      name="search"
+      class="themed"
     ></mh-icon
     ><br />
     <h2>Sizes</h2>
