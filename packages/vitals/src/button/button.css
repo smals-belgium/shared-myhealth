@@ -1,42 +1,62 @@
 :host {
-  --mh-button__color-fill__focus: var(--mh-button__color-fill);
-  --mh-button__color-outline: var(--mh-color-border);
-  --mh-button__layout-align: center;
-  --mh-button__size-border-radius: 9999px;
-  --mh-button__size-border-width: var(--mh-border-width-m);
-  --mh-button__size-height: var(--mh-form-control-height);
-  --mh-button__size-outline-offset: var(--mh-focus-offset);
-  --mh-button__size-outline-width: var(--mh-border-width-s);
-  --mh-button__size-type-weight: 600;
-  --mh-button__style-outline: dashed;
+  --__button__color-fill__focus: var(
+    --mh-button__color-fill__focus,
+    var(--__button__color-fill)
+  );
+  --__button__color-outline: var(
+    --mh-button__color-outline,
+    var(--mh-color-border)
+  );
+  --__button__layout-align: var(--mh-button__layout-align, center);
+  --__button__size-border-radius: var(--mh-button__size-border-radius, 9999px);
+  --__button__size-border-width: var(
+    --mh-button__size-border-width,
+    var(--mh-border-width-m)
+  );
+  --__button__size-gap: var(--mh-button__size-gap, 0.25rem);
+  --__button__size-height: var(
+    --mh-button__size-height,
+    var(--mh-form-control-height)
+  );
+  --__button__size-inset: var(--mh-button__size-inset, 1rem);
+  --__button__size-outline-offset: var(
+    --mh-button__size-outline-offset,
+    var(--mh-focus-offset)
+  );
+  --__button__size-outline-width: var(
+    --mh-button__size-outline-width,
+    var(--mh-border-width-s)
+  );
+  --__button__size-type-weight: var(--mh-button__size-type-weight, 600);
+  --__button__style-outline: var(--mh-button__style-outline, dashed);
 
   display: inline-block;
 }
 
 [part='base'] {
   display: inline-flex;
-  gap: 0.25rem;
+  gap: var(--__button__size-gap);
   align-items: center;
-  justify-content: var(--mh-button__layout-align);
   text-decoration: none;
   user-select: none;
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  padding: 0 1rem;
+  padding-block: 0;
+  padding-inline: var(--__button__size-inset);
   font-family: inherit;
   line-height: inherit;
   font-size: inherit;
-  font-weight: var(--mh-button__size-type-weight);
-  height: var(--mh-button__size-height);
+  font-weight: var(--__button__size-type-weight);
+  height: var(--__button__size-height);
 
   /* Stretch to host width without forcing width in regular inline usage. */
   width: 100%;
   box-sizing: border-box;
 
-  border-radius: var(--mh-button__size-border-radius);
+  border-radius: var(--__button__size-border-radius);
   border-style: solid;
-  border-width: var(--mh-button__size-border-width);
+  border-width: var(--__button__size-border-width);
 
   transition-property:
     background, border, box-shadow, color, opacity, transform;
@@ -45,10 +65,10 @@
   transform-origin: center;
 
   &:focus-visible {
-    background-color: var(--mh-button__color-fill__focus);
-    outline: var(--mh-button__size-outline-width)
-      var(--mh-button__style-outline) var(--mh-button__color-outline);
-    outline-offset: var(--mh-button__size-outline-offset);
+    background-color: var(--__button__color-fill__focus);
+    outline: var(--__button__size-outline-width) var(--__button__style-outline)
+      var(--__button__color-outline);
+    outline-offset: var(--__button__size-outline-offset);
   }
 
   &:disabled,
@@ -57,8 +77,10 @@
   }
 }
 
-.main {
-  display: inline-block;
+[part='main'] {
+  display: block;
+  flex-grow: 1;
+  text-align: var(--__button__layout-align);
 }
 
 mh-spinner {

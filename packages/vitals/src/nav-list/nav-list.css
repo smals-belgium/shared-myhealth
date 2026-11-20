@@ -1,0 +1,78 @@
+:host {
+  color-scheme: light;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  gap: 0.5rem;
+}
+
+/**
+ * The item and the chevron share a single grid cell, so the chevron is layered on top of the item without taking
+ * up space of its own. The `li` itself can't be position:relative, because it would layer it over the items of
+ * the next `li`.
+ * @see nav-group.css which uses position: relative on the items to layer the active one on top.
+ */
+li {
+  display: grid;
+  align-items: center;
+}
+
+/** Extra room between groups on top of the list gap. @see nav-group.css for the headerless adjustment. */
+li:not(:first-child) ::slotted(mh-nav-group) {
+  margin-top: 1rem;
+}
+
+::slotted([slot^='nav-item-']) {
+  /** The `slot` element has no box (display: contents), so it is the slotted item that is the grid item. */
+  grid-area: 1 / 1;
+  width: 100%;
+}
+
+/** The items stay in the light DOM, so they are styled through the custom properties they expose. */
+::slotted([slot^='nav-item-']:not(mh-nav-group)) {
+  --mh-button__color-border: var(--mh-nav-item__color-border);
+  --mh-button__color-border__active: var(--mh-nav-item__color-border);
+  --mh-button__color-border__disabled: var(--mh-nav-item__color-border);
+  --mh-button__color-border__hover: var(--mh-nav-item__color-border__hover);
+  --mh-button__color-fill: var(--mh-nav-item__color-fill);
+  --mh-button__color-fill__active: var(--mh-nav-item__color-fill__active);
+  --mh-button__color-fill__disabled: var(--mh-nav-item__color-fill);
+  --mh-button__color-fill__focus: var(--mh-nav-item__color-fill__focus);
+  --mh-button__color-fill__hover: var(--mh-nav-item__color-fill__hover);
+  --mh-button__color-outline: var(--mh-nav-item__color-border__focus);
+  --mh-button__color-type: var(--mh-color-neutral-type-louder);
+  --mh-button__color-type__active: var(--mh-color-neutral-type-louder);
+  --mh-button__color-type__hover: var(--mh-color-neutral-type-louder);
+  --mh-button__layout-align: start;
+  --mh-button__size-border-radius: var(--mh-border-radius-xl);
+  --mh-button__size-border-width: 1px;
+  --mh-button__size-gap: 0.5rem;
+  --mh-button__size-height: 3.5rem;
+  --mh-button__size-inset: 0.75rem 2.75rem;
+  --mh-button__size-outline-offset: -2px;
+  --mh-button__size-outline-width: 2px;
+  --mh-button__size-type-weight: 400;
+  --mh-button__style-outline: solid;
+}
+
+/**
+ * Position the chevron on top of the projected contents, so that they take up the entire width of the li,
+ * making the whole thing clickable/focusable.
+ */
+[part='icon'] {
+  grid-area: 1 / 1;
+  position: relative;
+  justify-self: end;
+  margin-inline-end: 0.5rem;
+  pointer-events: none;
+  color: var(--mh-color-brand-type);
+
+  li[data-has-disabled] & {
+    color: var(--mh-color-neutral-type);
+  }
+}

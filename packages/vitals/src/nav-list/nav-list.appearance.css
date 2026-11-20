@@ -1,0 +1,19 @@
+:host([appearance='outlined']) {
+  --mh-nav-item__color-border: var(--mh-color-neutral-border-quiet);
+  --mh-nav-item__color-border__focus: var(--mh-color-brand-border);
+  --mh-nav-item__color-border__hover: var(--mh-color-brand-border);
+  --mh-nav-item__color-fill: #fff;
+  --mh-nav-item__color-fill__active: var(--mh-color-brand-fill-quiet);
+  --mh-nav-item__color-fill__focus: var(--mh-color-brand-fill-quieter);
+  --mh-nav-item__color-fill__hover: var(--mh-color-brand-fill-quieter);
+}
+
+:host([appearance='transparent']) {
+  --mh-nav-item__color-border: #fff;
+  --mh-nav-item__color-border__focus: var(--mh-color-brand-border);
+  --mh-nav-item__color-border__hover: var(--mh-color-brand-border);
+  --mh-nav-item__color-fill: rgb(255 255 255 / 40%);
+  --mh-nav-item__color-fill__active: rgb(255 255 255 / 80%);
+  --mh-nav-item__color-fill__focus: rgb(255 255 255 / 60%);
+  --mh-nav-item__color-fill__hover: rgb(255 255 255 / 60%);
+}

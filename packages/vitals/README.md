@@ -37,6 +37,29 @@ Or from JavaScript/TypeScript:
 import '@smals-belgium-shared/vitals/theme.css';
 ```
 
+### Icons
+
+The built-in icons are bundled with the `mh-icon` component, so they work out of the box: no extra stylesheet
+and no assets to serve.
+
+Each icon is drawn as a CSS mask on the `base` part of `mh-icon`, which makes them easy to serve differently or
+replace. Two optional stylesheets contain a rule per built-in icon:
+
+- `@smals-belgium-shared/vitals/icons-url.css`: references the SVG files shipped in the package. Your bundler emits
+  them as assets (or you serve `dist/assets/icons` yourself), so nothing is inlined and the browser can cache them.
+- `@smals-belgium-shared/vitals/icons-inline.css`: the same rules with the SVGs inlined as data URIs, so nothing has to
+  be served. Handy as a starting point for your own theme.
+
+Both override the built-in icons, regardless of the order in which they are loaded. To theme a single icon, add one rule:
+
+```css
+mh-icon[name='add']::part(base) {
+  mask-image: url('/my-theme/add.svg');
+}
+```
+
+Only the shape of the SVG matters: the colour comes from `currentColor` or `--mh-icon__color-gradient`.
+
 ### Using your own font
 
 The kit ships with [Open Sans](https://fonts.google.com/specimen/Open+Sans) self-hosted as the default
