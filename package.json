@@ -85,6 +85,7 @@
     "@angular/forms": "22.1.6",
     "@angular/platform-browser": "22.1.6",
     "@angular/router": "22.1.6",
+    "@lit/context": "^1.1.6",
     "lit": "^3.3.2",
     "rxjs": "~7.8.0",
     "vite-plugin-static-copy": "^4.1.1"

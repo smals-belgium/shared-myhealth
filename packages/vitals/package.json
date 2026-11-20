@@ -18,6 +18,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@lit/context": "^1.1.6",
     "lit": "^3.3.2"
   },
   "exports": {
@@ -84,6 +85,11 @@
       "types": "./dist/nav-list/index.d.ts",
       "import": "./dist/nav-list/index.js",
       "default": "./dist/nav-list/index.js"
+    },
+    "./nav-menu": {
+      "types": "./dist/nav-menu/index.d.ts",
+      "import": "./dist/nav-menu/index.js",
+      "default": "./dist/nav-menu/index.js"
     },
     "./popover-menu": {
       "types": "./dist/popover-menu/index.d.ts",

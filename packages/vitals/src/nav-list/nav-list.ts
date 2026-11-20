@@ -1,14 +1,18 @@
+import { provide } from '@lit/context';
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
+import { renderChevron } from './chevron.renderer';
+import { navGroupRendererContext } from './nav-group.context';
 import { NavItemsController } from './nav-items.controller';
+import { listGroupRenderer } from './nav-list-group.renderer';
 import appearance from './nav-list.appearance.css?inline';
 import styles from './nav-list.css?inline';
 
 export type NavListAppearance = 'outlined' | 'transparent';
 
 /**
- * @summary A navigation list. The component takes care of the correct navigation and list semantics. As a develop,
+ * @summary A navigation list. The component takes care of the correct navigation and list semantics. As a developer,
  * you just need to provide links or buttons.
  * Like the native `optgroup` element, you can use `mh-nav-group` to create navigation subgroups.
  * @documentation https://smals-belgium.github.io/shared-myhealth/components/nav-list
@@ -28,15 +32,22 @@ export class NavList extends LitElement {
 
   @property({ reflect: true }) appearance: NavListAppearance = 'outlined';
 
-  readonly #items = new NavItemsController(this);
+  @provide({ context: navGroupRendererContext })
+  protected readonly groupRenderer = listGroupRenderer;
 
-  override render() {
+  readonly #items = new NavItemsController(this, renderChevron);
+
+  static render(items: NavItemsController) {
     return html`
       <nav>
         <ul part="list">
-          ${this.#items.render()}
+          ${items.render()}
         </ul>
       </nav>
     `;
+  }
+
+  override render() {
+    return NavList.render(this.#items);
   }
 }

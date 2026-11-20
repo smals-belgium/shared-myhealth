@@ -1,10 +1,15 @@
-import { LitElement, html, unsafeCSS } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { consume } from '@lit/context';
+import { LitElement, adoptStyles, html, nothing, unsafeCSS } from 'lit';
+import type { PropertyValues } from 'lit';
+import { customElement, state } from 'lit/decorators.js';
 
 import { slotContentDirective } from '../core/directive/slot-content.directive';
 
+import { navGroupRendererContext } from './nav-group.context';
 import groupStyles from './nav-group.css?inline';
+import type { NavGroupRenderer } from './nav-group.renderer';
 import { NavItemsController } from './nav-items.controller';
+import { listGroupRenderer } from './nav-list-group.renderer';
 import listStyles from './nav-list.css?inline';
 
 /**
@@ -24,20 +29,35 @@ import listStyles from './nav-list.css?inline';
 export class NavGroup extends LitElement {
   static override readonly styles = [listStyles, groupStyles].map(unsafeCSS);
 
-  readonly #items = new NavItemsController(this);
+  /** The parent decides how the group renders. Without a parent that provides a renderer, it is a plain list. */
+  @consume({ context: navGroupRendererContext, subscribe: true })
+  @state()
+  protected renderer: NavGroupRenderer = listGroupRenderer;
+
+  readonly #items = new NavItemsController(
+    this,
+    el => this.renderer.renderItemContent?.(el) ?? nothing,
+  );
+
+  protected override willUpdate(changed: PropertyValues) {
+    if (changed.has('renderer'))
+      adoptStyles(this.renderRoot as ShadowRoot, [
+        ...NavGroup.styles,
+        ...(this.renderer.styles ?? []),
+      ]);
+  }
 
   override render() {
-    return html`
-      <slot
-        name="header"
-        part="header"
-        @slotchange=${slotContentDirective}
-      >
-      </slot>
-
-      <ul part="list">
-        ${this.#items.render()}
-      </ul>
-    `;
+    return this.renderer.render({
+      header: html`
+        <slot
+          name="header"
+          part="header"
+          @slotchange=${slotContentDirective}
+        >
+        </slot>
+      `,
+      items: this.#items.render(),
+    });
   }
 }
