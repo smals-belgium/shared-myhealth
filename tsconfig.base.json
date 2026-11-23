@@ -91,6 +91,9 @@
       ],
       "@smals-belgium-shared/vitals-ng/nav-list": [
         "./packages/vitals-ng/src/nav-list/index.ts"
+      ],
+      "@smals-belgium-shared/vitals-ng/nav-menu": [
+        "./packages/vitals-ng/src/nav-menu/index.ts"
       ]
     },
     "noUncheckedSideEffectImports": false,
