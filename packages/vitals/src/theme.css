@@ -14,4 +14,13 @@
 
 a {
   color: var(--mh-color-brand-type);
+
+  &:hover {
+    color: var(--mh-color-brand-type-loud);
+  }
+
+  &:focus-visible {
+    outline: 1px dashed var(--mh-color-brand-type);
+    outline-offset: 2px;
+  }
 }
