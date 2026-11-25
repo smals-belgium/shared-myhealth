@@ -31,6 +31,7 @@ li:not(:first-child) ::slotted(mh-nav-group) {
   /** The `slot` element has no box (display: contents), so it is the slotted item that is the grid item. */
   grid-area: 1 / 1;
   width: 100%;
+  min-width: 0;
 }
 
 /**
@@ -61,12 +62,18 @@ li:not(:first-child) ::slotted(mh-nav-group) {
   --mh-button__size-border-radius: var(--mh-border-radius-xl);
   --mh-button__size-border-width: 1px;
   --mh-button__size-gap: 0.5rem;
-  --mh-button__size-height: 3.5rem;
+  --mh-button__size-height: auto;
+  --mh-button__size-min-height: var(--mh-form-control-height-m);
+  --mh-button__layout-flex-wrap: wrap;
+  --mh-button__layout-wrap: normal;
+  --mh-button__size-basis-main: 10rem;
   --mh-button__size-inset: 0.75rem 2.75rem;
   --mh-button__size-outline-offset: -2px;
   --mh-button__size-outline-width: 2px;
   --mh-button__size-type-weight: 400;
   --mh-button__style-outline: solid;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /**

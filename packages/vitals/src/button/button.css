@@ -30,25 +30,40 @@
   --__button__size-type-weight: var(--mh-button__size-type-weight, 600);
   --__button__style-outline: var(--mh-button__style-outline, dashed);
 
+  /*
+   * Internal API: not documented publicly, only meant to be set by other vitals components (e.g. nav-list).
+   * - --mh-button__size-min-height: minimum height; combine with `--mh-button__size-height: auto` to let the button grow.
+   * - --mh-button__layout-wrap: `white-space` value for the label; `normal` lets it wrap.
+   * - --mh-button__layout-flex-wrap: `wrap` moves the end slot below the label when the label would get less than its basis.
+   * - --mh-button__size-basis-main: preferred label width (flex-basis) used for that decision.
+   */
+  --__button__layout-flex-wrap: var(--mh-button__layout-flex-wrap, nowrap);
+  --__button__layout-wrap: var(--mh-button__layout-wrap, nowrap);
+  --__button__size-basis-main: var(--mh-button__size-basis-main, auto);
+  --__button__size-min-height: var(--mh-button__size-min-height, 0);
+
   display: inline-block;
 }
 
 [part='base'] {
   display: inline-flex;
   gap: var(--__button__size-gap);
+  flex-wrap: var(--__button__layout-flex-wrap);
+  align-content: center;
   align-items: center;
   text-decoration: none;
   user-select: none;
-  white-space: nowrap;
+  white-space: var(--__button__layout-wrap);
   vertical-align: middle;
   cursor: pointer;
-  padding-block: 0;
+  padding-block: 0.5rem;
   padding-inline: var(--__button__size-inset);
   font-family: inherit;
   line-height: inherit;
   font-size: inherit;
   font-weight: var(--__button__size-type-weight);
   height: var(--__button__size-height);
+  min-height: var(--__button__size-min-height);
 
   /* Stretch to host width without forcing width in regular inline usage. */
   width: 100%;
@@ -77,9 +92,28 @@
   }
 }
 
+/** The start slot (usually an icon) never wraps or shrinks. */
+[part='start'] {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/**
+ * The end slot keeps the button's white-space, so it only wraps when the button allows it. With flex-wrap enabled, it
+ * drops below the label when the label would get less than its basis next to it, and only wraps once it's alone on a line.
+ */
+[part='end'] {
+  display: flex;
+  align-items: center;
+  margin-inline-start: auto;
+  text-align: end;
+}
+
 [part='main'] {
   display: block;
-  flex-grow: 1;
+  flex: 1 1 var(--__button__size-basis-main);
   text-align: var(--__button__layout-align);
 }
 
