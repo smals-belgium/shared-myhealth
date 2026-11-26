@@ -38,6 +38,24 @@ describe('nav-list', () => {
       expect(el.shadowRoot?.querySelector('nav > ul')).not.toBeNull();
     });
 
+    it('exposes the label as the accessible name of the nav', async () => {
+      const el = await fixture<NavList>(
+        html`<mh-nav-list label="Main"><a href="/one">One</a></mh-nav-list>`,
+      );
+
+      expect(el.shadowRoot?.querySelector('nav')?.ariaLabel).toBe('Main');
+    });
+
+    it('does not set an aria-label without a label', async () => {
+      const el = await fixture<NavList>(
+        html`<mh-nav-list><a href="/one">One</a></mh-nav-list>`,
+      );
+
+      expect(
+        el.shadowRoot?.querySelector('nav')?.hasAttribute('aria-label'),
+      ).toBe(false);
+    });
+
     it('renders one list item per child, each with its own slot', async () => {
       const el = await fixture<NavList>(html`
         <mh-nav-list>

@@ -1,6 +1,7 @@
 import { provide } from '@lit/context';
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 import { renderChevron } from './chevron.renderer';
 import { navGroupRendererContext } from './nav-group.context';
@@ -32,14 +33,17 @@ export class NavList extends LitElement {
 
   @property({ reflect: true }) appearance: NavListAppearance = 'outlined';
 
+  /** Accessible name of the navigation landmark, e.g. to tell several navigations on the same page apart. */
+  @property() label?: string;
+
   @provide({ context: navGroupRendererContext })
   protected readonly groupRenderer = listGroupRenderer;
 
   readonly #items = new NavItemsController(this, renderChevron);
 
-  static render(items: NavItemsController) {
+  static render(items: NavItemsController, label?: string) {
     return html`
-      <nav>
+      <nav aria-label=${ifDefined(label)}>
         <ul part="list">
           ${items.render()}
         </ul>
@@ -48,6 +52,6 @@ export class NavList extends LitElement {
   }
 
   override render() {
-    return NavList.render(this.#items);
+    return NavList.render(this.#items, this.label);
   }
 }
