@@ -65,6 +65,23 @@
   <body>
     <h2>NavList</h2>
 
+    <h3>--External links--</h3>
+    <mh-nav-list>
+      <mh-a href="">Internal link</mh-a>
+      <mh-a
+        href="https://example.com"
+        target="_blank"
+        external
+        >External link</mh-a
+      >
+      <mh-a
+        href="https://example.com"
+        external
+        disabled
+        >External link (disabled)</mh-a
+      >
+    </mh-nav-list>
+
     <h3>--Outlined--</h3>
     <mh-nav-list>
       <mh-a href="">Item 1</mh-a>
@@ -83,7 +100,10 @@
         <mh-button>Group item 2</mh-button>
         <mh-button>Group item 3</mh-button>
         <mh-button disabled>Group item 4 is disabled</mh-button>
-        <mh-button>Group item 5</mh-button>
+        <mh-button>
+          Group item 5 - Dolore quaerat ut maxime repudiandae. Et beatae quidem
+          aut ea voluptas. Sit dolor officia dicta tempora.
+        </mh-button>
       </mh-nav-group>
     </mh-nav-list>
 
@@ -148,8 +168,14 @@
               slot="start"
             >
             </mh-icon>
-            Group item 4
+            Group item 4 - Dolore quaerat ut maxime repudiandae. Et beatae
+            quidem aut ea voluptas. Sit dolor officia dicta tempora.
             <span slot="end">On</span>
+          </mh-button>
+
+          <mh-button>
+            Meine Medikamentenbeschreibungen
+            <span slot="end">Verfugbar bis 12/12/2026</span>
           </mh-button>
         </mh-nav-group>
 

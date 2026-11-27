@@ -38,6 +38,24 @@ describe('nav-list', () => {
       expect(el.shadowRoot?.querySelector('nav > ul')).not.toBeNull();
     });
 
+    it('exposes the label as the accessible name of the nav', async () => {
+      const el = await fixture<NavList>(
+        html`<mh-nav-list label="Main"><a href="/one">One</a></mh-nav-list>`,
+      );
+
+      expect(el.shadowRoot?.querySelector('nav')?.ariaLabel).toBe('Main');
+    });
+
+    it('does not set an aria-label without a label', async () => {
+      const el = await fixture<NavList>(
+        html`<mh-nav-list><a href="/one">One</a></mh-nav-list>`,
+      );
+
+      expect(
+        el.shadowRoot?.querySelector('nav')?.hasAttribute('aria-label'),
+      ).toBe(false);
+    });
+
     it('renders one list item per child, each with its own slot', async () => {
       const el = await fixture<NavList>(html`
         <mh-nav-list>
@@ -80,6 +98,29 @@ describe('nav-list', () => {
       const [item, group] = listItems(el);
       expect(item.querySelector('[part="icon"]')).not.toBeNull();
       expect(group.querySelector('[part="icon"]')).toBeNull();
+    });
+
+    it('renders another icon for external links', async () => {
+      const el = await fixture<NavList>(html`
+        <mh-nav-list>
+          <mh-a href="/one">One</mh-a>
+          <mh-a
+            href="https://example.com"
+            external
+            >Two</mh-a
+          >
+        </mh-nav-list>
+      `);
+      await flushObserver();
+      await el.updateComplete;
+
+      const [internal, external] = listItems(el);
+      expect(
+        internal.querySelector('[part="icon"]')?.getAttribute('name'),
+      ).toBe('chevron_right');
+      expect(
+        external.querySelector('[part="icon"]')?.getAttribute('name'),
+      ).toBe('open_in_new');
     });
   });
 

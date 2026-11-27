@@ -40,6 +40,18 @@ describe('a', () => {
       expect(getA(el)?.getAttribute('aria-disabled')).toBe('true');
     });
 
+    it('passes accessibility tests when external', async () => {
+      await assertAccessibility(
+        await fixture<Anchor>(
+          html`<mh-a
+            href="https://example.com"
+            external
+            >click</mh-a
+          >`,
+        ),
+      );
+    });
+
     it('sets tabindex to match disabled state', async () => {
       const el = await fixture<Anchor>(html`<mh-a>click</mh-a>`);
       expect(getA(el)?.hasAttribute('tabindex')).toBe(false);

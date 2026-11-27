@@ -1,9 +1,10 @@
 import { merge } from '../core/controller/merge.controller';
 import { propUpdatedEffect } from '../core/controller/prop-updated.effect';
+import { root } from '../core/internals';
 import type { OpenCloseHost } from '../core/open-close.behaviour';
 
 import { focusTarget } from './focus-target';
-import { root, triggers } from './trigger.selectors';
+import { triggers } from './trigger.selectors';
 
 /**
  * Sync `aria-haspopup` and `aria-expanded` state with all triggers of this popover.

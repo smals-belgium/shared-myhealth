@@ -6,8 +6,10 @@ import type { NavListAppearance } from '@smals-belgium-shared/vitals/nav-list';
   selector: 'mh-nav-list',
   host: {
     '[attr.appearance]': 'appearance()',
+    '[attr.label]': 'label()',
   },
 })
 export class NavList {
   readonly appearance = input<NavListAppearance>('outlined');
+  readonly label = input<string>();
 }

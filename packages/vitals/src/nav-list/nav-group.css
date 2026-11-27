@@ -53,7 +53,7 @@ li {
   }
 }
 
-::slotted([slot^='nav-item-']:not(mh-nav-group)) {
+::slotted([slot^='nav-item-']:not(mh-nav-group, .mh-nav-content)) {
   --mh-button__size-border-radius: var(--nav-group__size-border-radius-top)
     var(--nav-group__size-border-radius-top)
     var(--nav-group__size-border-radius-bottom)

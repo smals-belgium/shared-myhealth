@@ -2,6 +2,7 @@ import type { NavGroup } from './nav-group';
 import type { NavList } from './nav-list';
 
 export * from './nav-group';
+export * from './nav-group.context';
 export * from './nav-list';
 
 declare global {

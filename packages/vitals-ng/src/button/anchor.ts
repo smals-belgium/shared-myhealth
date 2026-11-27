@@ -17,6 +17,7 @@ import type {
     '[attr.variant]': 'variant()',
     '[attr.appearance]': 'appearance()',
     '[attr.size]': 'size()',
+    '[attr.external]': 'external() ? "" : null',
     '[attr.disabled]': 'disabled() ? "" : null',
   },
 })
@@ -29,5 +30,6 @@ export class Anchor {
   readonly variant = input<ButtonVariant>('brand');
   readonly appearance = input<ButtonAppearance>('filled');
   readonly size = input<ButtonSize>('m');
+  readonly external = input(false);
   readonly disabled = input(false);
 }

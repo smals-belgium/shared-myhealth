@@ -12,6 +12,7 @@ import { Home } from './home';
 import { IconButtonSandbox } from './icon-button-ng.sandbox';
 import { IconSandbox } from './icon-ng.sandbox';
 import { NavListSandbox } from './nav-list-ng.sandbox';
+import { NavMenuSandbox } from './nav-menu-ng.sandbox';
 import { PopoverMenuSandbox } from './popover-menu-ng.sandbox';
 import { RadioSandbox } from './radio-ng.sandbox';
 import { SelectSandbox } from './select-ng.sandbox';
@@ -73,6 +74,10 @@ export const appRoutes: Route[] = [
   {
     path: 'nav-list',
     component: NavListSandbox,
+  },
+  {
+    path: 'nav-menu',
+    component: NavMenuSandbox,
   },
   {
     path: 'popover-menu',
