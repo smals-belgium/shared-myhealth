@@ -1,0 +1,26 @@
+{
+  "name": "@smals-belgium-shared/ehealth-iam",
+  "version": "0.0.0",
+  "license": "SEE LICENSE IN ./dist/LICENSE.md",
+  "repository": {
+    "url": "https://github.com/smals-belgium/shared-myhealth"
+  },
+  "type": "module",
+  "main": "./index.js",
+  "module": "./dist/index.js",
+  "types": "./index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "jwt-decode": "^4.0.0"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./testing": {
+      "types": "./dist/testing/index.d.ts",
+      "import": "./dist/testing/index.js",
+      "default": "./dist/testing/index.js"
+    }
+  }
+}

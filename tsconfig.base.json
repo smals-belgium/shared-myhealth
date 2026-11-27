@@ -91,6 +91,9 @@
       ],
       "@smals-belgium-shared/vitals-ng/nav-list": [
         "./packages/vitals-ng/src/nav-list/index.ts"
+      ],
+      "@smals-belgium-shared/ehealth-iam": [
+        "./packages/ehealth-iam/src/index.ts"
       ]
     },
     "noUncheckedSideEffectImports": false,
