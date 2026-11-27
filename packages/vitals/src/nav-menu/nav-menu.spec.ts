@@ -17,6 +17,10 @@ const flushObserver = () =>
   });
 
 describe('nav-menu', () => {
+  beforeAll(() => {
+    Element.prototype.scrollIntoView = vi.fn();
+  });
+
   it('renders a nav-group as a collapsible panel', async () => {
     const menu = await fixture<NavMenu>(html`
       <mh-nav-menu>

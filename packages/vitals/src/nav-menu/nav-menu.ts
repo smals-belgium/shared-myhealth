@@ -15,6 +15,7 @@ import appearance from './nav-menu.css?inline';
  * Like the native `optgroup` element, you can use `mh-nav-group` to create navigation subgroups.
  * The difference with `nav-list` is that the menu contains expandable/collapsible subgroups.
  * By default the menu behaves like an accordion: opening a group closes the others. Add `multiple` to opt out.
+ * A group that opens is scrolled into view, so that its expanded content is fully visible.
  * @documentation https://smals-belgium.github.io/shared-myhealth/components/nav-menu
  * @status stable
  * @since 1.0
