@@ -1,0 +1,8 @@
+{
+  "name": "ehealth-iam",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/ehealth-iam/src",
+  "projectType": "library",
+  "tags": ["type:auth", "scope:ehealth"],
+  "targets": {}
+}
