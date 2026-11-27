@@ -41,6 +41,12 @@ export class Anchor extends ButtonBase {
   /** Tells the browser to download the linked file as this filename. */
   @property() download?: string;
 
+  /**
+   * Marks the link as an external redirection (leaving the app). Changes its appearance: the label is blue and
+   * underlined, and a nav-list shows another icon instead of the chevron.
+   */
+  @property({ type: Boolean, reflect: true }) external = false;
+
   /** Disables the hyperlink even though not natively supported. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 

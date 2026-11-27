@@ -99,6 +99,29 @@ describe('nav-list', () => {
       expect(item.querySelector('[part="icon"]')).not.toBeNull();
       expect(group.querySelector('[part="icon"]')).toBeNull();
     });
+
+    it('renders another icon for external links', async () => {
+      const el = await fixture<NavList>(html`
+        <mh-nav-list>
+          <mh-a href="/one">One</mh-a>
+          <mh-a
+            href="https://example.com"
+            external
+            >Two</mh-a
+          >
+        </mh-nav-list>
+      `);
+      await flushObserver();
+      await el.updateComplete;
+
+      const [internal, external] = listItems(el);
+      expect(
+        internal.querySelector('[part="icon"]')?.getAttribute('name'),
+      ).toBe('chevron_right');
+      expect(
+        external.querySelector('[part="icon"]')?.getAttribute('name'),
+      ).toBe('open_in_new');
+    });
   });
 
   describe('dynamic children', () => {

@@ -5,6 +5,6 @@ export const renderChevron = (el: Element) =>
     ? nothing
     : html`<mh-icon
         part="icon"
-        name="chevron_right"
+        name=${el.hasAttribute('external') ? 'open_in_new' : 'chevron_right'}
       >
       </mh-icon>`;

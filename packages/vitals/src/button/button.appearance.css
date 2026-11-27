@@ -158,3 +158,20 @@
   font-weight: 500;
   text-decoration: underline;
 }
+
+:host([external]) [part='base'] {
+  color: var(--mh-color-brand-type);
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--mh-color-brand-type-loud);
+  }
+
+  &:active {
+    color: var(--mh-color-brand-type-louder);
+  }
+
+  :host([disabled]) & {
+    color: var(--__button__color-type__disabled);
+  }
+}
